@@ -1,0 +1,517 @@
+/* ==========================================================================
+   最佳实践案例页 · 公用样式
+   适用：best-practices/case-*-detail.html
+   各案例页仅在自身 <style> 中保留差异样式（.case-header 渐变、.intro-logo 尺寸、
+   页面独有模块等），公用部分统一在本文件维护。
+   ========================================================================== */
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+    --dt-blue: #1677FF;
+    --accent: #408BFB;
+    --tint-blue: #E8F2FE;
+    --tint-indigo: rgba(129, 169, 250, 0.12);
+    --tint-purple: rgba(181, 146, 253, 0.10);
+    --tint-pain: #F2BABA;
+    --tint-sol: #ECF9F0;
+    --banner: #72B7EF;
+    --text: #0A0A09;
+    --text-sub: #5F5F5F;
+    --line: #E8EAED;
+}
+
+body {
+    font-family: 'Alibaba PuHuiTi 3.0', '阿里巴巴普惠体 2.0', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;
+    background: #f7f8fa;
+    color: var(--text);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Top bar */
+
+.top-bar {
+    background: #ffffff;
+    padding: 0 40px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.top-bar-left { display: flex; align-items: center; gap: 12px; }
+
+.top-bar-logo {
+    height: 32px;
+    filter: brightness(0) saturate(100%) invert(42%) sepia(93%) saturate(1352%) hue-rotate(202deg) brightness(97%) contrast(96%);
+}
+
+.top-bar-title { font-size: 15px; color: #333; font-weight: 500; }
+
+.back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 20px;
+    color: var(--dt-blue);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    border: 1px solid var(--dt-blue);
+    border-radius: 6px;
+    transition: all 0.2s;
+}
+
+.back-btn:hover { background: var(--dt-blue); color: #ffffff; }
+
+.back-btn:hover svg { stroke: #ffffff; }
+
+.back-btn svg {
+    width: 16px; height: 16px;
+    fill: none; stroke: var(--dt-blue); stroke-width: 2;
+    stroke-linecap: round; stroke-linejoin: round;
+}
+
+.case-header-inner { max-width: 1100px; margin: 0 auto; }
+
+.case-tag {
+    display: inline-block;
+    font-size: 12px;
+    color: var(--dt-blue);
+    background: rgba(22,119,255,0.1);
+    border: 1px solid rgba(22,119,255,0.2);
+    padding: 4px 14px;
+    border-radius: 14px;
+    margin-bottom: 16px;
+    letter-spacing: 1px;
+    font-weight: 500;
+}
+
+.case-title { font-size: 32px; font-weight: 700; margin-bottom: 12px; line-height: 1.4; }
+
+.case-meta {
+    margin-top: 18px;
+    font-size: 13px;
+    color: #8a8a8a;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+}
+
+/* Anchor nav */
+
+.doc-nav {
+    position: sticky;
+    top: 64px;
+    z-index: 90;
+    background: rgba(255,255,255,0.94);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+}
+
+.doc-nav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+}
+
+.doc-nav a {
+    flex: none;
+    padding: 13px 12px;
+    font-size: 14px;
+    color: #555;
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+}
+
+.doc-nav a:hover { color: var(--dt-blue); border-bottom-color: var(--dt-blue); }
+
+/* Document body */
+
+.doc-wrap { max-width: 1100px; margin: 0 auto; padding: 24px 24px 64px; }
+
+.doc-paper {
+    background: #ffffff;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+    padding: 40px 48px 48px;
+}
+
+.h2 { font-size: 26px; font-weight: 700; margin: 40px 0 14px; scroll-margin-top: 130px; }
+
+.h2:first-child { margin-top: 0; }
+
+.h3 { font-size: 21px; font-weight: 700; line-height: 1.5; margin: 34px 0 14px; scroll-margin-top: 130px; }
+
+.p { font-size: 15.5px; line-height: 1.9; margin: 12px 0; }
+
+.label { font-size: 15.5px; font-weight: 500; margin: 22px 0 8px; color: #333; }
+
+/* Two column grid */
+
+.cols { display: flex; gap: 12px; margin: 12px 0; align-items: stretch; }
+
+.col { flex: 1 1 0; min-width: 0; border-radius: 8px; padding: 14px; }
+
+.col-indigo { background: var(--tint-indigo); }
+
+.col-purple { background: var(--tint-purple); }
+
+.col-blue { background: var(--tint-blue); }
+
+.col-inner { background: #ffffff; border-radius: 8px; padding: 12px; }
+
+/* Intro card */
+
+.intro-photo { width: 100%; border-radius: 6px; display: block; }
+
+.intro-link {
+    display: inline-block;
+    margin-top: 10px;
+    color: var(--dt-blue);
+    font-size: 14.5px;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(22,119,255,0.35);
+}
+
+.intro-link:hover { border-bottom-color: var(--dt-blue); }
+
+/* Metric cards */
+
+.metrics { display: flex; gap: 12px; margin: 18px 0 8px; }
+
+.metric { flex: 1 1 0; border-radius: 8px; padding: 18px 14px; text-align: center; }
+
+.metric:nth-child(1) { background: var(--tint-indigo); }
+
+.metric:nth-child(2), .metric:nth-child(3) { background: var(--tint-blue); }
+
+.metric-num { font-size: 32px; font-weight: 700; color: #3B3B3B; line-height: 1.3; }
+
+.metric-cap { font-size: 14.5px; color: var(--text-sub); margin-top: 4px; }
+
+/* Callouts */
+
+.callout { border-radius: 8px; padding: 18px 20px; margin: 8px 0 4px; }
+
+.callout-pain { background: var(--tint-pain); }
+
+.callout-sol { background: var(--tint-sol); }
+
+.callout-icon { font-size: 20px; line-height: 1; display: block; margin-bottom: 6px; }
+
+.callout ul { list-style: none; margin: 0; }
+
+.callout li { position: relative; padding-left: 18px; font-size: 15px; line-height: 1.9; margin: 8px 0; }
+
+.callout li::before {
+    content: '';
+    position: absolute;
+    left: 2px; top: 12px;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+    opacity: 0.75;
+}
+
+.callout li b { font-weight: 700; }
+
+/* Result banner + Before/After */
+
+.result-banner {
+    background: var(--tint-blue);
+    border-radius: 8px;
+    padding: 12px;
+    text-align: center;
+    font-size: 15.5px;
+    font-weight: 500;
+    margin: 22px 0 12px;
+}
+
+.ba-title { font-size: 19px; font-weight: 700; color: var(--accent); margin-bottom: 10px; }
+
+.ba-cap { font-size: 15px; font-weight: 500; margin: 4px 0 8px; }
+
+.shot {
+    width: 100%;
+    display: block;
+    border-radius: 4px;
+    border: 1px solid #eceef1;
+    cursor: zoom-in;
+    transition: box-shadow 0.2s;
+}
+
+.shot:hover { box-shadow: 0 4px 14px rgba(0,0,0,0.12); }
+
+.col-inner .shot + .ba-cap { margin-top: 14px; }
+
+/* Path card + table */
+
+.path-card { background: var(--tint-blue); border-radius: 8px; padding: 16px; margin: 20px 0 8px; }
+
+.path-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #FCFCFA;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.path-table th, .path-table td {
+    border: 1px solid rgba(23,26,29,0.14);
+    padding: 12px 14px;
+    font-size: 15px;
+    line-height: 1.85;
+    vertical-align: top;
+    text-align: left;
+}
+
+.path-table th { font-weight: 700; background: #ffffff; }
+
+.path-table td.k { width: 1%; white-space: nowrap; font-weight: 700; background: #ffffff; }
+
+.prompt-cell { position: relative; }
+
+.prompt-text { display: block; }
+
+.copy-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 12px;
+    padding: 5px 12px;
+    font-size: 13px;
+    font-family: inherit;
+    color: var(--dt-blue);
+    background: #ffffff;
+    border: 1px solid rgba(22,119,255,0.4);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.copy-btn:hover { background: var(--dt-blue); color: #ffffff; border-color: var(--dt-blue); }
+
+.copy-btn.done { background: #ECF9F0; color: #1f9254; border-color: #9bd7b3; }
+
+/* Video slot */
+
+video.doc-video {
+    width: 100%;
+    max-width: 720px;
+    display: block;
+    border-radius: 6px;
+    background: #000;
+}
+
+/* 视频：GIF 动图封面，点击后换成可播放视频 */
+
+.video-embed {
+    position: relative;
+    max-width: 720px;
+    border-radius: 6px;
+    overflow: hidden;
+    background: #000;
+    cursor: pointer;
+    line-height: 0;
+}
+
+.video-embed .video-cover { width: 100%; display: block; }
+
+.video-embed .video-play {
+    position: absolute;
+    left: 50%; top: 50%;
+    transform: translate(-50%, -50%);
+    width: 62px; height: 62px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.5);
+    border: 2px solid rgba(255,255,255,0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.video-embed:hover .video-play { background: rgba(22,119,255,0.85); transform: translate(-50%,-50%) scale(1.06); }
+
+.video-embed .video-play::after {
+    content: '';
+    margin-left: 4px;
+    border-style: solid;
+    border-width: 11px 0 11px 18px;
+    border-color: transparent transparent transparent #ffffff;
+}
+
+.video-embed.playing { cursor: default; }
+
+.video-embed.playing .video-cover,
+.video-embed.playing .video-play { display: none; }
+
+/* Divider banner */
+
+.divider-banner {
+    background: var(--banner);
+    color: #ffffff;
+    font-weight: 700;
+    text-align: center;
+    border-radius: 8px;
+    padding: 14px 12px;
+    margin: 32px 0;
+    font-size: 15.5px;
+    letter-spacing: 0.5px;
+}
+
+/* Testimonial */
+
+.quote-cols { display: flex; gap: 12px; margin: 12px 0; align-items: stretch; }
+
+.quote-person {
+    flex: 0 0 27.4%;
+    background: var(--tint-indigo);
+    border-radius: 8px;
+    padding: 14px;
+    text-align: center;
+}
+
+.quote-person img { width: 100%; border-radius: 6px; display: block; }
+
+.quote-name { font-weight: 700; font-size: 16px; margin-top: 10px; }
+
+.quote-role { font-size: 14.5px; color: #9B9A97; margin-top: 4px; line-height: 1.6; }
+
+.quote-body {
+    flex: 1 1 0;
+    background: var(--tint-purple);
+    border-radius: 8px;
+    padding: 20px 22px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.quote-text {
+    border-left: 3px solid rgba(181,146,253,0.55);
+    padding-left: 16px;
+    font-size: 16px;
+    line-height: 1.95;
+}
+
+.quote-from { text-align: right; font-weight: 700; font-size: 15px; margin-top: 18px; }
+
+.doc-source {
+    margin-top: 28px;
+    padding-top: 18px;
+    border-top: 1px dashed var(--line);
+    font-size: 13px;
+    color: #9b9a97;
+    line-height: 1.8;
+}
+
+/* Lightbox */
+
+.lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.86);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    cursor: zoom-out;
+    padding: 32px;
+}
+
+.lightbox.open { display: flex; }
+
+.lightbox img { max-width: 100%; max-height: 100%; border-radius: 4px; }
+
+.lightbox-hint {
+    position: absolute;
+    bottom: 20px;
+    left: 0; right: 0;
+    text-align: center;
+    color: rgba(255,255,255,0.6);
+    font-size: 13px;
+}
+
+.callout-lead { font-size: 15.5px; line-height: 1.9; margin-bottom: 6px; }
+
+/* Effect grid */
+
+.effect-wrap {
+    background: var(--tint-blue);
+    border-radius: 8px;
+    padding: 16px;
+    margin: 12px 0 8px;
+}
+
+.effect-grid { display: flex; flex-wrap: wrap; gap: 12px; }
+
+.effect-cell {
+    flex: 1 1 calc(50% - 6px);
+    min-width: 0;
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 12px;
+}
+
+.effect-cell.full { flex-basis: 100%; }
+
+.effect-cap { font-size: 15px; font-weight: 500; margin-bottom: 8px; }
+
+.effect-desc { font-size: 14px; color: var(--text-sub); line-height: 1.75; margin-bottom: 10px; }
+
+/* ---- 头部/图标：公用部分，各页覆盖 background、width 等差异项 ---- */
+
+.case-header {
+    border-bottom: 1px solid var(--line);
+    padding: 32px 40px 28px;
+}
+
+.case-subtitle {
+    color: #666;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.intro-logo {
+    display: block;
+    margin-bottom: 10px;
+}
+
+/* ---- 响应式 ---- */
+@media (max-width: 900px) {
+    .doc-paper { padding: 24px 18px 32px; }
+
+    .cols, .metrics, .quote-cols { flex-direction: column; }
+
+    .quote-person { flex: none; }
+
+    .case-header { padding: 24px 20px 20px; }
+
+    .case-title { font-size: 24px; }
+
+    .h2 { font-size: 22px; }
+
+    .h3 { font-size: 18px; }
+
+    .top-bar { padding: 0 16px; }
+
+    .doc-wrap { padding: 16px 12px 40px; }
+
+    .path-table td.k { padding: 10px 8px; }
+
+    .path-table th, .path-table td { font-size: 14px; padding: 10px; }
+
+    .effect-cell { flex-basis: 100%; }
+}
