@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>开启AI新篇章 - 课程详情</title>
-    <link rel="stylesheet" href="common-styles.css">
+    <title>餐饮连锁AI落地与组织升级 - 课程详情</title>
+    <link rel="stylesheet" href="../common-styles.css">
     <style>
-        /* 开启AI新篇章详情页专属样式 */
+        /* 餐饮连锁AI落地与组织升级详情页专属样式 */
         .ai-hero {
             background: #eef4ff;
             
@@ -157,7 +157,8 @@
             text-decoration: none;
             transition: all 0.3s;
             box-shadow: 0 4px 16px rgba(22, 119, 255, 0.4);
-            margin-top: 24px;
+            position: relative;
+            z-index: 1;
         }
         
         .back-btn:hover {
@@ -190,7 +191,7 @@
         
         .value-cards {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(4, 1fr);
             gap: 24px;
         }
         
@@ -270,12 +271,11 @@
             margin-bottom: 40px;
         }
         
-        .instructor-grid-single {
+        .instructor-grid-five {
             display: grid;
-            grid-template-columns: 1fr;
-            max-width: 400px;
-            margin: 32px auto 0;
-            justify-items: center;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 32px;
         }
         
         .instructor-card {
@@ -449,6 +449,10 @@
                 grid-template-columns: 1fr !important;
             }
             
+            .instructor-grid-five {
+                grid-template-columns: 1fr !important;
+            }
+            
             .process-timeline {
                 grid-template-columns: 1fr !important;
                 gap: 16px;
@@ -463,6 +467,10 @@
             .value-cards {
                 grid-template-columns: 1fr !important;
             }
+            
+            .instructor-grid-five {
+                grid-template-columns: 1fr !important;
+            }
         }
     </style>
 </head>
@@ -470,24 +478,22 @@
     <!-- Hero Section -->
     <div class="ai-hero">
         <div class="ai-hero-inner">
-            <!-- 左侧文字 -->
             <div class="hero-left">
-                <h1>开启AI新篇章</h1>
-                <p class="subtitle">两天深度赋能工作坊</p>
-                <p class="desc">面向企业管理者的AI认知升级与落地实践指南</p>
+                <h1>餐饮连锁AI落地与组织升级</h1>
+                <p class="subtitle">拿到新地图 | 开启新模式 | 成就新组织</p>
+                <p class="desc">钉钉AI咨询研究院 × 餐海咨询联合出品，2天深度赋能工作坊</p>
                 <div class="hero-tags">
-                    <span class="hero-tag">管理者必修</span>
-                    <span class="hero-tag">2天沉浸式</span>
-                    <span class="hero-tag">认知+实操</span>
+                    <span class="hero-tag">阿里技术支持</span>
+                    <span class="hero-tag">餐海实战共创</span>
+                    <span class="hero-tag">真实案例拆解</span>
                 </div>
-                <a href="index.html#public" class="back-btn">← 返回公开课列表</a>
+                <a href="../index.html#public" class="back-btn">← 返回公开课列表</a>
             </div>
-            <!-- 右侧活动场次 -->
             <div class="hero-right">
                 <div class="schedule-card">
-                    <h3> 近期活动场次</h3>
+                    <h3>📅 近期活动场次</h3>
                     <div class="schedule-item">
-                        <div class="schedule-date">6月13日 - 6月14日</div>
+                        <div class="schedule-date">6月8日 - 6月9日</div>
                         <div class="schedule-location">📍 杭州</div>
                     </div>
                 </div>
@@ -495,30 +501,36 @@
         </div>
     </div>
 
-    <!-- 三大核心价值 -->
+    <!-- 四大核心价值 -->
     <div class="section-container" style="background: #f7f8fa;">
         <div class="section-title">
-            <h2>你将收获</h2>
-            <p>聚焦增长、降本、提效三大核心问题</p>
+            <h2>四大核心价值</h2>
+            <p>从认知突破到组织进化，全链路AI转型路径</p>
         </div>
         <div class="value-cards">
             <div class="value-card">
-                <h3>提升销售</h3>
-                <div class="highlight">AI驱动增长</div>
-                <p>从消费者洞察到商品企划、研发、运营全链路AI赋能，累计帮助客户实现销售增长超3亿</p>
-                <div class="value-badge">增长引擎</div>
+                <h3>阿里技术支持</h3>
+                <div class="highlight">直击AI落地最前沿</div>
+                <p>依托阿里生态资源，掌握全球领先的企业级AI原生工作平台实操能力</p>
+                <div class="value-badge">技术背书</div>
             </div>
             <div class="value-card">
-                <h3>降低成本</h3>
-                <div class="highlight">AI优化支出</div>
-                <p>通过智能客服、供应链优化、视觉自动化等场景，累计节省费用超3000万</p>
-                <div class="value-badge">降本利器</div>
+                <h3>餐海咨询共创</h3>
+                <div class="highlight">深度贴合餐饮实战</div>
+                <p>18年餐饮行业经验沉淀，非理论堆砌，每个场景都可落地执行</p>
+                <div class="value-badge">行业深耕</div>
             </div>
             <div class="value-card">
-                <h3>优化效率</h3>
-                <div class="highlight">AI重塑流程</div>
-                <p>提示词工程+工具实操+组织保障体系，平均效率提升20%，上手就能用</p>
-                <div class="value-badge">效率飞跃</div>
+                <h3>真实案例拆解</h3>
+                <div class="highlight">学习先行企业实践</div>
+                <p>海底捞、麦当劳等头部企业的AI转型实战经验，数据量化可复制</p>
+                <div class="value-badge">标杆验证</div>
+            </div>
+            <div class="value-card">
+                <h3>前沿科技讲解</h3>
+                <div class="highlight">感知AI未来方向</div>
+                <p>大模型、Agent、智能体等前沿技术，把握餐饮行业AI演进趋势</p>
+                <div class="value-badge">前瞻视野</div>
             </div>
         </div>
     </div>
@@ -526,86 +538,76 @@
     <!-- 课程流程与安排 -->
     <div class="section-container" style="background: #f7f8fa;">
         <div class="section-title">
-            <h2>课程内容</h2>
-            <p>认知 → 诊断 → 工具 → 场景 → 组织 → 行动，形成完整闭环</p>
+            <h2>课程流程与转化路线</h2>
+            <p>从认知突破到组织进化，2天深度赋能工作坊</p>
         </div>
         <div class="process-timeline">
             <!-- DAY 1 -->
             <div class="timeline-day">
                 <div class="day-header">
                     <div class="day-num">1</div>
-                    <h3>第一天 · 2026.06.13</h3>
+                    <h3>第一天 · 理念篇：AI转型的赛点已经到来</h3>
+                </div>
+                
+                <div style="margin-bottom: 20px; padding: 12px 16px; background: #E8F0FE; border-radius: 8px; font-size: 14px; color: #1677FF; font-weight: 600;">
+                    上午：餐饮老板必须建立的AI底层认知
                 </div>
                 
                 <ul class="session-list">
                     <li class="session-item">
-                        <span class="session-time">10:00-10:40</span>
+                        <span class="session-time">工具革命</span>
                         <div class="session-content">
-                            <h4>游学参观：森马展厅及AI办公区域</h4>
-                            <p>沉浸式体验AI落地实景</p>
+                            <h4>从工具到组织的变革逻辑</h4>
+                            <p>AI如何改变餐饮行业本质？决策与生产方式变革</p>
                         </div>
                     </li>
                     <li class="session-item">
-                        <span class="session-time">10:40-12:00</span>
+                        <span class="session-time">能力边界</span>
                         <div class="session-content">
-                            <h4>实战分享：森马3年AI转型及避坑指南</h4>
-                            <p>真实案例复盘，少走弯路</p>
+                            <h4>AI能力全景图</h4>
+                            <p>生成、决策、预测、协同——理解AI能做什么不能做什么</p>
                         </div>
                     </li>
                     <li class="session-item">
-                        <span class="session-time">13:00-13:30</span>
+                        <span class="session-time">战略路线</span>
                         <div class="session-content">
-                            <h4>案例分享：AI如何驱动企业全链路重塑</h4>
-                            <p>从战略到执行的全景视角</p>
+                            <h4>AI原生组织 vs 传统组织</h4>
+                            <p>老板战略路线图：18-24个月内必须行动</p>
+                        </div>
+                    </li>
+                </ul>
+                
+                <div style="margin-top: 24px; margin-bottom: 20px; padding: 12px 16px; background: #E8F0FE; border-radius: 8px; font-size: 14px; color: #1677FF; font-weight: 600;">
+                    下午：餐饮连锁AI转型的完整地图
+                </div>
+                
+                <ul class="session-list">
+                    <li class="session-item">
+                        <span class="session-time">三大方向</span>
+                        <div class="session-content">
+                            <h4>人力成本重构 + 数据驱动 + 智能增长</h4>
+                            <p>明确AI转型的核心发力点</p>
                         </div>
                     </li>
                     <li class="session-item">
-                        <span class="session-time">13:30-14:00</span>
+                        <span class="session-time">三层架构</span>
                         <div class="session-content">
-                            <h4>原因剖析：什么阻碍了企业AI推进？</h4>
-                            <p>诊断痛点，对症下药</p>
+                            <h4>智能前台 → AI中枢 → 数据底座</h4>
+                            <p>构建完整的AI技术架构体系</p>
                         </div>
                     </li>
                     <li class="session-item">
-                        <span class="session-time">14:00-14:30</span>
+                        <span class="session-time">四大战场</span>
                         <div class="session-content">
-                            <h4>AI落地：十大要素助力企业转型蜕变</h4>
-                            <p>系统化方法论框架</p>
+                            <h4>门店运营 + 供应链 + 会员管理 + 组织管理</h4>
+                            <p>全面覆盖餐饮经营关键环节</p>
                         </div>
                     </li>
                     <li class="session-item">
-                        <span class="session-time">14:30-15:00</span>
+                        <span class="session-time">三阶段演进</span>
                         <div class="session-content">
-                            <h4>路径规划：增收、降本、提效的实现路径</h4>
-                            <p>明确目标与实施路线</p>
-                        </div>
-                    </li>
-                    <li class="session-item">
-                        <span class="session-time">15:00-15:50</span>
-                        <div class="session-content">
-                            <h4>选对工具：AI大模型和工具对比</h4>
-                            <p>选型指南，避免踩坑</p>
-                        </div>
-                    </li>
-                    <li class="session-item">
-                        <span class="session-time">16:00-16:40</span>
-                        <div class="session-content">
-                            <h4>实操演练：如何写好提示词？9大进阶技巧</h4>
-                            <p>手把手教学，现场练习</p>
-                        </div>
-                    </li>
-                    <li class="session-item">
-                        <span class="session-time">16:40-17:30</span>
-                        <div class="session-content">
-                            <h4>场景应用：AI在商品部门的应用</h4>
-                            <p>消费者洞察、企划、研发、运营</p>
-                        </div>
-                    </li>
-                    <li class="session-item">
-                        <span class="session-time">17:00-18:00</span>
-                        <div class="session-content">
-                            <h4>课程总结及答疑</h4>
-                            <p>巩固当日所学，解答疑问</p>
+                            <h4>赋能人 → 重塑场景 → 原生组织</h4>
+                            <p>分阶段推进AI转型路线图</p>
                         </div>
                     </li>
                 </ul>
@@ -615,57 +617,82 @@
             <div class="timeline-day">
                 <div class="day-header">
                     <div class="day-num">2</div>
-                    <h3>第二天 · 2026.06.14</h3>
+                    <h3>第二天 · 实战篇：AI结合餐饮业具体怎么干</h3>
+                </div>
+                
+                <div style="margin-bottom: 20px; padding: 12px 16px; background: #E8F0FE; border-radius: 8px; font-size: 14px; color: #1677FF; font-weight: 600;">
+                    上午：个人提效 + 场景深耕
                 </div>
                 
                 <ul class="session-list">
                     <li class="session-item">
-                        <span class="session-time">10:00-11:00</span>
+                        <span class="session-time">个人提效</span>
                         <div class="session-content">
-                            <h4>场景应用：AI在零售部门的应用</h4>
-                            <p>电商运营、跨境电商、直播、线下</p>
+                            <h4>让AI成为你的助手</h4>
+                            <p>六大AI概念 + 五个老板必用场景 + 工具选择四原则</p>
                         </div>
                     </li>
                     <li class="session-item">
-                        <span class="session-time">11:00-12:00</span>
+                        <span class="session-time">AI舆情</span>
                         <div class="session-content">
-                            <h4>场景应用：AI在视觉部门的应用</h4>
-                            <p>模特、平面、创意</p>
+                            <h4>实时监测差评与品牌危机预警</h4>
+                            <p>快速响应负面评价，维护品牌形象</p>
                         </div>
                     </li>
                     <li class="session-item">
-                        <span class="session-time">13:00-13:30</span>
+                        <span class="session-time">AI获客</span>
                         <div class="session-content">
-                            <h4>场景应用：AI在客服部门的应用</h4>
-                            <p>售前、售后全流程智能化</p>
+                            <h4>短视频智能剪辑 + 精准投放</h4>
+                            <p>提升转化率，降低获客成本</p>
                         </div>
                     </li>
                     <li class="session-item">
-                        <span class="session-time">13:30-14:00</span>
+                        <span class="session-time">AI选址</span>
                         <div class="session-content">
-                            <h4>场景应用：AI在供应链/物流/财务/人事等部门</h4>
-                            <p>中后台职能部门的AI赋能</p>
+                            <h4>人流结构 + 消费能力 + 竞品分析</h4>
+                            <p>数据驱动选址决策，提升成功率</p>
                         </div>
                     </li>
                     <li class="session-item">
-                        <span class="session-time">14:00-15:30</span>
+                        <span class="session-time">AI巡店</span>
                         <div class="session-content">
-                            <h4>组织保障：组织架构、激励体系、人才培养和文化建设</h4>
-                            <p>制度配套确保AI可持续落地</p>
+                            <h4>自动记录 + 智能诊断 + 经营报告</h4>
+                            <p>标准化巡店流程，提升管理效率</p>
+                        </div>
+                    </li>
+                </ul>
+                
+                <div style="margin-top: 24px; margin-bottom: 20px; padding: 12px 16px; background: #E8F0FE; border-radius: 8px; font-size: 14px; color: #1677FF; font-weight: 600;">
+                    下午：AI招聘面试 + 组织升级
+                </div>
+                
+                <ul class="session-list">
+                    <li class="session-item">
+                        <span class="session-time">AI招聘</span>
+                        <div class="session-content">
+                            <h4>全流程智能评估</h4>
+                            <p>招聘成本降50%，人才匹配率提升300%</p>
                         </div>
                     </li>
                     <li class="session-item">
-                        <span class="session-time">15:30-16:30</span>
+                        <span class="session-time">AI面试</span>
                         <div class="session-content">
-                            <h4>行动计划：企业内部落地方案制定</h4>
-                            <p>输出可执行的个性化计划</p>
+                            <h4>多维度测评筛选</h4>
+                            <p>提升人才筛选效率，降低误招风险</p>
                         </div>
                     </li>
                     <li class="session-item">
-                        <span class="session-time">16:30-17:00</span>
+                        <span class="session-time">组织升级</span>
                         <div class="session-content">
-                            <h4>课程总结及答疑</h4>
-                            <p>带方案离开，回去就能干</p>
+                            <h4>在AI转型中释放人心红利</h4>
+                            <p>人+AI时代：不变的领导力 & 变的管理范式</p>
+                        </div>
+                    </li>
+                    <li class="session-item">
+                        <span class="session-time">人心红利</span>
+                        <div class="session-content">
+                            <h4>提升员工认同感与组织韧性</h4>
+                            <p>人才结构、组织形态、激励机制重构</p>
                         </div>
                     </li>
                 </ul>
