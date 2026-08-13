@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>千问办公「AI创世纪」AI讲师认证班 第四期·杭州站 - 课程详情</title>
+    <link rel="stylesheet" href="common-styles.css">
+    <style>
+        /* AI讲师认证班（第四期）详情页专属样式 */
+        .ai-hero {
+            background: #eef4ff;
+            padding: 80px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .ai-hero-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            gap: 48px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-left {
+            flex: 1;
+        }
+        
+        .hero-right {
+            flex-shrink: 0;
+            width: 320px;
+        }
+        
+        .schedule-card {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(20px);
+            border-radius: 16px;
+            padding: 24px 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2), 
+                        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+        
+        .schedule-card h3 {
+            font-size: 17px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            letter-spacing: 0.5px;
+        }
+        
+        .schedule-item {
+            position: relative;
+            padding: 14px 0 14px 16px;
+            margin-left: 8px;
+            border-left: 3px solid #1677FF;
+        }
+        
+        .schedule-item:not(:last-child) {
+            margin-bottom: 12px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .schedule-date {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 6px;
+            letter-spacing: 0.3px;
+        }
+        
+        .schedule-location {
+            font-size: 14px;
+            color: #1677FF;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 500;
+        }
+
+        .schedule-seats {
+            font-size: 13px;
+            color: #e53935;
+            font-weight: 600;
+            margin-top: 6px;
+        }
+
+        .poster-thumb {
+            margin-top: 12px;
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+            position: relative;
+            border: 1px solid #eef0f5;
+            transition: all 0.3s ease;
+        }
+        .poster-thumb:hover {
+            box-shadow: 0 4px 16px rgba(22, 119, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        .poster-thumb img {
+            width: 100%;
+            height: 90px;
+            object-fit: cover;
+            object-position: top;
+            display: block;
+        }
+        .poster-thumb-label {
+            display: block;
+            text-align: center;
+            font-size: 14px;
+            color: #fff;
+            font-weight: 600;
+            padding: 10px 0;
+            background: #1677FF;
+            letter-spacing: 1px;
+        }
+        .poster-lightbox {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.85);
+            z-index: 9999;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 40px 20px;
+            overflow-y: auto;
+            cursor: zoom-out;
+        }
+        .poster-lightbox.active { display: flex; }
+        .poster-lightbox img {
+            max-width: 600px;
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+        .poster-lightbox-close {
+            position: fixed;
+            top: 16px;
+            right: 24px;
+            font-size: 32px;
+            color: #fff;
+            cursor: pointer;
+            z-index: 10000;
+            line-height: 1;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+        .poster-lightbox-close:hover { opacity: 1; }
+
+        .ai-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 50%, rgba(22, 119, 255, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 80%, rgba(124, 111, 247, 0.1) 0%, transparent 40%);
+            pointer-events: none;
+        }
+        
+        .hero-badge {
+            display: inline-block;
+            background: #1677FF;
+            color: #fff;
+            font-size: 13px;
+            font-weight: 700;
+            padding: 5px 14px;
+            border-radius: 20px;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .ai-hero h1 {
+            font-size: 48px;
+            font-weight: 900;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            color: #1a237e;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .ai-hero .subtitle {
+            font-size: 22px;
+            color: #1a237e;
+            margin-bottom: 12px;
+            font-weight: 600;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .ai-hero .desc {
+            font-size: 16px;
+            color: #455a64;
+            max-width: 600px;
+            margin-bottom: 30px;
+            line-height: 1.8;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-tags {
+            display: flex;
+            justify-content: flex-start;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-tag {
+            background: #d4e4ff;
+            border: 1px solid #1677FF;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 15px;
+            font-weight: 600;
+            color: #1a237e;
+        }
+        
+        .back-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #1677FF 0%, #0958D9 100%);
+            color: white;
+            padding: 14px 36px;
+            border-radius: 10px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 4px 16px rgba(22, 119, 255, 0.4);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(22, 119, 255, 0.6);
+        }
+        
+        .section-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            font-weight: 800;
+            color: #1a1a1a;
+            margin-bottom: 12px;
+        }
+        
+        .section-title p {
+            font-size: 16px;
+            color: #666;
+        }
+        
+        /* 开场三问 */
+        .intro-quote {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-left: 4px solid #1677FF;
+            border-radius: 12px;
+            padding: 32px 36px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+        }
+        
+        .intro-quote p {
+            font-size: 17px;
+            line-height: 2;
+            color: #455a64;
+            margin: 0;
+        }
+        
+        .intro-quote strong {
+            color: #1677FF;
+        }
+        
+        .value-cards {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+        
+        /* 5张卡片时使用 3 列布局（3 + 2） */
+        .value-cards.value-cards-5 {
+            grid-template-columns: repeat(3, 1fr);
+        }
+        
+        .value-card {
+            background: white;
+            border-radius: 16px;
+            padding: 36px 28px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            border: 1px solid #f0f0f0;
+            transition: all 0.3s;
+        }
+        
+        .value-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(22, 119, 255, 0.12);
+            border-color: #1677FF;
+        }
+        
+        .value-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, #E8F0FE, #D4E4FC);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            margin-bottom: 24px;
+        }
+        
+        .value-card h3 {
+            font-size: 22px;
+            font-weight: 800;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+        }
+        
+        .value-card .highlight {
+            font-size: 15px;
+            font-weight: 600;
+            color: #1677FF;
+            margin-bottom: 16px;
+        }
+        
+        .value-card p {
+            font-size: 15px;
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        
+        .value-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #f7f8fa;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .value-badge::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #1677FF;
+        }
+        
+        .process-timeline {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+        
+        .timeline-day {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            border: 1px solid #f0f0f0;
+        }
+        
+        .timeline-day.full-width {
+            grid-column: 1 / -1;
+        }
+        
+        .day-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .day-num {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #1677FF, #0958D9);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 900;
+            flex-shrink: 0;
+        }
+        
+        .day-header h3 {
+            font-size: 20px;
+            font-weight: 800;
+            color: #1a1a1a;
+        }
+        
+        .day-date {
+            font-size: 13px;
+            font-weight: 600;
+            color: #1677FF;
+            margin-top: 4px;
+        }
+        
+        .day-points {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .day-points li {
+            position: relative;
+            padding: 12px 0 12px 24px;
+            font-size: 15px;
+            line-height: 1.8;
+            color: #555;
+            border-bottom: 1px solid #f5f5f5;
+        }
+        
+        .day-points li:last-child {
+            border-bottom: none;
+        }
+        
+        .day-points li::before {
+            content: '';
+            position: absolute;
+            left: 2px;
+            top: 21px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            border: 2px solid #1677FF;
+        }
+        
+        .day-points li strong {
+            color: #1a1a1a;
+        }
+        
+        .day-takeaway {
+            margin-top: 20px;
+            background: #f0f5ff;
+            border-radius: 10px;
+            padding: 14px 18px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        
+        .day-takeaway .takeaway-label {
+            flex-shrink: 0;
+            background: #1677FF;
+            color: #fff;
+            font-size: 13px;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 6px;
+        }
+        
+        .day-takeaway p {
+            font-size: 14px;
+            color: #1a237e;
+            font-weight: 600;
+            line-height: 1.7;
+            margin: 0;
+        }
+        
+        /* L0-L4 成长链路 */
+        .level-chain {
+            display: flex;
+            align-items: stretch;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 32px;
+        }
+        
+        .level-node {
+            flex: 1;
+            min-width: 130px;
+            background: white;
+            border: 1px solid #e8edf3;
+            border-radius: 12px;
+            padding: 20px 12px;
+            text-align: center;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+        }
+        
+        .level-tag {
+            display: inline-block;
+            background: #1677FF;
+            color: #fff;
+            font-size: 13px;
+            font-weight: 800;
+            padding: 3px 12px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+        }
+        
+        .level-node .level-name {
+            font-size: 15px;
+            font-weight: 700;
+            color: #1a1a1a;
+            line-height: 1.5;
+        }
+        
+        .level-arrow {
+            display: flex;
+            align-items: center;
+            color: #b0bec5;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        
+        .cert-benefits-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 24px;
+        }
+        
+        .cert-benefits-table th,
+        .cert-benefits-table td {
+            padding: 16px 20px;
+            text-align: left;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .cert-benefits-table th {
+            background: #f7f8fa;
+            font-weight: 700;
+            color: #1a1a1a;
+            font-size: 15px;
+        }
+        
+        .cert-benefits-table td {
+            font-size: 14px;
+            color: #555;
+            line-height: 1.6;
+        }
+        
+        .cert-benefits-table tr:hover td {
+            background: #f0f5ff;
+        }
+        
+        .faq-section {
+            padding: 40px 0;
+        }
+        
+        .faq-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            background: white;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            border: 1px solid #f0f0f0;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+        
+        .faq-item:hover {
+            border-color: #1677FF;
+        }
+        
+        .faq-question {
+            padding: 18px 24px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #1a1a1a;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .faq-icon {
+            font-size: 20px;
+            transition: transform 0.3s;
+        }
+        
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+        
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+        }
+        
+        .faq-answer-inner {
+            padding: 0 24px 18px;
+            font-size: 14px;
+            line-height: 1.8;
+            color: #666;
+        }
+        
+        .contact-section {
+            background: linear-gradient(135deg, #f0f4ff, #e8f0fe);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin-top: 40px;
+        }
+        
+        .contact-section h3 {
+            font-size: 24px;
+            font-weight: 800;
+            color: #1677FF;
+            margin-bottom: 16px;
+        }
+        
+        .contact-info {
+            font-size: 18px;
+            color: #1a1a1a;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .contact-note {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        @media (max-width: 768px) {
+            .ai-hero-inner {
+                flex-direction: column !important;
+                gap: 24px;
+            }
+            
+            .hero-right {
+                width: 100% !important;
+            }
+            
+            .ai-hero {
+                padding: 48px 16px;
+            }
+            
+            .ai-hero h1 {
+                font-size: 28px;
+            }
+            
+            .value-cards,
+            .value-cards.value-cards-5 {
+                grid-template-columns: 1fr !important;
+            }
+            
+            .process-timeline {
+                grid-template-columns: 1fr !important;
+                gap: 16px;
+            }
+            
+            .timeline-day {
+                padding: 24px;
+            }
+            
+            .level-chain {
+                flex-direction: column;
+            }
+            
+            .level-arrow {
+                display: none;
+            }
+            
+            .cert-benefits-table {
+                font-size: 13px;
+            }
+            
+            .cert-benefits-table th,
+            .cert-benefits-table td {
+                padding: 12px 10px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .value-cards,
+            .value-cards.value-cards-5 {
+                grid-template-columns: 1fr !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <div class="ai-hero">
+        <div class="ai-hero-inner">
+            <div class="hero-left">
+                <span class="hero-badge">AI 讲师认证计划 · 第 4 期 · 杭州站</span>
+                <h1>AI讲师认证班</h1>
+                <p class="subtitle">千问办公「AI创世纪」· 进阶AI时代，成为企业最需要的那 1% 讲师</p>
+                <p class="desc">3 天 2 晚沉浸式集训，把钉钉全栈 AI 能力装进你的课程体系。从认知重塑到工具实操，从课程改造到路演通关，带走一份可交付的「AI+行业」课程改造方案与官方认证证书。</p>
+                <div class="hero-tags">
+                    <span class="hero-tag">3天2晚集训</span>
+                    <span class="hero-tag">阿里全球总部参访</span>
+                    <span class="hero-tag">官方认证背书</span>
+                    <span class="hero-tag">100节线上课程</span>
+                </div>
+                <a href="index.html#public" class="back-btn">← 返回公开课列表</a>
+            </div>
+            <div class="hero-right">
+                <div class="schedule-card">
+                    <h3>📅 近期活动场次</h3>
+                    <div class="schedule-item">
+                        <div class="schedule-date">9月3日 - 9月5日</div>
+                        <div class="schedule-location">📍 杭州 · 阿里巴巴全球总部 C 区</div>
+                        <div class="schedule-seats">仅 50 席 · 额满即止</div>
+                    </div>
+                    <div class="poster-thumb" onclick="openPosterLightbox()">
+                        <img src="https://gw.alicdn.com/imgextra/i3/O1CN01jCcyu7JiIdJ2ByP1_!!6000000004195-49-tps-1080-5391.webp" alt="课程海报" />
+                        <span class="poster-thumb-label">查看课程海报</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 开场三问 -->
+    <div class="section-container" style="background: #f7f8fa; padding-bottom: 0;">
+        <div class="intro-quote">
+            <p>
+                你的课程，还能再讲五年吗？<br>
+                企业想要的 AI 培训，你真的会教吗？<br>
+                这不是焦虑，是机会——用 3 天 2 晚，把<strong>钉钉全栈 AI 能力</strong>装进你的课程体系。
+            </p>
+        </div>
+    </div>
+
+    <!-- 01 这一趟，你能带走什么 -->
+    <div class="section-container" style="background: #f7f8fa;">
+        <div class="section-title">
+            <h2>这一趟，你能带走什么</h2>
+            <p>每一样，都带得走</p>
+        </div>
+        <div class="value-cards value-cards-5">
+            <div class="value-card">
+                <h3>完整的钉钉 AI 能力体系</h3>
+                <div class="highlight">一次系统学透</div>
+                <p>AI听记 · AI表格 · DEAP 智能体 · 自动化流程 · 千问办公 AI 平台，从「听说过」到「真的会用、会教」。</p>
+                <div class="value-badge">全栈掌握</div>
+            </div>
+            <div class="value-card">
+                <h3>课程 AI 化改造方法论</h3>
+                <div class="highlight">可复用的框架</div>
+                <p>一套可复用的「AI + 行业」课程改造路径，带着一份课程改造方案离开。</p>
+                <div class="value-badge">即学即用</div>
+            </div>
+            <div class="value-card">
+                <h3>官方认证背书</h3>
+                <div class="highlight">现场实操认证</div>
+                <p>通过现场实操认证，获得钉钉官方颁发的千问办公 AI 讲师结业证书。</p>
+                <div class="value-badge">行业权威</div>
+            </div>
+            <div class="value-card">
+                <h3>100 节精品线上课程</h3>
+                <div class="highlight">结业即开通</div>
+                <p>随时复习、持续迭代你的 AI 知识体系。</p>
+                <div class="value-badge">持续成长</div>
+            </div>
+            <div class="value-card">
+                <h3>阿里全球总部沉浸式参访</h3>
+                <div class="highlight">走进 AI 原生现场</div>
+                <p>走进 AI 原生企业现场，感受真实的 AI 落地实践。</p>
+                <div class="value-badge">现场体验</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 02 三天两晚怎么过 -->
+    <div class="section-container">
+        <div class="section-title">
+            <h2>三天两晚怎么过</h2>
+            <p>从「知道」到「真的会教」</p>
+        </div>
+        <div class="process-timeline">
+            <!-- DAY 1 -->
+            <div class="timeline-day">
+                <div class="day-header">
+                    <div class="day-num">1</div>
+                    <div>
+                        <h3>认知重塑 × 钉钉 AI 全能实操</h3>
+                        <div class="day-date">9月3日 · 周四</div>
+                    </div>
+                </div>
+                <ul class="day-points">
+                    <li>AI 时代讲师蓝图发布，看清自己的位置与机会</li>
+                    <li>钉钉 AI 能力全景地图：基座 × 全家桶 × 标杆案例</li>
+                    <li>提效三字经「AI记 · AI诊 · AI答」+ AI 表格六关闯关实操</li>
+                    <li>DEAP 从 0 到 1：搭建并调优你的第一个智能体</li>
+                </ul>
+                <div class="day-takeaway">
+                    <span class="takeaway-label">带走</span>
+                    <p>三大核心工具上手 + 一个你亲手搭建的智能体</p>
+                </div>
+            </div>
+            
+            <!-- DAY 2 -->
+            <div class="timeline-day">
+                <div class="day-header">
+                    <div class="day-num">2</div>
+                    <div>
+                        <h3>千问办公 AI 全面掌握 × 市场洞察</h3>
+                        <div class="day-date">9月4日 · 周五</div>
+                    </div>
+                </div>
+                <ul class="day-points">
+                    <li>阿里巴巴全球总部参访 + 桌面智能体六大实战场景演练</li>
+                    <li>从大模型到智能体：把业务流程变成可调用的 AI 技能</li>
+                    <li>钉钉 AI 硬件生态 + 企业 AI 培训市场与需求洞察</li>
+                    <li>往期认证讲师夜话：培训师 / 咨询师双路径实战复盘</li>
+                </ul>
+                <div class="day-takeaway">
+                    <span class="takeaway-label">带走</span>
+                    <p>平台全面掌握 + 两类讲师的成功成长路径</p>
+                </div>
+            </div>
+            
+            <!-- DAY 3 -->
+            <div class="timeline-day full-width">
+                <div class="day-header">
+                    <div class="day-num">3</div>
+                    <div>
+                        <h3>成果产出 × 认证通关</h3>
+                        <div class="day-date">9月5日 · 周六</div>
+                    </div>
+                </div>
+                <ul class="day-points">
+                    <li>课程 AI 化方法论整合，导师陪跑打磨你的课程</li>
+                    <li>用千问办公 AI 生成课程大纲 / 模块拆解 / 介绍页</li>
+                    <li>5 分钟课程路演：导师点评 + 优秀方案现场评奖</li>
+                    <li>认证考试通关，结业典礼颁发证书、开通资源</li>
+                </ul>
+                <div class="day-takeaway">
+                    <span class="takeaway-label">带走</span>
+                    <p>课程改造方案 + 路演经历 + 官方证书</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 03 为你准备的舞台 -->
+    <div class="section-container" style="background: #f7f8fa;">
+        <div class="section-title">
+            <h2>为你准备的舞台</h2>
+            <p>符合任一画像，就来</p>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; max-width: 900px; margin: 0 auto;">
+            <div style="background: white; border-radius: 16px; padding: 28px; border: 1px solid #e8edf3; box-shadow: 0 2px 12px rgba(0,0,0,0.04);">
+                <h3 style="font-size: 18px; font-weight: 800; margin-bottom: 4px; color: #1a1a1a;">企业内训师</h3>
+                <p style="font-size: 14px; color: #1677FF; margin-bottom: 12px; font-weight: 600;">HRD / 培训经理 / AI 负责人</p>
+                <div style="width: 40px; height: 3px; background: #1677FF; border-radius: 2px; margin-bottom: 12px;"></div>
+                <p style="font-size: 14px; line-height: 1.7; color: #666; margin: 0;">把 AI 能力融入组织赋能，打造更有竞争力的课程体系</p>
+            </div>
+            <div style="background: white; border-radius: 16px; padding: 28px; border: 1px solid #e8edf3; box-shadow: 0 2px 12px rgba(0,0,0,0.04);">
+                <h3 style="font-size: 18px; font-weight: 800; margin-bottom: 4px; color: #1a1a1a;">管理咨询顾问 / 行业专家</h3>
+                <p style="font-size: 14px; color: #1677FF; margin-bottom: 12px; font-weight: 600;">HR、销售、运营、供应链等</p>
+                <div style="width: 40px; height: 3px; background: #1677FF; border-radius: 2px; margin-bottom: 12px;"></div>
+                <p style="font-size: 14px; line-height: 1.7; color: #666; margin: 0;">让 AI 融入核心方法论，为客户创造更大的交付价值</p>
+            </div>
+            <div style="background: white; border-radius: 16px; padding: 28px; border: 1px solid #e8edf3; box-shadow: 0 2px 12px rgba(0,0,0,0.04);">
+                <h3 style="font-size: 18px; font-weight: 800; margin-bottom: 4px; color: #1a1a1a;">商业讲师</h3>
+                <p style="font-size: 14px; color: #1677FF; margin-bottom: 12px; font-weight: 600;">培训机构负责人</p>
+                <div style="width: 40px; height: 3px; background: #1677FF; border-radius: 2px; margin-bottom: 12px;"></div>
+                <p style="font-size: 14px; line-height: 1.7; color: #666; margin: 0;">打造差异化的「AI + 行业」课程，抢占市场先机</p>
+            </div>
+            <div style="background: white; border-radius: 16px; padding: 28px; border: 1px solid #e8edf3; box-shadow: 0 2px 12px rgba(0,0,0,0.04);">
+                <h3 style="font-size: 18px; font-weight: 800; margin-bottom: 4px; color: #1a1a1a;">领域 KOL / 实战专家</h3>
+                <p style="font-size: 14px; color: #1677FF; margin-bottom: 12px; font-weight: 600;">AI技术应用 / 营销 / 销售 / 财务 / HR等</p>
+                <div style="width: 40px; height: 3px; background: linear-gradient(90deg, #7c4dff, #1677FF); border-radius: 2px; margin-bottom: 12px;"></div>
+                <p style="font-size: 14px; line-height: 1.7; color: #666; margin: 0;">系统掌握钉钉 AI 能力，放大你的个人教学影响力</p>
+            </div>
+        </div>
+        <p style="max-width: 900px; margin: 28px auto 0; text-align: center; font-size: 14px; color: #888;">本期开放报名，<strong style="color:#1677FF;">不设资历筛选</strong>，欢迎各背景讲师一起探索 AI 时代的成长路径。</p>
+    </div>
+
+    <!-- 04 一次认证，长期成长 -->
+    <div class="section-container">
+        <div class="section-title">
+            <h2>一次认证，长期成长</h2>
+            <p>讲师能力分级体系 L0 → L4</p>
+        </div>
+        <div class="level-chain">
+            <div class="level-node">
+                <span class="level-tag">L0</span>
+                <div class="level-name">AI 布道师<br>（预备）</div>
+            </div>
+            <div class="level-arrow">→</div>
+            <div class="level-node">
+                <span class="level-tag">L1</span>
+                <div class="level-name">AI 布道师</div>
+            </div>
+            <div class="level-arrow">→</div>
+            <div class="level-node">
+                <span class="level-tag">L2</span>
+                <div class="level-name">资深布道师</div>
+            </div>
+            <div class="level-arrow">→</div>
+            <div class="level-node">
+                <span class="level-tag">L3</span>
+                <div class="level-name">首席布道师</div>
+            </div>
+            <div class="level-arrow">→</div>
+            <div class="level-node">
+                <span class="level-tag">L4</span>
+                <div class="level-name">AI 布道官</div>
+            </div>
+        </div>
+        <p style="text-align: center; font-size: 15px; color: #1a237e; font-weight: 600; line-height: 1.8; max-width: 720px; margin: 0 auto;">从结业证书、讲师社群，到生态合作推荐、师资库收录与品牌联名——成长路径一路清晰。</p>
+        <table class="cert-benefits-table">
+            <thead>
+                <tr>
+                    <th>等级</th>
+                    <th>名称</th>
+                    <th>晋级标准</th>
+                    <th>核心权益</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong style="color: #1677FF;">L0</strong></td>
+                    <td>AI 布道师（预备）</td>
+                    <td>完成三天培训 + 通过现场实操认证考试</td>
+                    <td>获得结业证书 / 加入讲师社群 / 100节课程资源</td>
+                </tr>
+                <tr>
+                    <td><strong style="color: #1677FF;">L1</strong></td>
+                    <td>AI 布道师</td>
+                    <td>持有结业证书 + 完成1门AI课程开发（提交课纲）+ 完成首次课程讲授（内训/公开课均可）</td>
+                    <td>正式认证证书 / 讲师档案收录 / 讲师社群</td>
+                </tr>
+                <tr>
+                    <td><strong style="color: #1677FF;">L2</strong></td>
+                    <td>资深布道师</td>
+                    <td>L1基础上 + 季度累计完成5场以上课程讲授 + 学员满意度评分≥4.5分</td>
+                    <td>生态合作推荐优先权 / 专属学习资源包 / 可申请担任认证班助教</td>
+                </tr>
+                <tr>
+                    <td><strong style="color: #1677FF;">L3</strong></td>
+                    <td>首席布道师</td>
+                    <td>L2基础上 + 有1个以上可对外展示的标杆案例 + 季度累计交付课时≥30课时</td>
+                    <td>进入钉钉AI研究院师资推荐库 / 官方背书素材授权 / 受邀参与课程共创</td>
+                </tr>
+                <tr>
+                    <td><strong style="color: #1677FF;">L4</strong></td>
+                    <td>AI 布道官</td>
+                    <td>L3基础上 + 跨行业交付能力 + 年度影响力评定通过</td>
+                    <td>最高级别认证 / 受邀参与认证班授课 / 品牌联名合作资格</td>
+                </tr>
+            </tbody>
+        </table>
+        <p style="text-align: center; font-size: 13px; color: #999; margin-top: 16px;">※分级体系随业务需要调整，最终解释权归钉钉AI咨询研究院所有</p>
+    </div>
+
+    <!-- 报名须知 -->
+    <div class="section-container" style="background: #f7f8fa;">
+        <div class="section-title">
+            <h2>报名须知</h2>
+            <p>了解开课信息、席位与课程费用说明</p>
+        </div>
+        <div style="max-width: 800px; margin: 0 auto;">
+            <div style="background: white; border-radius: 12px; padding: 32px; border: 1px solid #f0f0f0; margin-bottom: 24px;">
+                <h3 style="font-size: 18px; font-weight: 700; color: #1a1a1a; margin-bottom: 16px;">开课信息</h3>
+                <ul style="padding-left: 20px; color: #555; line-height: 2; font-size: 15px;">
+                    <li>时间：2026 年 9 月 3-5 日 · 3 天 2 晚集训</li>
+                    <li>地点：杭州 · 阿里巴巴全球总部 C 区（报名后通知具体地点）</li>
+                    <li>席位：仅 50 席 · 额满即止 · 不设资历筛选</li>
+                    <li>主办：钉钉 AI 咨询研究院 · 讲师认证运营中心</li>
+                </ul>
+            </div>
+            <div style="background: white; border-radius: 12px; padding: 32px; border: 1px solid #f0f0f0; margin-bottom: 24px;">
+                <h3 style="font-size: 18px; font-weight: 700; color: #1a1a1a; margin-bottom: 16px;">课程投资</h3>
+                <p style="color: #555; font-size: 15px; line-height: 1.8; margin: 0;">
+                    <strong style="color: #e53935; font-size: 28px;">¥ 9,800</strong> <span style="color:#888;">/ 人</span><br>
+                    含培训费 · 认证费 · 学习材料 · 线下茶歇 · 100 节线上课程
+                </p>
+            </div>
+            <div style="background: white; border-radius: 12px; padding: 32px; border: 1px solid #f0f0f0;">
+                <h3 style="font-size: 18px; font-weight: 700; color: #1a1a1a; margin-bottom: 16px;">参课准备</h3>
+                <ul style="padding-left: 20px; color: #555; line-height: 2; font-size: 15px;">
+                    <li>自备笔记本电脑，用于课堂实操</li>
+                    <li>建议提前准备一门自己在讲的课程，便于现场做 AI 化改造</li>
+                    <li>三天两晚全程参与，夜间工坊同样是认证考核的一部分</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 常见问题 -->
+    <div class="section-container faq-section">
+        <div class="section-title">
+            <h2>常见问题解答</h2>
+            <p>关于第四期 AI 讲师认证班，你可能想知道的</p>
+        </div>
+        <div class="faq-list">
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>Q1: 需要有编程基础才能参加吗？</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        不需要。本期不设资历筛选，课程从 AI 基本概念与工具实操讲起，循序渐进。无论你是内训师、咨询顾问还是商业讲师，都可以上手。
+                    </div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>Q2: 和往期相比，第四期有什么不同？</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        第四期升级为千问办公「AI创世纪」体系，Day 2 增加千问办公 AI 平台的全面掌握与桌面智能体六大实战场景演练，并保留阿里巴巴全球总部沉浸式参访。
+                    </div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>Q3: 结业能拿到什么？</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        通过现场实操认证后，可获得钉钉官方颁发的千问办公 AI 讲师结业证书，同时开通 100 节精品线上课程、加入讲师社群，并进入 L0 → L4 讲师能力分级成长路径。
+                    </div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>Q4: 费用包含食宿吗？</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        9,800 元含培训费、认证费、学习材料、线下茶歇及 100 节线上课程。往返交通与住宿需自行安排。
+                    </div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>Q5: 如何报名？</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        本期仅 50 席、额满即止。可点击页面下方「立即报名」，或扫描课程海报中的二维码锁定席位，也可联系你的钉钉客户经理获取专属报名通道。
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 联系方式 -->
+    <div class="section-container" style="background: #f7f8fa;">
+        <div class="contact-section" style="display: flex; align-items: center; justify-content: space-between; gap: 32px; padding: 32px 40px; margin-top: 0;">
+            <div style="flex: 1; text-align: left;">
+                <h3 style="margin-bottom: 10px;">钉钉AI咨询研究院讲师认证运营中心</h3>
+                <p class="contact-note" style="margin: 0;">仅 50 席 · 额满即止；如有任何疑问，请联系您的钉钉客户经理</p>
+            </div>
+            <div style="flex-shrink: 0;">
+                <a href="https://mp.weixin.qq.com/s/B2x4FbxIIvBMf1xqbic80g" target="_blank" style="display: inline-flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #1677FF 0%, #0958D9 100%); color: white; font-size: 17px; font-weight: 700; padding: 16px 36px; border-radius: 12px; text-decoration: none; box-shadow: 0 6px 20px rgba(22, 119, 255, 0.35); transition: all 0.3s ease; white-space: nowrap; gap: 8px;">
+                    <span>立即报名</span>
+                    <span style="font-size: 20px; line-height: 1;">→</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .contact-section a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(22, 119, 255, 0.5) !important;
+        }
+        @media (max-width: 768px) {
+            .contact-section {
+                flex-direction: column !important;
+                text-align: center !important;
+            }
+            .contact-section > div:first-child {
+                text-align: center !important;
+            }
+        }
+    </style>
+
+    <script>
+        function toggleFaq(element) {
+            element.closest('.faq-item').classList.toggle('active');
+        }
+
+        function openPosterLightbox() {
+            document.getElementById('posterLightbox').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        function closePosterLightbox() {
+            document.getElementById('posterLightbox').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    </script>
+
+    <!-- 海报灯箱 -->
+    <div class="poster-lightbox" id="posterLightbox" onclick="closePosterLightbox()">
+        <span class="poster-lightbox-close" onclick="closePosterLightbox()">&times;</span>
+        <img src="https://gw.alicdn.com/imgextra/i3/O1CN01jCcyu7JiIdJ2ByP1_!!6000000004195-49-tps-1080-5391.webp" alt="课程海报" onclick="event.stopPropagation()" />
+    </div>
+
+</body>
+</html>
