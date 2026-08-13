@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>千问办公 FDE工程师认证课程 首期·杭州班 - 课程详情</title>
+    <link rel="stylesheet" href="../common-styles.css">
+    <style>
+        /* FDE工程师认证课程详情页专属样式 */
+        .ai-hero {
+            background: #eef4ff;
+            padding: 80px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ai-hero-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            gap: 48px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-left { flex: 1; }
+
+        .hero-right {
+            flex-shrink: 0;
+            width: 320px;
+        }
+
+        .schedule-card {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(20px);
+            border-radius: 16px;
+            padding: 24px 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .schedule-card h3 {
+            font-size: 17px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        .schedule-item {
+            position: relative;
+            padding: 14px 0 14px 16px;
+            margin-left: 8px;
+            border-left: 3px solid #1677FF;
+        }
+
+        .schedule-date {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 6px;
+            letter-spacing: 0.3px;
+        }
+
+        .schedule-location {
+            font-size: 14px;
+            color: #1677FF;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 500;
+        }
+
+        .schedule-seats {
+            font-size: 13px;
+            color: #e53935;
+            font-weight: 600;
+            margin-top: 6px;
+        }
+
+        .poster-thumb {
+            margin-top: 12px;
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+            position: relative;
+            border: 1px solid #eef0f5;
+            transition: all 0.3s ease;
+        }
+        .poster-thumb:hover {
+            box-shadow: 0 4px 16px rgba(22, 119, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        .poster-thumb img {
+            width: 100%;
+            height: 90px;
+            object-fit: cover;
+            object-position: top;
+            display: block;
+        }
+        .poster-thumb-label {
+            display: block;
+            text-align: center;
+            font-size: 14px;
+            color: #fff;
+            font-weight: 600;
+            padding: 10px 0;
+            background: #1677FF;
+            letter-spacing: 1px;
+        }
+        .poster-lightbox {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.85);
+            z-index: 9999;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 40px 20px;
+            overflow-y: auto;
+            cursor: zoom-out;
+        }
+        .poster-lightbox.active { display: flex; }
+        .poster-lightbox img {
+            max-width: 600px;
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+        .poster-lightbox-close {
+            position: fixed;
+            top: 16px;
+            right: 24px;
+            font-size: 32px;
+            color: #fff;
+            cursor: pointer;
+            z-index: 10000;
+            line-height: 1;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+        .poster-lightbox-close:hover { opacity: 1; }
+
+        .ai-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 50%, rgba(22, 119, 255, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 80%, rgba(124, 111, 247, 0.1) 0%, transparent 40%);
+            pointer-events: none;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: #1677FF;
+            color: #fff;
+            font-size: 13px;
+            font-weight: 700;
+            padding: 5px 14px;
+            border-radius: 20px;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .ai-hero h1 {
+            font-size: 48px;
+            font-weight: 900;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            color: #1a237e;
+            position: relative;
+            z-index: 1;
+        }
+
+        .ai-hero .subtitle {
+            font-size: 22px;
+            color: #1a237e;
+            margin-bottom: 12px;
+            font-weight: 600;
+            position: relative;
+            z-index: 1;
+        }
+
+        .ai-hero .desc {
+            font-size: 16px;
+            color: #455a64;
+            max-width: 600px;
+            margin-bottom: 30px;
+            line-height: 1.8;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-tags {
+            display: flex;
+            justify-content: flex-start;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-tag {
+            background: #d4e4ff;
+            border: 1px solid #1677FF;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 15px;
+            font-weight: 600;
+            color: #1a237e;
+        }
+
+        .back-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #1677FF 0%, #0958D9 100%);
+            color: white;
+            padding: 14px 36px;
+            border-radius: 10px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 4px 16px rgba(22, 119, 255, 0.4);
+            position: relative;
+            z-index: 1;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(22, 119, 255, 0.6);
+        }
+
+        .section-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 36px;
+            font-weight: 800;
+            color: #1a1a1a;
+            margin-bottom: 12px;
+        }
+
+        .section-title p {
+            font-size: 16px;
+            color: #666;
+        }
+
+        /* 什么是 FDE */
+        .fde-intro {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            padding: 36px 40px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            border: 1px solid #f0f0f0;
+        }
+
+        .fde-intro h3 {
+            font-size: 22px;
+            font-weight: 800;
+            color: #1a1a1a;
+            margin-bottom: 4px;
+        }
+
+        .fde-intro .en {
+            font-size: 14px;
+            color: #999;
+            letter-spacing: 0.5px;
+            margin-bottom: 20px;
+        }
+
+        .fde-intro p {
+            font-size: 15px;
+            line-height: 2;
+            color: #555;
+            margin: 0;
+        }
+
+        .fde-intro p strong { color: #1677FF; }
+
+        .qa-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            max-width: 900px;
+            margin: 24px auto 0;
+        }
+
+        .qa-card {
+            background: #f0f5ff;
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .qa-card .qa-label {
+            font-size: 14px;
+            font-weight: 800;
+            color: #1677FF;
+            margin-bottom: 8px;
+        }
+
+        .qa-card p {
+            font-size: 14px;
+            color: #555;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        .value-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .value-card {
+            background: white;
+            border-radius: 16px;
+            padding: 36px 28px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            border: 1px solid #f0f0f0;
+            transition: all 0.3s;
+        }
+
+        .value-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(22, 119, 255, 0.12);
+            border-color: #1677FF;
+        }
+
+        .value-num {
+            font-size: 40px;
+            font-weight: 900;
+            color: #d4e4ff;
+            line-height: 1;
+            margin-bottom: 12px;
+        }
+
+        .value-card h3 {
+            font-size: 20px;
+            font-weight: 800;
+            color: #1a1a1a;
+            margin-bottom: 10px;
+        }
+
+        .value-card p {
+            font-size: 15px;
+            color: #666;
+            line-height: 1.8;
+            margin: 0;
+        }
+
+        .process-timeline {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        .timeline-day {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            border: 1px solid #f0f0f0;
+        }
+
+        .timeline-day.full-width { grid-column: 1 / -1; }
+
+        .day-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .day-num {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #1677FF, #0958D9);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 900;
+            flex-shrink: 0;
+        }
+
+        .day-header h3 {
+            font-size: 19px;
+            font-weight: 800;
+            color: #1a1a1a;
+        }
+
+        .day-slots {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 18px;
+        }
+
+        .day-slot {
+            background: #E8F0FE;
+            color: #1677FF;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .block-label {
+            font-size: 14px;
+            font-weight: 800;
+            color: #1677FF;
+            margin: 16px 0 8px;
+        }
+
+        .day-points {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .day-points li {
+            position: relative;
+            padding: 8px 0 8px 22px;
+            font-size: 15px;
+            line-height: 1.7;
+            color: #555;
+        }
+
+        .day-points li::before {
+            content: '';
+            position: absolute;
+            left: 2px;
+            top: 17px;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #1677FF;
+        }
+
+        /* 学员收获 */
+        .gain-list {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            padding: 12px 36px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            border: 1px solid #f0f0f0;
+        }
+
+        .gain-item {
+            display: flex;
+            gap: 18px;
+            padding: 22px 0;
+            border-bottom: 1px dashed #e8edf3;
+        }
+
+        .gain-item:last-child { border-bottom: none; }
+
+        .gain-idx {
+            flex-shrink: 0;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            border: 2px solid #1677FF;
+            color: #1677FF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+            font-weight: 800;
+        }
+
+        .gain-body h4 {
+            font-size: 17px;
+            font-weight: 800;
+            color: #1a1a1a;
+            margin-bottom: 6px;
+        }
+
+        .gain-body p {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.8;
+            margin: 0;
+        }
+
+        .audience-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .audience-card {
+            background: white;
+            border-radius: 16px;
+            padding: 26px 28px;
+            border: 1px solid #e8edf3;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+        }
+
+        .audience-card h3 {
+            font-size: 18px;
+            font-weight: 800;
+            color: #1a1a1a;
+            margin-bottom: 6px;
+        }
+
+        .audience-card p {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        .quote-block {
+            max-width: 900px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, #f0f4ff, #e8f0fe);
+            border-radius: 16px;
+            padding: 36px 40px;
+            text-align: center;
+        }
+
+        .quote-block p {
+            font-size: 19px;
+            font-weight: 700;
+            color: #1a237e;
+            line-height: 1.9;
+            margin: 0;
+        }
+
+        .quote-block .quote-from {
+            font-size: 14px;
+            font-weight: 500;
+            color: #667;
+            margin-top: 14px;
+        }
+
+        .contact-section {
+            background: linear-gradient(135deg, #f0f4ff, #e8f0fe);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .contact-section h3 {
+            font-size: 24px;
+            font-weight: 800;
+            color: #1677FF;
+            margin-bottom: 16px;
+        }
+
+        .contact-note {
+            font-size: 14px;
+            color: #666;
+        }
+
+        @media (max-width: 768px) {
+            .ai-hero-inner {
+                flex-direction: column !important;
+                gap: 24px;
+            }
+
+            .hero-right { width: 100% !important; }
+
+            .ai-hero { padding: 48px 16px; }
+
+            .ai-hero h1 { font-size: 28px; }
+
+            .value-cards,
+            .qa-cards,
+            .audience-grid {
+                grid-template-columns: 1fr !important;
+            }
+
+            .process-timeline {
+                grid-template-columns: 1fr !important;
+                gap: 16px;
+            }
+
+            .timeline-day { padding: 24px; }
+
+            .fde-intro,
+            .quote-block { padding: 24px 20px; }
+
+            .gain-list { padding: 12px 20px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <div class="ai-hero">
+        <div class="ai-hero-inner">
+            <div class="hero-left">
+                <span class="hero-badge">千问办公 FDE 认证 · 首期杭州班</span>
+                <h1>FDE工程师认证课程</h1>
+                <p class="subtitle">前线部署工程师 · Forward Deployed Engineer</p>
+                <p class="desc">3 天 2 晚集训 + 项目答辩认证，系统掌握从需求识别、方案架构、智能体开发到运维优化与项目管理的全流程能力，成为串联业务、技术、合规与交付的复合型人才。</p>
+                <div class="hero-tags">
+                    <span class="hero-tag">3天2晚集训</span>
+                    <span class="hero-tag">小班教学</span>
+                    <span class="hero-tag">项目答辩认证</span>
+                    <span class="hero-tag">认证证书颁发</span>
+                </div>
+                <a href="../index.html#public" class="back-btn">← 返回公开课列表</a>
+            </div>
+            <div class="hero-right">
+                <div class="schedule-card">
+                    <h3>📅 首期开班信息</h3>
+                    <div class="schedule-item">
+                        <div class="schedule-date">9月18日 - 9月20日</div>
+                        <div class="schedule-location">📍 杭州 · 阿里巴巴全球总部 C 区</div>
+                        <div class="schedule-seats">小班教学 · 名额有限 · 先到先得</div>
+                    </div>
+                    <div class="poster-thumb" onclick="openPosterLightbox()">
+                        <img src="https://gw.alicdn.com/imgextra/i4/O1CN01Cbrwo5OiTrD2vIQm_!!6000000007911-2-tps-1440-6780.png" alt="FDE工程师认证课程海报" />
+                        <span class="poster-thumb-label">查看课程海报</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 什么是 FDE -->
+    <div class="section-container" style="background: #f7f8fa;">
+        <div class="section-title">
+            <h2>什么是 FDE？</h2>
+            <p>AI 落地的最后一公里，需要一类新角色</p>
+        </div>
+        <div class="fde-intro">
+            <h3>前线部署工程师</h3>
+            <div class="en">Forward Deployed Engineer</div>
+            <p>当下，AI 产业正从高速扩张阶段迈入规模化落地的深水区，大模型、AI Agent 等生成式 AI 技术已经全面进入企业生产环境。无数企业投入重金采购大模型、搭建智能系统，却普遍陷入投入高、落地难、效果不达预期的困境，存在技术与业务脱节、大模型选型混乱、开发部署链路断层、POC 项目扎堆却难以量产、项目 ROI 无法量化、私有数据合规易踩坑等诸多问题。这些问题的根源，在于市场缺少一类<strong>能够串联业务、技术、合规与交付的复合型人才——FDE 前线部署工程师</strong>，这类人才可以端到端打通从需求梳理、方案架构、AI 应用开发、智能体构建到容器化部署、生产运维的全流程链路。</p>
+        </div>
+        <div class="qa-cards">
+            <div class="qa-card">
+                <div class="qa-label">是什么</div>
+                <p>串联业务、技术、合规与交付</p>
+            </div>
+            <div class="qa-card">
+                <div class="qa-label">为什么需要</div>
+                <p>让 AI 真正落地见效</p>
+            </div>
+            <div class="qa-card">
+                <div class="qa-label">怎么成为</div>
+                <p>3 天 2 晚集训 + 答辩认证</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 课程培养目标 -->
+    <div class="section-container">
+        <div class="section-title">
+            <h2>课程培养目标</h2>
+            <p>从认知重塑到能力构建，再到实战通关</p>
+        </div>
+        <div class="value-cards">
+            <div class="value-card">
+                <div class="value-num">01</div>
+                <h3>认知重塑</h3>
+                <p>理解 FDE 角色定位、能力模型与核心工作流程</p>
+            </div>
+            <div class="value-card">
+                <div class="value-num">02</div>
+                <h3>能力构建</h3>
+                <p>掌握需求分析、动手实践、运维优化与项目管理能力</p>
+            </div>
+            <div class="value-card">
+                <div class="value-num">03</div>
+                <h3>实战通关</h3>
+                <p>从 0 到 1 梓理业务流程、开发可运行 Demo 并制定迭代方案</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3天课程安排 -->
+    <div class="section-container" style="background: #f7f8fa;">
+        <div class="section-title">
+            <h2>3 天课程安排</h2>
+            <p>认知筑基 → 能力拆解 → 沙盘闭环，每日理论 + 实操双轨</p>
+        </div>
+        <div class="process-timeline">
+            <!-- DAY 1 -->
+            <div class="timeline-day">
+                <div class="day-header">
+                    <div class="day-num">1</div>
+                    <h3>认知筑基 × 需求识别</h3>
+                </div>
+                <div class="day-slots">
+                    <span class="day-slot">上午 09:00-12:00</span>
+                    <span class="day-slot">下午 14:00-18:00</span>
+                    <span class="day-slot">晚间 19:00-21:00</span>
+                </div>
+                <div class="block-label">理论讲解</div>
+                <ul class="day-points">
+                    <li>FDE 角色认知</li>
+                    <li>企业 AI 转型的挑战与破局思路</li>
+                    <li>业务流程梓理与 AI 需求识别</li>
+                    <li>AI 需求分析与设计</li>
+                </ul>
+                <div class="block-label">实操演练</div>
+                <ul class="day-points">
+                    <li>AI 需求识别与拆解实战</li>
+                    <li>产品需求文档撰写与项目组队</li>
+                    <li>产品需求文档撰写与需求评审</li>
+                </ul>
+            </div>
+
+            <!-- DAY 2 -->
+            <div class="timeline-day">
+                <div class="day-header">
+                    <div class="day-num">2</div>
+                    <h3>能力拆解 × 智能体实战</h3>
+                </div>
+                <div class="day-slots">
+                    <span class="day-slot">上午 09:00-12:00</span>
+                    <span class="day-slot">下午 14:00-18:00</span>
+                    <span class="day-slot">晚间 19:00-21:00</span>
+                </div>
+                <div class="block-label">理论讲解</div>
+                <ul class="day-points">
+                    <li>提示词、上下文与记忆</li>
+                    <li>RAG 与自定义智能体</li>
+                    <li>Skill、MCP、连接器与工作流</li>
+                    <li>自定义工作流五步法</li>
+                    <li>技术方案与架构设计方法</li>
+                </ul>
+                <div class="block-label">实操演练</div>
+                <ul class="day-points">
+                    <li>销冠助手智能体搭建实战</li>
+                    <li>Skill、MCP、连接器与工作流运行效果体验</li>
+                    <li>学员作业自动评分工作流实战</li>
+                    <li>产品 Demo 开发实战</li>
+                </ul>
+            </div>
+
+            <!-- DAY 3 -->
+            <div class="timeline-day full-width">
+                <div class="day-header">
+                    <div class="day-num">3</div>
+                    <h3>沙盘闭环 × 项目答辩</h3>
+                </div>
+                <div class="day-slots">
+                    <span class="day-slot">上午 09:00-12:00</span>
+                    <span class="day-slot">下午 14:00-17:30</span>
+                    <span class="day-slot">结业 · 认证证书颁发</span>
+                </div>
+                <div class="block-label">理论讲解</div>
+                <ul class="day-points">
+                    <li>Vibe Coding 技巧讲解</li>
+                    <li>AI 项目管理（评测 / 数据回流 / 安全合规）</li>
+                </ul>
+                <div class="block-label">实操演练</div>
+                <ul class="day-points">
+                    <li>Vibe Coding 快速上手</li>
+                    <li>项目答辩材料准备</li>
+                </ul>
+                <div class="block-label">考核与结业</div>
+                <ul class="day-points">
+                    <li>15 分钟项目答辩评审</li>
+                    <li>结业仪式 · 认证证书颁发</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 学员收获 -->
+    <div class="section-container">
+        <div class="section-title">
+            <h2>学员收获</h2>
+            <p>六大能力模块，每一项都可落地</p>
+        </div>
+        <div class="gain-list">
+            <div class="gain-item">
+                <div class="gain-idx">1</div>
+                <div class="gain-body">
+                    <h4>认知重塑｜FDE 角色认知</h4>
+                    <p>理解 FDE 角色定位、能力模型和核心工作流程；了解企业 AI 转型的挑战与破局思路</p>
+                </div>
+            </div>
+            <div class="gain-item">
+                <div class="gain-idx">2</div>
+                <div class="gain-body">
+                    <h4>需求分析能力</h4>
+                    <p>能梓理业务流程，识别出可落地的 AI 场景；能分析 AI 场景需求价值，算清 AI 项目的 ROI，决策是否投入</p>
+                </div>
+            </div>
+            <div class="gain-item">
+                <div class="gain-idx">3</div>
+                <div class="gain-body">
+                    <h4>动手实践能力</h4>
+                    <p>能根据 AI 场景需求设计匹配的技术方案；能搭建知识库、自定义智能体和自定义工作流；能使用 Vibe Coding 开发工具；能熟练使用 Skill 和 MCP</p>
+                </div>
+            </div>
+            <div class="gain-item">
+                <div class="gain-idx">4</div>
+                <div class="gain-body">
+                    <h4>运维优化能力</h4>
+                    <p>能搭建 AI 应用评测体系、指标监控体系；能搭建数据回流通道，驱动 AI 系统的自我学习；掌握 AI 用量监控、权限管控的方法</p>
+                </div>
+            </div>
+            <div class="gain-item">
+                <div class="gain-idx">5</div>
+                <div class="gain-body">
+                    <h4>项目管理能力</h4>
+                    <p>掌握 AI 项目分期建设、逐步演进的方法论；了解隐私安全、内容合规和数据治理的知识</p>
+                </div>
+            </div>
+            <div class="gain-item">
+                <div class="gain-idx">6</div>
+                <div class="gain-body">
+                    <h4>实战通关｜AI 项目实战</h4>
+                    <p>从 0 到 1 现场梓理业务流程，识别关键 AI 场景，绘制 AI 场景落地地图；动手开发可运行的 Demo，并制定下一步迭代优化方案</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 适合谁学 -->
+    <div class="section-container" style="background: #f7f8fa;">
+        <div class="section-title">
+            <h2>适合谁学？</h2>
+            <p>四类人群，共同推动企业 AI 落地</p>
+        </div>
+        <div class="audience-grid">
+            <div class="audience-card">
+                <h3>企业数字化负责人</h3>
+                <p>CTO / CIO</p>
+            </div>
+            <div class="audience-card">
+                <h3>企业内部 IT 人员</h3>
+                <p>产品经理、架构 / 开发 / 运维工程师</p>
+            </div>
+            <div class="audience-card">
+                <h3>企业 HR / 培训负责人</h3>
+                <p>HRBP、HR、企业内训师</p>
+            </div>
+            <div class="audience-card">
+                <h3>业务部门核心骨干</h3>
+                <p>研发、销售、运营、客服</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 报名须知 -->
+    <div class="section-container">
+        <div class="section-title">
+            <h2>首期开班信息</h2>
+            <p>小班教学，名额有限</p>
+        </div>
+        <div style="max-width: 800px; margin: 0 auto;">
+            <div style="background: white; border-radius: 12px; padding: 32px; border: 1px solid #f0f0f0; margin-bottom: 24px;">
+                <h3 style="font-size: 18px; font-weight: 700; color: #1a1a1a; margin-bottom: 16px;">开课信息</h3>
+                <ul style="padding-left: 20px; color: #555; line-height: 2; font-size: 15px;">
+                    <li>时间：9 月 18-20 日 · 3 天 2 晚</li>
+                    <li>地点：杭州 · 阿里巴巴全球总部 C 区</li>
+                    <li>形式：小班教学 · 先到先得</li>
+                    <li>考核：15 分钟项目答辩评审，通过后颁发认证证书</li>
+                </ul>
+            </div>
+            <div style="background: white; border-radius: 12px; padding: 32px; border: 1px solid #f0f0f0;">
+                <h3 style="font-size: 18px; font-weight: 700; color: #1a1a1a; margin-bottom: 16px;">课程定价</h3>
+                <p style="color: #555; font-size: 15px; line-height: 1.8; margin: 0;">
+                    <strong style="color: #e53935; font-size: 28px;">12800</strong> <span style="color:#888;">元 / 人</span><br>
+                    名额有限 · 小班教学 · 先到先得
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slogan -->
+    <div class="section-container" style="background: #f7f8fa;">
+        <div class="quote-block">
+            <p>AI 落地的最后一公里，连接技术与业务。<br>把个人经验变成组织能力，让每个人都成为 AI 时代的超级个体。</p>
+            <div class="quote-from">—— 千问办公｜FDE 认证课程</div>
+        </div>
+    </div>
+
+    <!-- 联系方式 -->
+    <div class="section-container">
+        <div class="contact-section" style="display: flex; align-items: center; justify-content: space-between; gap: 32px; padding: 32px 40px; text-align: left;">
+            <div style="flex: 1;">
+                <h3 style="margin-bottom: 10px;">千问办公 FDE 认证课程</h3>
+                <p class="contact-note" style="margin: 0;">首期 9 月 18-20 日 · 杭州阿里巴巴全球总部 C 区；扫描课程海报中的二维码填写报名表单，或联系您的钉钉客户经理</p>
+            </div>
+            <div style="flex-shrink: 0;">
+                <a href="javascript:openPosterLightbox()" style="display: inline-flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #1677FF 0%, #0958D9 100%); color: white; font-size: 17px; font-weight: 700; padding: 16px 36px; border-radius: 12px; text-decoration: none; box-shadow: 0 6px 20px rgba(22, 119, 255, 0.35); transition: all 0.3s ease; white-space: nowrap; gap: 8px;">
+                    <span>扫码报名</span>
+                    <span style="font-size: 20px; line-height: 1;">→</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .contact-section a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(22, 119, 255, 0.5) !important;
+        }
+        @media (max-width: 768px) {
+            .contact-section {
+                flex-direction: column !important;
+                text-align: center !important;
+            }
+            .contact-section > div:first-child { text-align: center !important; }
+        }
+    </style>
+
+    <script>
+        function openPosterLightbox() {
+            document.getElementById('posterLightbox').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        function closePosterLightbox() {
+            document.getElementById('posterLightbox').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    </script>
+
+    <!-- 海报灯箱 -->
+    <div class="poster-lightbox" id="posterLightbox" onclick="closePosterLightbox()">
+        <span class="poster-lightbox-close" onclick="closePosterLightbox()">&times;</span>
+        <img src="https://gw.alicdn.com/imgextra/i4/O1CN01Cbrwo5OiTrD2vIQm_!!6000000007911-2-tps-1440-6780.png" alt="FDE工程师认证课程海报" onclick="event.stopPropagation()" />
+    </div>
+
+</body>
+</html>
