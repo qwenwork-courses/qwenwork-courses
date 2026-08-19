@@ -223,6 +223,7 @@
             </div>
             <div class="nav-tabs">
                 <button class="nav-tab active" data-tab="home" onclick="switchMainTab('home')">首页</button>
+                <button class="nav-tab" onclick="window.open('https://qwenwork-courses.github.io/qwenwork-cases/', '_blank', 'noopener')" title="在新标签页打开案例库">案例库</button>
                 <button class="nav-tab" data-tab="public" onclick="switchMainTab('public')">公开课</button>
                 <button class="nav-tab" data-tab="enterprise" onclick="switchMainTab('enterprise')">企业定制课程</button>
                 <button class="nav-tab" data-tab="online" onclick="switchMainTab('online')">线上课程</button>
@@ -589,7 +590,7 @@
             if (track.dataset.bannerInitialized === 'true') return;
             track.dataset.bannerInitialized = 'true';
 
-            var totalOriginal = 3;
+            var totalOriginal = 4;
             var currentIndex = 0;
             var autoPlayTimer;
             var isTransitioning = false;
@@ -605,7 +606,7 @@
             function goToSlide(index, animate) {
                 if (animate === undefined) animate = true;
                 track.style.transition = animate ? 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)' : 'none';
-                track.style.transform = 'translateX(-' + (index * 16.6667) + '%)';
+                track.style.transform = 'translateX(-' + (index * 12.5) + '%)';
             }
 
             function updateDots(realIndex) {
