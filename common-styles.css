@@ -19,7 +19,7 @@
             padding: 0;
         }
         .header-inner {
-            max-width: 1200px;
+            max-width: var(--page);
             margin: 0 auto;
             position: relative;
             padding: 60px 20px 40px; /* Increased top padding to accommodate button */
@@ -1089,37 +1089,72 @@
 /* --- Part 2: Styles from index_dingtalk.html --- */
 /* ===== 钉钉标准字体栈 ===== */
         body {
-            font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-family: 'Inter', 'PingFang SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif;
+            font-synthesis: none;
             font-size: 14px;
             line-height: 1.5;
-            color: #1F2329;
-            background: #F5F7FA;
+            color: var(--text);
+            background: var(--bg);
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
 
         /* ===== 钉钉色彩体系 ===== */
         :root {
-            --dt-brand: #30bf69;
-            --dt-brand-hover: #4ce285;
-            --dt-brand-active: #22975a;
-            --dt-text-primary: #1F2329;
-            --dt-text-secondary: #646A73;
-            --dt-text-tertiary: #8F959E;
-            --dt-border: #DEE0E3;
-            --dt-bg-container: #FFFFFF;
-            --dt-bg-page: #F5F7FA;
-            --dt-bg-hover: #F2F3F5;
+            color-scheme: light;
 
-            /* 观感令牌（借案例库体系）*/
+            /* ===== 案例库设计令牌体系（权威规范，改主色/圆角/间距只动这里）===== */
+            /* 底色与面 */
+            --bg: #fcfcfc;
+            --bg-soft: #f6f7f6;
+            --bg-tint: #f0faf4;
+            --surface: #ffffff;
+            --surface-2: #f4f8f5;
+            /* 线 */
+            --line: rgba(20, 38, 28, 0.08);
+            --line-strong: rgba(20, 38, 28, 0.14);
+            --hairline: 1px solid var(--line);
+            /* 字 */
+            --text: #141a16;
+            --muted: #4a5a50;
+            --subtle: #7a8e82;
+            /* 主色（千问办公品牌绿）*/
+            --accent: #30bf69;
+            --accent-2: #4ce285;
+            --accent-3: #86eeb3;
+            --accent-soft: #eefff5;
+            --accent-line: rgba(48, 191, 105, 0.22);
+            --accent-dark: #22975a;
+            --accent-deep: #16794a;
+            /* 语义色 */
+            --success: #30bf69;
+            --success-soft: #eefff5;
+            --warn: #d97706;
+            --warn-soft: #fef3e2;
+            --danger: #dc2626;
+            /* 形制 */
             --r-sm: 8px;
             --r-md: 12px;
             --r-lg: 16px;
             --r-xl: 22px;
-            --hairline: 1px solid rgba(20, 38, 28, 0.08);
-            --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.04);
-            --shadow-md: 0 8px 24px rgba(15, 23, 42, 0.06);
-            --shadow-lg: 0 18px 48px rgba(15, 23, 42, 0.10);
+            --shadow-sm: 0 1px 2px rgba(10, 38, 21, 0.04);
+            --shadow-md: 0 8px 24px rgba(10, 38, 21, 0.06);
+            --shadow-lg: 0 24px 60px rgba(10, 38, 21, 0.09);
+            /* 栅格 */
+            --page: min(1340px, calc(100% - 48px));
+            --page-narrow: min(1100px, calc(100% - 48px));
+
+            /* ===== 旧 --dt-* 别名映射到新令牌（保持存量规则兼容）===== */
+            --dt-brand: var(--accent);
+            --dt-brand-hover: var(--accent-2);
+            --dt-brand-active: var(--accent-dark);
+            --dt-text-primary: var(--text);
+            --dt-text-secondary: var(--muted);
+            --dt-text-tertiary: var(--subtle);
+            --dt-border: var(--line);
+            --dt-bg-container: var(--surface);
+            --dt-bg-page: var(--bg);
+            --dt-bg-hover: var(--bg-soft);
         }
 
         /* ===== 顶部导航栏 - 钉钉官网/AI能力中心风格 ===== */
@@ -1133,7 +1168,7 @@
         }
 
         .nav-container {
-            max-width: 1440px;
+            max-width: var(--page);
             margin: 0 auto;
             padding: 0 32px;
             display: flex;
@@ -1467,7 +1502,7 @@
         }
 
         .content-wrapper {
-            max-width: 1200px;
+            max-width: var(--page);
             margin: 0 auto;
             padding: 0 32px;
         }
@@ -1520,20 +1555,21 @@
         }
 
         .course-card-simple {
-            background: white;
-            border-radius: 8px;
+            background: var(--surface);
+            border-radius: var(--r-lg);
             padding: 24px;
-            transition: all 0.2s ease;
+            transition: transform 0.26s cubic-bezier(0.2,0.72,0.2,1), box-shadow 0.26s ease, border-color 0.26s ease;
             cursor: pointer;
-            border: 1px solid #f0f0f0;
+            border: 1px solid var(--line);
+            box-shadow: var(--shadow-sm);
             display: flex;
             flex-direction: column;
         }
 
         .course-card-simple:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            border-color: #30bf69;
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--accent-line);
         }
 
         .card-icon-bg {
@@ -1547,9 +1583,9 @@
             margin-bottom: 16px;
         }
 
-        .card-icon-bg.enterprise { background: #e6f4ff; color: #30bf69; }
-        .card-icon-bg.public { background: #f6ffed; color: #52c41a; }
-        .card-icon-bg.online { background: #fff7e6; color: #fa8c16; }
+        .card-icon-bg.enterprise { background: var(--accent-soft); color: var(--accent-dark); }
+        .card-icon-bg.public { background: var(--surface-2); color: var(--accent-dark); }
+        .card-icon-bg.online { background: var(--warn-soft); color: var(--warn); }
 
         .card-simple-title {
             font-size: 18px;
@@ -1570,7 +1606,7 @@
             display: flex;
             gap: 12px;
             padding-top: 16px;
-            border-top: 1px solid #f0f0f0;
+            border-top: 1px solid var(--line);
             font-size: 13px;
             color: var(--dt-text-tertiary);
         }
@@ -1629,7 +1665,7 @@
     padding: 80px 0;
 }
 .pain-case-inner {
-    max-width: 1300px;
+    max-width: var(--page);
     margin: 0 auto;
     padding: 0 40px;
     display: flex;
@@ -1789,9 +1825,9 @@
     cursor: pointer;
 }
 .pain-case-section .case-card:hover {
-    background: #eefff5;
-    border-color: rgba(48, 191, 105, 0.3);
-    transform: translateX(6px);
+    background: var(--accent-soft);
+    border-color: var(--accent-line);
+    transform: translateY(-3px);
     box-shadow: var(--shadow-md);
 }
 /* Staggered card widths */
@@ -1816,13 +1852,13 @@
 .pain-case-section .case-card-title {
     font-size: 17px;
     font-weight: 600;
-    color: #1a1a1a;
+    color: var(--text);
     margin-bottom: 5px;
     line-height: 1.4;
 }
 .pain-case-section .case-card-desc {
     font-size: 14px;
-    color: #888;
+    color: var(--muted);
     line-height: 1.5;
     white-space: nowrap;
 }
@@ -1830,11 +1866,11 @@
     flex-shrink: 0;
     font-size: 26px;
     line-height: 1;
-    color: #bbb;
+    color: var(--subtle);
     transition: all 0.3s ease;
 }
 .pain-case-section .case-card:hover .case-card-arrow {
-    color: #30bf69;
+    color: var(--accent);
     transform: translateX(4px);
 }
 .pain-case-section .case-industry-tag {
@@ -1929,7 +1965,7 @@
 }
 
 .feature-container {
-    max-width: 1200px;
+    max-width: var(--page);
     margin: 0 auto;
     padding: 0 40px;
     display: flex;
@@ -2054,10 +2090,10 @@
 .feature-btn {
     display: inline-block;
     padding: 14px 32px;
-    background: linear-gradient(135deg, #30bf69, #22975a);
+    background: linear-gradient(135deg, var(--accent), var(--accent-dark));
     color: #ffffff;
     text-decoration: none;
-    border-radius: var(--r-sm);
+    border-radius: var(--r-md);
     font-size: 16px;
     font-weight: 500;
     transition: transform 0.22s cubic-bezier(0.22,1,0.36,1), box-shadow 0.22s ease, background 0.22s ease;
@@ -2140,7 +2176,7 @@
 
 .hot-courses-wrapper {
     position: relative;
-    max-width: 1400px;
+    max-width: var(--page);
     margin: 0 auto;
     padding: 0 60px;
 }
@@ -2180,7 +2216,7 @@
 .card-title {
     font-size: 16px;
     font-weight: 700;
-    color: #1a1a1a;
+    color: var(--text);
     margin-bottom: 12px;
     line-height: 1.5;
     min-height: 48px;
@@ -2197,8 +2233,8 @@
     width: 100%;
     aspect-ratio: 16/10;
     object-fit: cover;
-    border-radius: 8px;
-    background: #f0f2f5;
+    border-radius: var(--r-md);
+    background: var(--surface-2);
 }
 
 /* 精彩回顾图片卡片样式 */
@@ -2723,7 +2759,7 @@
    ============================================ */
 
 .about-page {
-    max-width: 1200px;
+    max-width: var(--page);
     margin: 0 auto;
     padding: 0 20px;
     background: #ffffff;
@@ -3208,15 +3244,18 @@
 }
 
 .case-card {
-    background: #ffffff;
-    border-radius: 12px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--r-lg);
     padding: 32px 24px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-    transition: transform 0.3s ease;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.26s cubic-bezier(0.2,0.72,0.2,1), box-shadow 0.26s ease, border-color 0.26s ease;
 }
 
 .case-card:hover {
-    transform: translateY(-4px);
+    transform: translateY(-5px);
+    border-color: var(--accent-line);
+    box-shadow: 0 20px 46px rgba(10, 38, 21, 0.11);
 }
 
 .case-company {
@@ -3232,7 +3271,7 @@
 
 .case-card h4 {
     font-size: 18px;
-    color: #1a1a1a;
+    color: var(--text);
     margin-bottom: 20px;
     font-weight: 600;
 }
@@ -3257,7 +3296,7 @@
 
 .result-label {
     font-size: 14px;
-    color: #666666;
+    color: var(--muted);
 }
 
 /* Client Logos */
@@ -3330,7 +3369,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
     gap: 30px;
-    max-width: 1200px;
+    max-width: var(--page);
     margin: 0 auto;
 }
 
@@ -3454,7 +3493,7 @@
 /* 客户案例跑马灯样式 */
 .marquee-wrapper {
     overflow: hidden;
-    max-width: 1200px;
+    max-width: var(--page);
     margin: 0 auto;
     position: relative;
     display: flex;

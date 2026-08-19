@@ -48,12 +48,12 @@
 
     /* 竖版课程卡片 */
     .course-vcard {
-        background: #ffffff;
-        border-radius: 22px;
+        background: var(--surface);
+        border-radius: var(--r-lg);
         overflow: hidden;
-        box-shadow: none;
-        border: 1px solid #e6e9ee;
-        transition: all 0.3s ease;
+        box-shadow: var(--shadow-sm);
+        border: 1px solid var(--line);
+        transition: transform 0.26s cubic-bezier(0.2,0.72,0.2,1), box-shadow 0.26s ease, border-color 0.26s ease;
         display: flex;
         flex-direction: column;
         padding: 0;
@@ -64,9 +64,9 @@
     }
 
     .course-vcard:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 12px 28px rgba(31, 35, 41, 0.08);
-        border-color: #dce1e8;
+        transform: translateY(-5px);
+        box-shadow: 0 20px 46px rgba(10, 38, 21, 0.11);
+        border-color: var(--accent-line);
     }
 
     /* 卡片封面图 */
@@ -484,10 +484,10 @@
     /* -- 场次卡片（标题右侧） -- */
     .sidebar-content .schedule-card {
         padding: 24px 20px !important;
-        border-radius: 14px !important;
-        background: #ffffff !important;
-        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06) !important;
-        border: 1px solid #e8edf3 !important;
+        border-radius: var(--r-lg) !important;
+        background: var(--surface) !important;
+        box-shadow: var(--shadow-sm) !important;
+        border: 1px solid var(--line) !important;
         backdrop-filter: none !important;
     }
 
