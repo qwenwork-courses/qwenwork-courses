@@ -40,7 +40,7 @@
         
         .toolbar-item:hover {
             transform: translateY(-3px);
-            box-shadow: 0 4px 16px rgba(22, 119, 255, 0.2);
+            box-shadow: 0 4px 16px rgba(48, 191, 105, 0.2);
         }
         
         .toolbar-item svg {
@@ -55,16 +55,16 @@
         
         /* 咨询按钮特殊样式 */
         .toolbar-item.consult-btn {
-            background: linear-gradient(135deg, #E8F0FE, #D4E4FC);
+            background: linear-gradient(135deg, #eafaf1, #cdefdb);
         }
         
         .toolbar-item.consult-btn svg {
-            stroke: #1677FF;
+            stroke: #30bf69;
         }
         
         .toolbar-item.consult-btn:hover {
-            background: linear-gradient(135deg, #D4E4FC, #BFD8FC);
-            box-shadow: 0 4px 16px rgba(22, 119, 255, 0.3);
+            background: linear-gradient(135deg, #cdefdb, #BFD8FC);
+            box-shadow: 0 4px 16px rgba(48, 191, 105, 0.3);
         }
         
         /* 左侧弹出提示框 */
@@ -114,7 +114,7 @@
         .consult-popup-text {
             text-align: center;
             font-size: 14px;
-            color: #1677FF;
+            color: #30bf69;
             line-height: 1.6;
             font-weight: 500;
             word-wrap: break-word;
@@ -223,7 +223,7 @@
             </div>
             <div class="nav-tabs">
                 <button class="nav-tab active" data-tab="home" onclick="switchMainTab('home')">首页</button>
-                <button class="nav-tab" onclick="window.open('https://qwenwork-courses.github.io/qwenwork-cases/', '_blank', 'noopener')" title="在新标签页打开案例库">案例库</button>
+                <button class="nav-tab" data-tab="cases" onclick="switchMainTab('cases')">案例库</button>
                 <button class="nav-tab" data-tab="public" onclick="switchMainTab('public')">公开课</button>
                 <button class="nav-tab" data-tab="enterprise" onclick="switchMainTab('enterprise')">企业定制课程</button>
                 <button class="nav-tab" data-tab="online" onclick="switchMainTab('online')">线上课程</button>

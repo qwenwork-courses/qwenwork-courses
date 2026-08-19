@@ -31,7 +31,7 @@
             position: absolute;
             top: 50px;
             right: 20px;
-            background: #1677FF;
+            background: #30bf69;
             border: none;
             color: #ffffff;
             padding: 10px 25px;
@@ -40,12 +40,12 @@
             font-size: 15px;
             font-weight: bold;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(22, 119, 255, 0.35);
+            box-shadow: 0 4px 15px rgba(48, 191, 105, 0.35);
             z-index: 100;
         }
         .about-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(22, 119, 255, 0.6);
+            box-shadow: 0 6px 20px rgba(48, 191, 105, 0.6);
             filter: brightness(1.1);
         }
 
@@ -71,7 +71,7 @@
         h1 {
             font-size: 42px;
             font-weight: bold;
-            background: #1677FF;
+            background: #30bf69;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -110,7 +110,7 @@
 
         .background-title {
             font-size: 28px;
-            color: #1677FF;
+            color: #30bf69;
             margin-bottom: 20px;
             text-align: center;
         }
@@ -133,14 +133,14 @@
         }
 
         .value-card {
-            background: rgba(22, 119, 255, 0.06);
+            background: rgba(48, 191, 105, 0.06);
             border-left: 4px solid #64b5f6;
             padding: 20px;
             border-radius: 10px;
         }
 
         .value-card h3 {
-            color: #1677FF;
+            color: #30bf69;
             font-size: 20px;
             margin-bottom: 10px;
         }
@@ -166,7 +166,7 @@
             transform: translateX(-50%);
             width: 80px;
             height: 4px;
-            background: #1677FF;
+            background: #30bf69;
             border-radius: 2px;
         }
 
@@ -184,7 +184,7 @@
 
         .tab-button {
             background: rgba(255, 255, 255, 0.95);
-            border: 2px solid rgba(22, 119, 255, 0.25);
+            border: 2px solid rgba(48, 191, 105, 0.25);
             color: #2c3e50;
             padding: 12px 24px;
             border-radius: 25px;
@@ -197,16 +197,16 @@
         }
 
         .tab-button:hover {
-            background: rgba(22, 119, 255, 0.20);
-            border-color: #1677FF;
+            background: rgba(48, 191, 105, 0.20);
+            border-color: #30bf69;
             color: #ffffff;
         }
 
         .tab-button.active {
-            background: #1677FF;
+            background: #30bf69;
             border-color: transparent;
             color: #ffffff;
-            box-shadow: 0 4px 15px rgba(22, 119, 255, 0.35);
+            box-shadow: 0 4px 15px rgba(48, 191, 105, 0.35);
         }
 
         .tab-content {
@@ -239,8 +239,8 @@
 
         .schedule-item:hover {
             transform: translateX(10px);
-            border-left-color: #1677FF;
-            box-shadow: 0 10px 30px rgba(22, 119, 255, 0.20);
+            border-left-color: #30bf69;
+            box-shadow: 0 10px 30px rgba(48, 191, 105, 0.20);
         }
 
         .schedule-header {
@@ -254,7 +254,7 @@
 
         .schedule-date {
             font-size: 18px;
-            color: #1677FF;
+            color: #30bf69;
             font-weight: bold;
             display: flex;
             align-items: center;
@@ -337,7 +337,7 @@
         .footer-logo {
             font-size: 18px;
             font-weight: bold;
-            color: #1677FF;
+            color: #30bf69;
             margin-bottom: 10px;
         }
 
@@ -345,7 +345,7 @@
         .course-dropdown {
             margin-bottom: 15px;
             padding-bottom: 15px;
-            border-bottom: 1px solid rgba(22, 119, 255, 0.20);
+            border-bottom: 1px solid rgba(48, 191, 105, 0.20);
         }
         
         /* 最后一个课程不需要底部分隔线 */
@@ -359,33 +359,33 @@
             padding: 18px 20px;
             display: block;
             transition: all 0.3s ease;
-            background: rgba(22, 119, 255, 0.06);
+            background: rgba(48, 191, 105, 0.06);
             position: relative;
         }
 
         .course-header:hover {
-            background: rgba(22, 119, 255, 0.10);
+            background: rgba(48, 191, 105, 0.10);
         }
 
         .detail-btn {
             position: absolute;
             top: 15px;
             right: 15px;
-            background: #1677FF;
+            background: #30bf69;
             color: white;
             padding: 6px 15px;
             border-radius: 20px;
             text-decoration: none;
             font-size: 13px;
             font-weight: bold;
-            box-shadow: 0 2px 8px rgba(22, 119, 255, 0.25);
+            box-shadow: 0 2px 8px rgba(48, 191, 105, 0.25);
             transition: all 0.3s ease;
             z-index: 10;
         }
 
         .detail-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(22, 119, 255, 0.5);
+            box-shadow: 0 4px 12px rgba(48, 191, 105, 0.5);
         }
 
         .course-title-row {
@@ -405,7 +405,7 @@
 
         .course-toggle {
             font-size: 20px;
-            color: #1677FF;
+            color: #30bf69;
             transition: transform 0.3s ease;
             margin-left: 15px;
         }
@@ -423,7 +423,7 @@
         .course-content {
             display: none;
             padding: 20px;
-            border-top: 1px solid rgba(22, 119, 255, 0.20);
+            border-top: 1px solid rgba(48, 191, 105, 0.20);
             animation: slideDown 0.3s ease;
         }
 
@@ -451,7 +451,7 @@
         .course-section-title {
             font-size: 16px;
             font-weight: bold;
-            color: #1677FF;
+            color: #30bf69;
             margin-bottom: 12px;
             display: flex;
             align-items: center;
@@ -483,7 +483,7 @@
             border-radius: 50%;
             overflow: hidden;
             flex-shrink: 0;
-            border: 3px solid rgba(22, 119, 255, 0.25);
+            border: 3px solid rgba(48, 191, 105, 0.25);
             background: transparent;
         }
 
@@ -508,7 +508,7 @@
             font-size: 14px;
             font-weight: 600;
             line-height: 1.5;
-            color: #1677FF;
+            color: #30bf69;
             margin-bottom: 12px;
         }
 
@@ -538,16 +538,16 @@
             content: '•';
             position: absolute;
             left: 8px;
-            color: #1677FF;
+            color: #30bf69;
             font-weight: bold;
             font-size: 18px;
         }
 
         .demo-scene {
-            background: rgba(22, 119, 255, 0.06);
+            background: rgba(48, 191, 105, 0.06);
             padding: 15px;
             border-radius: 8px;
-            border-left: 3px solid #1677FF;
+            border-left: 3px solid #30bf69;
         }
 
         .demo-scene p {
@@ -558,7 +558,7 @@
 
         .video-placeholder {
             background: rgba(0, 0, 0, 0.3);
-            border: 2px dashed rgba(22, 119, 255, 0.35);
+            border: 2px dashed rgba(48, 191, 105, 0.35);
             border-radius: 10px;
             padding: 40px 20px;
             text-align: center;
@@ -839,13 +839,13 @@
             display: flex;
             gap: 8px;
             margin-bottom: 15px;
-            border-bottom: 2px solid rgba(22, 119, 255, 0.20);
+            border-bottom: 2px solid rgba(48, 191, 105, 0.20);
             padding-bottom: 10px;
         }
         
         .course-inner-tab-btn {
             background: rgba(255, 255, 255, 0.95);
-            border: 1px solid rgba(22, 119, 255, 0.25);
+            border: 1px solid rgba(48, 191, 105, 0.25);
             color: #2c3e50;
             padding: 8px 16px;
             border-radius: 20px;
@@ -855,12 +855,12 @@
         }
         
         .course-inner-tab-btn:hover {
-            background: rgba(22, 119, 255, 0.20);
+            background: rgba(48, 191, 105, 0.20);
             color: #ffffff;
         }
         
         .course-inner-tab-btn.active {
-            background: #1677FF;
+            background: #30bf69;
             border-color: transparent;
             color: #ffffff;
         }
@@ -884,8 +884,8 @@
         }
         
         .course-tab-btn {
-            background: rgba(22, 119, 255, 0.06);
-            border: 2px solid rgba(22, 119, 255, 0.25);
+            background: rgba(48, 191, 105, 0.06);
+            border: 2px solid rgba(48, 191, 105, 0.25);
             color: #2c3e50;
             padding: 10px 20px;
             border-radius: 25px;
@@ -898,17 +898,17 @@
         }
         
         .course-tab-btn:hover {
-            background: rgba(22, 119, 255, 0.20);
-            border-color: #1677FF;
+            background: rgba(48, 191, 105, 0.20);
+            border-color: #30bf69;
             color: #ffffff;
             transform: translateY(-2px);
         }
         
         .course-tab-btn.active {
-            background: #1677FF;
+            background: #30bf69;
             border-color: transparent;
             color: #ffffff;
-            box-shadow: 0 4px 15px rgba(22, 119, 255, 0.25);
+            box-shadow: 0 4px 15px rgba(48, 191, 105, 0.25);
         }
         
         /* Tab内容面板（可展开/收起） */
@@ -918,7 +918,7 @@
             padding: 20px;
             background: rgba(255, 255, 255, 0.90);
             border-radius: 10px;
-            border-left: 3px solid #1677FF;
+            border-left: 3px solid #30bf69;
             animation: slideDown 0.3s ease;
         }
         
@@ -1004,15 +1004,15 @@
         .course-highlights {
             margin-top: 15px;
             padding: 15px;
-            background: rgba(22, 119, 255, 0.06);
+            background: rgba(48, 191, 105, 0.06);
             border-radius: 8px;
-            border-left: 3px solid #1677FF;
+            border-left: 3px solid #30bf69;
         }
         
         .highlights-title {
             font-size: 15px;
             font-weight: bold;
-            color: #1677FF;
+            color: #30bf69;
             margin-bottom: 10px;
         }
         
@@ -1100,9 +1100,9 @@
 
         /* ===== 钉钉色彩体系 ===== */
         :root {
-            --dt-brand: #1677FF;
-            --dt-brand-hover: #4096FF;
-            --dt-brand-active: #0958D9;
+            --dt-brand: #30bf69;
+            --dt-brand-hover: #4ce285;
+            --dt-brand-active: #22975a;
             --dt-text-primary: #1F2329;
             --dt-text-secondary: #646A73;
             --dt-text-tertiary: #8F959E;
@@ -1110,6 +1110,16 @@
             --dt-bg-container: #FFFFFF;
             --dt-bg-page: #F5F7FA;
             --dt-bg-hover: #F2F3F5;
+
+            /* 观感令牌（借案例库体系）*/
+            --r-sm: 8px;
+            --r-md: 12px;
+            --r-lg: 16px;
+            --r-xl: 22px;
+            --hairline: 1px solid rgba(20, 38, 28, 0.08);
+            --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.04);
+            --shadow-md: 0 8px 24px rgba(15, 23, 42, 0.06);
+            --shadow-lg: 0 18px 48px rgba(15, 23, 42, 0.10);
         }
 
         /* ===== 顶部导航栏 - 钉钉官网/AI能力中心风格 ===== */
@@ -1247,7 +1257,7 @@
 
         .intro-icon.enterprise {
             background: #e6f4ff;
-            color: #1677ff;
+            color: #30bf69;
         }
 
         .intro-icon.public {
@@ -1289,7 +1299,7 @@
         .stat-value {
             font-size: 18px;
             font-weight: 600;
-            color: #1677ff;
+            color: #30bf69;
         }
 
         .stat-label {
@@ -1328,7 +1338,7 @@
         .section-title-icon {
             width: 4px;
             height: 20px;
-            background: #1677ff;
+            background: #30bf69;
             border-radius: 2px;
         }
 
@@ -1373,7 +1383,7 @@
         }
 
         .featured-card a {
-            color: #1677ff;
+            color: #30bf69;
             text-decoration: none;
             font-size: 13px;
             font-weight: 500;
@@ -1523,7 +1533,7 @@
         .course-card-simple:hover {
             transform: translateY(-4px);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            border-color: #1677ff;
+            border-color: #30bf69;
         }
 
         .card-icon-bg {
@@ -1537,7 +1547,7 @@
             margin-bottom: 16px;
         }
 
-        .card-icon-bg.enterprise { background: #e6f4ff; color: #1677ff; }
+        .card-icon-bg.enterprise { background: #e6f4ff; color: #30bf69; }
         .card-icon-bg.public { background: #f6ffed; color: #52c41a; }
         .card-icon-bg.online { background: #fff7e6; color: #fa8c16; }
 
@@ -1566,7 +1576,7 @@
         }
 
         .stat-blue {
-            color: #1677ff;
+            color: #30bf69;
             font-weight: 600;
             margin-right: 4px;
         }
@@ -1589,7 +1599,7 @@
         .featured-card:hover {
             transform: translateY(-4px);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            border-color: #1677ff;
+            border-color: #30bf69;
         }
 
         .featured-card h4 {
@@ -1606,7 +1616,7 @@
         }
 
         .featured-card a {
-            color: #1677ff;
+            color: #30bf69;
             text-decoration: none;
             font-size: 14px;
             font-weight: 500;
@@ -1662,29 +1672,29 @@
     white-space: nowrap;
 }
 .pain-tag:hover {
-    background: #e8f0fe;
-    border-color: rgba(22,119,255,0.3);
-    color: #1677FF;
+    background: #eafaf1;
+    border-color: rgba(48, 191, 105,0.3);
+    color: #30bf69;
     transform: translateY(-3px);
-    box-shadow: 0 6px 16px rgba(22,119,255,0.12);
+    box-shadow: 0 6px 16px rgba(48, 191, 105,0.12);
 }
 /* Size hierarchy based on importance */
 .pain-tag.pain-xl {
     font-size: 24px;
     padding: 16px 34px;
     font-weight: 700;
-    background: linear-gradient(135deg, #eef3ff, #dbeafe);
-    border-color: rgba(22,119,255,0.25);
+    background: linear-gradient(135deg, #eefff5, #c8efd8);
+    border-color: rgba(48, 191, 105,0.25);
     color: #1a1a1a;
-    box-shadow: 0 4px 16px rgba(22,119,255,0.12);
+    box-shadow: 0 4px 16px rgba(48, 191, 105,0.12);
 }
 .pain-tag.pain-lg {
     font-size: 17px;
     padding: 11px 22px;
     font-weight: 600;
     color: #333;
-    background: #f0f4ff;
-    border-color: rgba(22,119,255,0.12);
+    background: #eefff5;
+    border-color: rgba(48, 191, 105,0.12);
 }
 .pain-tag.pain-md {
     font-size: 15px;
@@ -1728,12 +1738,12 @@
     transform: translate(-50%, -50%);
     width: 44px;
     height: 44px;
-    background: linear-gradient(135deg, #1677FF, #0958D9);
+    background: linear-gradient(135deg, #30bf69, #22975a);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 16px rgba(22,119,255,0.3);
+    box-shadow: 0 4px 16px rgba(48, 191, 105,0.3);
 }
 .pain-case-arrow-head::after {
     content: "";
@@ -1770,18 +1780,19 @@
     gap: 16px;
     padding: 18px 22px;
     background: #ffffff;
-    border: 1px solid #e8eaed;
-    border-radius: 14px;
+    border: var(--hairline);
+    border-radius: var(--r-lg);
+    box-shadow: var(--shadow-sm);
     text-decoration: none;
     color: inherit;
-    transition: all 0.3s ease;
+    transition: transform 0.22s cubic-bezier(0.22,1,0.36,1), box-shadow 0.22s ease, border-color 0.22s ease, background 0.22s ease;
     cursor: pointer;
 }
 .pain-case-section .case-card:hover {
-    background: #f0f4ff;
-    border-color: rgba(22,119,255,0.3);
+    background: #eefff5;
+    border-color: rgba(48, 191, 105, 0.3);
     transform: translateX(6px);
-    box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+    box-shadow: var(--shadow-md);
 }
 /* Staggered card widths */
 .pain-case-section .case-card.case-wide {
@@ -1794,7 +1805,7 @@
     width: 48px;
     height: 48px;
     border-radius: 14px;
-    background: linear-gradient(135deg, #e8f0fe, #d4e4fc);
+    background: linear-gradient(135deg, #eafaf1, #cdefdb);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1823,16 +1834,16 @@
     transition: all 0.3s ease;
 }
 .pain-case-section .case-card:hover .case-card-arrow {
-    color: #1677FF;
+    color: #30bf69;
     transform: translateX(4px);
 }
 .pain-case-section .case-industry-tag {
     flex-shrink: 0;
     font-size: 12px;
     font-weight: 500;
-    color: #1677FF;
-    background: #e8f0fe;
-    border: 1px solid rgba(22,119,255,0.15);
+    color: #30bf69;
+    background: #eafaf1;
+    border: 1px solid rgba(48, 191, 105,0.15);
     border-radius: 12px;
     padding: 3px 12px;
     white-space: nowrap;
@@ -1877,7 +1888,7 @@
 
 /* ===== 过渡衔接区域 ===== */
 .bridge-section {
-    background: linear-gradient(180deg, #ffffff 0%, #f0f4ff 50%, #ffffff 100%);
+    background: linear-gradient(180deg, #ffffff 0%, #eefff5 50%, #ffffff 100%);
     padding: 48px 40px 72px;
     text-align: center;
 }
@@ -1999,7 +2010,7 @@
 }
 
 .carousel-dots .dot.active {
-    background: #1677FF;
+    background: #30bf69;
     width: 24px;
     border-radius: 4px;
 }
@@ -2015,7 +2026,7 @@
 
 .feature-subtitle {
     font-size: 18px;
-    color: #1677FF;
+    color: #30bf69;
     font-weight: 500;
     margin-bottom: 20px;
 }
@@ -2043,20 +2054,20 @@
 .feature-btn {
     display: inline-block;
     padding: 14px 32px;
-    background: linear-gradient(135deg, #1677FF, #0958D9);
+    background: linear-gradient(135deg, #30bf69, #22975a);
     color: #ffffff;
     text-decoration: none;
-    border-radius: 8px;
+    border-radius: var(--r-sm);
     font-size: 16px;
     font-weight: 500;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(22, 119, 255, 0.3);
+    transition: transform 0.22s cubic-bezier(0.22,1,0.36,1), box-shadow 0.22s ease, background 0.22s ease;
+    box-shadow: 0 4px 12px rgba(48, 191, 105, 0.3);
 }
 
 .feature-btn:hover {
-    background: linear-gradient(135deg, #0958D9, #0047B3);
+    background: linear-gradient(135deg, #22975a, #16794a);
     transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(22, 119, 255, 0.4);
+    box-shadow: 0 6px 16px rgba(48, 191, 105, 0.4);
 }
 
 /* 响应式适配 */
@@ -2107,7 +2118,7 @@
 
 .hot-courses-section {
     padding: 80px 0;
-    background: linear-gradient(135deg, #f0f4ff 0%, #e8f0fe 100%);
+    background: linear-gradient(135deg, #eefff5 0%, #eafaf1 100%);
 }
 
 .hot-courses-header {
@@ -2177,7 +2188,7 @@
 
 .card-instructor {
     font-size: 13px;
-    color: #1677FF;
+    color: #30bf69;
     font-weight: 500;
     margin-bottom: 16px;
 }
@@ -2232,9 +2243,9 @@
 }
 
 .scroll-btn:hover {
-    background: #1677FF;
-    border-color: #1677FF;
-    box-shadow: 0 4px 12px rgba(22, 119, 255, 0.3);
+    background: #30bf69;
+    border-color: #30bf69;
+    box-shadow: 0 4px 12px rgba(48, 191, 105, 0.3);
 }
 
 .scroll-btn:hover svg path {
@@ -2324,7 +2335,7 @@
     left: -50%;
     width: 200%;
     height: 200%;
-    background: radial-gradient(circle at 30% 50%, rgba(22, 119, 255, 0.15) 0%, transparent 50%),
+    background: radial-gradient(circle at 30% 50%, rgba(48, 191, 105, 0.15) 0%, transparent 50%),
                 radial-gradient(circle at 70% 80%, rgba(124, 111, 247, 0.1) 0%, transparent 40%);
     pointer-events: none;
 }
@@ -2334,7 +2345,7 @@
     font-weight: 900;
     margin-bottom: 20px;
     letter-spacing: 2px;
-    color: #1677FF;
+    color: #30bf69;
     position: relative;
     z-index: 1;
 }
@@ -2370,14 +2381,14 @@
 }
 
 .hero-tag {
-    background: rgba(22,119,255,0.08);
+    background: rgba(48, 191, 105,0.08);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.2);
     padding: 8px 18px;
     border-radius: 20px;
     font-size: 15px;
     font-weight: 600;
-    color: #1677FF;
+    color: #30bf69;
 }
 
 .section-container {
@@ -2420,15 +2431,15 @@
 
 .value-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 30px rgba(22, 119, 255, 0.12);
-    border-color: #1677FF;
+    box-shadow: 0 8px 30px rgba(48, 191, 105, 0.12);
+    border-color: #30bf69;
 }
 
 .value-icon {
     width: 64px;
     height: 64px;
     border-radius: 16px;
-    background: linear-gradient(135deg, #E8F0FE, #D4E4FC);
+    background: linear-gradient(135deg, #eafaf1, #cdefdb);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2446,7 +2457,7 @@
 .value-card .highlight {
     font-size: 15px;
     font-weight: 600;
-    color: #1677FF;
+    color: #30bf69;
     margin-bottom: 16px;
 }
 
@@ -2473,7 +2484,7 @@
     width: 6px;
     height: 6px;
     border-radius: 50%;
-    background: #1677FF;
+    background: #30bf69;
 }
 
 .design-grid {
@@ -2551,7 +2562,7 @@
 
 .design-item::before {
     content: '▸';
-    color: #1677FF;
+    color: #30bf69;
     font-weight: 700;
     flex-shrink: 0;
 }
@@ -2583,7 +2594,7 @@
     width: 40px;
     height: 40px;
     border-radius: 10px;
-    background: linear-gradient(135deg, #1677FF, #0958D9);
+    background: linear-gradient(135deg, #30bf69, #22975a);
     color: white;
     display: flex;
     align-items: center;
@@ -2617,8 +2628,8 @@
 
 .session-time {
     flex-shrink: 0;
-    background: #E8F0FE;
-    color: #1677FF;
+    background: #eafaf1;
+    color: #30bf69;
     padding: 4px 10px;
     border-radius: 6px;
     font-size: 13px;
@@ -2653,7 +2664,7 @@
 }
 
 .faq-item:hover {
-    border-color: #1677FF;
+    border-color: #30bf69;
 }
 
 .faq-question {
@@ -2668,7 +2679,7 @@
 
 .faq-icon {
     font-size: 20px;
-    color: #1677FF;
+    color: #30bf69;
     transition: transform 0.3s;
 }
 
@@ -2762,7 +2773,7 @@
 
 .mission-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 30px rgba(22, 119, 255, 0.12);
+    box-shadow: 0 8px 30px rgba(48, 191, 105, 0.12);
 }
 
 .mission-icon {
@@ -2818,8 +2829,8 @@
 }
 
 .level-0 { background: #999999; }
-.level-1 { background: #1677FF; }
-.level-2 { background: #0958D9; }
+.level-1 { background: #30bf69; }
+.level-2 { background: #22975a; }
 .level-3 { background: #533DCF; }
 .level-4 { background: #7B4FE8; }
 .level-5 { background: #AA84FF; }
@@ -2914,18 +2925,18 @@
 }
 
 .cert-highlight {
-    background: #f0f4ff;
+    background: #eefff5;
     padding: 12px 16px;
     border-radius: 8px;
     font-size: 13px;
-    color: #1677FF;
+    color: #30bf69;
     font-weight: 500;
     margin-top: 16px;
 }
 .cert-price {
     display: inline-block;
-    background: rgba(22, 119, 255, 0.1);
-    color: #1677FF;
+    background: rgba(48, 191, 105, 0.1);
+    color: #30bf69;
     padding: 2px 8px;
     border-radius: 4px;
     font-size: 13px;
@@ -2956,7 +2967,7 @@
 }
 
 .enrollment-header {
-    background: linear-gradient(135deg, #1677FF, #0958D9);
+    background: linear-gradient(135deg, #30bf69, #22975a);
     padding: 20px;
     text-align: center;
 }
@@ -2998,7 +3009,7 @@
 }
 
 .enrollment-detail strong {
-    color: #1677FF;
+    color: #30bf69;
     font-weight: 600;
 }
 
@@ -3027,7 +3038,7 @@
     content: '•';
     position: absolute;
     left: 0;
-    color: #1677FF;
+    color: #30bf69;
     font-weight: bold;
 }
 
@@ -3036,7 +3047,7 @@
     align-items: center;
     justify-content: center;
     font-size: 28px;
-    color: #1677FF;
+    color: #30bf69;
     font-weight: bold;
     flex-shrink: 0;
     padding: 0 8px;
@@ -3066,7 +3077,7 @@
 
 .step-num {
     display: inline-block;
-    background: linear-gradient(135deg, #1677FF, #0958D9);
+    background: linear-gradient(135deg, #30bf69, #22975a);
     color: #ffffff;
     padding: 6px 16px;
     border-radius: 20px;
@@ -3097,8 +3108,8 @@
 }
 
 .tool-tag {
-    background: #f0f4ff;
-    color: #1677FF;
+    background: #eefff5;
+    color: #30bf69;
     padding: 4px 12px;
     border-radius: 16px;
     font-size: 12px;
@@ -3107,7 +3118,7 @@
 
 .step-arrow {
     font-size: 24px;
-    color: #1677FF;
+    color: #30bf69;
     font-weight: bold;
     flex-shrink: 0;
 }
@@ -3168,7 +3179,7 @@
 
 .domain-group h4 {
     font-size: 16px;
-    color: #1677FF;
+    color: #30bf69;
     margin-bottom: 16px;
     font-weight: 600;
 }
@@ -3210,7 +3221,7 @@
 
 .case-company {
     display: inline-block;
-    background: linear-gradient(135deg, #1677FF, #0958D9);
+    background: linear-gradient(135deg, #30bf69, #22975a);
     color: #ffffff;
     padding: 6px 16px;
     border-radius: 20px;
@@ -3241,7 +3252,7 @@
 .result-value {
     font-size: 24px;
     font-weight: 700;
-    color: #1677FF;
+    color: #30bf69;
 }
 
 .result-label {
@@ -3277,7 +3288,7 @@
 .cta-section {
     text-align: center;
     padding: 60px 40px;
-    background: linear-gradient(135deg, #f0f4ff 0%, #e8f0fe 100%);
+    background: linear-gradient(135deg, #eefff5 0%, #eafaf1 100%);
     border-radius: 16px;
     margin-top: 40px;
 }
@@ -3298,7 +3309,7 @@
 .cta-button {
     display: inline-block;
     padding: 16px 48px;
-    background: linear-gradient(135deg, #1677FF, #0958D9);
+    background: linear-gradient(135deg, #30bf69, #22975a);
     color: #ffffff;
     border: none;
     border-radius: 8px;
@@ -3306,12 +3317,12 @@
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(22, 119, 255, 0.3);
+    box-shadow: 0 4px 12px rgba(48, 191, 105, 0.3);
 }
 
 .cta-button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(22, 119, 255, 0.4);
+    box-shadow: 0 6px 20px rgba(48, 191, 105, 0.4);
 }
 
 /* 最佳实践案例样式 */
@@ -3338,7 +3349,7 @@
 
 .case-company {
     display: inline-block;
-    background: linear-gradient(135deg, #1677FF, #0958D9);
+    background: linear-gradient(135deg, #30bf69, #22975a);
     color: #ffffff;
     padding: 8px 20px;
     border-radius: 20px;
@@ -3373,7 +3384,7 @@
 }
 
 .case-description strong {
-    color: #1677FF;
+    color: #30bf69;
     font-weight: 600;
 }
 
@@ -3383,7 +3394,7 @@
     gap: 16px;
     margin-bottom: 24px;
     padding: 20px;
-    background: linear-gradient(135deg, rgba(22, 119, 255, 0.05), rgba(22, 119, 255, 0.02));
+    background: linear-gradient(135deg, rgba(48, 191, 105, 0.05), rgba(48, 191, 105, 0.02));
     border-radius: 8px;
 }
 
@@ -3396,7 +3407,7 @@
 .result-value {
     font-size: 32px;
     font-weight: bold;
-    color: #1677FF;
+    color: #30bf69;
     line-height: 1;
 }
 
@@ -3413,7 +3424,7 @@
 .case-methods h5 {
     font-size: 16px;
     font-weight: 600;
-    color: #1677FF;
+    color: #30bf69;
     margin-bottom: 12px;
 }
 
@@ -3436,7 +3447,7 @@
     content: '•';
     position: absolute;
     left: 0;
-    color: #1677FF;
+    color: #30bf69;
     font-weight: bold;
 }
 
@@ -3772,7 +3783,7 @@
 }
 
 .filter-input:focus {
-    border-color: #1677ff;
+    border-color: #30bf69;
     background: #fff;
 }
 
@@ -3792,7 +3803,7 @@
 }
 
 .filter-select:focus {
-    border-color: #1677ff;
+    border-color: #30bf69;
     background-color: #fff;
 }
 
@@ -3827,8 +3838,8 @@
 }
 
 .filter-clear-btn:hover {
-    border-color: #1677ff;
-    color: #1677ff;
+    border-color: #30bf69;
+    color: #30bf69;
     background: #f0f7ff;
 }
 
@@ -3880,8 +3891,8 @@
 }
 
 .course-list-item:hover {
-    box-shadow: 0 4px 16px rgba(22, 119, 255, 0.12);
-    border-color: #1677FF;
+    box-shadow: 0 4px 16px rgba(48, 191, 105, 0.12);
+    border-color: #30bf69;
     transform: translateY(-2px);
 }
 
@@ -3964,21 +3975,21 @@
     display: inline-block !important;
     position: static !important;
     padding: 10px 24px;
-    background: linear-gradient(135deg, #1677FF, #0958D9);
+    background: linear-gradient(135deg, #30bf69, #22975a);
     color: #ffffff;
     text-decoration: none;
     border-radius: 8px;
     font-size: 14px;
     font-weight: 600;
     transition: all 0.3s ease;
-    box-shadow: 0 2px 8px rgba(22, 119, 255, 0.25);
+    box-shadow: 0 2px 8px rgba(48, 191, 105, 0.25);
     white-space: nowrap;
 }
 
 .course-list-item .detail-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 16px rgba(22, 119, 255, 0.4);
-    background: linear-gradient(135deg, #0958D9, #0747B5);
+    box-shadow: 0 4px 16px rgba(48, 191, 105, 0.4);
+    background: linear-gradient(135deg, #22975a, #0747B5);
 }
 
 /* 响应式：平板及以下 */
@@ -4322,7 +4333,7 @@
    ============================================ */
 
 .consult-module {
-    background: linear-gradient(180deg, #f0f5ff 0%, #e8f0fe 100%);
+    background: linear-gradient(180deg, #f0f5ff 0%, #eafaf1 100%);
     padding: 60px 0;
     width: 100vw;
     position: relative;
@@ -4365,7 +4376,7 @@
     background: #ffffff;
     border-radius: 16px;
     padding: 36px 32px;
-    border: 1px solid rgba(22, 119, 255, 0.1);
+    border: 1px solid rgba(48, 191, 105, 0.1);
     transition: all 0.3s ease;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
     display: flex;
@@ -4375,8 +4386,8 @@
 
 .consult-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(22, 119, 255, 0.12);
-    border-color: rgba(22, 119, 255, 0.25);
+    box-shadow: 0 8px 24px rgba(48, 191, 105, 0.12);
+    border-color: rgba(48, 191, 105, 0.25);
 }
 
 .consult-card-icon {
@@ -4409,7 +4420,7 @@
     content: '✓';
     position: absolute;
     left: 0;
-    color: #1677FF;
+    color: #30bf69;
     font-weight: 700;
     font-size: 14px;
 }
@@ -4421,7 +4432,7 @@
 .consult-cta-btn {
     display: inline-block;
     padding: 16px 64px;
-    background: linear-gradient(135deg, #1677FF, #0958D9);
+    background: linear-gradient(135deg, #30bf69, #22975a);
     color: #ffffff;
     border: none;
     border-radius: 8px;
@@ -4429,14 +4440,14 @@
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 16px rgba(22, 119, 255, 0.3);
+    box-shadow: 0 4px 16px rgba(48, 191, 105, 0.3);
     text-decoration: none;
 }
 
 .consult-cta-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 24px rgba(22, 119, 255, 0.45);
-    background: linear-gradient(135deg, #0958D9, #0747B5);
+    box-shadow: 0 6px 24px rgba(48, 191, 105, 0.45);
+    background: linear-gradient(135deg, #22975a, #0747B5);
 }
 
 /* "关于我们" 大标题区块 */
@@ -4455,7 +4466,7 @@
 .about-section-title-block .about-divider {
     width: 60px;
     height: 4px;
-    background: linear-gradient(135deg, #1677FF, #0958D9);
+    background: linear-gradient(135deg, #30bf69, #22975a);
     border-radius: 2px;
     margin: 0 auto;
 }

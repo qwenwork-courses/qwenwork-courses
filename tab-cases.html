@@ -1,0 +1,4875 @@
+<!-- 本文件由 GTM/tools/build-cases-tab.py 自动生成，请勿手改；
+     案例库改动后重跑脚本再重推官网。原生内嵌案例库（embed 模式）。-->
+<style>
+/* =============================================================================
+ *  千问办公 · 案例库  |  浅色产品风格
+ *  设计令牌集中在 :root，改主色/圆角/间距只动这里
+ * ========================================================================== */
+
+#cases-app {
+  color-scheme: light;
+
+  /* 底色与面 — 千问办公 Light 主题 */
+  --bg: #fcfcfc;
+  --bg-soft: #f6f7f6;
+  --bg-tint: #f0faf4;
+  --surface: #ffffff;
+  --surface-2: #f4f8f5;
+
+  /* 线 */
+  --line: rgba(20, 38, 28, 0.08);
+  --line-strong: rgba(20, 38, 28, 0.14);
+
+  /* 字 */
+  --text: #141a16;
+  --muted: #4a5a50;
+  --subtle: #7a8e82;
+
+  /* 主色（千问办公品牌绿） */
+  --accent: #30bf69;
+  --accent-2: #4ce285;
+  --accent-3: #86eeb3;
+  --accent-soft: #eefff5;
+  --accent-line: rgba(48, 191, 105, 0.22);
+  --accent-dark: #22975a;
+  /* 比 accent-dark 更深一级，专用于白底上的小号文字（如区块序号标题）；
+     对比度 5.4:1 过 WCAG AA，而 accent-3 只有 1.4:1、accent-dark 3.7:1 都不够 */
+  --accent-deep: #16794a;
+
+  /* 语义色 */
+  --success: #30bf69;
+  --success-soft: #eefff5;
+  --warn: #d97706;
+  --warn-soft: #fef3e2;
+  --danger: #dc2626;
+
+  /* 形 */
+  --r-sm: 8px;
+  --r-md: 12px;
+  --r-lg: 16px;
+  --r-xl: 22px;
+  --shadow-sm: 0 1px 2px rgba(10, 38, 21, 0.04);
+  --shadow-md: 0 8px 24px rgba(10, 38, 21, 0.06);
+  --shadow-lg: 0 24px 60px rgba(10, 38, 21, 0.09);
+
+  /* 栅格 */
+  --page: min(1340px, calc(100% - 48px));
+  --page-narrow: min(1100px, calc(100% - 48px));
+
+  font-family: 'Inter', 'PingFang SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif;
+  font-synthesis: none;
+}
+
+#cases-app * { box-sizing: border-box; }
+#cases-app { scroll-behavior: smooth; }
+
+#cases-app {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+
+#cases-app a { color: inherit; text-decoration: none; }
+#cases-app button { font: inherit; cursor: pointer; }
+#cases-app ul { margin: 0; padding: 0; list-style: none; }
+
+#cases-app :focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* =========================================================== 顶部导航 ==== */
+#cases-app .site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: saturate(180%) blur(14px);
+  border-bottom: 1px solid var(--line);
+}
+
+#cases-app .site-header .inner {
+  width: var(--page);
+  margin: 0 auto;
+  height: 62px;
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+#cases-app .brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+#cases-app .brand-logo {
+  height: 28px;
+  width: auto;
+  object-fit: contain;
+}
+
+#cases-app .brand-divider {
+  width: 1px;
+  height: 15px;
+  background: var(--line-strong);
+}
+
+#cases-app .brand-sub { color: var(--muted); font-weight: 500; }
+
+#cases-app .main-nav {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: auto;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+#cases-app .main-nav::-webkit-scrollbar { display: none; }
+
+#cases-app .main-nav a {
+  padding: 6px 11px;
+  border-radius: 999px;
+  font-size: 13px;
+  color: var(--muted);
+  white-space: nowrap;
+  transition: background 0.18s ease, color 0.18s ease;
+}
+#cases-app .main-nav a:hover { background: var(--surface-2); color: var(--text); }
+#cases-app .main-nav a.active { background: var(--accent-soft); color: var(--accent-dark); font-weight: 600; }
+
+#cases-app .header-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 15px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+#cases-app .header-cta:hover { transform: translateY(-1px); box-shadow: 0 8px 20px rgba(48, 191, 105, 0.3); background: var(--accent-dark); }
+
+/* ================================================================ Hero ==== */
+#cases-app .hero {
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--line);
+  background-color: var(--bg);
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+
+/* 背景图走 CDN，避免大图拖慢首屏 */
+#cases-app .hero { background-image: url('https://gw.alicdn.com/imgextra/i4/O1CN01EdrpzppuUaK3daAC_!!6000000004455-2-tps-1792-1024.png'); }
+
+/* 白色柔化层：只在文字区域洗一层，保留四角色彩；底部渐隐接页面底色 */
+#cases-app .hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 46% 44% at 50% 50%, rgba(255, 255, 255, 0.74) 0%, rgba(255, 255, 255, 0.3) 62%, transparent 100%),
+    linear-gradient(180deg, transparent 0%, transparent 56%, rgba(252, 252, 252, 0.88) 100%);
+  pointer-events: none;
+}
+
+#cases-app .hero-inner {
+  position: relative;
+  z-index: 1;
+  width: min(1000px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: 74px 0 58px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* 顶部统计行 + 装饰书名号 */
+#cases-app .hero-stats-line {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: var(--muted);
+  font-size: 13.5px;
+  font-weight: 550;
+  letter-spacing: 0.01em;
+}
+#cases-app .hero-stats-line .chev {
+  color: var(--accent);
+  font-size: 12px;
+  letter-spacing: -0.22em;
+  opacity: 0.5;
+}
+
+#cases-app .hero h1 {
+  margin: 20px 0 0;
+  font-size: clamp(36px, 5vw, 68px);
+  line-height: 1.1;
+  letter-spacing: -0.05em;
+  font-weight: 800;
+}
+
+#cases-app .hero-sub {
+  max-width: 34em;
+  margin: 18px 0 0;
+  color: var(--muted);
+  font-size: 15.5px;
+  line-height: 1.7;
+}
+
+/* ---- 搜索框 ---- */
+#cases-app .hero-search {
+  position: relative;
+  width: 100%;
+  max-width: 720px;
+  margin: 38px 0 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 6px 8px 6px 20px;
+  border: 1px solid var(--line-strong);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 34px rgba(10, 38, 21, 0.09);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+#cases-app .hero-search:focus-within {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px rgba(48, 191, 105, 0.12), 0 12px 38px rgba(10, 38, 21, 0.12);
+}
+#cases-app .hero-search .search-ic { flex: none; color: var(--subtle); display: grid; place-items: center; }
+#cases-app .hero-search:focus-within .search-ic { color: var(--accent); }
+
+#cases-app .hero-search input {
+  flex: 1;
+  min-width: 0;
+  padding: 15px 0;
+  border: 0;
+  outline: 0;
+  background: none;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 15.5px;
+}
+#cases-app .hero-search input::placeholder { color: var(--subtle); }
+#cases-app .hero-search input::-webkit-search-cancel-button { -webkit-appearance: none; appearance: none; }
+
+#cases-app .search-clear {
+  flex: none;
+  width: 32px;
+  height: 32px;
+  margin-right: 4px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--surface-2);
+  color: var(--muted);
+  display: none;
+  place-items: center;
+  transition: all 0.18s ease;
+}
+#cases-app .search-clear.show { display: grid; }
+#cases-app .search-clear:hover { background: var(--accent-soft); color: var(--accent-dark); }
+
+/* ---- 热门场景 ---- */
+#cases-app .hot-scenes {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+#cases-app .hot-label { color: var(--subtle); font-size: 13px; }
+#cases-app .hot-chip {
+  padding: 7px 15px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.82);
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 500;
+  transition: all 0.18s ease;
+}
+#cases-app .hot-chip:hover {
+  border-color: var(--accent-line);
+  background: #fff;
+  color: var(--accent-dark);
+  transform: translateY(-1px);
+}
+#cases-app .hot-chip.active {
+  border-color: transparent;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+  box-shadow: 0 5px 14px rgba(48, 191, 105, 0.28);
+}
+
+/* ---- 底部标语 ---- */
+#cases-app .hero-slogan {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-top: 50px;
+  color: var(--muted);
+  font-size: 14px;
+  letter-spacing: 0.01em;
+}
+#cases-app .hero-slogan::before, #cases-app .hero-slogan::after {
+  content: '';
+  width: 62px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--line-strong));
+}
+#cases-app .hero-slogan::after { background: linear-gradient(90deg, var(--line-strong), transparent); }
+
+/* ============================================================= 工具条 ==== */
+#cases-app .gallery { width: var(--page); margin: 0 auto; padding: 40px 0 96px; }
+
+/* 筛选区：上级 tab（按行业看 / 按实现路径看 / 我的收藏）+ 当前 tab 的二级分类。
+   不要底色也不要分割线，直接贴在页面背景上；所以也不能 sticky（透明底滚动时会与卡片重叠）*/
+#cases-app .toolbar {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 4px 0 0;
+  margin-bottom: 26px;
+}
+#cases-app .toolbar-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+  font-size: 12px;
+  color: var(--subtle);
+}
+
+#cases-app .dept-filter { display: flex; gap: 7px; flex-wrap: wrap; }
+
+/* 可横向滑动的胶囊行 / Tab 条：
+   隐了滚动条以后用户看不出能滑，所以用边缘渐隐做提示（类名由 JS 根据实际滚动位置切）。
+   同时 JS 里给了指针拖拽，所以桌面缩窗口时鼠标也能拖动（原生只认触摸/横向滚轮）*/
+#cases-app .x-scroll { cursor: grab; }
+#cases-app .x-scroll.is-dragging { cursor: grabbing; user-select: none; }
+#cases-app .x-scroll.can-scroll-right {
+  -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 30px), transparent 100%);
+  mask-image: linear-gradient(to right, #000 calc(100% - 30px), transparent 100%);
+}
+#cases-app .x-scroll.can-scroll-left {
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 30px);
+  mask-image: linear-gradient(to right, transparent 0, #000 30px);
+}
+#cases-app .x-scroll.can-scroll-left.can-scroll-right {
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 30px, #000 calc(100% - 30px), transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0, #000 30px, #000 calc(100% - 30px), transparent 100%);
+}
+
+/* 计数为 0 的类别：保留位置但不可点，避免切筛选时整行跳动 */
+#cases-app .dept-chip.is-empty {
+  opacity: 0.4;
+  cursor: not-allowed;
+  border-style: dashed;
+}
+#cases-app .dept-chip.is-empty:hover { border-color: var(--line-strong); color: var(--muted); }
+
+/* 路径胶囊：用中性的蓝调与行业（品牌绿）拉开维度差异 */
+#cases-app .dept-chip.path-chip.active {
+  border-color: transparent;
+  background: #2f6df0;
+  color: #fff;
+  box-shadow: 0 6px 16px rgba(47, 109, 240, 0.26);
+}
+#cases-app .dept-chip.path-chip.active .count { background: rgba(255, 255, 255, 0.22); color: #fff; }
+
+#cases-app .dept-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 14px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 500;
+  transition: all 0.18s ease;
+}
+#cases-app .dept-chip:hover { border-color: var(--accent-line); color: var(--text); }
+#cases-app .dept-chip.active {
+  border-color: transparent;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+  box-shadow: 0 6px 16px rgba(48, 191, 105, 0.28);
+}
+#cases-app .dept-chip .count {
+  padding: 1px 6px;
+  border-radius: 999px;
+  background: var(--surface-2);
+  color: var(--subtle);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+}
+#cases-app .dept-chip.active .count { background: rgba(255, 255, 255, 0.22); color: #fff; }
+
+#cases-app .results-count { font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+/* 上级 tab：按行业看 / 按实现路径看 / 我的收藏。
+   三者互斥，是整个列表页的主控件，因此比二级胶囊更重 */
+#cases-app .view-tabs {
+  display: inline-flex;
+  gap: 2px;
+  padding: 3px;
+  border-radius: 999px;
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+}
+#cases-app .view-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border: 0;
+  border-radius: 999px;
+  background: none;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease;
+}
+#cases-app .view-tab:hover { color: var(--text); }
+#cases-app .view-tab svg { width: 13px; height: 13px; }
+#cases-app .view-tab.active {
+  background: var(--surface);
+  color: var(--accent-dark);
+  box-shadow: 0 1px 3px rgba(16, 24, 40, 0.08);
+}
+#cases-app .view-tab.active svg { fill: currentColor; }
+#cases-app .view-tab .count {
+  padding: 1px 6px;
+  border-radius: 999px;
+  background: rgba(16, 24, 40, 0.06);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+}
+#cases-app .view-tab.active .count { background: var(--accent-soft); color: var(--accent-dark); }
+
+
+/* ============================================================ 部门分组 ==== */
+#cases-app .dept-section { margin-bottom: 54px; scroll-margin-top: 130px; }
+
+#cases-app .dept-head {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  padding-bottom: 16px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--line);
+}
+#cases-app .dept-head h2 {
+  margin: 0;
+  font-size: 27px;
+  letter-spacing: -0.03em;
+  font-weight: 700;
+}
+#cases-app .dept-head .en {
+  color: var(--accent-3);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+#cases-app .dept-head .desc {
+  margin-left: auto;
+  color: var(--subtle);
+  font-size: 13px;
+  text-align: right;
+}
+
+/* ============================================================ 案例卡片 ==== */
+#cases-app .case-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+#cases-app .case-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.26s cubic-bezier(0.2, 0.72, 0.2, 1),
+              border-color 0.26s ease,
+              box-shadow 0.26s ease;
+}
+#cases-app .case-card:hover, #cases-app .case-card:focus-within {
+  transform: translateY(-5px);
+  border-color: var(--accent-line);
+  box-shadow: 0 20px 46px rgba(10, 38, 21, 0.11);
+}
+#cases-app .case-card.is-wip { background: var(--bg-tint); }
+
+/* ---- 封面区：纯图片，文案在下方 ---- */
+#cases-app .card-media {
+  position: relative;
+  height: 190px;
+  overflow: hidden;
+  border-bottom: 1px solid var(--line);
+  /* 无截图时的占位底：深色品牌渐变 + 部门英文水印 */
+  background:
+    radial-gradient(ellipse 70% 60% at 22% 12%, rgba(76, 226, 133, 0.2), transparent 62%),
+    linear-gradient(148deg, #1d3a2a 0%, #172b21 46%, #121d18 100%);
+}
+#cases-app .card-media.has-cover { background: var(--surface-2); }
+
+#cases-app .card-media .cover-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  transition: transform 0.5s cubic-bezier(0.2, 0.72, 0.2, 1);
+}
+#cases-app .case-card:hover .card-media .cover-img { transform: scale(1.04); }
+#cases-app .case-card.is-wip .cover-img { filter: grayscale(0.3); opacity: 0.88; }
+
+#cases-app .card-media .watermark {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 52px;
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  color: rgba(255, 255, 255, 0.08);
+  text-transform: uppercase;
+  pointer-events: none;
+}
+
+/* 状态徽章：封面左上 */
+#cases-app .status-pill {
+  position: absolute;
+  z-index: 4;
+  left: 14px;
+  top: 13px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 11px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  box-shadow: 0 3px 10px rgba(10, 38, 21, 0.16);
+}
+#cases-app .status-pill i { width: 5px; height: 5px; border-radius: 50%; }
+#cases-app .status-pill.live { color: var(--success); }
+#cases-app .status-pill.live i { background: var(--success); box-shadow: 0 0 0 3px var(--success-soft); }
+#cases-app .status-pill.demo { color: var(--accent); }
+#cases-app .status-pill.demo i { background: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+#cases-app .status-pill.wip { color: var(--warn); }
+#cases-app .status-pill.wip i { background: var(--warn); box-shadow: 0 0 0 3px var(--warn-soft); }
+
+/* 收藏按钮：封面右上 */
+#cases-app .card-fav {
+  position: absolute;
+  z-index: 4;
+  right: 13px;
+  top: 12px;
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 50%;
+  background: rgba(24, 34, 28, 0.44);
+  backdrop-filter: blur(10px);
+  color: rgba(255, 255, 255, 0.92);
+  display: grid;
+  place-items: center;
+  transition: all 0.2s ease;
+}
+#cases-app .card-fav:hover {
+  background: rgba(24, 34, 28, 0.66);
+  border-color: rgba(255, 255, 255, 0.42);
+  transform: scale(1.08);
+}
+#cases-app .card-fav.active {
+  background: var(--accent);
+  border-color: transparent;
+  color: #fff;
+}
+#cases-app .card-fav.active:hover { background: var(--accent-dark); transform: scale(1.08); }
+#cases-app .card-fav.active svg { fill: currentColor; }
+
+/* ---- 文案区 ---- */
+#cases-app .card-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 17px 18px 0;
+}
+
+#cases-app .card-meta { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+#cases-app .card-dept {
+  color: var(--accent-dark);
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+/* 实现路径标签：与行业标签同行，颜色区分两个维度 */
+#cases-app .card-path {
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: #eef3ff;
+  color: #2f5fd0;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+#cases-app .card-body h3 {
+  margin: 9px 0 8px;
+  font-size: 17.5px;
+  line-height: 1.35;
+  letter-spacing: -0.024em;
+  font-weight: 650;
+}
+
+#cases-app .card-slogan {
+  margin: 0 0 13px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+#cases-app .card-badges { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 15px; }
+#cases-app .card-badges span {
+  padding: 3px 9px;
+  border-radius: var(--r-sm);
+  background: var(--surface-2);
+  color: var(--muted);
+  font-size: 11px;
+}
+
+#cases-app .card-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  padding: 14px 0;
+  margin-top: auto;
+  border-top: 1px solid var(--line);
+}
+#cases-app .card-metrics strong {
+  display: block;
+  font-size: 15px;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+}
+#cases-app .card-metrics small {
+  display: block;
+  margin-top: 4px;
+  color: var(--subtle);
+  font-size: 10.5px;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ---- 底部操作条：右对齐 ---- */
+#cases-app .card-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16px;
+  padding: 13px 18px;
+  border-top: 1px solid var(--line);
+  background: var(--surface);
+}
+#cases-app .card-actions .card-copy {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--muted);
+  font-size: 12.5px;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: color 0.18s ease;
+}
+#cases-app .card-actions .card-copy:hover { color: var(--accent-dark); }
+#cases-app .card-actions .card-copy.copied { color: var(--success); font-weight: 600; }
+
+#cases-app .card-actions .card-open {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--accent-dark);
+  font-size: 13.5px;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+#cases-app .card-actions .card-open svg { transition: transform 0.24s ease; }
+#cases-app .case-card:hover .card-actions .card-open svg { transform: translateX(4px); }
+
+/* 整卡点击热区：盖住封面+文案，露出底部操作条 */
+#cases-app .card-link { position: absolute; inset: 0 0 48px; z-index: 3; }
+
+#cases-app .empty-state {
+  padding: 84px 0;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+#cases-app .empty-state strong {
+  color: var(--text);
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+#cases-app .empty-state span { color: var(--subtle); font-size: 13.5px; }
+
+
+/* ============================================================ 详情页 ==== */
+#cases-app .detail-page { padding-bottom: 100px; }
+
+#cases-app .breadcrumb {
+  width: var(--page);
+  margin: 0 auto;
+  padding: 24px 0 18px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--subtle);
+  font-size: 13px;
+}
+#cases-app .breadcrumb a:hover { color: var(--accent-dark); }
+#cases-app .breadcrumb span.sep { opacity: 0.5; }
+#cases-app .breadcrumb strong { color: var(--text); font-weight: 550; }
+
+#cases-app .detail-hero {
+  width: var(--page);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.12fr);
+  gap: 0;
+  align-items: stretch;
+  border: 1px solid var(--line);
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  background: var(--surface);
+  box-shadow: var(--shadow-md);
+}
+
+/* ---- Hero 左栏 ---- */
+#cases-app .detail-copy {
+  padding: 34px 40px 32px;
+  display: flex;
+  flex-direction: column;
+}
+
+#cases-app .detail-chips { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+#cases-app .detail-chips span, #cases-app .detail-chips button {
+  padding: 5px 12px;
+  border-radius: var(--r-sm);
+  font-size: 12px;
+  font-weight: 600;
+}
+#cases-app .detail-chips .chip-dept { background: var(--accent); color: #fff; }
+/* 实现路径标签可点：回列表页并按同路径筛选 */
+#cases-app .detail-chips .chip-path {
+  border: 1px solid rgba(47, 109, 240, 0.28);
+  background: #eef3ff;
+  color: #2f5fd0;
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease;
+}
+#cases-app .detail-chips .chip-path:hover { background: #2f6df0; color: #fff; border-color: transparent; }
+
+#cases-app .detail-copy h1 {
+  margin: 0 0 10px;
+  font-size: clamp(24px, 2.2vw, 32px);
+  line-height: 1.2;
+  letter-spacing: -0.035em;
+  font-weight: 700;
+}
+#cases-app .detail-slogan {
+  margin: 0 0 16px;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.65;
+}
+
+#cases-app .detail-audience {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+  color: var(--subtle);
+}
+#cases-app .detail-audience > svg { flex: none; width: 15px; height: 15px; }
+#cases-app .detail-audience .lbl { font-size: 12.5px; margin-right: 2px; }
+#cases-app .detail-audience b {
+  padding: 4px 11px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+#cases-app .detail-actions { display: flex; gap: 9px; flex-wrap: wrap; }
+#cases-app .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 12px 19px;
+  border: 1px solid var(--line-strong);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--text);
+  font-size: 13.5px;
+  font-weight: 600;
+  transition: all 0.18s ease;
+}
+#cases-app .btn svg { width: 16px; height: 16px; }
+#cases-app .btn:hover { border-color: var(--accent-line); background: var(--accent-soft); color: var(--accent-dark); }
+#cases-app .btn.primary {
+  border-color: transparent;
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 8px 20px rgba(48, 191, 105, 0.26);
+}
+#cases-app .btn.primary:hover { background: var(--accent-dark); color: #fff; transform: translateY(-1px); }
+#cases-app .btn.copied { border-color: var(--success); background: var(--success-soft); color: var(--success); }
+#cases-app .btn.fav-case.active {
+  border-color: transparent;
+  background: var(--accent-dark);
+  color: #fff;
+}
+#cases-app .btn.fav-case.active:hover { background: #1b7a48; color: #fff; }
+#cases-app .btn.fav-case.active svg { fill: currentColor; }
+
+/* 亮点：Hero 左栏底部 */
+#cases-app .roi-summary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+  margin-top: 26px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+}
+#cases-app .roi-summary > div { padding-right: 16px; }
+#cases-app .roi-summary > div + div {
+  padding-left: 18px;
+  border-left: 1px solid var(--line);
+}
+#cases-app .roi-summary span {
+  display: block;
+  color: var(--accent-3);
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+#cases-app .roi-summary strong {
+  display: block;
+  margin: 6px 0 4px;
+  color: var(--accent-dark);
+  font-size: 20px;
+  line-height: 1.15;
+  letter-spacing: -0.035em;
+  font-variant-numeric: tabular-nums;
+}
+#cases-app .roi-summary small {
+  display: block;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+/* ---- Hero 右栏：演示动图 / 图片（保素材原比例，不裁切）---- */
+#cases-app .detail-visual {
+  position: relative;
+  margin: 0;
+  padding: 20px;
+  border-left: 1px solid var(--line);
+  background: linear-gradient(160deg, var(--bg-tint), var(--surface-2));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#cases-app .detail-visual::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 50% at 78% 18%, rgba(48, 191, 105, 0.1), transparent 70%);
+  pointer-events: none;
+}
+#cases-app .detail-visual > video, #cases-app .detail-visual > img {
+  position: relative;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: #fff;
+  box-shadow: 0 14px 40px rgba(10, 38, 21, 0.12);
+}
+#cases-app .detail-visual .visual-placeholder {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border: 1px dashed var(--line-strong);
+  border-radius: var(--r-lg);
+  background: rgba(255, 255, 255, 0.6);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  color: var(--subtle);
+}
+#cases-app .detail-visual .visual-placeholder svg { opacity: 0.32; }
+#cases-app .detail-visual .visual-placeholder span { font-size: 13px; }
+
+/* 动图上的两个浮标 */
+#cases-app .preview-badge {
+  position: absolute;
+  z-index: 2;
+  left: 34px;
+  top: 36px;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 13px;
+  border-radius: 999px;
+  background: rgba(18, 28, 22, 0.72);
+  backdrop-filter: blur(10px);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+}
+#cases-app .preview-badge i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent-2);
+  box-shadow: 0 0 0 3px rgba(76, 226, 133, 0.28);
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.45; }
+}
+#cases-app .preview-note {
+  position: absolute;
+  z-index: 2;
+  left: 34px;
+  bottom: 36px;
+  padding: 7px 13px;
+  border-radius: 8px;
+  background: rgba(18, 28, 22, 0.66);
+  backdrop-filter: blur(10px);
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 12px;
+}
+
+/* ---- Tab 导航 ---- */
+#cases-app .detail-tabs {
+  position: sticky;
+  top: 62px;
+  z-index: 28;
+  margin-top: 34px;
+  background: rgba(252, 252, 252, 0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+}
+#cases-app .tabs-inner {
+  width: var(--page);
+  margin: 0 auto;
+  display: flex;
+  gap: 4px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+#cases-app .tabs-inner::-webkit-scrollbar { display: none; }
+#cases-app .tabs-inner a {
+  position: relative;
+  padding: 15px 18px;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 550;
+  white-space: nowrap;
+  transition: color 0.18s ease;
+}
+#cases-app .tabs-inner a::after {
+  content: '';
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  bottom: -1px;
+  height: 2px;
+  border-radius: 2px 2px 0 0;
+  background: var(--accent);
+  transform: scaleX(0);
+  transition: transform 0.24s ease;
+}
+#cases-app .tabs-inner a:hover { color: var(--text); }
+#cases-app .tabs-inner a.active { color: var(--accent-dark); font-weight: 650; }
+#cases-app .tabs-inner a.active::after { transform: scaleX(1); }
+
+/* section 概览引言 */
+#cases-app .section-lead {
+  max-width: 76ch;
+  margin: -6px 0 26px;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+/* 视频演示区块：严格按视频原比例、不超采样，避免两侧或上下黑边。
+   max-width 由 JS（fitVideoBox）按视口高度写 inline，保证一屏内能看完整 */
+#cases-app .video-block {
+  width: 100%;
+  max-width: 1216px;      /* 当前案例视频原尺寸宽 1216px；屏宽 > 1216 时保持原尺不拉伸发糊 */
+  margin: 0 auto 8px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+#cases-app .video-block video {
+  display: block;
+  width: 100%;
+  height: auto;           /* 高度按原比例自动，不封顶 */
+  /* aspect-ratio 由渲染时读取 video.width/height 写入 inline style；
+     目的：避免 poster 图不同尺寸时预加载阶段把元素撑成错的高度。
+     object-fit: cover 确保 poster 铺满（当前 poster 2532×1356 与视频 1216×720 比例不同），
+     视频自身因与元素同宽高比，普通视图下不会被裁切 */
+  object-fit: cover;
+}
+/* 全屏时元素变成屏幕比例（常见 1.5~1.78），与视频 1.689 不一致，
+   再继续 cover 就会裁掉左右内容——所以全屏必须切成 contain，
+   同时清掉我们自己加的尺寸限制，交给浏览器全屏层接管。
+   两个前缀拆开写：部分引擎遇到不认识的伪类会丢掉整条规则。
+   两种入口都盖：视频自身全屏（原生控件）与整个 figure 全屏 */
+#cases-app .video-block video:fullscreen, #cases-app .video-block:fullscreen video {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  object-fit: contain;
+  background: #000;
+  aspect-ratio: auto !important;   /* 盖掉 inline 的 aspect-ratio，否则全屏下会被它锁死高度 */
+}
+#cases-app .video-block video:-webkit-full-screen, #cases-app .video-block:-webkit-full-screen video {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  object-fit: contain;
+  background: #000;
+  aspect-ratio: auto !important;
+}
+/* figure 自身全屏时去掉我们给的边框与 inline max-width，否则视频只占屏幕一小块 */
+#cases-app .video-block:fullscreen, #cases-app .video-block:-webkit-full-screen {
+  max-width: none !important;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  background: #000;
+}
+#cases-app .video-block figcaption {
+  padding: 11px 16px;
+  background: var(--surface);
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 12.5px;
+}
+#cases-app .demo-line.after-video { margin-top: 22px; }
+
+/* 技能类案例：复制 Prompt 前的安装提示 */
+#cases-app .prompt-skill-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  margin-bottom: 14px;
+  padding: 12px 15px;
+  border: 1px solid var(--accent-line);
+  border-radius: var(--r-md);
+  background: var(--accent-soft);
+  color: var(--accent-dark);
+  font-size: 13px;
+  line-height: 1.6;
+}
+#cases-app .prompt-skill-note svg { flex: none; margin-top: 2px; }
+#cases-app .prompt-skill-note b {
+  font-weight: 600;
+  font-family: 'SF Mono', ui-monospace, Menlo, monospace;
+  padding: 0 4px;
+  border-radius: 4px;
+  background: rgba(48, 191, 105, 0.14);
+}
+
+/* 分栏 Prompt */
+#cases-app .prompt-struct { padding: 22px 24px; }
+#cases-app .prompt-lead {
+  margin: 0 0 18px;
+  color: var(--text);
+  font-size: 14.5px;
+  line-height: 1.7;
+  font-weight: 550;
+}
+#cases-app .prompt-cols {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px 26px;
+}
+#cases-app .prompt-cols section {
+  padding: 16px 18px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  background: var(--surface-2);
+}
+#cases-app .prompt-cols h4 {
+  margin: 0 0 10px;
+  color: var(--accent-dark);
+  font-size: 13.5px;
+  font-weight: 650;
+  letter-spacing: 0.01em;
+}
+#cases-app .prompt-cols ul { display: flex; flex-direction: column; gap: 8px; }
+#cases-app .prompt-cols li {
+  position: relative;
+  padding-left: 15px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.65;
+}
+#cases-app .prompt-cols li::before {
+  content: '';
+  position: absolute;
+  left: 2px;
+  top: 8px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent-3);
+}
+#cases-app .prompt-tail {
+  margin: 18px 0 0;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+  color: var(--text);
+  font-size: 14px;
+  line-height: 1.7;
+  font-weight: 550;
+}
+
+/* ---------------------------------------------------------- 详情内容段 --- */
+#cases-app .detail-section {
+  width: var(--page);
+  margin: 0 auto;
+  padding: 56px 0 0;
+}
+#cases-app .section-label {
+  display: block;
+  margin-bottom: 20px;
+  color: var(--accent-deep);
+  font-size: 13.5px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+#cases-app .detail-section > h2 {
+  margin: 0 0 22px;
+  font-size: 24px;
+  letter-spacing: -0.032em;
+  font-weight: 650;
+}
+
+#cases-app .overview-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+#cases-app .overview-grid article {
+  padding: 28px 30px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+}
+#cases-app .article-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 11px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 16px;
+}
+#cases-app .article-icon svg { width: 20px; height: 20px; }
+#cases-app .article-icon.pain { background: #fef2f2; color: var(--danger); }
+#cases-app .article-icon.solution { background: var(--success-soft); color: var(--success); }
+
+#cases-app .overview-grid article > span {
+  display: block;
+  color: var(--subtle);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+}
+#cases-app .overview-grid article h3 {
+  margin: 8px 0 18px;
+  font-size: 18px;
+  letter-spacing: -0.026em;
+  font-weight: 650;
+}
+#cases-app .overview-grid li {
+  display: flex;
+  gap: 10px;
+  padding: 11px 0;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 13.5px;
+  line-height: 1.7;
+}
+#cases-app .overview-grid li svg { flex: none; width: 16px; height: 16px; margin-top: 3px; }
+#cases-app .overview-grid article.pain-card li svg { color: var(--danger); opacity: 0.7; }
+#cases-app .overview-grid article.sol-card li svg { color: var(--success); }
+
+/* Before / After */
+#cases-app .compare-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+#cases-app .compare-grid figure {
+  margin: 0;
+  padding: 26px 28px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: var(--surface);
+}
+#cases-app .compare-grid figure.after { border-color: var(--accent-line); background: linear-gradient(160deg, var(--accent-soft), var(--surface) 60%); }
+#cases-app .compare-grid figcaption {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+#cases-app .before-dot { padding: 3px 9px; border-radius: 999px; background: var(--surface-2); color: var(--subtle); }
+#cases-app .after-dot { padding: 3px 9px; border-radius: 999px; background: var(--accent); color: #fff; }
+#cases-app .compare-grid p { margin: 0; color: var(--text); font-size: 15px; line-height: 1.7; }
+
+/* 演示动线 */
+#cases-app .demo-line { counter-reset: step; display: grid; gap: 0; }
+#cases-app .demo-line li {
+  counter-increment: step;
+  position: relative;
+  display: flex;
+  gap: 16px;
+  padding: 16px 0 16px 0;
+  border-top: 1px solid var(--line);
+  color: var(--text);
+  font-size: 14.5px;
+  line-height: 1.65;
+}
+#cases-app .demo-line li:last-child { border-bottom: 1px solid var(--line); }
+#cases-app .demo-line li::before {
+  content: counter(step, decimal-leading-zero);
+  flex: none;
+  width: 34px;
+  color: var(--accent-3);
+  font-size: 13px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+}
+
+/* Prompt 区 */
+#cases-app .prompt-box {
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  background: var(--surface);
+}
+#cases-app .prompt-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 18px;
+  border-bottom: 1px solid var(--line);
+  background: var(--surface-2);
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 600;
+}
+#cases-app .prompt-head .btn { margin-left: auto; padding: 7px 13px; font-size: 12.5px; }
+#cases-app .prompt-box pre {
+  margin: 0;
+  padding: 22px 24px;
+  color: var(--text);
+  font-family: 'SF Mono', ui-monospace, 'JetBrains Mono', Menlo, monospace;
+  font-size: 13px;
+  line-height: 1.8;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+
+
+/* 演示物料链接 */
+/* 相关材料：全部卡片排一行，分类用卡片内的小标签表达。
+   minmax 下限取 240px：1200px 内容宽下三张卡能稳定同行，窄屏再自动掉行 */
+#cases-app .links-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+#cases-app .link-card {
+  /* 图标尺寸与列间距抽成变量：分类标签靠它们算缩进，改图标大小时不会错位 */
+  --mat-ic: 38px;
+  --mat-gap: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 16px 20px 18px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.18s ease;
+}
+/* 卡片内第二行：图标 + 标题/副文 + 箭头。
+   用 flex-start 而不是 center：副文两行时 center 会把图标压到副文那一行去，
+   顶对齐才能让图标与标题在同一行 */
+#cases-app .link-card-main {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--mat-gap);
+  width: 100%;
+}
+#cases-app .link-card:hover { border-color: var(--accent-line); box-shadow: var(--shadow-md); transform: translateY(-2px); }
+#cases-app .link-card .ic {
+  flex: none;
+  width: var(--mat-ic);
+  height: var(--mat-ic);
+  border-radius: 10px;
+  background: var(--accent-soft);
+  color: var(--accent-dark);
+  display: grid;
+  place-items: center;
+}
+#cases-app .link-card .ic svg { width: 18px; height: 18px; }
+/* 分类小标签：三类用不同底色区分。
+   左侧缩进一个图标宽 + 列间距，让它正好落在标题文字上方而不是图标上方 */
+#cases-app .link-group-tag {
+  display: inline-block;
+  margin-left: calc(var(--mat-ic) + var(--mat-gap));
+  padding: 2px 7px;
+  border-radius: 5px;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1.5;
+}
+#cases-app .link-group-tag.g-skill { background: var(--accent-soft); color: var(--accent-deep); }
+#cases-app .link-group-tag.g-sample { background: #fff4e6; color: #a35c00; }
+#cases-app .link-group-tag.g-output { background: #eef3ff; color: #2f5fd0; }
+#cases-app .link-card .tx { min-width: 0; }
+#cases-app .link-card b { display: block; font-size: 14px; font-weight: 600; }
+#cases-app .link-card small { display: block; margin-top: 3px; color: var(--subtle); font-size: 11.5px; }
+#cases-app .link-card .arrow { margin-left: auto; color: var(--accent-3); align-self: center; }
+#cases-app .link-card .arrow svg { width: 16px; height: 16px; }
+
+
+
+/* 相关案例 */
+#cases-app .related-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+
+/* WIP 占位提示 */
+#cases-app .wip-notice {
+  display: flex;
+  gap: 14px;
+  padding: 20px 24px;
+  border: 1px dashed var(--warn);
+  border-radius: var(--r-md);
+  background: var(--warn-soft);
+  color: #92400e;
+  font-size: 13.5px;
+  line-height: 1.7;
+}
+#cases-app .wip-notice svg { flex: none; width: 18px; height: 18px; margin-top: 3px; }
+
+/* ============================================================== 页脚 ==== */
+#cases-app .site-footer {
+  border-top: 1px solid var(--line);
+  background: var(--bg-soft);
+}
+#cases-app .footer-inner {
+  width: var(--page);
+  margin: 0 auto;
+  padding: 46px 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 40px;
+}
+#cases-app .footer-inner h3 { margin: 0 0 8px; font-size: 20px; letter-spacing: -0.03em; font-weight: 650; }
+#cases-app .footer-inner p { margin: 0; color: var(--muted); font-size: 13.5px; line-height: 1.7; }
+#cases-app .footer-meta {
+  width: var(--page);
+  margin: 0 auto;
+  padding: 18px 0 30px;
+  border-top: 1px solid var(--line);
+  color: var(--subtle);
+  font-size: 12px;
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* ============================================================ 预览弹窗 ==== */
+#cases-app .modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(10, 26, 18, 0.42);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.24s ease;
+}
+#cases-app .modal-backdrop.show { opacity: 1; pointer-events: auto; }
+
+#cases-app .modal-panel {
+  position: relative;
+  width: min(1200px, 100%);
+  height: min(88vh, 900px);
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-xl);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  transform: translateY(12px) scale(0.98);
+  transition: transform 0.24s cubic-bezier(0.2, 0.72, 0.2, 1);
+}
+#cases-app .modal-backdrop.show .modal-panel { transform: none; }
+
+#cases-app .modal-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px 14px 22px;
+  border-bottom: 1px solid var(--line);
+  background: var(--bg-soft);
+  flex: none;
+}
+#cases-app .modal-title {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+#cases-app .modal-actions {
+  margin-left: auto;
+  display: flex;
+  gap: 8px;
+  flex: none;
+}
+#cases-app .modal-actions .btn {
+  padding: 8px 14px;
+  font-size: 13px;
+}
+#cases-app .modal-actions #previewDownload {
+  background: var(--accent);
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 4px 12px rgba(48, 191, 105, 0.24);
+}
+#cases-app .modal-actions #previewDownload:hover { background: var(--accent-dark); color: #fff; }
+
+#cases-app .modal-frame {
+  flex: 1;
+  width: 100%;
+  border: 0;
+  background: #fff;
+}
+/* 文本预览（.md 等 content-type 不能直接内嵌渲染的文件）*/
+#cases-app .modal-text {
+  flex: 1;
+  width: 100%;
+  margin: 0;
+  padding: 22px 26px;
+  overflow: auto;
+  background: var(--bg-soft);
+  color: var(--text);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 12.5px;
+  line-height: 1.75;
+  white-space: pre-wrap;
+  word-break: break-word;
+  -webkit-user-select: text;
+  user-select: text;
+}
+
+@media (max-width: 720px) {
+  #cases-app .modal-backdrop { padding: 12px; }
+  #cases-app .modal-panel { height: 92vh; }
+  #cases-app .modal-title { font-size: 13px; }
+  #cases-app .modal-actions .btn { padding: 7px 10px; font-size: 12px; }
+}
+
+/* ==================================================== 页脚联系区 ==== */
+#cases-app .footer-contact {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+}
+
+#cases-app .footer-qr {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 9px;
+  flex: none;
+}
+#cases-app .footer-qr a {
+  display: block;
+  padding: 7px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-md);
+  background: #fff;
+  line-height: 0;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+#cases-app .footer-qr a:hover {
+  border-color: var(--accent);
+  box-shadow: 0 8px 22px rgba(48, 191, 105, 0.18);
+  transform: translateY(-2px);
+}
+#cases-app .footer-qr img {
+  display: block;
+  width: 104px;
+  height: 104px;
+  border-radius: 4px;
+}
+#cases-app .footer-qr figcaption {
+  color: var(--muted);
+  font-size: 12px;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+
+/* ===================================================== 分享案例弹窗 ==== */
+#cases-app .share-modal .share-panel {
+  position: relative;
+  width: min(560px, 100%);
+  max-height: 92vh;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--line);
+  border-radius: var(--r-xl);
+  background: var(--surface);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  transform: translateY(12px) scale(0.97);
+  transition: transform 0.26s cubic-bezier(0.2, 0.72, 0.2, 1);
+}
+#cases-app .share-modal.show .share-panel { transform: none; }
+
+#cases-app .share-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 20px 18px 16px 26px;
+  flex: none;
+}
+#cases-app .share-title {
+  font-size: 17px;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+/* 弹窗关闭钮：之前没重置过，用的是浏览器默认 button 样式（灰底 + 边框）。
+   现在做成无框图标钮，hover 才给一点淡底反馈 */
+#cases-app .form-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 0;
+  border-radius: 8px;
+  background: none;
+  color: var(--muted);
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease;
+  -webkit-appearance: none;
+  appearance: none;
+}
+#cases-app .form-close:hover { background: var(--bg-soft); color: var(--text); }
+#cases-app .form-close svg { display: block; }
+
+#cases-app .share-head .form-close { position: static; margin-left: auto; flex: none; }
+
+#cases-app .share-tabs {
+  display: flex;
+  gap: 4px;
+  padding: 0 26px;
+  border-bottom: 1px solid var(--line);
+  flex: none;
+}
+#cases-app .share-tab {
+  position: relative;
+  padding: 11px 4px 13px;
+  margin-right: 22px;
+  border: 0;
+  background: none;
+  color: var(--muted);
+  font-size: 14.5px;
+  font-weight: 550;
+  transition: color 0.18s ease;
+}
+#cases-app .share-tab::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: -1px;
+  height: 2px;
+  border-radius: 2px 2px 0 0;
+  background: var(--accent);
+  transform: scaleX(0);
+  transition: transform 0.22s ease;
+}
+#cases-app .share-tab:hover { color: var(--text); }
+#cases-app .share-tab.active { color: var(--accent-dark); font-weight: 650; }
+#cases-app .share-tab.active::after { transform: scaleX(1); }
+
+#cases-app .share-pane { display: none; padding: 22px 26px 26px; overflow-y: auto; }
+#cases-app .share-pane.active { display: block; }
+
+#cases-app .share-hint {
+  margin: 0 0 16px;
+  color: var(--muted);
+  font-size: 13.5px;
+  line-height: 1.6;
+}
+
+/* 链接分享 */
+#cases-app .share-url { display: flex; gap: 10px; }
+#cases-app .share-url input {
+  flex: 1;
+  min-width: 0;
+  padding: 12px 14px;
+  border: 1px solid var(--line-strong);
+  border-radius: 10px;
+  background: var(--surface-2);
+  color: var(--text);
+  font-family: 'SF Mono', ui-monospace, Menlo, monospace;
+  font-size: 12.5px;
+}
+#cases-app .share-url input:focus { outline: 0; border-color: var(--accent); background: #fff; }
+#cases-app .share-url .btn { flex: none; }
+
+/* 海报 */
+#cases-app .poster-stage {
+  position: relative;
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  background: var(--surface-2);
+  overflow: hidden;
+  min-height: 200px;
+}
+#cases-app .poster-stage canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+#cases-app .poster-loading {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: var(--subtle);
+  font-size: 13px;
+  background: var(--surface-2);
+  z-index: 1;
+}
+
+#cases-app .share-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 18px;
+  flex-wrap: wrap;
+}
+#cases-app .share-tip { color: var(--subtle); font-size: 12px; }
+
+@media (max-width: 560px) {
+  #cases-app .share-head { padding: 16px 12px 12px 18px; }
+  #cases-app .share-tabs { padding: 0 18px; }
+  #cases-app .share-pane { padding: 18px 18px 22px; }
+  #cases-app .share-url { flex-direction: column; }
+  #cases-app .share-url .btn { justify-content: center; }
+}
+
+/* ============================================================== Toast ==== */
+#cases-app .toast {
+  position: fixed;
+  left: 50%;
+  bottom: 40px;
+  z-index: 200;
+  padding: 12px 22px;
+  border-radius: 999px;
+  background: rgba(18, 28, 22, 0.92);
+  backdrop-filter: blur(10px);
+  color: #fff;
+  font-size: 13.5px;
+  font-weight: 500;
+  box-shadow: 0 12px 34px rgba(10, 38, 21, 0.28);
+  transform: translate(-50%, 14px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.24s ease, transform 0.24s cubic-bezier(0.2, 0.72, 0.2, 1);
+}
+#cases-app .toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+/* ============================================================ 回到顶部 ==== */
+#cases-app .to-top {
+  position: fixed;
+  right: 26px;
+  bottom: 26px;
+  z-index: 40;
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(8px);
+  color: var(--muted);
+  display: grid;
+  place-items: center;
+  box-shadow: var(--shadow-md);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.24s ease, transform 0.24s ease;
+}
+#cases-app .to-top.show { opacity: 1; pointer-events: auto; }
+#cases-app .to-top:hover { color: var(--accent-dark); border-color: var(--accent-line); transform: translateY(-2px); }
+#cases-app .to-top svg { width: 18px; height: 18px; }
+
+/* ============================================================ 视图切换 ==== */
+#cases-app .view { animation: arrive 0.32s cubic-bezier(0.2, 0.72, 0.2, 1) both; }
+@keyframes arrive {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* ============================================================== 响应式 ==== */
+@media (max-width: 1200px) {
+  #cases-app .case-grid, #cases-app .related-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 1080px) {
+  #cases-app { --page: min(1340px, calc(100% - 32px)); }
+  #cases-app .hero-inner { padding: 58px 0 46px; }
+  #cases-app .detail-hero { grid-template-columns: minmax(0, 1fr); }
+  #cases-app .detail-visual {
+    border-left: 0;
+    border-top: 1px solid var(--line);
+    min-height: 0;
+    aspect-ratio: 16 / 10;
+  }
+  #cases-app .detail-visual > video, #cases-app .detail-visual > img { height: 100%; }
+  #cases-app .detail-copy { padding: 34px 28px 32px; }
+  #cases-app .footer-inner { grid-template-columns: minmax(0, 1fr); }
+  #cases-app .footer-contact { justify-content: flex-start; }
+  #cases-app .detail-tabs { top: 62px; }
+}
+
+@media (max-width: 720px) {
+  #cases-app .site-header .inner { height: 56px; gap: 14px; }
+  #cases-app .main-nav { display: none; }
+  #cases-app .case-grid, #cases-app .related-grid, #cases-app .overview-grid, #cases-app .compare-grid { grid-template-columns: minmax(0, 1fr); }
+
+  /* Hero：标题与搜索框收紧 */
+  #cases-app .hero-inner { padding: 44px 0 38px; }
+  #cases-app .hero h1 { font-size: 30px; letter-spacing: -0.04em; }
+  #cases-app .hero-stats-line { font-size: 12px; gap: 9px; }
+  #cases-app .hero-stats-line .chev { display: none; }
+  #cases-app .hero-sub { font-size: 14px; margin-top: 14px; }
+  #cases-app .hero-search { margin-top: 26px; padding-left: 16px; border-radius: 12px; }
+  #cases-app .hero-search input { padding: 13px 0; font-size: 15px; }
+  #cases-app .hot-scenes { margin-top: 16px; gap: 7px; }
+  #cases-app .hot-label { width: 100%; }
+  #cases-app .hot-chip { padding: 6px 12px; font-size: 12.5px; min-height: 32px; }
+  #cases-app .hero-slogan { margin-top: 34px; font-size: 12.5px; gap: 10px; }
+  #cases-app .hero-slogan::before, #cases-app .hero-slogan::after { width: 26px; }
+  #cases-app .dept-head { flex-wrap: wrap; }
+  #cases-app .dept-head .desc { margin-left: 0; width: 100%; text-align: left; }
+  #cases-app .dept-chip { min-height: 32px; }
+  /* 页面内所有胶囊型按钮在触屏上统一押到 36px，弹窗关闭钮取 34px 方形热区 */
+  #cases-app .btn { min-height: 36px; }
+  #cases-app .form-close { min-width: 34px; min-height: 34px; }
+  /* 二级分类在窄屏改为单行横向滑动，否则胶囊换行会把筛选区撑得很高 */
+  #cases-app .toolbar { gap: 10px; }
+  #cases-app .toolbar-head { gap: 8px; }
+  #cases-app .view-tab { padding: 7px 12px; font-size: 12.5px; }
+  /* 详情页：面包屑与路径标签的点击热区拉到 32px 以上 */
+  #cases-app .breadcrumb { padding: 18px 0 14px; }
+  #cases-app .breadcrumb a { padding: 6px 0; }
+  #cases-app .detail-chips .chip-path { min-height: 32px; padding: 7px 12px; }
+  #cases-app .dept-filter {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  #cases-app .dept-filter::-webkit-scrollbar { display: none; }
+  /* 胶囊不得被压缩，否则“数据聚合自动化”这种长标签会被挤成竖排 */
+  #cases-app .dept-chip { flex-grow: 0; flex-shrink: 0; flex-basis: auto; white-space: nowrap; }
+  #cases-app .detail-tabs { top: 56px; }
+
+  /* 卡片：操作条收紧，但触屏上保证 40px 以上的点击热区 */
+  #cases-app .card-media { height: 170px; }
+  #cases-app .card-actions { gap: 12px; padding: 6px 14px; min-height: 52px; }
+  #cases-app .card-actions .card-copy, #cases-app .card-actions .card-open { min-height: 40px; padding: 0 6px; }
+  #cases-app .card-actions .card-copy { font-size: 12px; }
+  /* 整卡热区底部让位给加高后的操作条，否则会盖住这两个按钮 */
+  #cases-app .card-link { inset: 0 0 52px; }
+
+  /* 详情页：亮点改为单列堆叠 */
+  #cases-app .detail-copy { padding: 28px 20px 26px; }
+  #cases-app .detail-copy h1 { font-size: 26px; }
+  #cases-app .detail-audience { margin-bottom: 20px; }
+  #cases-app .detail-actions .btn { padding: 10px 14px; font-size: 12.5px; }
+  #cases-app .roi-summary {
+    grid-template-columns: minmax(0, 1fr);
+    margin-top: 28px;
+    padding-top: 22px;
+    gap: 18px;
+  }
+  #cases-app .roi-summary > div { padding-right: 0; }
+  #cases-app .roi-summary > div + div {
+    padding-left: 0;
+    padding-top: 18px;
+    border-left: 0;
+    border-top: 1px solid var(--line);
+  }
+  #cases-app .roi-summary strong { font-size: 23px; }
+  #cases-app .detail-visual { padding: 14px; }
+  #cases-app .preview-badge { left: 24px; top: 26px; font-size: 11px; padding: 6px 11px; }
+  #cases-app .preview-note { left: 24px; bottom: 26px; font-size: 11px; padding: 6px 11px; }
+  #cases-app .tabs-inner a { padding: 13px 14px; font-size: 13px; }
+  #cases-app .tabs-inner a::after { left: 14px; right: 14px; }
+  #cases-app .section-lead { font-size: 14px; }
+  /* 手机上 10.5px 太小，指标说明与区块标签统一抬到 11.5px */
+  #cases-app .card-metrics small, #cases-app .roi-summary small, #cases-app .preview-note, #cases-app .preview-badge { font-size: 11.5px; }
+  #cases-app .section-label { font-size: 12.5px; }
+  #cases-app .prompt-cols { grid-template-columns: minmax(0, 1fr); }
+
+  /* 页脚：按钮与二维码改为纵向堆叠 */
+  #cases-app .footer-contact { flex-direction: column; align-items: flex-start; gap: 20px; }
+  #cases-app .footer-qr { align-items: flex-start; }
+}
+
+@media print {
+  #cases-app .site-header, #cases-app .toolbar, #cases-app .to-top, #cases-app .site-footer, #cases-app .detail-tabs, #cases-app .card-actions { display: none; }
+  #cases-app .case-card { break-inside: avoid; box-shadow: none; }
+}
+
+/* ===== 嵌入模式（?embed=1，被官网 iframe 内嵌时） =====
+   隐藏自带顶部导航栏（官网已有自己的导航），
+   并把「预约演示」从导航栏移到 hero 标题区呈现 */
+#cases-app .hero-cta { display: none; }
+#cases-app.embed .site-header { display: none; }
+#cases-app.embed .hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 28px;
+  padding: 12px 24px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  box-shadow: 0 8px 20px rgba(48, 191, 105, 0.28);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+}
+#cases-app.embed .hero-cta:hover {
+  transform: translateY(-1px);
+  background: var(--accent-dark);
+  box-shadow: 0 10px 26px rgba(48, 191, 105, 0.36);
+}
+
+</style>
+
+<div id="cases-app" class="embed">
+<!-- ============================================================ Header === -->
+<header class="site-header">
+  <div class="inner">
+    <a href="#" class="brand" data-nav="home">
+      <img class="brand-logo" src="data:image/png;base64,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" alt="千问办公">
+      <span class="brand-divider"></span>
+      <span class="brand-sub">案例库</span>
+    </a>
+    <nav class="main-nav" id="mainNav"></nav>
+    <a class="header-cta" href="#" id="ctaTop">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 1H3a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V9"/><path d="M7 7l6-6"/><path d="M10 1h3v3"/></svg>
+      预约演示
+    </a>
+  </div>
+</header>
+
+<!-- ============================================================== Main === -->
+<main id="app"></main>
+
+<!-- ============================================================ Footer === -->
+<footer class="site-footer" id="contact">
+  <div class="footer-inner">
+    <div>
+      <h3>想看更多案例？想聊聊你的场景？</h3>
+      <p>我们在持续沉淀各行业 × 各部门的交付实践。如果这里有一个案例让你产生了联想，随时可以聊。</p>
+    </div>
+    <div class="footer-contact">
+      <a class="btn primary" id="ctaFooter" href="#" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25z"/></svg>
+        联系我们
+      </a>
+      <figure class="footer-qr" id="footerQr">
+        <a id="qrLink" href="#" target="_blank" rel="noopener">
+          <img id="qrImg" src="" alt="钉钉扫码填写表单" loading="lazy" width="104" height="104">
+        </a>
+        <figcaption id="qrCaption"></figcaption>
+      </figure>
+    </div>
+  </div>
+  <div class="footer-meta">
+    <span>© 2026 千问办公</span>
+    <span>仅限内部使用</span>
+  </div>
+</footer>
+
+<!-- ========================================================= 回到顶部 === -->
+<button class="to-top" id="toTop" aria-label="回到顶部">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<!-- ===================================================== 分享案例弹窗 === -->
+<div class="modal-backdrop share-modal" id="shareModal" role="dialog" aria-modal="true" aria-labelledby="shareTitle">
+  <div class="share-panel" role="document">
+    <div class="share-head">
+      <span class="share-title" id="shareTitle">分享案例</span>
+      <button type="button" class="form-close" id="shareClose" aria-label="关闭">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="share-tabs" role="tablist">
+      <button type="button" class="share-tab active" data-pane="link" role="tab">链接分享</button>
+      <button type="button" class="share-tab" data-pane="poster" role="tab">分享海报</button>
+    </div>
+
+    <div class="share-pane active" id="pane-link">
+      <p class="share-hint">复制链接发给客户，对方打开即直达本案例。</p>
+      <div class="share-url">
+        <input type="text" id="shareUrl" readonly aria-label="案例链接">
+        <button type="button" class="btn primary" id="shareCopy">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15.666 3.888A2.25 2.25 0 0 0 13.5 2.25h-3c-1.03 0-1.9.693-2.166 1.638m7.332 0c.055.194.084.4.084.612v0a.75.75 0 0 1-.75.75H9.75a.75.75 0 0 1-.75-.75v0c0-.212.03-.418.084-.612m7.332 0c.646.049 1.288.11 1.927.184 1.1.128 1.907 1.077 1.907 2.185V19.5a2.25 2.25 0 0 1-2.25 2.25H6.75A2.25 2.25 0 0 1 4.5 19.5V6.257c0-1.108.806-2.057 1.907-2.185a48.208 48.208 0 0 1 1.927-.184"/></svg>
+          复制链接
+        </button>
+      </div>
+    </div>
+
+    <div class="share-pane" id="pane-poster">
+      <p class="share-hint">海报带案例二维码，适合发群或打印。</p>
+      <div class="poster-stage">
+        <div class="poster-loading" id="posterLoading">正在生成海报…</div>
+        <canvas id="posterCanvas"></canvas>
+      </div>
+      <div class="share-actions">
+        <a class="btn primary" id="posterSave" download>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>
+          保存海报
+        </a>
+        <span class="share-tip">也可右键 / 长按图片直接保存</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========================================================= 预览弹窗 === -->
+<div class="modal-backdrop" id="previewModal" role="dialog" aria-modal="true" aria-labelledby="previewTitle">
+  <div class="modal-panel" role="document">
+    <div class="modal-head">
+      <span class="modal-title" id="previewTitle">预览</span>
+      <div class="modal-actions">
+        <a class="btn" id="previewDownload" href="#" download>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>
+          下载
+        </a>
+        <button type="button" class="btn modal-close" id="previewClose" aria-label="关闭预览">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+          关闭
+        </button>
+      </div>
+    </div>
+    <iframe class="modal-frame" id="previewFrame" src="about:blank" title="预览"></iframe>
+    <pre class="modal-text" id="previewText" hidden></pre>
+  </div>
+</div>
+
+<!-- ============================================================== Data === -->
+</div>
+
+<script>
+(function(){
+if (window.__casesTeardown) { try { window.__casesTeardown(); } catch (e) {} }
+var __caseWin = [];
+function __winAdd(t, h, o) { window.addEventListener(t, h, o); __caseWin.push([t, h, o]); }
+window.__casesTeardown = function () {
+  __caseWin.forEach(function (a) { try { window.removeEventListener(a[0], a[1], a[2]); } catch (e) {} });
+  __caseWin = []; window.__casesTeardown = null;
+};
+/* =============================================================================
+ *  千问办公 · 案例库数据源
+ *  ---------------------------------------------------------------------------
+ *  新增案例只需在 CASES 数组里追加一个对象，页面自动出现在对应部门下。
+ *  字段说明见 README.md「怎么加一个新案例」。
+ *  status: 'live' = 已交付可演示 | 'demo' = 演示素材就绪 | 'wip' = 待补充
+ * ========================================================================== */
+
+const DEPTS = [
+  { id: 'legal',     name: '法务',   en: 'Legal',      icon: 'scale',   desc: '合同、合规、风控文书的审查与留痕' },
+  { id: 'hr',        name: '人力',   en: 'HR',         icon: 'users',   desc: '绩效、招聘、人事流程的线上化与自动化' },
+  { id: 'marketing', name: '市场',   en: 'Marketing',  icon: 'megaphone', desc: '投放、内容、渠道数据的分析与生产' },
+  { id: 'admin',     name: '行政',   en: 'Admin',      icon: 'building', desc: '接待、资产、后勤服务的数据化管理' },
+  { id: 'training',  name: '培训',   en: 'Training',   icon: 'play',    desc: '课程、知识、SOP 的批量生产与沉淀' },
+  { id: 'finance',   name: '财务',   en: 'Finance',    icon: 'coins',   desc: '经营分析、稽核、报表的自动成稿' },
+  { id: 'sales',     name: '销售',   en: 'Sales',      icon: 'target',  desc: '客户跟进、方案与标书的提效' },
+  { id: 'ops',       name: '生产运营', en: 'Operations', icon: 'gauge',  desc: '质量、排产、异常追溯的实时看板' },
+  /* 行业维度分类：按客户所属行业归集的垂直案例，固定排在部门之后 */
+  { id: 'ecommerce', name: '电商',   en: 'E-commerce', icon: 'cart',    desc: '跨境电商广告投放与店铺数据的自动巡查' }
+];
+
+/* =============================================================================
+ *  实现路径分类（第二套筛选维度，与行业分类互相独立）
+ *  ---------------------------------------------------------------------------
+ *  命名与千问办公官网（qwenwork.cn）「六大核心能力」的说法对齐：
+ *    企业协作 / 产物交付 / 多模态 / 网页交付 / 数据聚合 / 技能市场
+ *  每个案例只挂一个主路径（case.path），以“靠什么能力做成的”为准。
+ * ========================================================================== */
+const PATHS = [
+  { id: 'webapp',     name: '全栈网页交付',   en: 'Web Delivery',    desc: 'vibe coding 直出带交互与数据逻辑的免部署网页，可接自有 API Key 调外部大模型' },
+  { id: 'skill',      name: '技能封装',       en: 'Skills',          desc: '把专业判断标准沉淀成可复用技能与专家套件，换个案子直接复用' },
+  { id: 'kb',         name: '企业知识库问答', en: 'Knowledge Base',  desc: '接入企业知识库做检索问答与问答机器人，结论可溯源到原文' },
+  { id: 'multimodal', name: '多模态创作',     en: 'Multimodal',      desc: '理解图片 / 音频 / 视频素材，并生成图文音视频内容与成片' },
+  { id: 'dataflow',   name: '数据聚合自动化', en: 'Data Automation', desc: '接入电商后台、社媒、业务系统等数据源，跨来源聚合后自动跑批成稿' },
+  { id: 'browser',    name: '浏览器操作',     en: 'Browser Control', desc: '由 Agent 直接控制浏览器完成登录、取数、填单等网页动作' }
+];
+
+/* 案例数据已拆分为「一个案例一个文件」，见 assets/cases/<id>.js，
+   每个文件通过 CASES.push({...}) 自注册；这些文件在 index.html 中于 data.js 之后加载。
+   新增案例 = 新建 assets/cases/<新id>.js + 在 index.html 的案例脚本列表追加一行。
+   部门内的展示顺序 = index.html 里 <script> 的排列顺序。*/
+const CASES = [];
+
+/* 首页文案（统计数字自动计算，无需手改） */
+const SITE = {
+  brand: '千问办公',
+  productLine: '案例库',
+  /* 对外公开地址（GitHub Pages）。本地预览 / file:// 打开时，
+     复制的分享链接与海报二维码会自动回落到这个地址，避免发出去别人打不开。
+     换域名时只需改这一处（index.html 里的 og / canonical 已单独注明）*/
+  publicUrl: 'https://qwenwork-courses.github.io/qwenwork-cases/',
+  title: '全部门 AI 场景实践指引',
+  subtitle: '覆盖法务、人力、市场、行政、培训、财务、销售、生产运营八大部门，以及电商行业垂直场景',
+  slogan: '让 AI 落到真实场景，让实践沉淀为组织能力',
+  searchPlaceholder: '搜索场景、问题或业务目标',
+  /* 热门场景快捷标签：每个词必须能搜到结果，新增后先在页面上点一下验证 */
+  hotScenes: ['合同审查', '绩效管理', '亚马逊广告', '行政接待', '制课'],
+  /* 联系表单（钉钉多维表格）——页脚「联系我们」按钮与二维码均指向它
+     qr 已验证扫出来就是该表单（带 source=qrcode 渠道参数）*/
+  contactForm: {
+    url: 'https://alidocs.dingtalk.com/notable/share/form/v01Lk3lbmGYVL5w7Om9_dv19yqvsgs3oebp3pcjys_1qX0QQ0?source=link',
+    qr: 'https://gw.alicdn.com/imgextra/i4/O1CN01kX1IHEvlh6J0XMIQ_!!6000000004564-2-tps-265-269.png',
+    qrCaption: '钉钉扫码填写表单'
+  },
+  cta: { label: '预约了解更多', href: '#contact' }
+};
+
+;
+/* 法务 · 合同审查工作台  (live) */
+CASES.push(
+{
+  "id": "contract-review",
+  "dept": "legal",
+  "path": "skill",
+  "skill": "contract-review",
+  "status": "live",
+  "title": "合同审查工作台",
+  "slogan": "审查意见不是一份 PDF 报告，是能直接改成合同修订稿的工作台",
+  "summary": "读入客户合同，按《民法典》及最新司法解释做高/中/低风险分级审查，输出交互式审查界面：左栏原文色块标注、右栏意见 hover 联动、建议一键替换原文、二次编辑、一键导出 Word。",
+  "tags": [
+    "交互式 HTML",
+    "法律依据可溯",
+    "一键导出 Word",
+    "风险分级"
+  ],
+  "client": "云朵科技",
+  "clientNote": "5 年期 ¥1288 万直签合同",
+  "metrics": [
+    {
+      "value": "24 条",
+      "label": "审查意见（高 9 / 中 11 / 低 4）"
+    },
+    {
+      "value": "3 处",
+      "label": "发现合同硬伤"
+    },
+    {
+      "value": "1 次",
+      "label": "审完即可导出修订稿"
+    }
+  ],
+  "pains": [
+    "合同一版几十页，法务逐条读，高风险条款容易被埋在附件和报价表里",
+    "审查意见发出去是一份 Word 批注，业务看不懂风险等级，改不改全凭感觉",
+    "金额勾稽、附件交叉引用这类硬伤靠人眼核对，改了一版又要重核一遍",
+    "每次审查的判断标准留在个人经验里，换个人审就是另一套口径"
+  ],
+  "solutions": [
+    "风险三级分色标注：红=高、黄=中、绿=低，无法判定的单独打「需人工复核」紫色徽章",
+    "每条意见六字段固定输出：条款位置｜风险等级｜问题描述｜修改建议｜法律依据｜动作类型",
+    "法律依据具体到条文号（《民法典》第 506/497/585 条、法释〔2023〕13 号、PIPL 第 20-21 条）",
+    "「采用建议」一键把修订条文写进原文，旧条文收进灰色删除线折叠区——不删除、可对照",
+    "导出 Word/Markdown/HTML 三选，四个内容开关控制是否带原文、未改条款、复核备注、修订记录表"
+  ],
+  "before": "几十页 PDF + 一份 Word 批注，业务方读不出优先级",
+  "after": "一个可交互工作台，hover 看联动、点一下成修订稿、导出即定稿",
+  "cover": "https://img.alicdn.com/imgextra/i4/O1CN01G6tRq5mMbeH58jg0_!!6000000001629-2-videocover-2532-1356.png",
+  "demoLine": [
+    "打开页面，顶部统计卡展示风险分布（高 / 中 / 低 / 需人工复核）",
+    "悬停任意高风险条款，右栏意见卡自动定位高亮",
+    "点「采用建议，替换原文」，绿色修订文本 + 灰色原文对照出现",
+    "直接点击修订文本可二次编辑",
+    "点「导出修订版」，Word/Markdown/HTML 三种格式一键导出"
+  ],
+  "links": [
+    {
+      "group": "skill",
+      "label": "合同审查技能包",
+      "href": "https://qwenwork-courses.github.io/qwenwork-cases/demos/contract-review/contract-review-skill.md",
+      "kind": "text",
+      "download": "https://qwenwork-courses.github.io/qwenwork-cases/demos/contract-review/contract-review-skill-kit.zip",
+      "downloadName": "contract-review-skill-kit.zip",
+      "note": "点开看技能定义，右上角下载包含 SKILL.md + 输出模板 template.html"
+    },
+    {
+      "group": "sample",
+      "label": "云枢平台采购合同.docx",
+      "href": "https://qwenwork-courses.github.io/qwenwork-cases/demos/contract-review/云枢平台采购合同.docx",
+      "kind": "file",
+      "note": "示例合同，下载后可直接丢给 agent 试跑"
+    },
+    {
+      "group": "output",
+      "label": "交互式审查工作台",
+      "href": "https://qwenwork-courses.github.io/qwenwork-cases/demos/contract-review/合同审查_星海制造_云枢平台采购_交互式.html",
+      "kind": "demo",
+      "note": "星海制造 · 云枢平台采购合同的实际审查产物"
+    }
+  ],
+  "media": {
+    "type": "image",
+    "src": "https://gw.alicdn.com/imgextra/i2/O1CN01QN1NZo2w6eI2b872_!!6000000004050-1-tps-1280-716.gif",
+    "caption": "合同审查工作台操作实录 · 自动循环"
+  },
+  "video": {
+    "src": "https://cloud.video.taobao.com/vod/hhzvTOAjBgG089B-xCRMTHMeaH-h65jwwORDCtxWgXQ.mp4",
+    "poster": "https://img.alicdn.com/imgextra/i4/O1CN01G6tRq5mMbeH58jg0_!!6000000001629-2-videocover-2532-1356.png",
+    "caption": "合同审查完整操作演示 · 28 秒",
+    "width": 1216,
+    "height": 720
+  },
+  "prompt": "帮我审查这份合同，我方是甲方（采购方）。按《民法典》及最新司法解释做高/中/低风险分级，每条意见给出条款位置、风险等级、问题描述、修改建议和具体法律依据条文号，最后生成交互式 HTML 审查界面。",
+  "audience": [
+    "法务",
+    "采购",
+    "合同管理"
+  ]
+}
+);
+
+;
+/* 法务 · 招投标文件合规核查  (wip) */
+CASES.push(
+{
+  "id": "bid-compliance",
+  "dept": "legal",
+  "path": "skill",
+  "skill": "bid-compliance",
+  "status": "wip",
+  "title": "招投标文件合规核查",
+  "slogan": "投标前把废标风险全部前置扫一遍",
+  "summary": "比对招标文件与投标文件，逐项核查资质、业绩、报价格式、签章页、废标条款，输出缺项清单与整改建议。",
+  "tags": [
+    "清单式核查",
+    "废标风险",
+    "待补充案例"
+  ],
+  "client": "",
+  "clientNote": "",
+  "metrics": [
+    {
+      "value": "—",
+      "label": "核查项"
+    },
+    {
+      "value": "—",
+      "label": "发现缺项"
+    },
+    {
+      "value": "—",
+      "label": "核查用时"
+    }
+  ],
+  "pains": [
+    "招标文件条件散落在正文和附件，人工比对易漏",
+    "废标条款没提前扫，投出去才发现少一页签章"
+  ],
+  "solutions": [
+    "把招标文件拆成结构化核查清单",
+    "逐项比对投标文件并标注缺项/风险等级"
+  ],
+  "before": "",
+  "after": "",
+  "demoLine": [],
+  "links": [],
+  "prompt": "",
+  "audience": [
+    "法务",
+    "招投标",
+    "售前"
+  ]
+}
+);
+
+;
+/* 人力 · AI 绩效管理系统  (live) */
+CASES.push(
+{
+  "id": "hr-performance",
+  "dept": "hr",
+  "path": "webapp",
+  "status": "live",
+  "title": "AI 绩效管理系统",
+  "slogan": "从「HR 的一人狂欢」到「全员线上协同 · 沉淀绩效 SOP」",
+  "summary": "一套系统贯穿绩效全生命周期：AI 生成岗位画像与指标、自动跟催零人工盯办、结果自动发布及风险预警、绩效辅导 AI 总结留档，CEO / HRBP / 被考核人三视角数据看板。",
+  "tags": [
+    "岗位画像",
+    "自动跟催",
+    "风险预警",
+    "三视角看板"
+  ],
+  "client": "石荟郡",
+  "clientNote": "已上线终版交付",
+  "metrics": [
+    {
+      "value": "全生命周期",
+      "label": "定目标 → 跟催 → 评分 → 辅导 → 归档"
+    },
+    {
+      "value": "3 视角",
+      "label": "CEO / HRBP / 被考核人"
+    },
+    {
+      "value": "零人工",
+      "label": "跟催盯办"
+    }
+  ],
+  "pains": [
+    "线下考核是一个看不见的「黑箱」，表格在微信里传，谁交了谁没交只有 HR 知道",
+    "指标靠各部门自己写，颗粒度不一，横向没法比",
+    "HR 每轮考核一半时间花在催表上，催完还要手工汇总",
+    "绩效面谈说过就散，下一轮没人记得上次承诺改什么"
+  ],
+  "solutions": [
+    "AI 岗位画像：按岗位职责自动生成指标建议与评估维度，统一颗粒度",
+    "AI 自动跟催：到点自动提醒到人，进度实时可见，HR 不用再逐个盯",
+    "结果自动发布 + 风险预警：异常评分、集中打高分等信号自动标出",
+    "绩效辅导 AI 总结留档：面谈内容结构化沉淀，下轮可追溯",
+    "三视角数据可视化：CEO 看全局分布、HRBP 看部门、员工看自己"
+  ],
+  "before": "线下表格 + 微信催办，过程不可见、结果不可比",
+  "after": "全员线上协同，过程留痕、结果可比、SOP 沉淀在系统里",
+  "cover": "https://gw.alicdn.com/imgextra/i3/O1CN01K9w7kN7XQVH3FPds_!!6000000001125-2-tps-1600-900.png",
+  "demoLine": [
+    "开篇看「线下考核黑箱」，三条断链引出问题",
+    "走一遍全生命周期：岗位画像生成指标 → 自动跟催 → 结果发布",
+    "看风险预警：哪些评分异常被系统标出来",
+    "切三视角看板：CEO 看全局分布、HRBP 看部门、员工看自己",
+    "绩效辅导 AI 摘要留档，下一轮可追溯"
+  ],
+  "links": [
+    {
+      "label": "打开完整演示",
+      "href": "https://qwenwork-courses.github.io/qwenwork-cases/demos/hr-performance/hr-performance-shihuijun.html",
+      "kind": "demo"
+    }
+  ],
+  "media": null,
+  "prompt": "我们要把线下绩效考核搬到线上。帮我设计一套贯穿绩效全生命周期的 AI 绩效管理系统：AI 生成岗位画像与指标、自动跟催、结果自动发布与风险预警、绩效辅导留档，并做 CEO/HRBP/被考核人三视角看板。",
+  "audience": [
+    "CHO / HRD",
+    "HRBP",
+    "总经理",
+    "部门负责人"
+  ]
+}
+);
+
+;
+/* 人力 · 搭建校招面试管理看板  (live) */
+CASES.push(
+{
+  "id": "hr-campus-board",
+  "dept": "hr",
+  "path": "webapp",
+  "status": "live",
+  "title": "搭建校招面试管理看板",
+  "slogan": "校招进度不用再问 HR，一屏实时看全链路",
+  "summary": "从目标完成度、流程漏斗到面试日程与候选人档案，校招全链路汇到一张看板：数据每 5 分钟自动刷新，面试一键安排并自动同步日程、通知候选人与面试官，历轮面评自动归档。",
+  "tags": [
+    "一屏看全链路",
+    "一键安排面试",
+    "面评自动归档",
+    "实时刷新"
+  ],
+  "client": "星途校招",
+  "clientNote": "2027 届秋招 · 研发 / 产品 / 运营 / 设计",
+  "metrics": [
+    {
+      "value": "128 份",
+      "label": "本届累计投递，46 人在流程中"
+    },
+    {
+      "value": "14.1%",
+      "label": "简历 → Offer 全链路转化率"
+    },
+    {
+      "value": "5 分钟",
+      "label": "数据自动刷新，不用人工统计"
+    }
+  ],
+  "pains": [
+    "校招节奏快，几十个岗位、上百份简历同时在跑，进度只能靠 Excel 手工汇总",
+    "面试安排靠群里对时间，候选人和面试官经常撞档、漏通知",
+    "HR 每天被问「到哪一步了」，回答一次就要现翻一次表格",
+    "面评散在各面试官手里，复盘时找不齐评分和评语",
+    "招聘目标完成度没人实时盯，月底才发现缺口补不上"
+  ],
+  "solutions": [
+    "顶部一屏看全：招聘目标完成度、累计投递、流程中人数、整体转化率，数据每 5 分钟自动刷新",
+    "招聘流程漏斗：简历筛选 → Offer 各环节转化一目了然，卡在哪一环直接可见",
+    "面试日程按天排布，场次、已完成数、面试官、现场 / 视频方式全在卡片上",
+    "一键安排面试：选候选人、轮次、面试官、日期时间与方式，提交后自动同步日程并通知双方",
+    "候选人档案沉淀流程进度、基本信息与历轮面评（评分 + 评语 + 面试官），复盘可追溯",
+    "近 7 日趋势叠加简历投递 / 面试场次 / Offer 发放三条线，节奏快慢看得见"
+  ],
+  "before": "Excel 手工汇总进度，面试靠群里对时间，问一次进展现翻一次表",
+  "after": "一屏实时看全链路，安排面试一键同步日程与通知，面评自动归档",
+  "cover": "https://img.alicdn.com/imgextra/i1/6000000002768/O1CN01jnOAwwdHpxC3hbvU_!!6000000002768-0-tbvideo.jpg",
+  "media": {
+    "type": "image",
+    "src": "https://gw.alicdn.com/imgextra/i2/O1CN01IUkW1iZqWcJ2T4cK_!!6000000007633-1-tps-1216-720.gif",
+    "caption": "看板操作实录 · 自动循环"
+  },
+  "video": {
+    "src": "https://cloud.video.taobao.com/vod/szoB_qxDIC6MMHe6TwPn2MhZ4TwAI3aXtZ-bNaFdiSM.mp4",
+    "poster": "https://img.alicdn.com/imgextra/i1/6000000002768/O1CN01jnOAwwdHpxC3hbvU_!!6000000002768-0-tbvideo.jpg",
+    "caption": "看板完整操作演示 · 21 秒",
+    "width": 1216,
+    "height": 720
+  },
+  "demoLine": [
+    "顶部先看 2027 届目标完成度（50 人已招 18 人）与累计投递 128 份",
+    "看招聘流程漏斗，简历筛选 → Offer 逐环节转化，找出卡点",
+    "切近 7 日趋势，对比简历投递 / 面试场次 / Offer 发放三条线",
+    "面试日程按天切换，看当天几场、已完成几场、谁面",
+    "点候选人那一行打开档案：流程进度 + 基本信息 + 历轮面评评分与评语",
+    "点「一键安排面试」，选轮次 / 面试官 / 时间 / 方式，提交后自动同步日程并通知候选人与面试官"
+  ],
+  "links": [
+    {
+      "label": "打开在线看板",
+      "href": "https://m43lb4hl.qwenwork.host/",
+      "kind": "live"
+    }
+  ],
+  "prompt": "请构建一个交互式的校招面试管理看板（Dashboard）HTML 页面，用于 HR 和面试官实时追踪招聘进度，要求如下：\n\n1、核心功能模块：\n• 概览统计区：展示关键指标卡片（今日面试数、待安排人数、已发 Offer 数、整体通过率），数据需有动态增长动画效果。\n• 流程漏斗图：可视化展示从“简历筛选 → 初试 → 复试 → HR面 → Offer”各环节的人数转化情况。\n• 面试日程表：以时间轴或日历视图展示当天的面试安排，包含候选人姓名、岗位、面试官、状态（进行中/已结束/待开始）。\n• 候选人列表：支持按岗位、状态筛选的表格，显示候选人基本信息及当前进展标签。\n• 视觉与交互要求：\n• 采用清爽专业的 B 端后台风格（参考 Ant Design 或 Element UI 风格），主色调为科技蓝或品牌绿。\n• 使用 ECharts 绘制漏斗图和趋势折线图。\n• 实现简单的交互逻辑：点击候选人可查看模拟详情弹窗；切换日期可更新日程表数据。\n• 增加“一键安排面试”的模拟按钮，点击后弹出表单模态框。\n\n2、数据模拟：\n• 内置 20-30 条模拟的校招候选人数据（涵盖研发、产品、运营等常见岗位）。状态分布合理，体现真实的招聘漏斗转化率。\n\n3、技术要求：\n• 单文件 HTML，内联 CSS 和 JavaScript。\n• 通过 CDN 引入 Vue.js (或 React) 和 ECharts，实现组件化思维的数据绑定与渲染。\n• 响应式布局，确保在大屏显示器上信息密度适中，在笔记本屏幕上也能完整展示。\n\n输出完整的 HTML 代码，确保可以直接保存并在浏览器中打开，呈现一个功能完备、视觉专业的校招管理看板 Demo。",
+  "promptLead": "请构建一个交互式的校招面试管理看板（Dashboard）HTML 页面，用于 HR 和面试官实时追踪招聘进度，要求如下：",
+  "promptSections": [
+    {
+      "title": "1 · 核心功能模块",
+      "items": [
+        "概览统计区：展示关键指标卡片（今日面试数、待安排人数、已发 Offer 数、整体通过率），数据需有动态增长动画效果。",
+        "流程漏斗图：可视化展示从“简历筛选 → 初试 → 复试 → HR面 → Offer”各环节的人数转化情况。",
+        "面试日程表：以时间轴或日历视图展示当天的面试安排，包含候选人姓名、岗位、面试官、状态（进行中/已结束/待开始）。",
+        "候选人列表：支持按岗位、状态筛选的表格，显示候选人基本信息及当前进展标签。"
+      ]
+    },
+    {
+      "title": "视觉与交互要求",
+      "items": [
+        "采用清爽专业的 B 端后台风格（参考 Ant Design 或 Element UI 风格），主色调为科技蓝或品牌绿。",
+        "使用 ECharts 绘制漏斗图和趋势折线图。",
+        "实现简单的交互逻辑：点击候选人可查看模拟详情弹窗；切换日期可更新日程表数据。",
+        "增加“一键安排面试”的模拟按钮，点击后弹出表单模态框。"
+      ]
+    },
+    {
+      "title": "2 · 数据模拟",
+      "items": [
+        "内置 20-30 条模拟的校招候选人数据（涵盖研发、产品、运营等常见岗位）。",
+        "状态分布合理，体现真实的招聘漏斗转化率。"
+      ]
+    },
+    {
+      "title": "3 · 技术要求",
+      "items": [
+        "单文件 HTML，内联 CSS 和 JavaScript。",
+        "通过 CDN 引入 Vue.js (或 React) 和 ECharts，实现组件化思维的数据绑定与渲染。",
+        "响应式布局，确保在大屏显示器上信息密度适中，在笔记本屏幕上也能完整展示。"
+      ]
+    }
+  ],
+  "promptTail": "输出完整的 HTML 代码，确保可以直接保存并在浏览器中打开，呈现一个功能完备、视觉专业的校招管理看板 Demo。",
+  "audience": [
+    "HR / 校招负责人",
+    "HRBP",
+    "招聘经理",
+    "用人部门负责人"
+  ]
+}
+);
+
+;
+/* 电商 · 亚马逊广告全店 AI 巡查  (live) */
+CASES.push(
+{
+  "id": "amazon-ads",
+  "dept": "ecommerce",
+  "path": "dataflow",
+  "status": "live",
+  "title": "亚马逊广告全店 AI 巡查",
+  "slogan": "从人工广告分析，到全店 AI 巡查——时间减半，覆盖翻十倍",
+  "summary": "把广告运营的分析动作沉淀成 Skill：单 ASIN 深度诊断 + 全店多店周报，词根×效果矩阵、优先复核清单、三套场景化行动方案，巡查页本身就是交付物。",
+  "tags": [
+    "词根矩阵",
+    "多店周报",
+    "行动方案",
+    "7 步法"
+  ],
+  "client": "跨境电商多店铺",
+  "clientNote": "7 个 ASIN · 近 30 天数据",
+  "metrics": [
+    {
+      "value": "时间减半",
+      "label": "分析耗时"
+    },
+    {
+      "value": "覆盖翻十倍",
+      "label": "巡查 ASIN 数"
+    },
+    {
+      "value": "前置",
+      "label": "广告费控"
+    }
+  ],
+  "pains": [
+    "人工分析的成本被藏在链路里：导数据、拼表、算指标，真正的判断只占最后十分钟",
+    "一个人一周只能盯几个主力 ASIN，长尾链接的浪费无人看见",
+    "业务随时问「这个词该不该关」，答案靠印象，没有证据",
+    "每次分析结果散在个人电脑里，下一次从零开始"
+  ],
+  "solutions": [
+    "巡查页即交付物：核心指标总览（本期 vs 上期）、词根×效果矩阵、广告活动层总览一页到底",
+    "优先复核清单：系统按信号排序，直接告诉运营今天先看哪几条",
+    "行动建议给三套场景方案，而不是一个结论——让运营按预算和目标选",
+    "市场侧核心词根搜索需求走势 + 流量侧 Listing 关键词结构，内外双视角",
+    "每次交付都变成下一次迭代的素材，标准沉淀成 7 步法"
+  ],
+  "before": "导数据拼表一整天，只看得过来几个主力 ASIN",
+  "after": "全店自动巡查出周报，业务随时问、系统按证据答",
+  "cover": "https://gw.alicdn.com/imgextra/i2/O1CN01P4G6R4n6XoB3FPds_!!6000000003387-2-tps-1600-900.png",
+  "demoLine": [
+    "先看「7 步法」了解人工分析成本藏在哪",
+    "打开多店周报：图形总览 → 优先复核清单 → ASIN 数据卡片",
+    "下钻单 ASIN 报告，看词根×效果矩阵怎么读",
+    "停在「行动建议：三套场景方案」，按预算和目标选一套",
+    "周报下周自动再生成一份，数据持续沉淀"
+  ],
+  "links": [
+    {
+      "label": "方法论分享（7 步法）",
+      "href": "https://qwenwork-courses.github.io/qwenwork-cases/demos/amazon-ads/amazon-ads-skills-share.html",
+      "kind": "demo"
+    },
+    {
+      "label": "多店广告周报",
+      "href": "https://qwenwork-courses.github.io/qwenwork-cases/demos/amazon-ads/amazon-weekly-report.html",
+      "kind": "demo"
+    },
+    {
+      "label": "单 ASIN 诊断报告",
+      "href": "https://qwenwork-courses.github.io/qwenwork-cases/demos/amazon-ads/amazon-asin-report.html",
+      "kind": "demo"
+    }
+  ],
+  "media": null,
+  "prompt": "这是我们店铺的亚马逊广告数据。帮我做全店 AI 巡查：输出核心指标总览（本期 vs 上期）、词根×效果矩阵、优先复核清单、广告活动层总览，行动建议给三套场景方案，最后生成一份可直接发给业务的 HTML 报告。",
+  "audience": [
+    "电商负责人",
+    "广告运营",
+    "跨境卖家",
+    "代运营服务商"
+  ]
+}
+);
+
+;
+/* 市场 · 社媒内容矩阵批量生产  (wip) */
+CASES.push(
+{
+  "id": "social-content",
+  "dept": "marketing",
+  "path": "multimodal",
+  "status": "wip",
+  "title": "社媒内容矩阵批量生产",
+  "slogan": "一个卖点，一次生成全平台内容",
+  "summary": "按品牌口径一次生成小红书 / 抖音 / 视频号 / 公众号多平台文案与配图，统一调性、批量排期。",
+  "tags": [
+    "多平台适配",
+    "品牌口径",
+    "待补充案例"
+  ],
+  "client": "",
+  "clientNote": "",
+  "metrics": [
+    {
+      "value": "—",
+      "label": "单周产出条数"
+    },
+    {
+      "value": "—",
+      "label": "人力投入"
+    },
+    {
+      "value": "—",
+      "label": "互动率变化"
+    }
+  ],
+  "pains": [
+    "一个卖点要改四套文案，改到最后调性散了",
+    "配图等设计排期，内容卡在最后一公里"
+  ],
+  "solutions": [
+    "品牌口径写成 Skill，生成即合规",
+    "一次输入多平台并行出稿 + 配图"
+  ],
+  "before": "",
+  "after": "",
+  "demoLine": [],
+  "links": [],
+  "prompt": "",
+  "audience": [
+    "市场",
+    "品牌",
+    "内容运营"
+  ]
+}
+);
+
+;
+/* 行政 · 行政接待一体化 AI 平台  (live) */
+CASES.push(
+{
+  "id": "admin-reception",
+  "dept": "admin",
+  "path": "dataflow",
+  "status": "live",
+  "title": "行政接待一体化 AI 平台",
+  "slogan": "一张 AI 表格，打通用车与用餐接待的全数据链路",
+  "summary": "「1 + 2 + 1」架构以 AI 表格做中枢：用车派单自动化、用餐按客户分级定餐标、接待完即评价，管理一屏总览量、质、费、效。",
+  "tags": [
+    "AI 表格中枢",
+    "派单自动化",
+    "满意度回收",
+    "一屏总览"
+  ],
+  "client": "",
+  "clientNote": "试运行数据已回流",
+  "metrics": [
+    {
+      "value": "5 段",
+      "label": "数据闭环：申请 → 满意度"
+    },
+    {
+      "value": "1+2+1",
+      "label": "总体架构"
+    },
+    {
+      "value": "6 个",
+      "label": "试运行已回答的管理问题"
+    }
+  ],
+  "pains": [
+    "三条断链：人工在跑，数据在丢，管理在看不到处",
+    "用车申请走微信，派单靠行政口头协调，谁接了谁没接说不清",
+    "用餐没有客户分级，餐标全凭经验，费用事后才知道超了",
+    "接待做完就结束，好坏没有评价，下次还是同一套"
+  ],
+  "solutions": [
+    "AI 表格做中枢：基础信息上表，用车派单自动化，服务有数据、好坏有评价",
+    "用餐管理：客户分级定餐标，一键拉群排餐，接待完即评",
+    "管理一屏总览：量、质、费、效四个维度实时可见",
+    "三阶段推进路径：先沉淀数据，再自动化流程，后智能决策"
+  ],
+  "before": "微信派单 + 事后报销，过程无数据、服务无评价",
+  "after": "申请到满意度五段闭环，量质费效一屏可见",
+  "cover": "https://gw.alicdn.com/imgextra/i4/O1CN01RHpHFaYWjgD3FPds_!!6000000007070-2-tps-1600-900.png",
+  "demoLine": [
+    "先看「三条断链」：人工在跑、数据在丢、管理看不到",
+    "看「1+2+1」架构图，AI 表格为什么是中枢",
+    "走用车链路：申请 → 自动派单 → 服务数据 → 评价",
+    "走用餐链路：客户分级 → 餐标 → 一键拉群排餐 → 即时评价",
+    "管理总览屏：量、质、费、效四个维度实时可见",
+    "三阶段推进路径：先沉淀数据，再自动化，后智能决策"
+  ],
+  "links": [
+    {
+      "label": "打开在线体验",
+      "href": "https://76ty697a.qwenwork.host/",
+      "kind": "live"
+    }
+  ],
+  "media": null,
+  "prompt": "帮我用 AI 表格搭一套行政接待一体化平台，覆盖用车和用餐两条链路：基础信息上表、派单自动化、客户分级定餐标、接待后即时评价，最后做一个量/质/费/效的管理总览屏。",
+  "audience": [
+    "行政负责人",
+    "总助 / 办公室主任",
+    "后勤",
+    "财务"
+  ]
+}
+);
+
+;
+/* 行政 · 个人工作台  (live) */
+CASES.push(
+{
+  "id": "personal-workspace",
+  "dept": "admin",
+  "path": "webapp",
+  "status": "live",
+  "title": "个人工作台",
+  "slogan": "数据全来自钉钉的单文件工作台，点哪都能跳回真实资源",
+  "summary": "数据全部来自钉钉的单文件 HTML 个人工作台：读取知识库文档、AI 表格、近期日程、AI 听记，静态渲染进页面，所有列表项点击可跳转真实钉钉资源，并用定时任务每 4 小时自动刷新数据。",
+  "tags": [
+    "单文件 HTML",
+    "钉钉数据直连",
+    "全链路可跳",
+    "4 小时自动刷新"
+  ],
+  "client": "",
+  "clientNote": "3 Tab · 钉钉数据直连 · 每 4 小时重刷",
+  "metrics": [
+    {
+      "value": "3 Tab",
+      "label": "任务 / 项目 / 知识资产一屏切换"
+    },
+    {
+      "value": "全链路可跳",
+      "label": "每个列表项直达真实钉钉资源"
+    },
+    {
+      "value": "每 4 小时",
+      "label": "定时任务自动重刷数据与时间戳"
+    }
+  ],
+  "pains": [
+    "信息散在多个入口：任务在 AI 表格、日程在日历、文档在知识库、纪要在 AI 听记，每天开一圈才凑得齐今天要做什么",
+    "待办没有统一视图：逾期的、未来 7 天的、还没排期的任务混在一起，靠脑子记，容易漏",
+    "看板与真实资源脱节：手工做的汇总表点不动，看到一条还得再回钉钉里翻一遍原始资源",
+    "数据一做就过时：静态汇总当天有效，第二天数字就旧了，没人愿意天天手动更新"
+  ],
+  "solutions": [
+    "单文件 HTML 工作台：顶部 Logo + 三 Tab（任务 / 项目 / 知识资产）+ 右上角「已同步 · HH:MM」时间戳，内联 CSS/JS 一个文件搞定",
+    "数据全部来自钉钉：通过 dws 读取知识库空间与文档、AI 表格、近期日程、AI 听记，抓取每个资源的真实 URL",
+    "点哪都能跳：所有列表项用真实钉钉链接包裹，点击直达对应资源，没有占位符",
+    "任务三列聚焦：已逾期 / 未来 7 天 / 待排期分列陈列，配今日·明日聚焦卡与勾选、完成、延期交互",
+    "项目与知识一屏看：项目 Tab 有数据总览、横滑跟踪卡片与近 4 周日程热力图；知识资产 Tab 汇集知识库分类卡、最近文档与最近 AI 听记",
+    "每 4 小时自动刷新：生成时用当前钉钉数据静态渲染，另建每 4 小时的定时任务重新读数、重写数据段与时间戳并存回同一文件"
+  ],
+  "before": "任务、日程、文档、听记散在多个钉钉入口，每天手动开一圈才凑齐",
+  "after": "一个单文件工作台，三 Tab 看全、点哪都能跳回钉钉、每 4 小时自动同步",
+  "cover": "https://img.alicdn.com/imgextra/i2/6000000006074/O1CN01mSAW3f8mG0B3hbvU_!!6000000006074-0-tbvideo.jpg",
+  "video": {
+    "src": "https://cloud.video.taobao.com/vod/1GEr47JNhciJqiHBQ7bYyFidKlG0nwZRMID_b7zdzPg.mp4",
+    "poster": "https://img.alicdn.com/imgextra/i2/6000000006074/O1CN01mSAW3f8mG0B3hbvU_!!6000000006074-0-tbvideo.jpg",
+    "caption": "个人工作台完整操作演示 · 25 秒",
+    "width": 1216,
+    "height": 720
+  },
+  "demoLine": [
+    "先看顶部三 Tab 与右上角「已同步 · HH:MM」时间戳，确认数据新鲜度",
+    "任务 Tab：已逾期 / 未来 7 天 / 待排期三列，配今日·明日聚焦卡",
+    "随手点一条任务或文档，验证是直接跳回钉钉真实资源、不是占位符",
+    "项目 Tab：数据总览 + 横滑跟踪卡片 + 近 4 周日程热力图",
+    "知识资产 Tab：知识库分类卡、最近文档、最近 AI 听记",
+    "说明每 4 小时的定时任务如何重写数据段与时间戳并存回同一文件"
+  ],
+  "links": [
+    {
+      "group": "output",
+      "label": "个人工作台演示.html",
+      "href": "https://qwenwork-courses.github.io/qwenwork-cases/demos/personal-workspace/personal-workspace.html",
+      "kind": "demo",
+      "note": "实际产出的单文件工作台，内联 CSS/JS，数据段由定时任务每 4 小时重写"
+    }
+  ],
+  "media": {
+    "type": "image",
+    "src": "https://gw.alicdn.com/imgextra/i3/O1CN0195h2nI4sOWI3thAY_!!6000000000827-1-tps-1920-1074.gif",
+    "caption": "个人工作台操作实录 · 自动循环"
+  },
+  "prompt": "帮我搭建一个单文件 HTML 个人工作台，数据全部来自钉钉，所有列表项点击可跳转到对应真实钉钉资源。\n\n数据源：通过 dws 读取钉钉里已有的知识库空间与文档、AI 表格、近期日程、AI 听记，抓取每个资源的真实 URL，HTML 里所有跳转链接必须指向它们，不要占位符。\n\n页面结构：顶部是 Logo + 三 Tab（任务 / 项目 / 知识资产）+ 右上角「已同步 · HH:MM」时间戳。\n任务 Tab：Hero 区（日期眉批、大字问候语、副标题、4 栏统计）+ 今日·明日聚焦（左右两卡，含 checkbox 与完成/延期按钮）+ 任务池三列（已逾期 / 未来 7 天 / 待排期，点击跳 AI 表格）。\n项目 Tab：数据总览置顶（4 张紧凑卡片，点击跳对应资源）+ 项目跟踪横滑卡片（点击弹 Modal）+ 近 4 周日程热力图。\n知识资产 Tab：知识库分类卡（左侧彩色小竖条区分）+ 最近文档列表 + 最近 AI 听记列表。\n\n视觉方向：类 Linear / Notion 的克制高级感，配色与字体自行搭配，硬性约束：非通用 SaaS 绿色风；无 emoji 堆砌；卡片用发丝描边不用大阴影；所有数字用 tabular-nums；有一款衬线字体承担大标题和大数字。\n\n交互：Tab 切换动画、checkbox 勾选划线、按钮 toast 提示、项目 Modal（Esc 关闭）、热力图 hover tooltip。\n\n自动同步：生成时用当前钉钉数据静态渲染进去（不做浏览器端定时拉取）；同时通过定时任务创建一个每 4 小时执行一次的 cron，任务内容为调用 dws 重新读取上述钉钉数据、重写 HTML 中的数据段与右上角时间戳、保存回同一文件路径。\n\n输出：单文件 HTML，内联 CSS/JS，保存到 outputs/personal-workspace.html，所有列表项用 <a target=\"_blank\"> 包裹真实钉钉 URL，响应式支持宽度小于 900px 时折叠为单列。",
+  "audience": [
+    "全体员工",
+    "项目负责人",
+    "行政",
+    "知识管理"
+  ]
+}
+);
+
+;
+/* 培训 · 从零制课：课程视频流水线  (live) */
+CASES.push(
+{
+  "id": "course-creation",
+  "dept": "training",
+  "path": "skill",
+  "skill": "course-creation-workflow",
+  "status": "live",
+  "title": "从零制课：课程视频流水线",
+  "slogan": "给一份文字稿，产出带字幕的 1080p 成片",
+  "summary": "八个技能组成的制课流水线：文字稿 → PPT 课件 → 逐页讲稿 → AI 配音 → 烧录字幕成片。四个机器段自动执行，六个人工卡点由本人决策，最终五件套归档交付。",
+  "tags": [
+    "技能包",
+    "4 机器段 + 6 卡点",
+    "TTS 配音",
+    "五件套交付"
+  ],
+  "client": "千问办公内部",
+  "clientNote": "8 个技能 · 2 套 PPT 模板 · 7 个预置音色",
+  "metrics": [
+    {
+      "value": "5–6 千字",
+      "label": "≈ 一讲 15–18 分钟"
+    },
+    {
+      "value": "8 个",
+      "label": "技能组成流水线"
+    },
+    {
+      "value": "5 件套",
+      "label": "MP4 + SRT + 讲稿 + 课件 + PDF"
+    }
+  ],
+  "pains": [
+    "做一门课要串 PPT、讲稿、录音、剪辑、字幕五个工种，一讲能拖两周",
+    "讲师不愿意出镜也不想录音，课就一直停在文字稿阶段",
+    "每个人做的课件版式各不相同，品牌口径靠 review 兜",
+    "字幕靠人工对轴，一讲十几分钟能对一下午"
+  ],
+  "solutions": [
+    "总编排器 course-creation-workflow 调度全流程，每个人工决策点自动停下等人",
+    "Stage 1 大纲→PPT（两套千问办公品牌模板，复制占位版式就地改字）",
+    "Stage 2 逐页讲稿，按 250 字/分钟控时长；Stage 3 TTS 配音（7 个预置音色，可复刻本人音色）",
+    "Stage 4 ASR 词级对轴 + PIL 逐条烧录字幕，输出 1080p 成片",
+    "「自录 or TTS」分支：讲师想自己录，定稿讲稿 + 课件提前交付，录完回流烧字幕"
+  ],
+  "before": "五个工种串行，一讲拖两周，字幕对轴一下午",
+  "after": "一份文字稿进，五件套出，人只在六个卡点做决策",
+  "cover": "https://gw.alicdn.com/imgextra/i1/O1CN016YHmpQpVnZH3FPds_!!6000000003234-2-tps-1600-900.png",
+  "demoLine": [
+    "先看 SOP 流程图，分清哪四段是机器干、哪六个卡点是人干",
+    "输入门槛：有文字稿最好，只有大纲也能直接起步",
+    "走 Stage 1→4，卡点 D「自录还是 TTS」是最关键的选择",
+    "试听音色库，可以复刻讲师本人的声音",
+    "五件套归档交付：MP4 + SRT + 讲稿 + 课件 + PDF"
+  ],
+  "links": [
+    {
+      "group": "skill",
+      "label": "查看 SOP 流程图",
+      "href": "https://qwenwork-courses.github.io/qwenwork-cases/demos/course-creation/course-sop-flow.svg",
+      "kind": "doc"
+    },
+    {
+      "group": "skill",
+      "label": "下载技能包（15MB）",
+      "href": "https://qwenwork-courses.github.io/qwenwork-cases/demos/course-creation/course-creation-kit.zip",
+      "kind": "file"
+    }
+  ],
+  "media": null,
+  "prompt": "根据这篇文字稿做课程视频。受众是一线员工，目标时长 15 分钟左右，用千问办公极简版 PPT 模板，配音用音色库里的女声，最后出带烧录字幕的 1080p 成片。",
+  "audience": [
+    "企业大学 / 培训负责人",
+    "内容讲师",
+    "HR 培训",
+    "产品市场"
+  ]
+}
+);
+
+;
+/* 培训 · 课程海报制作  (live) */
+CASES.push(
+{
+  "id": "course-poster",
+  "dept": "training",
+  "path": "skill",
+  "skill": "course-poster-qwenwork",
+  "status": "live",
+  "title": "课程海报制作",
+  "slogan": "一段课程文案 + 一个二维码，产出千问办公品牌风格竖版长图海报",
+  "summary": "把课程文字内容（公众号文章、课程大纲、招生方案）转成千问办公品牌风格的竖版课程海报长图 PNG：内置绿色品牌视觉规范、两套主题、16 个可选模块、logo 素材与二维码生成。",
+  "tags": [
+    "技能包",
+    "品牌视觉写死",
+    "16 个可选模块",
+    "竖版长图 PNG"
+  ],
+  "client": "",
+  "clientNote": "2 套主题 · 16 个可选模块",
+  "metrics": [
+    {
+      "value": "文案进图出",
+      "label": "一段课程文案直接生成竖版长图海报"
+    },
+    {
+      "value": "品牌一致",
+      "label": "绿色主色 / logo / 字体规范写死在技能里"
+    },
+    {
+      "value": "16 模块",
+      "label": "Hero / 能力阶梯 / 开班信息 / 报名 CTA 按需拼装"
+    }
+  ],
+  "pains": [
+    "招生海报等设计排期：课程要开班，海报却卡在设计资源上，一张图来回改稿好几天",
+    "品牌口径靠人兜：绿色主色、logo、字体、间距全凭设计师手感，不同人做出来调性各不相同",
+    "文案到成图断层：公众号文章、课程大纲、招生信息都是文字，转成排版精美的长图海报要从零搭",
+    "二维码、开班信息易漏：报名二维码、时间地点费用这些关键信息经常漏放或放错位置"
+  ],
+  "solutions": [
+    "调用课程海报技能：course-poster-qwenwork 技能内置千问办公品牌视觉规范，文案进、海报出",
+    "品牌视觉写死在技能里：绿色主色、两套主题（冷绿灰 / 亮绿白）、logo 素材、字体与间距统一规范，生成即合规",
+    "16 个可选模块拼装：Hero、什么是 X、能力阶梯、培养目标、课程安排、适合谁学、开班信息、报名 CTA 等按需组合",
+    "二维码与开班信息就位：报名二维码自动嵌入，时间、地点、形式、费用整齐排进开班信息栏",
+    "竖版长图 PNG 交付：直接产出可发朋友圈 / 社群 / 公众号的竖版海报长图"
+  ],
+  "before": "招生海报等设计排期，文案到成图断层，品牌口径靠人兜",
+  "after": "一段课程文案 + 一个二维码，直接产出千问办公品牌风格竖版长图海报",
+  "demoLine": [
+    "先给一段课程文案（公众号文章、课程大纲、招生信息都行）加一个报名二维码",
+    "选主题：冷绿灰 或 亮绿白，品牌规范已经写死在技能里",
+    "按需勾选模块：Hero、什么是 X、能力阶梯、培养目标、课程安排、适合谁学、开班信息、报名 CTA",
+    "确认开班信息栏：时间、地点、形式、费用是否齐全",
+    "产出竖版长图 PNG，直接发朋友圈 / 社群 / 公众号"
+  ],
+  "cover": "https://gw.alicdn.com/imgextra/i1/O1CN01w0HVeX60hCC3thAe_!!6000000007561-1-tps-1920-1080.gif",
+  "links": [
+    {
+      "group": "skill",
+      "label": "课程海报技能包",
+      "href": "https://qwenwork-courses.github.io/qwenwork-cases/demos/course-poster/course-poster-skill.md",
+      "kind": "text",
+      "download": "https://qwenwork-courses.github.io/qwenwork-cases/demos/course-poster/course-poster-qwenwork.zip",
+      "downloadName": "course-poster-qwenwork.zip",
+      "note": "点开看技能定义，右上角下载包含 SKILL.md + 生图脚本 + 品牌素材 + 参考海报"
+    },
+    {
+      "group": "sample",
+      "label": "报名二维码.png",
+      "href": "https://qwenwork-courses.github.io/qwenwork-cases/demos/course-poster/报名二维码.png",
+      "kind": "doc",
+      "note": "示例素材，会被自动嵌到海报的报名 CTA 区"
+    },
+    {
+      "group": "output",
+      "label": "FDE 认证课程海报（PNG）",
+      "href": "https://qwenwork-courses.github.io/qwenwork-cases/demos/course-poster/fde_poster.png",
+      "kind": "doc",
+      "note": "实际产出的竖版长图海报，900×2000"
+    },
+    {
+      "group": "output",
+      "label": "海报原始 HTML",
+      "href": "https://qwenwork-courses.github.io/qwenwork-cases/demos/course-poster/fde_poster.html",
+      "kind": "demo",
+      "note": "成图前的 HTML 源稿，改文案后可重新导出"
+    }
+  ],
+  "media": {
+    "type": "image",
+    "src": "https://gw.alicdn.com/imgextra/i1/O1CN01w0HVeX60hCC3thAe_!!6000000007561-1-tps-1920-1080.gif",
+    "caption": "课程海报生成实录 · 自动循环"
+  },
+  "prompt": "先调用「课程海报制作」技能（course-poster-qwenwork），并提供报名二维码图片，用下面这段课程文案生成海报：\n\n千问办公 FDE 工程师认证课程 | 首期杭州班 9月18-20日\nAI 落地难？那是缺了懂业务又懂技术的“FDE”工程师。\n9月18-20日，千问办公 FDE 认证课程首期班将在阿里巴巴西溪园区 C 区开班。带你从需求梳理到交付运维，掌握 AI 项目全流程能力。\n\n🎯 什么是 FDE？\n前线部署工程师 (Forward Deployed Engineer)\n他们是连接技术与业务的桥梁。不仅懂大模型和 Agent，更能深入一线，把技术转化为可落地的业务价值。\n🚀 3天2晚，你将获得什么？\n认知重塑：理解 FDE 角色定位，掌握企业 AI 转型的破局思路。\n硬核技能：精通 RAG、自定义智能体、Vibe Coding 及工作流编排。\n实战通关：从 0 到 1 梳理业务流程，亲手开发可运行的 Demo。\n权威认证：通过答辩即可获得认证证书，成为 AI 时代的超级个体。\n🎯 适合谁学？\n企业数字化负责人 (CTO / CIO)\n企业内部 IT 人员 (产品经理、架构/开发/运维工程师)\n企业 HR / 培训负责人 (HRBP、HR、企业内训师)\n业务部门核心骨干 (研发、销售、运营、客服)\n💡 报名详情\n时间：9月18-20日（3天2晚）\n地点：杭州·阿里巴巴西溪园区 C区\n形式：小班教学 · 先到先得\n费用：¥12,800元/人",
+  "audience": [
+    "企业大学 / 培训负责人",
+    "HR 培训",
+    "市场品牌",
+    "内容运营"
+  ]
+}
+);
+
+;
+/* 财务 · 月度经营分析报告  (wip) */
+CASES.push(
+{
+  "id": "finance-analysis",
+  "dept": "finance",
+  "path": "dataflow",
+  "status": "wip",
+  "title": "月度经营分析报告",
+  "slogan": "数据一到，分析成稿",
+  "summary": "打通业务与财务数据，自动生成收入成本利润的同比环比拆解、异常归因与下月预测。",
+  "tags": [
+    "自动成稿",
+    "异常归因",
+    "待补充案例"
+  ],
+  "client": "",
+  "clientNote": "",
+  "metrics": [
+    {
+      "value": "—",
+      "label": "出稿用时"
+    },
+    {
+      "value": "—",
+      "label": "覆盖科目数"
+    },
+    {
+      "value": "—",
+      "label": "人力投入"
+    }
+  ],
+  "pains": [
+    "月初三天全在拼表，分析留给最后半天",
+    "异常波动要逐个部门问，归因靠拼凑"
+  ],
+  "solutions": [
+    "取数与拼表自动化",
+    "同比环比拆解 + 异常自动归因到科目与业务动作"
+  ],
+  "before": "",
+  "after": "",
+  "demoLine": [],
+  "links": [],
+  "prompt": "",
+  "audience": [
+    "CFO",
+    "财务分析",
+    "总经理"
+  ]
+}
+);
+
+;
+/* 财务 · 费用报销单据 AI 稽核  (wip) */
+CASES.push(
+{
+  "id": "expense-audit",
+  "dept": "finance",
+  "path": "skill",
+  "skill": "expense-audit",
+  "status": "wip",
+  "title": "费用报销单据 AI 稽核",
+  "slogan": "每一张票都过一遍，而不是抽查",
+  "summary": "批量识别发票与附件，比对制度标准，输出可疑单据清单与稽核依据。",
+  "tags": [
+    "全量稽核",
+    "制度比对",
+    "待补充案例"
+  ],
+  "client": "",
+  "clientNote": "",
+  "metrics": [
+    {
+      "value": "—",
+      "label": "单据处理量"
+    },
+    {
+      "value": "—",
+      "label": "查出可疑单据"
+    },
+    {
+      "value": "—",
+      "label": "稽核覆盖率"
+    }
+  ],
+  "pains": [
+    "单据量大只能抽查，风险留在未抽到的部分",
+    "制度条款记不全，判断因人而异"
+  ],
+  "solutions": [
+    "发票与附件批量识别结构化",
+    "制度标准写成规则，全量比对并给出依据"
+  ],
+  "before": "",
+  "after": "",
+  "demoLine": [],
+  "links": [],
+  "prompt": "",
+  "audience": [
+    "财务共享中心",
+    "内审",
+    "费用管控"
+  ]
+}
+);
+
+;
+/* 销售 · 客户拜访纪要与商机推进  (wip) */
+CASES.push(
+{
+  "id": "sales-visit-notes",
+  "dept": "sales",
+  "path": "multimodal",
+  "status": "wip",
+  "title": "客户拜访纪要与商机推进",
+  "slogan": "拜访完就有纪要，商机自己往前走",
+  "summary": "录音转纪要，自动提取客户关切、异议与承诺事项，回写商机阶段并生成下一步动作。",
+  "tags": [
+    "录音转纪要",
+    "商机回写",
+    "待补充案例"
+  ],
+  "client": "",
+  "clientNote": "",
+  "metrics": [
+    {
+      "value": "—",
+      "label": "纪要成稿用时"
+    },
+    {
+      "value": "—",
+      "label": "CRM 填写率"
+    },
+    {
+      "value": "—",
+      "label": "商机推进周期"
+    }
+  ],
+  "pains": [
+    "销售不爱写纪要，CRM 里全是空字段",
+    "客户说过的异议下次拜访没人记得"
+  ],
+  "solutions": [
+    "录音转结构化纪要，关切/异议/承诺分开提取",
+    "自动回写商机阶段并生成下一步动作清单"
+  ],
+  "before": "",
+  "after": "",
+  "demoLine": [],
+  "links": [],
+  "prompt": "",
+  "audience": [
+    "销售负责人",
+    "一线销售",
+    "销售运营"
+  ]
+}
+);
+
+;
+/* 销售 · 售前方案与标书生成  (wip) */
+CASES.push(
+{
+  "id": "sales-proposal",
+  "dept": "sales",
+  "path": "kb",
+  "status": "wip",
+  "title": "售前方案与标书生成",
+  "slogan": "把打过的单变成下一单的弹药",
+  "summary": "基于历史方案库与产品资料，按客户行业与需求要点生成方案初稿与标书应答。",
+  "tags": [
+    "方案复用",
+    "标书应答",
+    "待补充案例"
+  ],
+  "client": "",
+  "clientNote": "",
+  "metrics": [
+    {
+      "value": "—",
+      "label": "初稿产出时间"
+    },
+    {
+      "value": "—",
+      "label": "复用素材占比"
+    },
+    {
+      "value": "—",
+      "label": "中标率变化"
+    }
+  ],
+  "pains": [
+    "每次写方案从上一版复制，越改越乱",
+    "标书应答点多，靠人对着招标文件逐条抄"
+  ],
+  "solutions": [
+    "历史方案与产品资料建成可检索素材库",
+    "按需求要点自动组稿并逐条应答"
+  ],
+  "before": "",
+  "after": "",
+  "demoLine": [],
+  "links": [],
+  "prompt": "",
+  "audience": [
+    "售前 SA",
+    "解决方案",
+    "投标"
+  ]
+}
+);
+
+;
+/* 生产运营 · 生产质量日报与异常追溯  (wip) */
+CASES.push(
+{
+  "id": "ops-quality",
+  "dept": "ops",
+  "path": "dataflow",
+  "status": "wip",
+  "title": "生产质量日报与异常追溯",
+  "slogan": "异常发生当天就看见，不等月度复盘",
+  "summary": "汇总产线质检数据，自动生成日报与不良趋势，异常自动追溯到批次、工位与班次。",
+  "tags": [
+    "实时看板",
+    "异常追溯",
+    "待补充案例"
+  ],
+  "client": "",
+  "clientNote": "",
+  "metrics": [
+    {
+      "value": "—",
+      "label": "日报出稿时间"
+    },
+    {
+      "value": "—",
+      "label": "异常发现时效"
+    },
+    {
+      "value": "—",
+      "label": "不良率变化"
+    }
+  ],
+  "pains": [
+    "质检数据留在纸单和 Excel，日报靠夜班手抄",
+    "异常要追批次时，数据已经对不上了"
+  ],
+  "solutions": [
+    "质检数据上表，日报自动成稿",
+    "异常自动追溯批次/工位/班次三维定位"
+  ],
+  "before": "",
+  "after": "",
+  "demoLine": [],
+  "links": [],
+  "prompt": "",
+  "audience": [
+    "生产负责人",
+    "质量管理",
+    "厂长"
+  ]
+}
+);
+
+;
+/* =============================================================================
+ *  \u6781\u7b80 QR \u7f16\u7801\u5668\uff08byte \u6a21\u5f0f\uff0c\u7248\u672c 1-40\uff0c\u56db\u7ea7\u5bb9\u9519\uff09
+ *  ---------------------------------------------------------------------------
+ *  \u4e13\u4e3a\u5206\u4eab\u6d77\u62a5\u751f\u6210\u6848\u4f8b\u94fe\u63a5\u4e8c\u7ef4\u7801\u3002\u65e0\u4f9d\u8d56\u3001\u4e0d\u8bf7\u6c42\u5916\u90e8\u670d\u52a1\uff08\u907f\u5f00\u7b2c\u4e09\u65b9
+ *  \u4e8c\u7ef4\u7801 API \u5728\u56fd\u5185\u4e0d\u53ef\u7528 / \u6cc4\u9732\u94fe\u63a5\u7684\u95ee\u9898\uff09\u3002
+ *
+ *  \u7528\u6cd5\uff1a
+ *    const m = QR.make('https://...');   // -> { size, get(x, y) }
+ *    QR.draw(m, ctx, x, y, px, dark, light);
+ *
+ *  \u7b97\u6cd5\u6309 ISO/IEC 18004 \u5b9e\u73b0\uff08\u7ed3\u6784\u53c2\u8003 Nayuki \u7684\u516c\u5f00\u5b9e\u73b0\u601d\u8def\uff09\u3002
+ *  \u8f93\u51fa\u5df2\u7528 macOS CoreImage \u5b9e\u9645\u626b\u7801\u89e3\u7801\u56de\u6d4b\u9a8c\u8bc1\u3002
+ * ========================================================================== */
+const QR = (function () {
+  'use strict';
+
+  /* \u6bcf\u5757\u7ea0\u9519\u7801\u5b57\u6570\uff1a[L, M, Q, H][version] */
+  const ECC_PER_BLOCK = [
+    [-1, 7, 10, 15, 20, 26, 18, 20, 24, 30, 18, 20, 24, 26, 30, 22, 24, 28, 30, 28, 28, 28, 28, 30, 30, 26, 28, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30],
+    [-1, 10, 16, 26, 18, 24, 16, 18, 22, 22, 26, 30, 22, 22, 24, 24, 28, 28, 26, 26, 26, 26, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28],
+    [-1, 13, 22, 18, 26, 18, 24, 18, 22, 20, 24, 28, 26, 24, 20, 30, 24, 28, 28, 26, 30, 28, 30, 30, 30, 30, 28, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30],
+    [-1, 17, 28, 22, 16, 22, 28, 26, 26, 24, 28, 24, 28, 22, 24, 24, 30, 28, 28, 26, 28, 30, 24, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30]
+  ];
+
+  /* \u7ea0\u9519\u5757\u6570\uff1a[L, M, Q, H][version] */
+  const NUM_BLOCKS = [
+    [-1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 4, 4, 4, 4, 4, 6, 6, 6, 6, 7, 8, 8, 9, 9, 10, 12, 12, 12, 13, 14, 15, 16, 17, 18, 19, 19, 20, 21, 22, 24, 25],
+    [-1, 1, 1, 1, 2, 2, 4, 4, 4, 5, 5, 5, 8, 9, 9, 10, 10, 11, 13, 14, 16, 17, 17, 18, 20, 21, 23, 25, 26, 28, 29, 31, 33, 35, 37, 38, 40, 43, 45, 47, 49],
+    [-1, 1, 1, 2, 2, 4, 4, 6, 6, 8, 8, 8, 10, 12, 16, 12, 17, 16, 18, 21, 20, 23, 23, 25, 27, 29, 34, 34, 35, 38, 40, 43, 45, 48, 51, 53, 56, 59, 62, 65, 68],
+    [-1, 1, 1, 2, 4, 4, 4, 5, 6, 8, 8, 11, 11, 16, 16, 18, 16, 19, 21, 25, 25, 25, 34, 30, 32, 35, 37, 40, 42, 45, 48, 51, 54, 57, 60, 63, 66, 70, 74, 77, 81]
+  ];
+
+  /* ---------- GF(256) \u8fd0\u7b97\uff0c\u672c\u539f\u591a\u9879\u5f0f 0x11D ---------- */
+  function gfMul(x, y) {
+    let z = 0;
+    for (let i = 7; i >= 0; i--) {
+      z = ((z << 1) ^ ((z >>> 7) * 0x11D)) & 0xFF;
+      z ^= ((y >>> i) & 1) * x;
+    }
+    return z;
+  }
+
+  function rsDivisor(degree) {
+    const result = new Uint8Array(degree);
+    result[degree - 1] = 1;
+    let root = 1;
+    for (let i = 0; i < degree; i++) {
+      for (let j = 0; j < degree; j++) {
+        result[j] = gfMul(result[j], root);
+        if (j + 1 < degree) result[j] ^= result[j + 1];
+      }
+      root = gfMul(root, 0x02);
+    }
+    return result;
+  }
+
+  function rsRemainder(data, divisor) {
+    const result = new Uint8Array(divisor.length);
+    for (const b of data) {
+      const factor = b ^ result[0];
+      result.copyWithin(0, 1);
+      result[result.length - 1] = 0;
+      for (let i = 0; i < divisor.length; i++) result[i] ^= gfMul(divisor[i], factor);
+    }
+    return result;
+  }
+
+  /* ---------- \u5bb9\u91cf\u8ba1\u7b97 ---------- */
+  function numRawDataModules(ver) {
+    let result = (16 * ver + 128) * ver + 64;
+    if (ver >= 2) {
+      const numAlign = Math.floor(ver / 7) + 2;
+      result -= (25 * numAlign - 10) * numAlign - 55;
+      if (ver >= 7) result -= 36;
+    }
+    return result;
+  }
+
+  function numDataCodewords(ver, ecl) {
+    return Math.floor(numRawDataModules(ver) / 8)
+      - ECC_PER_BLOCK[ecl][ver] * NUM_BLOCKS[ecl][ver];
+  }
+
+  function alignPositions(ver) {
+    if (ver === 1) return [];
+    const num = Math.floor(ver / 7) + 2;
+    const step = (ver === 32) ? 26
+      : Math.ceil((ver * 4 + 4) / (num * 2 - 2)) * 2;
+    const pos = [6];
+    for (let p = ver * 4 + 10; pos.length < num; p -= step) pos.splice(1, 0, p);
+    return pos;
+  }
+
+  /* ---------- \u4e3b\u6d41\u7a0b ---------- */
+  function make(text, eclIndex) {
+    const ecl = (eclIndex === undefined) ? 1 : eclIndex;   /* \u9ed8\u8ba4 M */
+    const bytes = new TextEncoder().encode(text);
+
+    /* \u9009\u6700\u5c0f\u53ef\u5bb9\u7248\u672c */
+    let ver = 1;
+    for (; ver <= 40; ver++) {
+      const capBits = numDataCodewords(ver, ecl) * 8;
+      const ccBits = (ver <= 9) ? 8 : 16;
+      if (4 + ccBits + bytes.length * 8 <= capBits) break;
+    }
+    if (ver > 40) throw new Error('QR: \u5185\u5bb9\u8fc7\u957f');
+
+    /* \u7ec4\u4f4d\u6d41\uff1a\u6a21\u5f0f\u6307\u793a\u7b26 + \u5b57\u7b26\u8ba1\u6570 + \u6570\u636e */
+    const bits = [];
+    const push = (val, len) => { for (let i = len - 1; i >= 0; i--) bits.push((val >>> i) & 1); };
+    push(0b0100, 4);
+    push(bytes.length, ver <= 9 ? 8 : 16);
+    for (const b of bytes) push(b, 8);
+
+    /* \u7ed3\u675f\u7b26 + \u8865\u9f50\u5230\u5b57\u8282\u8fb9\u754c + \u586b\u5145\u5b57 */
+    const dataCw = numDataCodewords(ver, ecl);
+    const capBits = dataCw * 8;
+    push(0, Math.min(4, capBits - bits.length));
+    while (bits.length % 8 !== 0) bits.push(0);
+    const dat = [];
+    for (let i = 0; i < bits.length; i += 8) {
+      let b = 0;
+      for (let j = 0; j < 8; j++) b = (b << 1) | bits[i + j];
+      dat.push(b);
+    }
+    for (let pad = 0xEC; dat.length < dataCw; pad ^= 0xEC ^ 0x11) dat.push(pad);
+
+    /* \u5206\u5757\u7b97\u7ea0\u9519 + \u4ea4\u9519\u4ea4\u7ec7 */
+    const numBlk = NUM_BLOCKS[ecl][ver];
+    const eccLen = ECC_PER_BLOCK[ecl][ver];
+    const rawCw = Math.floor(numRawDataModules(ver) / 8);
+    const shortLen = Math.floor(rawCw / numBlk) - eccLen;
+    const numShort = numBlk - rawCw % numBlk;
+    const divisor = rsDivisor(eccLen);
+
+    const blocks = [];
+    for (let i = 0, k = 0; i < numBlk; i++) {
+      const len = shortLen + (i < numShort ? 0 : 1);
+      const d = dat.slice(k, k + len);
+      k += len;
+      blocks.push({ d, e: rsRemainder(d, divisor) });
+    }
+    const codewords = [];
+    for (let i = 0; i < shortLen + 1; i++)
+      for (let j = 0; j < numBlk; j++)
+        if (i < blocks[j].d.length) codewords.push(blocks[j].d[i]);
+    for (let i = 0; i < eccLen; i++)
+      for (let j = 0; j < numBlk; j++) codewords.push(blocks[j].e[i]);
+
+    /* ---------- \u753b\u77e9\u9635 ---------- */
+    const size = ver * 4 + 17;
+    const mod = [], fn = [];
+    for (let i = 0; i < size; i++) {
+      mod.push(new Array(size).fill(false));
+      fn.push(new Array(size).fill(false));
+    }
+    const setFn = (x, y, v) => {
+      if (x < 0 || y < 0 || x >= size || y >= size) return;
+      mod[y][x] = v; fn[y][x] = true;
+    };
+
+    /* 定位图案（timing）——必须先画，随后的定位图形会覆盖它在角上的部分；
+       反之则会把定位图形的边框抹掉，二维码扫不出来 */
+    for (let i = 0; i < size; i++) { setFn(6, i, i % 2 === 0); setFn(i, 6, i % 2 === 0); }
+
+    /* 定位图形 + 分隔符 */
+    const drawFinder = (cx, cy) => {
+      for (let dy = -4; dy <= 4; dy++)
+        for (let dx = -4; dx <= 4; dx++) {
+          const d = Math.max(Math.abs(dx), Math.abs(dy));
+          setFn(cx + dx, cy + dy, d !== 2 && d !== 4);
+        }
+    };
+    drawFinder(3, 3); drawFinder(size - 4, 3); drawFinder(3, size - 4);
+
+    /* \u77eb\u6b63\u56fe\u5f62 */
+    const ap = alignPositions(ver);
+    for (let i = 0; i < ap.length; i++)
+      for (let j = 0; j < ap.length; j++) {
+        if ((i === 0 && j === 0) || (i === 0 && j === ap.length - 1) || (i === ap.length - 1 && j === 0)) continue;
+        for (let dy = -2; dy <= 2; dy++)
+          for (let dx = -2; dx <= 2; dx++)
+            setFn(ap[j] + dx, ap[i] + dy, Math.max(Math.abs(dx), Math.abs(dy)) !== 1);
+      }
+
+    /* \u683c\u5f0f\u4fe1\u606f\u4f4d\u9884\u5360\uff08\u5185\u5bb9\u7a0d\u540e\u5199\uff09*/
+    const reserveFormat = () => {
+      for (let i = 0; i <= 5; i++) setFn(8, i, false);
+      setFn(8, 7, false); setFn(8, 8, false); setFn(7, 8, false);
+      for (let i = 9; i <= 14; i++) setFn(14 - i, 8, false);
+      for (let i = 0; i < 8; i++) setFn(size - 1 - i, 8, false);
+      for (let i = 8; i < 15; i++) setFn(8, size - 15 + i, false);
+      setFn(8, size - 8, true);   /* \u56fa\u5b9a\u6697\u6a21\u5757 */
+    };
+    reserveFormat();
+
+    /* \u7248\u672c\u4fe1\u606f\uff08\u2265 v7\uff09*/
+    if (ver >= 7) {
+      let rem = ver;
+      for (let i = 0; i < 12; i++) rem = (rem << 1) ^ ((rem >>> 11) * 0x1F25);
+      const bitsV = ver << 12 | rem;
+      for (let i = 0; i < 18; i++) {
+        const b = ((bitsV >>> i) & 1) === 1;
+        const a = size - 11 + i % 3;
+        const bb = Math.floor(i / 3);
+        setFn(a, bb, b); setFn(bb, a, b);
+      }
+    }
+
+    /* \u6570\u636e\u4f4d\u4e0a\u94fe\uff08\u53cc\u5217\u4e4b\u5b57\u5f62\uff09*/
+    let bitIdx = 0;
+    const totalBits = codewords.length * 8;
+    for (let right = size - 1; right >= 1; right -= 2) {
+      if (right === 6) right = 5;
+      for (let vert = 0; vert < size; vert++)
+        for (let j = 0; j < 2; j++) {
+          const x = right - j;
+          const upward = ((right + 1) & 2) === 0;
+          const y = upward ? size - 1 - vert : vert;
+          if (!fn[y][x] && bitIdx < totalBits) {
+            mod[y][x] = ((codewords[bitIdx >>> 3] >>> (7 - (bitIdx & 7))) & 1) !== 0;
+            bitIdx++;
+          }
+        }
+    }
+
+    /* \u63a9\u7801\uff1a8 \u79cd\u9010\u4e2a\u8bd5\uff0c\u53d6\u60e9\u7f5a\u5206\u6700\u4f4e */
+    const maskFns = [
+      (x, y) => (x + y) % 2,
+      (x, y) => y % 2,
+      (x, y) => x % 3,
+      (x, y) => (x + y) % 3,
+      (x, y) => (Math.floor(y / 2) + Math.floor(x / 3)) % 2,
+      (x, y) => (x * y) % 2 + (x * y) % 3,
+      (x, y) => ((x * y) % 2 + (x * y) % 3) % 2,
+      (x, y) => (((x + y) % 2) + ((x * y) % 3)) % 2
+    ];
+
+    const applyMask = (m) => {
+      for (let y = 0; y < size; y++)
+        for (let x = 0; x < size; x++)
+          if (!fn[y][x] && maskFns[m](x, y) === 0) mod[y][x] = !mod[y][x];
+    };
+
+    const drawFormat = (m) => {
+      /* \u683c\u5f0f\u4fe1\u606f = 5 \u4f4d\u6570\u636e(ecl<<3|mask) + BCH(15,5)\uff0c\u518d\u5f02\u6216 0x5412 */
+      const eclBits = [0b01, 0b00, 0b11, 0b10][ecl];   /* L,M,Q,H \u7684\u7f16\u53f7 */
+      const data = eclBits << 3 | m;
+      let rem = data;
+      for (let i = 0; i < 10; i++) rem = (rem << 1) ^ ((rem >>> 9) * 0x537);
+      const b = ((data << 10 | rem) ^ 0x5412) & 0x7FFF;
+      const bit = i => ((b >>> i) & 1) === 1;
+      for (let i = 0; i <= 5; i++) setFn(8, i, bit(i));
+      setFn(8, 7, bit(6)); setFn(8, 8, bit(7)); setFn(7, 8, bit(8));
+      for (let i = 9; i < 15; i++) setFn(14 - i, 8, bit(i));
+      for (let i = 0; i < 8; i++) setFn(size - 1 - i, 8, bit(i));
+      for (let i = 8; i < 15; i++) setFn(8, size - 15 + i, bit(i));
+    };
+
+    const penalty = () => {
+      let p = 0;
+      /* \u89c4\u5219 1\uff1a\u540c\u8272\u8fde\u7eed */
+      for (let y = 0; y < size; y++) {
+        let run = 1;
+        for (let x = 1; x < size; x++) {
+          if (mod[y][x] === mod[y][x - 1]) { run++; if (run === 5) p += 3; else if (run > 5) p++; }
+          else run = 1;
+        }
+      }
+      for (let x = 0; x < size; x++) {
+        let run = 1;
+        for (let y = 1; y < size; y++) {
+          if (mod[y][x] === mod[y - 1][x]) { run++; if (run === 5) p += 3; else if (run > 5) p++; }
+          else run = 1;
+        }
+      }
+      /* \u89c4\u5219 2\uff1a2x2 \u540c\u8272\u5757 */
+      for (let y = 0; y < size - 1; y++)
+        for (let x = 0; x < size - 1; x++) {
+          const c = mod[y][x];
+          if (c === mod[y][x + 1] && c === mod[y + 1][x] && c === mod[y + 1][x + 1]) p += 3;
+        }
+      /* \u89c4\u5219 3\uff1a\u7c7b\u5b9a\u4f4d\u56fe\u5f62 1:1:3:1:1 */
+      const pat = [true, false, true, true, true, false, true];
+      const hasPat = (get, i, n) => {
+        if (i < 0 || i + 7 > n) return false;
+        for (let k = 0; k < 7; k++) if (get(i + k) !== pat[k]) return false;
+        const before = () => { for (let k = i - 4; k < i; k++) if (k >= 0 && get(k)) return false; return true; };
+        const after = () => { for (let k = i + 7; k < i + 11; k++) if (k < n && get(k)) return false; return true; };
+        return before() || after();
+      };
+      for (let y = 0; y < size; y++)
+        for (let x = 0; x < size; x++) {
+          if (hasPat(i => mod[y][i], x, size)) p += 40;
+          if (hasPat(i => mod[i][x], y, size)) p += 40;
+        }
+      /* \u89c4\u5219 4\uff1a\u9ed1\u767d\u6bd4\u4f8b\u504f\u79bb */
+      let dark = 0;
+      for (let y = 0; y < size; y++) for (let x = 0; x < size; x++) if (mod[y][x]) dark++;
+      const total = size * size;
+      p += Math.floor(Math.abs(dark * 20 - total * 10) / total) * 10;
+      return p;
+    };
+
+    let bestMask = 0, bestPenalty = Infinity;
+    for (let m = 0; m < 8; m++) {
+      applyMask(m); drawFormat(m);
+      const p = penalty();
+      if (p < bestPenalty) { bestPenalty = p; bestMask = m; }
+      applyMask(m);   /* \u5f02\u6216\u81ea\u9006\uff0c\u64a4\u56de */
+    }
+    applyMask(bestMask); drawFormat(bestMask);
+
+    return {
+      size,
+      version: ver,
+      get: (x, y) => mod[y][x] === true
+    };
+  }
+
+  /* ---------- \u753b\u5230 canvas ---------- */
+  function draw(m, ctx, ox, oy, px, dark, light) {
+    if (light) {
+      ctx.fillStyle = light;
+      ctx.fillRect(ox, oy, m.size * px, m.size * px);
+    }
+    ctx.fillStyle = dark || '#000';
+    for (let y = 0; y < m.size; y++)
+      for (let x = 0; x < m.size; x++)
+        if (m.get(x, y)) ctx.fillRect(ox + x * px, oy + y * px, px, px);
+  }
+
+  return { make, draw };
+})();
+
+;
+/* =============================================================================
+ *  \u5206\u4eab\u6d77\u62a5\u6e32\u67d3\uff08canvas\uff09
+ *  ---------------------------------------------------------------------------
+ *  \u81ea\u5305\u542b\uff1a\u4e0d\u4f9d\u8d56\u5916\u90e8\u5168\u5c40\u53d8\u91cf\uff0c\u6240\u9700\u5185\u5bb9\u5168\u90e8\u7531\u53c2\u6570\u4f20\u5165\u3002
+ *  \u4e8c\u7ef4\u7801\u4f9d\u8d56 QR\uff08assets/qr.js\uff09\u3002
+ *
+ *  Poster.render(canvas, payload) -> Promise<void>
+ *    payload = { title, slogan, deptName, client, metrics:[{value,label}],
+ *                cover, url, logoSrc, brand, tagline }
+ * ========================================================================== */
+const Poster = (function () {
+  'use strict';
+
+  const W = 800;            /* 逻辑宽 */
+  const H_MAX = 1500;       /* 离屏画布上限，最终高度按内容裁 */
+  const SCALE = 2;          /* 二倍图，保证手机上清晰 */
+  const PAD = 48;
+
+  const GREEN = '#30bf69';
+  const GREEN_DARK = '#22975a';
+  const INK = '#141a16';
+  const MUTED = '#4a5a50';
+  const SUBTLE = '#7a8e82';
+  const LINE = 'rgba(20,38,28,0.10)';
+
+  function roundRect(ctx, x, y, w, h, r) {
+    ctx.beginPath();
+    ctx.moveTo(x + r, y);
+    ctx.arcTo(x + w, y, x + w, y + h, r);
+    ctx.arcTo(x + w, y + h, x, y + h, r);
+    ctx.arcTo(x, y + h, x, y, r);
+    ctx.arcTo(x, y, x + w, y, r);
+    ctx.closePath();
+  }
+
+  /* \u6309\u5bbd\u5ea6\u6298\u884c\uff08\u4e2d\u6587\u9010\u5b57\uff0c\u82f1\u6587\u6309\u8bcd\uff09*/
+  function wrap(ctx, text, maxW, maxLines) {
+    const lines = [];
+    let cur = '';
+    const tokens = String(text).match(/[a-zA-Z0-9@._%+-]+|[^\s]|\s/g) || [];
+    for (const t of tokens) {
+      if (t === '\n') { lines.push(cur); cur = ''; continue; }
+      const test = cur + t;
+      if (ctx.measureText(test).width > maxW && cur !== '') {
+        lines.push(cur);
+        cur = (t.trim() === '') ? '' : t;
+        if (maxLines && lines.length >= maxLines) break;
+      } else {
+        cur = test;
+      }
+    }
+    if (cur && (!maxLines || lines.length < maxLines)) lines.push(cur);
+    if (maxLines && lines.length >= maxLines) {
+      /* \u6ea2\u51fa\u65f6\u672b\u884c\u52a0\u7701\u7565\u53f7 */
+      const total = (ctx.measureText(String(text)).width > maxW * maxLines);
+      if (total) {
+        let last = lines[maxLines - 1] || '';
+        while (last && ctx.measureText(last + '\u2026').width > maxW) last = last.slice(0, -1);
+        lines[maxLines - 1] = last + '\u2026';
+      }
+      lines.length = Math.min(lines.length, maxLines);
+    }
+    return lines;
+  }
+
+  function loadImg(src) {
+    return new Promise(resolve => {
+      if (!src) return resolve(null);
+      const img = new Image();
+      img.crossOrigin = 'anonymous';          /* CDN \u5df2\u5f00 ACAO:*\uff0c\u4e0d\u4f1a\u6c61\u67d3 canvas */
+      img.onload = () => resolve(img);
+      img.onerror = () => resolve(null);      /* \u52a0\u4e0d\u51fa\u6765\u5c31\u7565\u8fc7\uff0c\u4e0d\u963b\u65ad\u6d77\u62a5 */
+      img.src = src;
+    });
+  }
+
+  async function render(canvas, p) {
+    /* 先画到离屏画布（高度给宽），排完再按内容真实高度拷到目标画布，
+       避免固定高度在标题/slogan 行数少时底部留一大片空白 */
+    const off = document.createElement('canvas');
+    off.width = W * SCALE;
+    off.height = H_MAX * SCALE;
+    const ctx = off.getContext('2d');
+    ctx.scale(SCALE, SCALE);
+    const FONT = '"PingFang SC","Microsoft YaHei",-apple-system,sans-serif';
+ 
+    /* ---------- 底 ---------- */
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0, 0, W, H_MAX);
+
+    /* \u9876\u90e8\u6de1\u7eff\u5149 */
+    const g = ctx.createLinearGradient(0, 0, W, 300);
+    g.addColorStop(0, 'rgba(48,191,105,0.13)');
+    g.addColorStop(1, 'rgba(76,226,133,0.05)');
+    ctx.fillStyle = g;
+    ctx.fillRect(0, 0, W, 300);
+
+    /* ---------- \u9876\u90e8\u54c1\u724c ---------- */
+    let y = PAD;
+    const [logo, cover] = await Promise.all([loadImg(p.logoSrc), loadImg(p.cover)]);
+    if (logo) {
+      const lh = 30, lw = logo.width / logo.height * lh;
+      ctx.drawImage(logo, PAD, y, lw, lh);
+      ctx.font = `500 15px ${FONT}`;
+      ctx.fillStyle = SUBTLE;
+      ctx.textBaseline = 'middle';
+      ctx.fillText('\u6848\u4f8b\u5e93', PAD + lw + 14, y + lh / 2 + 1);
+    } else {
+      ctx.font = `700 22px ${FONT}`;
+      ctx.fillStyle = INK;
+      ctx.textBaseline = 'top';
+      ctx.fillText(`${p.brand || '\u5343\u95ee\u529e\u516c'} \u00b7 \u6848\u4f8b\u5e93`, PAD, y + 4);
+    }
+    y += 30 + 34;
+
+    /* ---------- \u90e8\u95e8 / \u5ba2\u6237\u6807\u7b7e ---------- */
+    ctx.textBaseline = 'top';
+    let cx = PAD;
+    const chip = (text, bg, fg, bd) => {
+      ctx.font = `600 15px ${FONT}`;
+      const tw = ctx.measureText(text).width;
+      const w = tw + 26, h = 32;
+      ctx.fillStyle = bg;
+      roundRect(ctx, cx, y, w, h, 8);
+      ctx.fill();
+      if (bd) { ctx.strokeStyle = bd; ctx.lineWidth = 1; ctx.stroke(); }
+      ctx.fillStyle = fg;
+      ctx.fillText(text, cx + 13, y + 8);
+      cx += w + 10;
+    };
+    if (p.deptName) chip(p.deptName, GREEN, '#ffffff', null);
+    if (p.client) chip(p.client, '#eefff5', GREEN_DARK, 'rgba(48,191,105,0.25)');
+    y += 32 + 26;
+
+    /* ---------- \u6807\u9898 ---------- */
+    ctx.font = `700 40px ${FONT}`;
+    ctx.fillStyle = INK;
+    const titleLines = wrap(ctx, p.title || '', W - PAD * 2, 2);
+    titleLines.forEach(l => { ctx.fillText(l, PAD, y); y += 52; });
+    y += 8;
+
+    /* ---------- slogan ---------- */
+    if (p.slogan) {
+      ctx.font = `400 19px ${FONT}`;
+      ctx.fillStyle = MUTED;
+      wrap(ctx, p.slogan, W - PAD * 2, 3).forEach(l => { ctx.fillText(l, PAD, y); y += 30; });
+    }
+    y += 26;
+
+    /* ---------- \u5c01\u9762\u56fe ---------- */
+    const cw = W - PAD * 2, ch = Math.round(cw * 9 / 16);
+    ctx.save();
+    roundRect(ctx, PAD, y, cw, ch, 16);
+    ctx.clip();
+    if (cover) {
+      /* \u6309\u5bbd\u94fa\u6ee1\uff0c\u53d6\u9876\u90e8\uff08\u4e0e\u5361\u7247 object-position: top \u4e00\u81f4\uff09*/
+      const s = cw / cover.width;
+      ctx.drawImage(cover, PAD, y, cw, cover.height * s);
+    } else {
+      const cg = ctx.createLinearGradient(PAD, y, PAD + cw, y + ch);
+      cg.addColorStop(0, '#1d3a2a');
+      cg.addColorStop(1, '#121d18');
+      ctx.fillStyle = cg;
+      ctx.fillRect(PAD, y, cw, ch);
+    }
+    ctx.restore();
+    ctx.strokeStyle = LINE;
+    ctx.lineWidth = 1;
+    roundRect(ctx, PAD, y, cw, ch, 16);
+    ctx.stroke();
+    y += ch + 34;
+
+    /* ---------- \u4eae\u70b9\u6570\u5b57 ---------- */
+    const ms = (p.metrics || []).slice(0, 3);
+    if (ms.length) {
+      ctx.strokeStyle = LINE;
+      ctx.beginPath(); ctx.moveTo(PAD, y); ctx.lineTo(W - PAD, y); ctx.stroke();
+      y += 24;
+      const colW = (W - PAD * 2) / ms.length;
+      ms.forEach((m, i) => {
+        const x = PAD + colW * i;
+        ctx.font = `700 30px ${FONT}`;
+        ctx.fillStyle = GREEN_DARK;
+        ctx.fillText(String(m.value), x, y);
+        ctx.font = `400 14px ${FONT}`;
+        ctx.fillStyle = SUBTLE;
+        wrap(ctx, m.label, colW - 18, 2).forEach((l, k) => ctx.fillText(l, x, y + 40 + k * 20));
+      });
+      y += 40 + 44 + 24;
+      ctx.strokeStyle = LINE;
+      ctx.beginPath(); ctx.moveTo(PAD, y); ctx.lineTo(W - PAD, y); ctx.stroke();
+      y += 30;
+    }
+
+    /* ---------- 二维码区（紧跟内容，不钉底）---------- */
+    const qrBoxY = y + 6;
+    const m = QR.make(p.url);
+    const qpx = Math.floor(150 / (m.size + 2));   /* 含 1 模块内边距 */
+    const qSide = m.size * qpx;
+    const boxSide = qSide + qpx * 4;
+    ctx.fillStyle = '#ffffff';
+    roundRect(ctx, PAD, qrBoxY, boxSide, boxSide, 12);
+    ctx.fill();
+    ctx.strokeStyle = 'rgba(20,38,28,0.16)';
+    ctx.stroke();
+    QR.draw(m, ctx, PAD + qpx * 2, qrBoxY + qpx * 2, qpx, '#141a16', null);
+
+    const tx = PAD + boxSide + 26;
+    ctx.font = `600 20px ${FONT}`;
+    ctx.fillStyle = INK;
+    ctx.fillText('扫码查看完整案例', tx, qrBoxY + 18);
+    ctx.font = `400 15px ${FONT}`;
+    ctx.fillStyle = SUBTLE;
+    wrap(ctx, p.tagline || '让 AI 落到真实场景，让实践沉淀为组织能力', W - tx - PAD, 2)
+      .forEach((l, i) => ctx.fillText(l, tx, qrBoxY + 54 + i * 24));
+
+    /* 底部署名 */
+    ctx.font = `400 13px ${FONT}`;
+    ctx.fillStyle = SUBTLE;
+    ctx.fillText(`${p.brand || '千问办公'} · 全部门 AI 场景实践指引`, tx, qrBoxY + boxSide - 20);
+
+    /* ---------- 按真实高度输出 ---------- */
+    const finalH = Math.min(H_MAX, qrBoxY + boxSide + PAD);
+    canvas.width = W * SCALE;
+    canvas.height = finalH * SCALE;
+    const out = canvas.getContext('2d');
+    out.drawImage(off, 0, 0, W * SCALE, finalH * SCALE, 0, 0, W * SCALE, finalH * SCALE);
+  }
+
+  return { render, W, SCALE };
+})();
+
+;
+
+/* ---------- helpers ---------- */
+const $ = (s, e = document) => e.querySelector(s);
+const $$ = (s, e = document) => [...e.querySelectorAll(s)];
+const h = (tag, cls = '', html = '') => { const el = document.createElement(tag); if (cls) el.className = cls; if (html) el.innerHTML = html; return el; };
+
+/* Icons (inline SVG paths, heroicons-mini style) */
+const ICONS = {
+  scale: '<path d="M12 3v1.5M18.36 5.64l-1.06 1.06M21 12h-1.5M18.36 18.36l-1.06-1.06M12 19.5V21M7.05 18.36l-1.06 1.06M4.5 12H3M7.05 5.64 5.99 4.58"/>',
+  users: '<path d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0z"/>',
+  megaphone: '<path d="M10.34 15.84c-.688-.06-1.386-.09-2.09-.09H7.5a4.5 4.5 0 1 1 0-9h.75c.704 0 1.402-.03 2.09-.09m0 9.18c.253.962.584 1.892.985 2.783.247.55.06 1.21-.463 1.511l-.657.38c-.551.318-1.26.117-1.527-.461a20.845 20.845 0 0 1-1.44-4.282m3.102.069a18.03 18.03 0 0 1-.59-4.59c0-1.586.205-3.124.59-4.59m0 9.18a23.848 23.848 0 0 1 8.835 2.535M10.34 6.66a23.847 23.847 0 0 0 8.835-2.535m0 0A23.74 23.74 0 0 0 18.795 3m.38 1.125a23.91 23.91 0 0 1 1.014 5.395m-1.014 8.855c-.118.38-.245.754-.38 1.125m.38-1.125a23.91 23.91 0 0 0 1.014-5.395m0-3.46c.495.413.811 1.035.811 1.73 0 .695-.316 1.317-.811 1.73m0-3.46a24.347 24.347 0 0 1 0 3.46"/>',
+  building: '<path d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6H15m-1.5 3H15m-1.5 3H15M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21"/>',
+  play: '<path d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 0 1 0 1.972l-11.54 6.347a1.125 1.125 0 0 1-1.667-.986V5.653z"/>',
+  coins: '<path d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 3.75c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125"/>',
+  target: '<path d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/><path d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0z"/>',
+  gauge: '<path d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/>',
+  cart: '<path d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0z"/>',
+  arrowR: '<path d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/>',
+  alertTri: '<path d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"/>',
+  pain: '<path d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0zm-9 3.75h.008v.008H12v-.008z"/>',
+  check: '<path d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/>',
+  copy: '<path d="M15.666 3.888A2.25 2.25 0 0 0 13.5 2.25h-3c-1.03 0-1.9.693-2.166 1.638m7.332 0c.055.194.084.4.084.612v0a.75.75 0 0 1-.75.75H9.75a.75.75 0 0 1-.75-.75v0c0-.212.03-.418.084-.612m7.332 0c.646.049 1.288.11 1.927.184 1.1.128 1.907 1.077 1.907 2.185V19.5a2.25 2.25 0 0 1-2.25 2.25H6.75A2.25 2.25 0 0 1 4.5 19.5V6.257c0-1.108.806-2.057 1.907-2.185a48.208 48.208 0 0 1 1.927-.184"/>',
+  link: '<path d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244"/>',
+  doc: '<path d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9z"/>',
+  download: '<path d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3"/>',
+  live: '<path d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/>',
+  bookmark: '<path d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0z"/>',
+  share: '<path d="M7.217 10.907a2.25 2.25 0 1 0 0 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186 9.566-5.314m-9.566 7.5 9.566 5.314m0 0a2.25 2.25 0 1 0 3.935 2.186 2.25 2.25 0 0 0-3.935-2.186zm0-12.814a2.25 2.25 0 1 0 3.933-2.185 2.25 2.25 0 0 0-3.933 2.185z"/>',
+  search: '<path d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607z"/>',
+  close: '<path d="M6 18 18 6M6 6l12 12"/>'
+};
+
+const svgIcon = (name, size = 24) =>
+  `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">${ICONS[name] || ''}</svg>`;
+
+/* 封面色 */
+const CARD_COLORS = [
+  ['#eff1ff','#dfe4ff'], ['#e8f5f2','#d0ebe5'], ['#fef4e8','#fde9d0'],
+  ['#fce8f0','#f7d0df'], ['#eef6ff','#ddeeff'], ['#f5edff','#e8daff'],
+  ['#fdf2f2','#f8e0e0'], ['#ecfdf5','#d1fae5']
+];
+
+/* ---------- State ---------- */
+/* 三个上级 tab 互斥：'dept' 按行业看｜'path' 按实现路径看｜'fav' 我的收藏。
+   两套分类不关联，因此各自只在对应 tab 下生效，二级选中项也分开记 */
+let viewMode = 'dept';       // 'dept' | 'path' | 'fav'
+let currentDept = null;      // null = 全部（仅「按行业看」下生效）
+let currentPath = null;      // null = 全部（仅「按实现路径看」下生效）
+let searchQuery = '';        // 搜索关键词
+let currentView = 'gallery'; // 'gallery' | 'detail'
+let currentCase = null;
+
+/* ---------- 收藏 / 浏览量 / 分享 / 复制 ---------- */
+/* 环境可能不支持 localStorage，统一走 try/catch + 内存回退 */
+const FAV_KEY = 'qw_cases_fav';
+let favMem = null;
+function readFavs() {
+  if (favMem) return favMem;
+  try {
+    favMem = new Set(JSON.parse(localStorage.getItem(FAV_KEY) || '[]'));
+  } catch (e) { favMem = new Set(); }
+  return favMem;
+}
+function isFav(id) { return readFavs().has(id); }
+function toggleFav(id) {
+  const s = readFavs();
+  s.has(id) ? s.delete(id) : s.add(id);
+  try { localStorage.setItem(FAV_KEY, JSON.stringify([...s])); } catch (e) { /* 内存模式 */ }
+  return s.has(id);
+}
+
+function toast(msg) {
+  let el = $('#toast');
+  if (!el) { el = h('div', 'toast'); el.id = 'toast'; document.body.appendChild(el); }
+  el.textContent = msg;
+  el.classList.add('show');
+  clearTimeout(el._t);
+  el._t = setTimeout(() => el.classList.remove('show'), 1800);
+}
+
+/* 剪贴板写入：navigator.clipboard 在 http 非 localhost 下不可用，回退 execCommand */
+function writeClipboard(text) {
+  if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(text);
+  return new Promise((resolve, reject) => {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.cssText = 'position:fixed;top:-1000px;opacity:0';
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand('copy') ? resolve() : reject(); } catch (e) { reject(e); }
+    ta.remove();
+  });
+}
+function copyText(text, btn, restoreHTML) {
+  writeClipboard(text).then(() => {
+    btn.classList.add('copied');
+    const size = restoreHTML.includes('14') ? 14 : 15;
+    btn.innerHTML = `${svgIcon('check', size)} 已复制`;
+    toast('Prompt 已复制到剪贴板');
+    setTimeout(() => { btn.classList.remove('copied'); btn.innerHTML = restoreHTML; }, 2000);
+  }).catch(() => toast('复制失败，请手动选中文本'));
+}
+
+/* 案例链接：分享出去的链接必须是别人能打开的。
+   - 已部署到真实域名（GitHub Pages / 内网域名）：以当前页面地址为准，只换 hash，
+     这样换域名、放内网都不用改代码
+   - 本地预览（localhost / 127.0.0.1 / 局网 IP / file://）：回落到 SITE.publicUrl，
+     否则复制出来的是 127.0.0.1 这种只有自己能打开的地址
+   search 参数丢掉保持链接干净。*/
+function isLocalPreview() {
+  const hn = location.hostname;
+  return location.protocol === 'file:' || !hn
+    || hn === 'localhost' || hn === '127.0.0.1' || hn === '[::1]'
+    || /\.local$/.test(hn)
+    || /^(10\.|192\.168\.|172\.(1[6-9]|2\d|3[01])\.)/.test(hn);
+}
+
+function caseUrl(id) {
+  /* publicUrl 缺失或写错时不能抛异常（一抛整个分享弹窗就挂了），回落到当前地址 */
+  let base = location.href;
+  if (isLocalPreview() && SITE.publicUrl) {
+    try { base = new URL(SITE.publicUrl).href; } catch (e) { base = location.href; }
+  }
+  const u = new URL(base);
+  u.search = '';
+  u.hash = `#/case/${id}`;
+  return u.href;
+}
+
+function shareCase(c) {
+  openShareModal(c);
+}
+
+/* ---------- Routing ---------- */
+function navigate(view, id) {
+  if (view === 'detail' && id) {
+    currentView = 'detail';
+    currentCase = CASES.find(c => c.id === id) || null;
+    void ({ view, id }, '', `#/case/${id}`);
+  } else {
+    currentView = 'gallery';
+    currentCase = null;
+    void ({ view: 'gallery' }, '', '#/');
+  }
+  render();
+  window.scrollTo({ top: 0 });
+}
+
+if (0) __winAdd('popstate', (e) => {
+  const s = e.state || {};
+  if (s.view === 'detail' && s.id) {
+    currentView = 'detail';
+    currentCase = CASES.find(c => c.id === s.id) || null;
+  } else {
+    currentView = 'gallery';
+    currentCase = null;
+  }
+  render();
+});
+
+/* 手改 hash / 外部跳转（如客户点开分享链接而页面已开着）时同步视图。
+   pushState 不触发 hashchange，所以与 navigate() 不会重复渲染。*/
+if (0) __winAdd('hashchange', () => {
+  const m = location.hash.match(/^#\/case\/(.+)$/);
+  const nextCase = m ? (CASES.find(c => c.id === m[1]) || null) : null;
+  const nextView = nextCase ? 'detail' : 'gallery';
+  if (nextView === currentView && nextCase === currentCase) return;
+  currentView = nextView;
+  currentCase = nextCase;
+  render();
+  window.scrollTo({ top: 0 });
+});
+
+/* ---------- Init ---------- */
+function initFromHash() { currentView = 'gallery'; currentCase = null; }
+
+/* ---------- Gallery ---------- */
+/* Hero 只在进入首页时渲染一次；搜索/筛选只重绘 #results，否则输入框会失焦 */
+function renderGallery() {
+  const app = $('#app');
+  app.innerHTML = '';
+  const wrap = h('div', 'view');
+
+  const liveCount = CASES.filter(c => c.status !== 'wip').length;
+  const deptCount = new Set(CASES.map(c => c.dept)).size;
+
+  wrap.innerHTML = `
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="hero-stats-line">
+          <span class="chev left">〈〈〈</span>
+          <span>${liveCount} 个真实交付 · ${deptCount} 个业务分类 · ${CASES.length} 个落地案例</span>
+          <span class="chev right">〉〉〉</span>
+        </div>
+        <h1>${SITE.title}</h1>
+        <p class="hero-sub">${SITE.subtitle}</p>
+
+        <div class="hero-search">
+          <span class="search-ic">${svgIcon('search', 20)}</span>
+          <input type="search" id="searchInput" placeholder="${SITE.searchPlaceholder}"
+                 autocomplete="off" aria-label="搜索案例" value="${searchQuery.replace(/"/g, '&quot;')}">
+          <button type="button" class="search-clear ${searchQuery ? 'show' : ''}" id="searchClear" aria-label="清空搜索">${svgIcon('close', 16)}</button>
+        </div>
+
+        <div class="hot-scenes">
+          <span class="hot-label">热门场景：</span>
+          ${SITE.hotScenes.map(s => `<button type="button" class="hot-chip ${searchQuery === s ? 'active' : ''}" data-scene="${s}">${s}</button>`).join('')}
+        </div>
+
+        <div class="hero-slogan"><span>${SITE.slogan}</span></div>
+        <a href="#" class="hero-cta" id="ctaHero"><svg width="15" height="15" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 1H3a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V9"/><path d="M7 7l6-6"/><path d="M10 1h3v3"/></svg> 预约演示</a>
+      </div>
+    </section>
+    <section class="gallery">
+      <div class="toolbar">
+        <div class="toolbar-head">
+          <div class="view-tabs" id="viewTabs"></div>
+          <span class="results-count" id="resultsCount"></span>
+        </div>
+        <div class="dept-filter" id="subFilter"></div>
+      </div>
+      <div id="results"></div>
+    </section>
+  `;
+  app.appendChild(wrap);
+
+  /* 搜索交互：只重绘两行筛选胶囊与 #results，不碰 input，因此焦点不丢 */
+  const input = $('#searchInput');
+  const clearBtn = $('#searchClear');
+  const onSearch = () => {
+    searchQuery = input.value.trim();
+    clearBtn.classList.toggle('show', !!searchQuery);
+    syncHotChips();
+    renderFilters();  /* 两行胶囊计数都跟着搜索词变 */
+    renderResults();
+  };
+  input.addEventListener('input', onSearch);
+  clearBtn.addEventListener('click', () => {
+    searchQuery = '';
+    input.value = '';
+    clearBtn.classList.remove('show');
+    syncHotChips();
+    renderFilters();
+    renderResults();
+    input.focus();
+  });
+
+  /* 热门场景快捷标签：再点一次取消 */
+  $$('.hot-chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      const s = chip.dataset.scene;
+      searchQuery = (searchQuery === s) ? '' : s;
+      input.value = searchQuery;
+      clearBtn.classList.toggle('show', !!searchQuery);
+      syncHotChips();
+      renderFilters();
+      renderResults();
+    });
+  });
+
+  renderFilters();
+  renderResults();
+}
+
+function syncHotChips() {
+  $$('.hot-chip').forEach(c => c.classList.toggle('active', c.dataset.scene === searchQuery));
+}
+
+/* 横向滑动行的可用性补齐（筛选胶囊行、详情页 Tab 条共用）：
+   1. 边缘渐隐提示——隐了滚动条之后必须告诉用户“还有内容可滑”
+   2. 指针拖拽——手机上原生滑动很自然，但桌面缩窗口时鼠标拖不动（原生只认横向滚轮）
+   3. 拖动超过阈值后吞掉这次 click，否则松手会误触胶囊 */
+function enableXScroll(el) {
+  if (!el) return;
+  el.classList.add('x-scroll');
+  const sync = () => {
+    const max = el.scrollWidth - el.clientWidth;
+    el.classList.toggle('can-scroll-left', max > 2 && el.scrollLeft > 2);
+    el.classList.toggle('can-scroll-right', max > 2 && el.scrollLeft < max - 2);
+  };
+  el._xSync = sync;
+  if (el.dataset.xScroll) { sync(); return; }
+  el.dataset.xScroll = '1';
+
+  el.addEventListener('scroll', sync, { passive: true });
+  __winAdd('resize', sync);
+  if (window.ResizeObserver) new ResizeObserver(sync).observe(el);
+
+  let down = false, startX = 0, startLeft = 0, moved = false;
+  el.addEventListener('pointerdown', e => {
+    if (e.pointerType === 'touch' || e.button !== 0) return;   /* 触摸交给原生惯性滚动 */
+    down = true; moved = false; startX = e.clientX; startLeft = el.scrollLeft;
+  });
+  el.addEventListener('pointermove', e => {
+    if (!down) return;
+    const dx = e.clientX - startX;
+    if (!moved && Math.abs(dx) > 4) { moved = true; el.classList.add('is-dragging'); }
+    if (moved) { el.scrollLeft = startLeft - dx; e.preventDefault(); }
+  });
+  const end = () => {
+    if (moved) el.addEventListener('click', ev => { ev.stopPropagation(); ev.preventDefault(); }, { capture: true, once: true });
+    down = false; moved = false; el.classList.remove('is-dragging');
+    sync();
+  };
+  el.addEventListener('pointerup', end);
+  el.addEventListener('pointercancel', end);
+  el.addEventListener('pointerleave', () => { if (down) end(); });
+  sync();
+}
+
+/* 视频框高度控在一屏内：按视口高算高度预算，再用视频原比例反推最大宽度。
+   为何不用纯 CSS：块级元素上 aspect-ratio + max-height 不会反推宽度（宽度已由父容器确定），
+   结果只是把框压短、视频反而出现左右黑边，所以这里算好写 inline max-width。 */
+function fitVideoBox(el) {
+  /* 渲染阶段 wrap 还没挂到文档上，所以要能直接传元素；resize 时才走 document 查询 */
+  const fig = el || $('.video-block');
+  if (!fig) return;
+  const vw = +fig.dataset.vw, vh = +fig.dataset.vh;
+  if (!vw || !vh) return;
+  /* 260px 给顶部导航 + Tab 条 + 区块标题 + 下方演示步骤的一部分留白 */
+  const budget = Math.max(280, Math.min(620, window.innerHeight - 260));
+  fig.style.maxWidth = Math.min(vw, Math.round(budget * vw / vh)) + 'px';
+}
+__winAdd('resize', () => fitVideoBox());
+
+/* 重绘胶囊后把选中项拉到可见区——不用 scrollIntoView，避免它顺手滚动页面。
+   位置用 rect 差值算：offsetLeft 是相对定位祖先的，而胶囊行本身不是定位元素，算出来会偏。
+   余量取 34px：比边缘渐隐的 30px 大一点，否则选中项会刚好藏在渐隐里看不清 */
+function keepActiveVisible(box) {
+  const active = box.querySelector('.dept-chip.active');
+  if (!active) return;
+  const pad = 34;
+  const max = Math.max(0, box.scrollWidth - box.clientWidth);
+  const bx = box.getBoundingClientRect();
+  const ax = active.getBoundingClientRect();
+  const l = ax.left - bx.left + box.scrollLeft;
+  const r = l + ax.width;
+  if (l - pad < box.scrollLeft) box.scrollLeft = Math.max(0, l - pad);
+  else if (r + pad > box.scrollLeft + box.clientWidth) box.scrollLeft = Math.min(max, r + pad - box.clientWidth);
+}
+
+/* 上级 tab（按行业看 / 按实现路径看 / 我的收藏）+ 当前 tab 对应的二级分类。
+   两套分类互斥：切 tab 时不会带着另一套的选中项，也不做叠加筛选。
+   计数为 0 的类别置灰禁用而不隐藏，让完整分类表始终可见、切搜索词时也不跳行。 */
+function renderFilters() { renderViewTabs(); renderSubFilter(); }
+
+function renderViewTabs() {
+  const box = $('#viewTabs');
+  if (!box) return;
+  const hits = CASES.filter(c => matchCase(c, searchQuery));
+  const favCount = hits.filter(c => isFav(c.id)).length;
+  box.innerHTML = '';
+
+  const tabs = [
+    { id: 'dept', label: '按行业看' },
+    { id: 'path', label: '按实现路径看' },
+    { id: 'fav', label: `${svgIcon('bookmark', 13)} 我的收藏 <span class="count">${favCount}</span>` }
+  ];
+  tabs.forEach(t => {
+    const btn = h('button', `view-tab ${viewMode === t.id ? 'active' : ''}`, t.label);
+    btn.onclick = () => {
+      if (viewMode === t.id) return;
+      viewMode = t.id;
+      renderFilters();
+      renderResults();
+    };
+    box.appendChild(btn);
+  });
+}
+
+/* 二级分类：按行业看→DEPTS胶囊，按实现路径看→PATHS胶囊，收藏视图→不出二级 */
+function renderSubFilter() {
+  const box = $('#subFilter');
+  if (!box) return;
+  box.innerHTML = '';
+  box.hidden = viewMode === 'fav';
+  if (viewMode === 'fav') return;
+
+  const byPath = viewMode === 'path';
+  const groups = byPath ? PATHS : DEPTS;
+  const keyOf = c => (byPath ? c.path : c.dept);
+  const current = byPath ? currentPath : currentDept;
+  const setCurrent = v => { if (byPath) currentPath = v; else currentDept = v; };
+  const hits = CASES.filter(c => matchCase(c, searchQuery));
+
+  const allBtn = h('button', `dept-chip ${current === null ? 'active' : ''}`, `全部 <span class="count">${hits.length}</span>`);
+  allBtn.onclick = () => { setCurrent(null); renderFilters(); renderResults(); };
+  box.appendChild(allBtn);
+
+  groups.forEach(g => {
+    const cnt = hits.filter(c => keyOf(c) === g.id).length;
+    const btn = h('button', `dept-chip ${byPath ? 'path-chip' : ''} ${cnt ? '' : 'is-empty'} ${current === g.id ? 'active' : ''}`,
+      `${g.name} <span class="count">${cnt}</span>`);
+    btn.title = g.desc || '';
+    if (!cnt) btn.disabled = true;
+    btn.onclick = () => { setCurrent(current === g.id ? null : g.id); renderFilters(); renderResults(); };
+    box.appendChild(btn);
+  });
+
+  enableXScroll(box);
+  keepActiveVisible(box);
+  if (box._xSync) box._xSync();   /* 上一步可能改了 scrollLeft，边缘渐隐得重算 */
+}
+
+/* 全文匹配：标题/slogan/概述/标签/痛点/方案/人群/部门名/客户均参与，多词需全部命中。
+   注意：不能把 dept.desc 加进来——部门描述里的词会让同部门所有案例被误命中
+   （如法务 desc 含“合同”，会导致搜“合同”时把招投标案例也带出来）*/
+function matchCase(c, q) {
+  if (!q) return true;
+  const dept = DEPTS.find(d => d.id === c.dept) || {};
+  const path = PATHS.find(p => p.id === c.path) || {};
+  const hay = [
+    c.title, c.slogan, c.summary, c.client, c.clientNote, c.before, c.after, c.prompt,
+    dept.name, dept.en, path.name, path.en,
+    ...(c.tags || []), ...(c.audience || []), ...(c.pains || []),
+    ...(c.solutions || []), ...(c.demoLine || []),
+    ...(c.metrics || []).map(m => `${m.value} ${m.label}`),
+    ...(c.links || []).map(l => l.label)
+  ].filter(Boolean).join(' ').toLowerCase();
+  return q.toLowerCase().split(/\s+/).filter(Boolean).every(t => hay.includes(t));
+}
+
+function renderResults() {
+  const box = $('#results');
+  if (!box) return;
+  box.innerHTML = '';
+
+  const isFavView = viewMode === 'fav';
+  const byPath = viewMode === 'path';
+  const hits = CASES.filter(c =>
+    matchCase(c, searchQuery)
+    && (isFavView ? isFav(c.id) : true)
+    && (byPath ? (currentPath ? c.path === currentPath : true)
+      : (!isFavView && currentDept ? c.dept === currentDept : true))
+  );
+  const countEl = $('#resultsCount');
+  if (countEl) {
+    countEl.textContent = isFavView ? `已收藏 ${hits.length} 个案例`
+      : searchQuery ? `匹配到 ${hits.length} 个案例`
+        : `${hits.length} 个案例`;
+  }
+
+  if (!hits.length) {
+    box.innerHTML = isFavView
+      ? `<div class="empty-state">
+           <strong>还没有收藏任何案例</strong>
+           <span>点卡片右上角的书签图标，把常用案例收起来，下次直接从这里拿</span>
+         </div>`
+      : `<div class="empty-state">
+           <strong>没找到匹配“${searchQuery}”的案例</strong>
+           <span>试试换个关键词，或点上方“热门场景”快速定位</span>
+         </div>`;
+    return;
+  }
+
+  /* 收藏视图：收藏本身跨两套分类，不分组，直接一片网格 */
+  if (isFavView) {
+    const grid = h('div', 'case-grid');
+    hits.forEach((c, ci) => {
+      const dept = DEPTS.find(d => d.id === c.dept) || {};
+      grid.appendChild(renderCard(c, dept, CARD_COLORS[ci % CARD_COLORS.length]));
+    });
+    box.appendChild(grid);
+    return;
+  }
+
+  /* 按行业看→按 DEPTS 分组；按实现路径看→按 PATHS 分组（分组头用各自的名称/英文/说明）*/
+  const groups = byPath ? PATHS : DEPTS;
+  const current = byPath ? currentPath : currentDept;
+  const keyOf = c => (byPath ? c.path : c.dept);
+  const groupsToShow = current ? groups.filter(g => g.id === current) : groups;
+
+  groupsToShow.forEach(g => {
+    const cases = hits.filter(c => keyOf(c) === g.id);
+    if (!cases.length) return;
+    const sec = h('section', 'dept-section');
+    sec.id = `${byPath ? 'path' : 'dept'}-${g.id}`;
+    sec.innerHTML = `<div class="dept-head"><h2>${g.name}</h2><span class="en">${g.en}</span><span class="desc">${g.desc}</span></div>`;
+    const grid = h('div', 'case-grid');
+    cases.forEach((c, ci) => {
+      const dept = DEPTS.find(d => d.id === c.dept) || {};
+      grid.appendChild(renderCard(c, dept, CARD_COLORS[ci % CARD_COLORS.length]));
+    });
+    sec.appendChild(grid);
+    box.appendChild(sec);
+  });
+}
+
+function renderCard(c, dept, colors) {
+  const card = h('article', `case-card ${c.status === 'wip' ? 'is-wip' : ''}`);
+  const statusLabel = c.status === 'live' ? '可演示' : c.status === 'demo' ? '有素材' : '待补充';
+  const path = PATHS.find(p => p.id === c.path) || {};
+  card.style.setProperty('--c1', colors[0]);
+  card.style.setProperty('--c2', colors[1]);
+  const faved = isFav(c.id);
+  card.innerHTML = `
+    <div class="card-media${c.cover ? ' has-cover' : ''}">
+      ${c.cover ? `<img class="cover-img" src="${c.cover}" alt="${c.title} 预览" loading="lazy">` : `<span class="watermark">${dept.en}</span>`}
+      <span class="status-pill ${c.status}"><i></i>${statusLabel}</span>
+      <button type="button" class="card-fav ${faved ? 'active' : ''}" aria-label="收藏案例" aria-pressed="${faved}">${svgIcon('bookmark', 18)}</button>
+    </div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-dept">${dept.name}${c.client ? ` · ${c.client}` : ''}</span>
+        ${path.name ? `<span class="card-path" title="实现路径：${path.desc || ''}">${path.name}</span>` : ''}
+      </div>
+      <h3>${c.title}</h3>
+      <p class="card-slogan">${c.slogan}</p>
+      <div class="card-badges">${c.tags.slice(0, 3).map(t => `<span>${t}</span>`).join('')}</div>
+      <div class="card-metrics">
+        ${c.metrics.slice(0, 3).map(m => `<div><strong>${m.value}</strong><small>${m.label}</small></div>`).join('')}
+      </div>
+    </div>
+    <div class="card-actions">
+      ${c.prompt ? `<button type="button" class="card-copy">${svgIcon('copy', 15)} 一键复制 Prompt</button>` : ''}
+      <a class="card-open" href="#/case/${c.id}">查看案例 ${svgIcon('arrowR', 15)}</a>
+    </div>
+    <a class="card-link" href="#/case/${c.id}" aria-label="查看「${c.title}」详情"></a>
+  `;
+
+  card.querySelector('.card-link').addEventListener('click', e => { e.preventDefault(); navigate('detail', c.id); });
+  card.querySelector('.card-open').addEventListener('click', e => { e.preventDefault(); navigate('detail', c.id); });
+
+  card.querySelector('.card-fav').addEventListener('click', e => {
+    e.preventDefault(); e.stopPropagation();
+    const on = toggleFav(c.id);
+    e.currentTarget.classList.toggle('active', on);
+    e.currentTarget.setAttribute('aria-pressed', on);
+    toast(on ? '已收藏案例' : '已取消收藏');
+    /* 收藏数变了，刷新 tab 上的计数；若正在收藏视图，取消后该卡需移出 */
+    if ($('#viewTabs')) renderFilters();
+    if (viewMode === 'fav') renderResults();
+  });
+
+  const copyBtn = card.querySelector('.card-copy');
+  if (copyBtn) copyBtn.addEventListener('click', e => {
+    e.preventDefault(); e.stopPropagation();
+    copyText(c.prompt, copyBtn, `${svgIcon('copy', 15)} 一键复制 Prompt`);
+  });
+
+  return card;
+}
+
+/* ---------- Detail ---------- */
+function renderDetail() {
+  const c = currentCase;
+  if (!c) { navigate('gallery'); return; }
+  const dept = DEPTS.find(d => d.id === c.dept) || {};
+  const path = PATHS.find(p => p.id === c.path) || {};
+  const app = $('#app');
+  app.innerHTML = '';
+  const wrap = h('div', 'view detail-page');
+
+  /* Breadcrumb */
+  wrap.innerHTML = `
+    <nav class="breadcrumb">
+      <a href="#/" class="back-home">案例库</a>
+      <span class="sep">/</span>
+      <a href="#/" data-dept="${dept.id}">${dept.name}</a>
+      <span class="sep">/</span>
+      <strong>${c.title}</strong>
+    </nav>
+  `;
+  wrap.querySelector('.back-home').addEventListener('click', e => { e.preventDefault(); navigate('gallery'); });
+  const deptLink = wrap.querySelector('[data-dept]');
+  if (deptLink) deptLink.addEventListener('click', e => { e.preventDefault(); viewMode = 'dept'; currentDept = dept.id; navigate('gallery'); });
+
+  /* Hero */
+  const faved = isFav(c.id);
+  const hero = h('section', 'detail-hero');
+  hero.innerHTML = `
+    <div class="detail-copy">
+      <div class="detail-chips">
+        <span class="chip-dept">${dept.name}</span>
+        ${path.name ? `<button type="button" class="chip-path" data-path="${path.id}" title="${path.desc || ''}">${path.name}</button>` : ''}
+      </div>
+      <h1>${c.title}</h1>
+      <p class="detail-slogan">${c.slogan}</p>
+      ${c.audience.length ? `<div class="detail-audience">${svgIcon('users', 16)}<span class="lbl">适用人群</span>${c.audience.map(a => `<b>${a}</b>`).join('')}</div>` : ''}
+      <div class="detail-actions">
+        ${c.prompt ? `<button type="button" class="btn primary copy-prompt">${svgIcon('copy', 16)} 一键复制 Prompt</button>` : ''}
+        <button type="button" class="btn share-case">${svgIcon('share', 16)} 分享案例</button>
+        <button type="button" class="btn fav-case ${faved ? 'active' : ''}" aria-pressed="${faved}">${svgIcon('bookmark', 16)} <span class="fav-label">${faved ? '已收藏' : '收藏案例'}</span></button>
+      </div>
+      <div class="roi-summary">
+        ${c.metrics.map((m, i) => `<div><span>亮点 0${i + 1}</span><strong>${m.value}</strong><small>${m.label}</small></div>`).join('')}
+      </div>
+    </div>
+    <figure class="detail-visual">
+      ${c.media ? (c.media.type === 'video'
+        ? `<video src="${c.media.src}" autoplay loop muted playsinline preload="metadata" poster="${c.media.poster || ''}"></video>`
+        : `<img src="${c.media.src}" alt="${c.title} 动态演示" loading="lazy">`)
+        : (c.cover
+          ? `<img src="${c.cover}" alt="${c.title} 效果预览" loading="lazy">`
+          : `<div class="visual-placeholder">${svgIcon('play', 46)}<span>演示动图即将上线</span></div>`)}
+      <figcaption class="preview-badge"><i></i>${c.media ? '动态实践预览' : '案例效果预览'}</figcaption>
+      <span class="preview-note">${c.media && c.media.caption ? c.media.caption : '真实操作片段 · 自动循环播放'}</span>
+    </figure>
+  `;
+  wrap.appendChild(hero);
+
+  /* Hero 按钮交互 */
+  const pathChip = hero.querySelector('.chip-path');
+  if (pathChip) pathChip.addEventListener('click', () => {
+    /* 点路径标签回列表页，直接切到「按实现路径看」并定位到该路径 */
+    viewMode = 'path'; currentPath = c.path;
+    navigate('gallery');
+    setTimeout(() => { const el = $('.toolbar'); if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 60);
+  });
+  const copyBtn = hero.querySelector('.copy-prompt');
+  if (copyBtn) copyBtn.addEventListener('click', () => copyText(c.prompt, copyBtn, `${svgIcon('copy', 16)} 一键复制 Prompt`));
+  hero.querySelector('.share-case').addEventListener('click', () => shareCase(c));
+  const favBtn = hero.querySelector('.fav-case');
+  favBtn.addEventListener('click', () => {
+    const on = toggleFav(c.id);
+    favBtn.classList.toggle('active', on);
+    favBtn.setAttribute('aria-pressed', on);
+    favBtn.querySelector('.fav-label').textContent = on ? '已收藏' : '收藏案例';
+    toast(on ? '已收藏案例' : '已取消收藏');
+  });
+
+  /* Tab 导航（锚点跳转 + 滚动高亮） */
+  const tabDefs = [
+    { id: 'overview', label: '案例概览', has: c.pains.length > 0 },
+    { id: 'compare',  label: '效果对比', has: !!(c.before && c.after) },
+    /* 有视频就叫「视频演示」，没视频才叫「演示路径」 */
+    { id: 'demo',     label: c.video ? '视频演示' : '演示路径', has: !!c.video || c.demoLine.length > 0 },
+    { id: 'material', label: '相关材料', has: c.links.length > 0 },
+    { id: 'prompt',   label: '复制 Prompt', has: !!c.prompt }
+  ].filter(t => t.has);
+
+  if (tabDefs.length > 1) {
+    const tabs = h('nav', 'detail-tabs');
+    tabs.innerHTML = `<div class="tabs-inner">${tabDefs.map((t, i) => `<a href="#sec-${t.id}" data-tab="${t.id}" class="${i === 0 ? 'active' : ''}">${t.label}</a>`).join('')}</div>`;
+    tabs.querySelectorAll('[data-tab]').forEach(a => {
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        const target = document.getElementById(`sec-${a.dataset.tab}`);
+        if (target) window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - 122, behavior: 'smooth' });
+      });
+    });
+    wrap.appendChild(tabs);
+    enableXScroll(tabs.querySelector('.tabs-inner'));   /* Tab 多于屏宽时同样给滑动提示与拖拽 */
+  }
+
+  /* Section 01: 案例概览（场景挑战 & 解决思路） */
+  if (c.pains.length) {
+    const sec = h('section', 'detail-section overview');
+    sec.id = 'sec-overview';
+    sec.innerHTML = `
+      <span class="section-label">01 / 案例概览</span>
+      <p class="section-lead">${c.summary}</p>
+      <div class="overview-grid">
+        <article class="pain-card">
+          <div class="article-icon pain">${svgIcon('pain', 20)}</div>
+          <span>典型挑战</span>
+          <h3>这些问题你是不是也在面对</h3>
+          <ul>${c.pains.map(p => `<li>${svgIcon('alertTri', 16)}${p}</li>`).join('')}</ul>
+        </article>
+        <article class="sol-card">
+          <div class="article-icon solution">${svgIcon('check', 20)}</div>
+          <span>解决思路</span>
+          <h3>千问办公的做法</h3>
+          <ul>${c.solutions.map(s => `<li>${svgIcon('check', 16)}${s}</li>`).join('')}</ul>
+        </article>
+      </div>
+    `;
+    wrap.appendChild(sec);
+  }
+
+  /* Section 02: 效果对比 */
+  if (c.before && c.after) {
+    const sec = h('section', 'detail-section');
+    sec.id = 'sec-compare';
+    sec.innerHTML = `
+      <span class="section-label">02 / 效果对比</span>
+      <div class="compare-grid">
+        <figure class="before"><figcaption><span class="before-dot">以前</span></figcaption><p>${c.before}</p></figure>
+        <figure class="after"><figcaption><span class="after-dot">现在</span></figcaption><p>${c.after}</p></figure>
+      </div>
+    `;
+    wrap.appendChild(sec);
+  }
+
+  /* Section 03: 视频演示 / 演示路径 */
+  if (c.video || c.demoLine.length) {
+    const sec = h('section', 'detail-section');
+    sec.id = 'sec-demo';
+    const label = c.video ? '03 / 视频演示' : '03 / 演示路径';
+    sec.innerHTML = `
+      <span class="section-label">${label}</span>
+      ${c.video ? `
+        <figure class="video-block" data-vw="${c.video.width || ''}" data-vh="${c.video.height || ''}">
+          <video src="${c.video.src}" poster="${c.video.poster || ''}"${c.video.width ? ` width="${c.video.width}" height="${c.video.height}" style="aspect-ratio:${c.video.width}/${c.video.height}"` : ''} controls controlsList="nodownload noplaybackrate" disablePictureInPicture playsinline preload="metadata"></video>
+        </figure>` : '<h2>怎么用？</h2>'}
+      ${c.demoLine.length ? `<ul class="demo-line${c.video ? ' after-video' : ''}">${c.demoLine.map(d => `<li>${d}</li>`).join('')}</ul>` : ''}
+    `;
+    wrap.appendChild(sec);
+    if (c.video) fitVideoBox(sec.querySelector('.video-block'));   /* 视频框高度控在一屏内 */
+  }
+
+  /* Section 04: 相关材料——全部材料排成一行（窄屏自动换行）。
+     不再按分组堆成多行，分类改用卡片上的小标签表达；
+     顺序固定为 技能包 → 示例文档 → 产物，没标 group 的旧链接归为产物 */
+  if (c.links.length) {
+    const sec = h('section', 'detail-section');
+    sec.id = 'sec-material';
+    const kindIcon = { demo: 'live', doc: 'doc', text: 'doc', file: 'download', live: 'live' };
+    const kindNote = { live: '在线体验', demo: '查看演示', doc: '查看文档', text: '点开预览 · 可下载', file: '下载资料' };
+    const GROUP_NAME = { skill: '技能包', sample: '示例文档', output: '产物' };
+    const ORDER = ['skill', 'sample', 'output'];
+    const items = c.links
+      .map((l, i) => ({ l, i, g: GROUP_NAME[l.group] ? l.group : 'output' }))
+      .sort((a, b) => ORDER.indexOf(a.g) - ORDER.indexOf(b.g));
+
+    sec.innerHTML = `
+      <span class="section-label">04 / 相关材料</span>
+      <div class="links-grid">
+        ${items.map(({ l, i, g }) => `
+          <a class="link-card" href="${l.href}" data-link-id="${i}">
+            <span class="link-group-tag g-${g}">${GROUP_NAME[g]}</span>
+            <span class="link-card-main">
+              <span class="ic">${svgIcon(kindIcon[l.kind] || 'link', 18)}</span>
+              <span class="tx">
+                <b>${l.label}</b>
+                <small>${l.note || kindNote[l.kind] || '查看文档'}</small>
+              </span>
+              <span class="arrow">${svgIcon(l.kind === 'file' ? 'download' : 'arrowR', 16)}</span>
+            </span>
+          </a>
+        `).join('')}
+      </div>
+    `;
+    wrap.appendChild(sec);
+    sec.querySelectorAll('.link-card').forEach(a => {
+      a.addEventListener('click', e => {
+        const link = c.links[+a.dataset.linkId];
+        if (openInModal(link)) e.preventDefault();
+      });
+    });
+  }
+
+  /* Section 05: 复制 Prompt（有 promptSections 就分栏展示，避免一大坨文字）*/
+  if (c.prompt) {
+    const sec = h('section', 'detail-section');
+    sec.id = 'sec-prompt';
+    const structured = Array.isArray(c.promptSections) && c.promptSections.length;
+    sec.innerHTML = `
+      <span class="section-label">05 / 复制 PROMPT</span>
+      ${c.skill ? `<div class="prompt-skill-note">${svgIcon('scale', 16)}<span>本案例基于千问办公技能实现，需先安装对应技能（如 <b>${c.skill}</b>），再发送下面的 Prompt。实际技能名以你安装的为准。</span></div>` : ''}
+      <div class="prompt-box">
+        <div class="prompt-head"><span>直接告诉千问办公你的需求</span><button type="button" class="btn copy-prompt-2">${svgIcon('copy', 14)} 复制全文</button></div>
+        ${structured ? `
+          <div class="prompt-struct">
+            ${c.promptLead ? `<p class="prompt-lead">${c.promptLead}</p>` : ''}
+            <div class="prompt-cols">
+              ${c.promptSections.map(s => `
+                <section>
+                  <h4>${s.title}</h4>
+                  <ul>${s.items.map(i => `<li>${i}</li>`).join('')}</ul>
+                </section>
+              `).join('')}
+            </div>
+            ${c.promptTail ? `<p class="prompt-tail">${c.promptTail}</p>` : ''}
+          </div>` : `<pre class="prompt-raw"></pre>`}
+      </div>
+    `;
+    /* Prompt 正文用 textContent 灌进去：里面可能带 <a target="_blank"> 这类尖括号，
+       走 innerHTML 会被当成标签吃掉，而复制出去的又必须是原文 */
+    const pre = sec.querySelector('.prompt-raw');
+    if (pre) pre.textContent = c.prompt;
+    wrap.appendChild(sec);
+    const btn2 = sec.querySelector('.copy-prompt-2');
+    btn2.addEventListener('click', () => copyText(c.prompt, btn2, `${svgIcon('copy', 14)} 复制全文`));
+  }
+
+  /* WIP Notice */
+  if (c.status === 'wip') {
+    const sec = h('section', 'detail-section');
+    sec.innerHTML = `<div class="wip-notice">${svgIcon('alertTri', 18)}<div><strong>该案例正在完善中</strong><br>内容框架已就绪，演示素材即将更新。如果您对这个场景感兴趣，欢迎联系我们提前了解。</div></div>`;
+    wrap.appendChild(sec);
+  }
+
+  /* Related cases */
+  const related = CASES.filter(r => r.dept === c.dept && r.id !== c.id).slice(0, 3);
+  if (related.length) {
+    const sec = h('section', 'detail-section');
+    sec.innerHTML = `<span class="section-label">相关案例</span>`;
+    const grid = h('div', 'related-grid');
+    related.forEach((r, ri) => {
+      const rd = DEPTS.find(d => d.id === r.dept) || {};
+      grid.appendChild(renderCard(r, rd, CARD_COLORS[ri % CARD_COLORS.length]));
+    });
+    sec.appendChild(grid);
+    wrap.appendChild(sec);
+  }
+
+  app.appendChild(wrap);
+}
+
+/* ---------- Nav ---------- */
+function renderNav() {
+  const nav = $('#mainNav');
+  nav.innerHTML = '';
+  DEPTS.forEach(d => {
+    const cnt = CASES.filter(c => c.dept === d.id).length;
+    if (!cnt) return;
+    const a = h('a', '', d.name);
+    a.href = `#dept-${d.id}`;
+    a.addEventListener('click', e => { e.preventDefault(); viewMode = 'dept'; currentDept = d.id; navigate('gallery'); setTimeout(() => { const el = $(`#dept-${d.id}`); if (el) el.scrollIntoView({ behavior: 'smooth' }); }, 60); });
+    nav.appendChild(a);
+  });
+}
+
+/* ---------- Render ---------- */
+function render() {
+  if (currentView === 'detail') renderDetail();
+  else renderGallery();
+  setupScrollSpy();
+}
+
+/* Tab 滚动高亮：以当前视口上缘为基准选中最后一个已过的 section */
+let spyHandler = null;
+function setupScrollSpy() {
+  if (spyHandler) { window.removeEventListener('scroll', spyHandler); spyHandler = null; }
+  const tabs = $$('.detail-tabs [data-tab]');
+  if (!tabs.length) return;
+  const secs = tabs.map(t => document.getElementById(`sec-${t.dataset.tab}`)).filter(Boolean);
+  spyHandler = () => {
+    const line = window.scrollY + 160;
+    let idx = 0;
+    secs.forEach((s, i) => { if (s.offsetTop <= line) idx = i; });
+    tabs.forEach((t, i) => t.classList.toggle('active', i === idx));
+  };
+  __winAdd('scroll', spyHandler, { passive: true });
+  spyHandler();
+}
+
+/* ---------- Modal preview ---------- */
+/*
+ * kind 行为对照：
+ *   demo / doc → 弹窗内预览（iframe）+ 下载按钮
+ *   file       → 直接下载，不开预览（如 zip）
+ *   live       → 新标签页打开（外部站点不允许 iframe 嵌入）
+ */
+function isPreviewable(link) {
+  if (!link) return false;
+  if (link.kind === 'demo' || link.kind === 'doc' || link.kind === 'text') return true;
+  return false;
+}
+function renderLinkButton(link, extraClass = '') {
+  const iconName = link.kind === 'demo' ? 'live' : link.kind === 'file' ? 'download' : link.kind === 'live' ? 'live' : 'doc';
+  if (link.kind === 'live') {
+    return `<a class="btn ${extraClass}" href="${link.href}" target="_blank" rel="noopener">${svgIcon(iconName, 16)} ${link.label}</a>`;
+  }
+  if (link.kind === 'file') {
+    return `<a class="btn ${extraClass}" href="${link.href}" download>${svgIcon('download', 16)} ${link.label}</a>`;
+  }
+  return `<button type="button" class="btn ${extraClass}" data-preview-href="${link.href}" data-preview-label="${link.label}" data-preview-kind="${link.kind}">${svgIcon(iconName, 16)} ${link.label}</button>`;
+}
+function openInModal(link) {
+  if (!isPreviewable(link)) {
+    if (link.kind === 'file') {
+      const a = document.createElement('a');
+      a.href = link.href; a.download = link.downloadName || ''; document.body.appendChild(a); a.click(); a.remove();
+      return true;
+    }
+    return false; /* live → 默认跳转 */
+  }
+  const backdrop = $('#previewModal');
+  const frame = $('#previewFrame');
+  const textBox = $('#previewText');
+  const title = $('#previewTitle');
+  const dl = $('#previewDownload');
+  title.textContent = link.label;
+  /* 下载按钮可以指向与预览不同的文件：
+     技能包就是“预览 SKILL.md、下载整个 zip”这种组合 */
+  dl.href = link.download || link.href;
+  dl.setAttribute('download', link.downloadName || '');
+
+  if (link.kind === 'text') {
+    /* .md 的 content-type 是 text/markdown，丢给 iframe 会直接触发下载而不是展示，
+       所以自己 fetch 文本放进 <pre>（textContent 赋值，不会执行任何内容）*/
+    frame.hidden = true;
+    frame.src = 'about:blank';
+    textBox.hidden = false;
+    textBox.textContent = '加载中…';
+    fetch(link.href)
+      .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.text(); })
+      .then(t => { textBox.textContent = t; textBox.scrollTop = 0; })
+      .catch(err => { textBox.textContent = `文件读取失败（${err.message}）\n可直接点右上角“下载”拿完整包。`; });
+  } else {
+    textBox.hidden = true;
+    textBox.textContent = '';
+    frame.hidden = false;
+    frame.src = link.href;   /* SVG / HTML 直接作为 iframe 就能展示 */
+  }
+  backdrop.classList.add('show');
+  document.body.style.overflow = 'hidden';
+  return true;
+}
+function closeModal() {
+  const backdrop = $('#previewModal');
+  const frame = $('#previewFrame');
+  backdrop.classList.remove('show');
+  frame.src = 'about:blank';
+  document.body.style.overflow = '';
+}
+document.addEventListener('click', e => {
+  const btn = e.target.closest('[data-preview-href]');
+  if (btn) {
+    e.preventDefault();
+    openInModal({ href: btn.dataset.previewHref, label: btn.dataset.previewLabel, kind: btn.dataset.previewKind });
+  }
+  if (e.target.matches('#previewModal') || e.target.closest('#previewClose')) closeModal();
+});
+document.addEventListener('keydown', e => {
+  if (e.key !== 'Escape') return;
+  closeModal();
+  closeShareModal();
+});
+
+/* ---------- 分享案例弹窗（链接 / 海报）---------- */
+let posterCase = null;
+let posterDone = false;      /* 同一案例只渲染一次 */
+
+function openShareModal(c) {
+  posterCase = c;
+  posterDone = false;
+  const url = caseUrl(c.id);
+  $('#shareUrl').value = url;                     /* 把链接明文展出来，所见即所复制 */
+  $('#shareTitle').textContent = `分享「${c.title}」`;
+  switchSharePane('link');
+  $('#shareModal').classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+function closeShareModal() {
+  $('#shareModal').classList.remove('show');
+  document.body.style.overflow = '';
+}
+
+function switchSharePane(name) {
+  $$('.share-tab').forEach(t => t.classList.toggle('active', t.dataset.pane === name));
+  $$('.share-pane').forEach(p => p.classList.toggle('active', p.id === `pane-${name}`));
+  if (name === 'poster') buildPoster();
+}
+
+function buildPoster() {
+  if (!posterCase || posterDone) return;
+  posterDone = true;
+  const c = posterCase;
+  const dept = DEPTS.find(d => d.id === c.dept) || {};
+  const canvas = $('#posterCanvas');
+  const loading = $('#posterLoading');
+  loading.style.display = 'block';
+  loading.textContent = '正在生成海报…';
+
+  Poster.render(canvas, {
+    title: c.title,
+    slogan: c.slogan,
+    deptName: dept.name,
+    client: c.client,
+    metrics: c.metrics,
+    cover: c.cover,
+    url: caseUrl(c.id),
+    logoSrc: $('.brand-logo') ? $('.brand-logo').src : '',
+    brand: SITE.brand,
+    tagline: SITE.slogan
+  }).then(() => {
+    loading.style.display = 'none';
+    /* toBlob 比 toDataURL 省内存，大图不卡 */
+    canvas.toBlob(blob => {
+      if (!blob) return;
+      const a = $('#posterSave');
+      if (a.dataset.url) URL.revokeObjectURL(a.dataset.url);
+      const objUrl = URL.createObjectURL(blob);
+      a.href = objUrl;
+      a.dataset.url = objUrl;
+      a.download = `千问办公案例_${c.title}.png`;
+    }, 'image/png');
+  }).catch(err => {
+    posterDone = false;
+    loading.textContent = '海报生成失败，请重试';
+    console.error('poster:', err);
+  });
+}
+
+$('#shareClose').addEventListener('click', closeShareModal);
+$('#shareModal').addEventListener('click', e => { if (e.target.id === 'shareModal') closeShareModal(); });
+$$('.share-tab').forEach(t => t.addEventListener('click', () => switchSharePane(t.dataset.pane)));
+$('#shareCopy').addEventListener('click', () => {
+  const btn = $('#shareCopy');
+  const label = btn.innerHTML;
+  const input = $('#shareUrl');
+  input.select();
+  writeClipboard(input.value).then(() => {
+    btn.classList.add('copied');
+    btn.innerHTML = `${svgIcon('check', 16)} 已复制`;
+    toast('案例链接已复制');
+    setTimeout(() => { btn.classList.remove('copied'); btn.innerHTML = label; }, 2000);
+  }).catch(() => toast('复制失败，请手动选中链接'));
+});
+
+/* ---------- 顶部「预约演示」与页脚联系区 ---------- */
+/* 预约演示：平滑滚到页脚联系区。用 JS 滚而不靠 href 改 hash，
+   因为本站是 hash 路由（#/case/xxx），改成 #contact 会误触 popstate 回到列表页 */
+$('#ctaTop').addEventListener('click', e => {
+  e.preventDefault();
+  const el = $('#contact');
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+});
+
+/* embed 模式下 hero 里的「预约演示」：同样平滑滚到页脚联系区（事件委托，兼容 hero 重渲染）*/
+document.addEventListener('click', e => {
+  const c = e.target.closest && e.target.closest('#ctaHero');
+  if (!c) return;
+  e.preventDefault();
+  const el = $('#contact');
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+});
+
+/* 页脚「联系我们」+ 二维码：均直指钉钉表单 */
+(function initContact() {
+  const cf = SITE.contactForm || {};
+  if (cf.url) {
+    $('#ctaFooter').href = cf.url;
+    $('#qrLink').href = cf.url;
+  }
+  const qrWrap = $('#footerQr');
+  if (cf.qr) {
+    $('#qrImg').src = cf.qr;
+    $('#qrCaption').textContent = cf.qrCaption || '扫码填写表单';
+  } else if (qrWrap) {
+    qrWrap.style.display = 'none';   /* 未配二维码时不留空框 */
+  }
+})();
+
+/* ---------- Scroll ---------- */
+const toTop = $('#toTop');
+__winAdd('scroll', () => { toTop.classList.toggle('show', window.scrollY > 400); }, { passive: true });
+toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+/* ---------- Boot ---------- */
+initFromHash();
+renderNav();
+render();
+
+})();
+</script>

@@ -97,7 +97,7 @@
         position: absolute;
         top: 12px;
         right: 12px;
-        background: #1677ff;
+        background: #30bf69;
         color: #fff;
         padding: 4px 11px;
         border-radius: 999px;
@@ -136,8 +136,8 @@
     }
 
     .vcard-highlight-tag.tag-blue {
-        background: linear-gradient(135deg, #e8f0fe, #d4e4fc);
-        color: #1677FF;
+        background: linear-gradient(135deg, #eafaf1, #cdefdb);
+        color: #30bf69;
     }
 
     .vcard-highlight-tag.tag-orange {
@@ -241,7 +241,7 @@
         position: static;
         width: auto;
         text-align: center;
-        color: #1677FF; /* Blue text */
+        color: #30bf69; /* Blue text */
         text-decoration: none;
         font-size: 13px;
         font-weight: 600;
@@ -411,7 +411,7 @@
     /* -- Hero 区域 -- */
     .sidebar-content .ai-hero {
         padding: 48px 40px !important;
-        background: linear-gradient(135deg, #f0f5ff 0%, #e8f0fe 100%) !important;
+        background: linear-gradient(135deg, #f0f5ff 0%, #eafaf1 100%) !important;
     }
 
     .sidebar-content .ai-hero::before {
@@ -501,7 +501,7 @@
     .sidebar-content .schedule-item {
         padding: 12px 0 12px 16px !important;
         margin-left: 0 !important;
-        border-left: 3px solid #1677FF !important;
+        border-left: 3px solid #30bf69 !important;
     }
 
     .sidebar-content .schedule-item:not(:last-child) {
@@ -1233,7 +1233,7 @@
 
         // 加载课程详情到侧边栏
         function openDetail(detailUrl) {
-            sidebarContent.innerHTML = '<div style="text-align:center;padding:80px 20px;color:#999;font-size:15px;"><div style="width:32px;height:32px;border:3px solid #e0e0e0;border-top-color:#1677FF;border-radius:50%;animation:sidebarSpin 0.8s linear infinite;margin:0 auto 16px;"></div>正在加载...</div>';
+            sidebarContent.innerHTML = '<div style="text-align:center;padding:80px 20px;color:#999;font-size:15px;"><div style="width:32px;height:32px;border:3px solid #e0e0e0;border-top-color:#30bf69;border-radius:50%;animation:sidebarSpin 0.8s linear infinite;margin:0 auto 16px;"></div>正在加载...</div>';
             document.body.classList.add('sidebar-active');
 
             fetch(detailUrl)
