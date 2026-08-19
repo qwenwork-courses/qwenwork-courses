@@ -4662,3 +4662,9 @@
     margin: 0;
     padding: 0;
 }
+
+/* 案例库内嵌：中和官网全局裸元素规则对内嵌案例库的样式泄漏，使其与独立案例库完全一致
+   - main{max-width:1200} 会把案例库 <main id="app"> 卡窄 -> 恢复全宽
+   - h1{background;-webkit-text-fill-color:transparent} 会把标题染成绿渐变 -> 恢复原色 */
+#cases-app main { max-width: none; margin: 0; padding: 0; }
+#cases-app h1 { background: none; -webkit-text-fill-color: currentColor; color: var(--text); }
