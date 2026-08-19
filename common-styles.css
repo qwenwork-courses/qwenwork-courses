@@ -4655,3 +4655,10 @@
     }
 }
 
+/* 案例库 tab：全宽渲染，与原案例库页面宽度/排版完全一致
+   （打破 .main-content 的 max-width:1400 与 padding，仅在展示案例库 tab 时生效）*/
+#main-content-area:has(#cases-app) {
+    max-width: none;
+    margin: 0;
+    padding: 0;
+}
