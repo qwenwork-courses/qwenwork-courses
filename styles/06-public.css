@@ -1,0 +1,318 @@
+/* ============================================
+   公开课紧凑列表样式 (tab-public.html)
+   ============================================ */
+
+/* 搜索筛选栏 */
+.course-filter-bar {
+    max-width: 1100px;
+    margin: 0 auto 8px;
+    padding: 20px 0;
+}
+
+.filter-title {
+    font-size: 26px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0 0 8px;
+    text-align: center;
+}
+
+.filter-subtitle {
+    font-size: 16px;
+    color: #8c8c8c;
+    margin: 0 0 24px;
+    text-align: center;
+}
+
+.filter-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.filter-input {
+    flex: 1;
+    min-width: 140px;
+    height: 40px;
+    padding: 0 14px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #333;
+    outline: none;
+    transition: border-color 0.2s;
+    background: #fafafa;
+}
+
+.filter-input:focus {
+    border-color: #30bf69;
+    background: #fff;
+}
+
+.filter-select {
+    min-width: 120px;
+    height: 40px;
+    padding: 0 32px 0 14px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #333;
+    outline: none;
+    cursor: pointer;
+    appearance: none;
+    background: #fafafa url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") no-repeat right 12px center;
+    transition: border-color 0.2s;
+}
+
+.filter-select:focus {
+    border-color: #30bf69;
+    background-color: #fff;
+}
+
+/* 下拉框placeholder样式：未选中时显示灰色提示文字 */
+.filter-select-placeholder {
+    color: #999;
+}
+
+.filter-select-placeholder option:first-child {
+    color: #999;
+}
+
+.filter-select-placeholder option:not(:first-child) {
+    color: #333;
+}
+
+.filter-clear-btn {
+    height: 40px;
+    padding: 0 20px;
+    border: 1px solid #d9d9d9;
+    border-radius: 8px;
+    background: #fff;
+    color: #666;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+
+.filter-clear-btn:hover {
+    border-color: #30bf69;
+    color: #30bf69;
+    background: #f0f7ff;
+}
+
+.filter-clear-btn:active {
+    transform: scale(0.97);
+}
+
+@media (max-width: 768px) {
+    .course-filter-bar {
+        padding: 32px 16px;
+        margin-bottom: 20px;
+    }
+
+    .filter-row {
+        gap: 10px;
+    }
+
+    .filter-input {
+        min-width: 100%;
+    }
+
+    .filter-select {
+        min-width: calc(50% - 6px);
+        flex: 1;
+    }
+
+    .filter-clear-btn {
+        width: 100%;
+    }
+}
+
+.course-list-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.course-list-item {
+    display: flex;
+    align-items: stretch;
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    border: 1px solid #f0f0f0;
+    transition: all 0.3s ease;
+    gap: 20px;
+}
+
+.course-list-item:hover {
+    box-shadow: 0 4px 16px rgba(48, 191, 105, 0.12);
+    border-color: #30bf69;
+    transform: translateY(-2px);
+}
+
+.course-thumb {
+    flex-shrink: 0;
+    width: 300px;
+    height: 160px;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #f5f5f5;
+}
+
+.course-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.course-info {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.course-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 4px;
+    line-height: 1.4;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.course-subtitle {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 56px;
+    line-height: 1.5;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.course-meta {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px 48px;
+}
+
+.meta-item {
+    font-size: 13px;
+    color: #555;
+    line-height: 1.6;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.meta-item:last-child:nth-child(odd) {
+    grid-column: 1;
+}
+
+.meta-item strong {
+    color: #333;
+    font-weight: 600;
+}
+
+.course-action {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+}
+
+.course-list-item .detail-btn {
+    display: inline-block !important;
+    position: static !important;
+    padding: 10px 24px;
+    background: linear-gradient(135deg, #30bf69, #22975a);
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(48, 191, 105, 0.25);
+    white-space: nowrap;
+}
+
+.course-list-item .detail-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(48, 191, 105, 0.4);
+    background: linear-gradient(135deg, #22975a, #0747B5);
+}
+
+/* 响应式：平板及以下 */
+@media (max-width: 768px) {
+    .course-list-item {
+        flex-direction: column;
+        padding: 16px;
+    }
+
+    .course-thumb {
+        width: 100%;
+        height: 200px;
+    }
+
+    .course-title {
+        font-size: 16px;
+        white-space: normal;
+    }
+
+    .course-subtitle {
+        white-space: normal;
+        margin-bottom: 16px;
+    }
+
+    .course-action {
+        margin-top: 12px;
+    }
+
+    .course-list-item .detail-btn {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* 响应式：手机小屏 */
+@media (max-width: 480px) {
+    .course-list-container {
+        padding: 12px;
+    }
+
+    .course-list-item {
+        padding: 12px;
+        margin-bottom: 12px;
+    }
+
+    .course-thumb {
+        height: 180px;
+    }
+
+    .course-meta {
+        gap: 6px 12px;
+        grid-template-columns: 1fr;
+    }
+
+    .meta-item {
+        font-size: 12px;
+    }
+    
+    .content-wrapper {
+        padding: 0 16px;
+    }
+}
+

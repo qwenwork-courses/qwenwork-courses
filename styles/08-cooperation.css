@@ -1,0 +1,340 @@
+/* ============================================
+   合作咨询模块样式 (tab-about.html)
+   ============================================ */
+
+.consult-module {
+    background: linear-gradient(180deg, #f0f5ff 0%, #eafaf1 100%);
+    padding: 60px 0;
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    margin-left: -50vw;
+}
+
+.consult-module-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* 咨询头部标题 */
+.consult-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.consult-header h2 {
+    font-size: 32px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 12px;
+}
+
+.consult-header p {
+    font-size: 16px;
+    color: #666666;
+}
+
+.consult-cards {
+    display: flex;
+    gap: 32px;
+    margin-bottom: 40px;
+}
+
+.consult-card {
+    flex: 1;
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 36px 32px;
+    border: 1px solid rgba(48, 191, 105, 0.1);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.consult-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(48, 191, 105, 0.12);
+    border-color: rgba(48, 191, 105, 0.25);
+}
+
+.consult-card-icon {
+    font-size: 40px;
+    margin-bottom: 16px;
+}
+
+.consult-card h3 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 16px;
+}
+
+.consult-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.consult-card li {
+    font-size: 15px;
+    color: #4b5563;
+    line-height: 1.8;
+    padding: 6px 0 6px 22px;
+    position: relative;
+}
+
+.consult-card li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #30bf69;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.consult-cta-wrapper {
+    text-align: center;
+}
+
+.consult-cta-btn {
+    display: inline-block;
+    padding: 16px 64px;
+    background: linear-gradient(135deg, #30bf69, #22975a);
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 16px rgba(48, 191, 105, 0.3);
+    text-decoration: none;
+}
+
+.consult-cta-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(48, 191, 105, 0.45);
+    background: linear-gradient(135deg, #22975a, #0747B5);
+}
+
+/* "关于我们" 大标题区块 */
+.about-section-title-block {
+    text-align: center;
+    padding: 60px 20px 10px;
+}
+
+.about-section-title-block h2 {
+    font-size: 40px;
+    font-weight: 800;
+    color: #1a1a1a;
+    margin-bottom: 12px;
+}
+
+.about-section-title-block .about-divider {
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(135deg, #30bf69, #22975a);
+    border-radius: 2px;
+    margin: 0 auto;
+}
+
+/* about页子标题比"关于我们"小一号 */
+.about-page .section-title h2 {
+    font-size: 28px;
+}
+
+.about-dark-banner h2 {
+    font-size: 30px;
+}
+
+/* 咨询弹窗 */
+.consult-modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.65);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(4px);
+}
+
+.consult-modal-overlay.active {
+    display: flex;
+    animation: fadeIn 0.3s ease;
+}
+
+.consult-modal-content {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 36px 32px;
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    position: relative;
+    animation: consultModalIn 0.3s ease;
+}
+
+@keyframes consultModalIn {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.consult-modal-content img {
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto 20px;
+    border-radius: 8px;
+}
+
+.consult-modal-content h3 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 8px;
+}
+
+.consult-modal-content p {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.6;
+}
+
+.consult-modal-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #f5f5f5;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    color: #999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+.consult-modal-close:hover {
+    background: #e8e8e8;
+    color: #333;
+}
+
+/* 合作咨询响应式 */
+@media (max-width: 768px) {
+    .consult-module {
+        padding: 40px 0;
+    }
+    
+    .consult-header {
+        margin-bottom: 28px;
+    }
+    
+    .consult-header h2 {
+        font-size: 26px;
+    }
+    
+    .consult-header p {
+        font-size: 14px;
+    }
+    
+    .consult-cards {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .consult-card {
+        padding: 28px 24px;
+    }
+    
+    .consult-card h3 {
+        font-size: 19px;
+    }
+    
+    .consult-cta-btn {
+        padding: 14px 48px;
+        font-size: 16px;
+    }
+    
+    .about-section-title-block {
+        padding: 40px 16px 8px;
+    }
+    
+    .about-section-title-block h2 {
+        font-size: 30px;
+    }
+    
+    .about-page .section-title h2 {
+        font-size: 22px;
+    }
+    
+    .about-dark-banner h2 {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    .consult-module {
+        padding: 30px 0;
+    }
+    
+    .consult-header {
+        margin-bottom: 20px;
+    }
+    
+    .consult-header h2 {
+        font-size: 22px;
+    }
+    
+    .consult-header p {
+        font-size: 13px;
+    }
+    
+    .consult-card {
+        padding: 22px 18px;
+    }
+    
+    .consult-cta-btn {
+        padding: 12px 36px;
+        font-size: 15px;
+        width: 100%;
+    }
+    
+    .about-section-title-block h2 {
+        font-size: 26px;
+    }
+    
+    .about-page .section-title h2 {
+        font-size: 20px;
+    }
+    
+    .about-dark-banner h2 {
+        font-size: 22px;
+    }
+}
+
+/* 案例库 tab：全宽渲染，与原案例库页面宽度/排版完全一致
+   （打破 .main-content 的 max-width:1400 与 padding，仅在展示案例库 tab 时生效）*/
+#main-content-area:has(#cases-app) {
+    max-width: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* 案例库内嵌：中和官网全局裸元素规则对内嵌案例库的样式泄漏，使其与独立案例库完全一致
+   - main{max-width:1200} 会把案例库 <main id="app"> 卡窄 -> 恢复全宽
+   - h1{background;-webkit-text-fill-color:transparent} 会把标题染成绿渐变 -> 恢复原色 */
+#cases-app main { max-width: none; margin: 0; padding: 0; }
+#cases-app h1 { background: none; -webkit-text-fill-color: currentColor; color: var(--text); }

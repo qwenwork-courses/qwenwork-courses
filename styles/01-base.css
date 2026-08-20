@@ -1,0 +1,1096 @@
+/* 
+ * Unified Stylesheet for WuKong Courses Portal 
+ * Generated automatically by extract_css.py
+ */
+
+/* --- Part 1: Styles from original index.html --- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Microsoft YaHei', 'PingFang SC', Arial, sans-serif;
+            background: linear-gradient(135deg, #1a1a3e 0%, #2d1b4e 50%, #1a1a3e 100%);
+            color: #ffffff;
+            min-height: 100vh;
+        }
+
+        header {
+            text-align: center;
+            position: relative;
+            padding: 0;
+        }
+        .header-inner {
+            max-width: var(--page);
+            margin: 0 auto;
+            position: relative;
+            padding: 60px 20px 40px; /* Increased top padding to accommodate button */
+        }
+
+
+        
+        .about-btn {
+            position: absolute;
+            top: 50px;
+            right: 20px;
+            background: #30bf69;
+            border: none;
+            color: #ffffff;
+            padding: 10px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(48, 191, 105, 0.35);
+            z-index: 100;
+        }
+        .about-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(48, 191, 105, 0.6);
+            filter: brightness(1.1);
+        }
+
+        .wukong-icon {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, #ff6b6b, #ffa500);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        h1 {
+            font-size: 42px;
+            font-weight: bold;
+            background: #30bf69;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+        }
+
+        .subtitle {
+            font-size: 24px;
+            color: #2c3e50;
+        }
+
+        .organizer {
+            font-size: 18px;
+            color: #5a6c7d;
+            background: rgba(0, 0, 0, 0.08);
+            display: inline-block;
+            padding: 10px 30px;
+            border-radius: 25px;
+            margin-top: 15px;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .background-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .background-title {
+            font-size: 28px;
+            color: #30bf69;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .background-content {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #2c3e50;
+        }
+
+        .background-content p {
+            margin-bottom: 15px;
+        }
+
+        .value-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .value-card {
+            background: rgba(48, 191, 105, 0.06);
+            border-left: 4px solid #64b5f6;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .value-card h3 {
+            color: #30bf69;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .value-card p {
+            color: #2c3e50;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        .section-title {
+            font-size: 32px;
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: #30bf69;
+            border-radius: 2px;
+        }
+
+        .tabs-container {
+            margin-bottom: 40px;
+        }
+
+        .tabs-header {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+        }
+
+        .tab-button {
+            background: rgba(255, 255, 255, 0.95);
+            border: 2px solid rgba(48, 191, 105, 0.25);
+            color: #2c3e50;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .tab-button:hover {
+            background: rgba(48, 191, 105, 0.20);
+            border-color: #30bf69;
+            color: #ffffff;
+        }
+
+        .tab-button.active {
+            background: #30bf69;
+            border-color: transparent;
+            color: #ffffff;
+            box-shadow: 0 4px 15px rgba(48, 191, 105, 0.35);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .schedule-list {
+            display: grid;
+            gap: 25px;
+        }
+
+        .schedule-item {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            border-left: 4px solid #64b5f6;
+            transition: all 0.3s ease;
+        }
+
+        .schedule-item:hover {
+            transform: translateX(10px);
+            border-left-color: #30bf69;
+            box-shadow: 0 10px 30px rgba(48, 191, 105, 0.20);
+        }
+
+        .schedule-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .schedule-date {
+            font-size: 18px;
+            color: #30bf69;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .schedule-topic {
+            font-size: 26px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .live-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+        }
+
+        .live-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(76, 175, 80, 0.5);
+            background: linear-gradient(135deg, #45a049, #3d8b40);
+        }
+
+        .dingtalk-notice {
+            background: rgba(255, 193, 7, 0.15);
+            border: 2px solid #FFC107;
+            border-radius: 10px;
+            padding: 8px 12px;
+            margin-top: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            color: #FFD54F;
+        }
+
+        .dingtalk-notice::before {
+            content: '⚠️';
+            font-size: 16px;
+        }
+
+        .cta-section {
+            text-align: center;
+            padding: 60px 20px;
+            background: rgba(255, 255, 255, 0.90);
+            border-radius: 20px;
+            margin-top: 40px;
+        }
+
+        .cta-title {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .cta-subtitle {
+            font-size: 18px;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        /* ===== 全站底部版权行 =====
+           样式对齐案例库的 #cases-app .footer-meta：
+           12px / --subtle 色 / 顶部发丝线 / 左对齐 / 16px 间距的单行 flex。 */
+        footer {
+            text-align: left;
+            padding: 0;
+            color: var(--subtle);
+            font-size: 12px;
+        }
+
+        .footer-meta-line {
+            width: var(--page);
+            margin: 0 auto;
+            padding: 18px 0 30px;
+            border-top: 1px solid var(--line);
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        /* 课程下拉框样式 */
+        .course-dropdown {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(48, 191, 105, 0.20);
+        }
+        
+        /* 最后一个课程不需要底部分隔线 */
+        .course-dropdown:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .course-header {
+            padding: 18px 20px;
+            display: block;
+            transition: all 0.3s ease;
+            background: rgba(48, 191, 105, 0.06);
+            position: relative;
+        }
+
+        .course-header:hover {
+            background: rgba(48, 191, 105, 0.10);
+        }
+
+        .detail-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #30bf69;
+            color: white;
+            padding: 6px 15px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: bold;
+            box-shadow: 0 2px 8px rgba(48, 191, 105, 0.25);
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .detail-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(48, 191, 105, 0.5);
+        }
+
+        .course-title-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            padding-right: 100px;
+        }
+
+        .course-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #000000;
+            flex: 1;
+        }
+
+        .course-toggle {
+            font-size: 20px;
+            color: #30bf69;
+            transition: transform 0.3s ease;
+            margin-left: 15px;
+        }
+
+        .course-instructor {
+            color: #2c3e50;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .course-toggle.expanded {
+            transform: rotate(180deg);
+        }
+
+        .course-content {
+            display: none;
+            padding: 20px;
+            border-top: 1px solid rgba(48, 191, 105, 0.20);
+            animation: slideDown 0.3s ease;
+        }
+
+        .course-content.expanded {
+            display: block;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; max-height: 0; }
+            to { opacity: 1; max-height: 2000px; }
+        }
+
+        .course-section {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .course-section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .course-section-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #30bf69;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .course-section-title::before {
+            content: '▸';
+            color: #ba68c8;
+        }
+
+        .instructor-info {
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
+        }
+
+        .instructor-card {
+            background: #f5f6f8;
+            border-radius: 40px;
+            padding: 32px 24px;
+            text-align: center;
+        }
+
+        .instructor-avatar {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 16px;
+            border-radius: 50%;
+            overflow: hidden;
+            flex-shrink: 0;
+            border: 3px solid rgba(48, 191, 105, 0.25);
+            background: transparent;
+        }
+
+        .instructor-avatar img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+            object-position: center 10%;
+            transform: scale(1.18);
+        }
+
+        .instructor-name {
+            font-size: 20px;
+            font-weight: 700;
+            line-height: 1.4;
+            color: #111;
+            margin-bottom: 8px;
+        }
+
+        .instructor-title {
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 1.5;
+            color: #30bf69;
+            margin-bottom: 12px;
+        }
+
+        .instructor-desc {
+            font-size: 14px;
+            line-height: 1.8;
+            color: #666;
+            max-width: 520px;
+            margin: 0 auto;
+        }
+
+        .outline-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .outline-list li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+            color: #2c3e50;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        .outline-list li::before {
+            content: '•';
+            position: absolute;
+            left: 8px;
+            color: #30bf69;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .demo-scene {
+            background: rgba(48, 191, 105, 0.06);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 3px solid #30bf69;
+        }
+
+        .demo-scene p {
+            color: #2c3e50;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        .video-placeholder {
+            background: rgba(0, 0, 0, 0.3);
+            border: 2px dashed rgba(48, 191, 105, 0.35);
+            border-radius: 10px;
+            padding: 40px 20px;
+            text-align: center;
+            color: #5a6c7d;
+        }
+
+        .video-placeholder-icon {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+
+        .video-placeholder-text {
+            font-size: 15px;
+        }
+
+        /* 移动端适配 - 平板 (768px及以下) */
+        @media (max-width: 768px) {
+            /* 头部调整 */
+            .header-inner { padding: 40px 15px 30px; }
+            .wukong-icon img { width: 120px !important; }
+            h1 { font-size: 28px; }
+            .subtitle { font-size: 16px; }
+            .organizer { font-size: 14px; padding: 8px 20px; }
+            
+            /* "关于我们"按钮调整 */
+            .about-btn { 
+                top: 20px; 
+                right: 15px; 
+                padding: 8px 18px; 
+                font-size: 13px; 
+            }
+            
+            /* 背景区域 */
+            .background-section { padding: 20px 15px; }
+            .background-title { font-size: 22px; }
+            .background-content { font-size: 14px; }
+            .value-cards { grid-template-columns: 1fr; gap: 15px; }
+            .value-card { padding: 15px; }
+            
+            /* Tab 导航 */
+            .section-title { font-size: 24px; margin-bottom: 30px; }
+            .tabs-header { 
+                flex-wrap: nowrap; 
+                overflow-x: auto; 
+                -webkit-overflow-scrolling: touch;
+                padding-bottom: 15px;
+            }
+            .tab-button { 
+                font-size: 13px; 
+                padding: 10px 16px; 
+                flex-shrink: 0;
+            }
+            
+            /* 课程列表项 */
+            .schedule-item { padding: 20px 15px; }
+            .schedule-topic { font-size: 20px; }
+            
+            /* 课程卡片布局改为垂直堆叠 */
+            .course-card-layout {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .course-card-right {
+                flex: 0 0 auto;
+                width: 100%;
+            }
+
+            /* 讲师信息行 */
+            .instructor-info-row {
+                flex-direction: row;
+                align-items: flex-start;
+                gap: 12px;
+            }
+            .instructor-avatar {
+                width: 50px;
+                height: 50px;
+            }
+            .instructor-details {
+                font-size: 13px;
+            }
+            
+            /* 课程标题和按钮 */
+            .course-title { font-size: 17px; }
+            .detail-btn {
+                top: 10px;
+                right: 10px;
+                padding: 5px 12px;
+                font-size: 12px;
+            }
+            .course-title-row {
+                padding-right: 90px;
+            }
+            
+            /* 课程亮点 */
+            .course-highlights {
+                padding: 12px;
+            }
+            .highlights-list li {
+                font-size: 12px;
+            }
+            
+            /* Tab 按钮 */
+            .course-tab-buttons {
+                margin: 12px 15px;
+                gap: 8px;
+            }
+            .course-tab-btn {
+                padding: 8px 14px;
+                font-size: 13px;
+                min-width: 100px;
+            }
+            
+            /* Tab 面板 */
+            .course-tab-panel {
+                margin: 0 15px 15px 15px;
+                padding: 15px;
+            }
+            
+            /* 直播链接按钮 */
+            .live-link { 
+                padding: 12px 20px; 
+                font-size: 14px;
+                width: 100%;
+                justify-content: center;
+            }
+            
+            /* 弹窗图片 */
+            .modal-image {
+                max-width: 95vw;
+                max-height: 80vh;
+            }
+            .modal-close {
+                top: 10px;
+                right: 10px;
+                width: 36px;
+                height: 36px;
+                font-size: 20px;
+            }
+        }
+        
+        /* 移动端适配 - 手机 (480px及以下) */
+        @media (max-width: 480px) {
+            /* 头部进一步缩小 */
+            .header-inner { padding: 30px 12px 25px; }
+            .wukong-icon img { width: 100px !important; }
+            h1 { font-size: 24px; line-height: 1.3; }
+            .subtitle { font-size: 14px; }
+            .organizer { 
+                font-size: 12px; 
+                padding: 6px 15px;
+                display: block;
+                margin-top: 10px;
+            }
+            
+            /* "关于我们"按钮更小 */
+            .about-btn { 
+                top: 15px; 
+                right: 10px; 
+                padding: 6px 14px; 
+                font-size: 12px; 
+            }
+            
+            /* 背景区域 */
+            .background-section { padding: 15px 12px; }
+            .background-title { font-size: 20px; }
+            .background-content { font-size: 13px; line-height: 1.7; }
+            .value-card h3 { font-size: 17px; }
+            .value-card p { font-size: 13px; }
+            
+            /* Tab 导航 */
+            .section-title { font-size: 20px; margin-bottom: 20px; }
+            .tab-button { 
+                font-size: 12px; 
+                padding: 8px 14px; 
+            }
+            
+            /* 课程列表项 */
+            .schedule-item { 
+                padding: 15px 12px;
+                border-left-width: 3px;
+            }
+            .schedule-topic { font-size: 18px; }
+            
+            /* 课程卡片 */
+            .course-header { padding: 15px; }
+            .course-title { 
+                font-size: 15px; 
+                line-height: 1.4;
+            }
+            .course-title-row {
+                padding-right: 80px;
+                margin-bottom: 8px;
+            }
+            .detail-btn {
+                top: 8px;
+                right: 8px;
+                padding: 4px 10px;
+                font-size: 11px;
+            }
+            
+            /* 讲师信息 */
+            .instructor-info-row {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                gap: 10px;
+            }
+            .instructor-avatar {
+                width: 60px;
+                height: 60px;
+            }
+            .instructor-details {
+                font-size: 12px;
+                line-height: 1.5;
+            }
+
+            /* 课程亮点 */
+            .course-highlights {
+                padding: 10px;
+                margin-top: 12px;
+            }
+            .highlights-title { font-size: 13px; }
+            .highlights-list li {
+                font-size: 11px;
+                line-height: 1.7;
+            }
+            
+            /* Tab 按钮 */
+            .course-tab-buttons {
+                margin: 10px 12px;
+                gap: 6px;
+            }
+            .course-tab-btn {
+                padding: 7px 12px;
+                font-size: 12px;
+                min-width: 90px;
+            }
+            
+            /* Tab 面板 */
+            .course-tab-panel {
+                margin: 0 12px 12px 12px;
+                padding: 12px;
+            }
+            
+            /* 课程内部内容 */
+            .outline-list li {
+                font-size: 13px;
+                padding: 6px 0 6px 22px;
+            }
+            .demo-scene {
+                padding: 12px;
+            }
+            .demo-scene p {
+                font-size: 13px;
+            }
+            
+            /* 直播链接 */
+            .live-link { 
+                padding: 10px 18px; 
+                font-size: 13px;
+            }
+            
+            /* 底部 */
+            footer {
+                font-size: 12px;
+            }
+            .footer-meta-line {
+                padding: 16px 0 24px;
+                gap: 8px 14px;
+            }
+        }
+
+
+        /* 课程内部Tab样式 */
+        .course-inner-tabs {
+            margin-bottom: 20px;
+        }
+        
+        .course-inner-tab-header {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid rgba(48, 191, 105, 0.20);
+            padding-bottom: 10px;
+        }
+        
+        .course-inner-tab-btn {
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid rgba(48, 191, 105, 0.25);
+            color: #2c3e50;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        
+        .course-inner-tab-btn:hover {
+            background: rgba(48, 191, 105, 0.20);
+            color: #ffffff;
+        }
+        
+        .course-inner-tab-btn.active {
+            background: #30bf69;
+            border-color: transparent;
+            color: #ffffff;
+        }
+        
+        .course-inner-tab-content {
+            display: none;
+        }
+        
+        .course-inner-tab-content.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+
+        /* 新的课程Tab按钮样式（显示在课程标题下方） */
+        .course-tab-buttons {
+            display: flex;
+            gap: 10px;
+            margin: 15px 20px;
+            flex-wrap: wrap;
+        }
+        
+        .course-tab-btn {
+            background: rgba(48, 191, 105, 0.06);
+            border: 2px solid rgba(48, 191, 105, 0.25);
+            color: #2c3e50;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            flex: 1;
+            min-width: 120px;
+        }
+        
+        .course-tab-btn:hover {
+            background: rgba(48, 191, 105, 0.20);
+            border-color: #30bf69;
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+        
+        .course-tab-btn.active {
+            background: #30bf69;
+            border-color: transparent;
+            color: #ffffff;
+            box-shadow: 0 4px 15px rgba(48, 191, 105, 0.25);
+        }
+        
+        /* Tab内容面板（可展开/收起） */
+        .course-tab-panel {
+            display: none;
+            margin: 0 20px 20px 20px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.90);
+            border-radius: 10px;
+            border-left: 3px solid #30bf69;
+            animation: slideDown 0.3s ease;
+        }
+        
+        .course-tab-panel.expanded {
+            display: block;
+        }
+
+
+        /* 课程卡片左右分栏布局 */
+        .course-card-layout {
+            display: flex;
+            gap: 20px;
+            margin-top: 15px;
+        }
+        
+        .course-card-left {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .course-card-right {
+            flex: 0 0 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .instructor-info-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-top: 10px;
+            object-position: top center;
+        }
+        
+        .instructor-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: top center;
+            border: 2px solid #64b5f6;
+            flex-shrink: 0;
+        }
+        
+        .instructor-details {
+            flex: 1;
+            color: #2c3e50;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+                .video-cover-placeholder {
+            width: 100%;
+            aspect-ratio: 16/9;
+            max-height: 170px;
+            background-color: #f0f2f5;
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .video-cover-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* 确保填满容器 */
+            object-position: center;
+            display: block;
+            border-radius: 10px;
+        }
+        
+        .video-cover-placeholder .icon {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+
+    
+        /* 课程亮点样式 */
+        .course-highlights {
+            margin-top: 15px;
+            padding: 15px;
+            background: rgba(48, 191, 105, 0.06);
+            border-radius: 8px;
+            border-left: 3px solid #30bf69;
+        }
+        
+        .highlights-title {
+            font-size: 15px;
+            font-weight: bold;
+            color: #30bf69;
+            margin-bottom: 10px;
+        }
+        
+        .highlights-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .highlights-list li {
+            font-size: 13px;
+            color: #2c3e50;
+            line-height: 1.8;
+            margin-bottom: 5px;
+        }
+        
+        .highlights-list li strong {
+            color: #ffffff;
+        }
+
+
+        /* 关于我们弹窗样式 */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
+        }
+        .modal-overlay.active { display: flex; animation: fadeIn 0.3s ease; }
+        .modal-content {
+            background: transparent;
+            border: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            max-width: 90vw;
+            max-height: 90vh;
+        }
+        .modal-close {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            color: #ffffff;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 1001;
+        }
+        .modal-close:hover { background: #ff6b6b; transform: rotate(90deg); }
+        .modal-image {
+            max-width: 100%;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
