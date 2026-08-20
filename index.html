@@ -842,8 +842,18 @@
             });
         }
 
+        // 把置顶导航的真实高度暴露为 CSS 变量 --app-nav-h，
+        // 供案例库预览弹窗预留顶部空间（导航在窄屏会换行变高，硬编值不可靠）。
+        function syncNavHeight() {
+            const nav = document.querySelector('.top-nav');
+            if (nav) document.documentElement.style.setProperty('--app-nav-h', nav.offsetHeight + 'px');
+        }
+        syncNavHeight();
+        window.addEventListener('resize', syncNavHeight);
+
         // 页面初始化时默认加载首页，支持URL hash导航
         window.onload = async () => {
+            syncNavHeight();
             const hash = window.location.hash.substring(1); // 移除#号
             
             // 检查是否是带领域的企业定制课程hash（如 enterprise-chain-stores）

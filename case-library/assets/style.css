@@ -1504,16 +1504,24 @@
 }
 
 /* ============================================================ 预览弹窗 ==== */
+/* 弹窗居中时顶部预留官网置顶导航的高度（约 109px）：
+   仅靠 z-index 盖住导航会让两者重叠，这里直接把面板排在导航下方，
+   无论层叠上下文如何都不会被遮住。--nav-safe 为预留量。*/
+/* 弹窗顶部预留“实际导航高度 + 16px”（--app-nav-h 由 index.html 按真实高度写入，
+   导航窄屏换行变高也能自适应）；配合 align-items:flex-start，面板始终从导航下方开始。
+   无 JS 时回退 72px。*/
 #cases-app .modal-backdrop {
+  --nav-safe: calc(var(--app-nav-h, 72px) + 16px);
   position: fixed;
   inset: 0;
-  z-index: 100;
+  /* 高于官网置顶导航 (z-index:1000)，避免被其覆盖 */
+  z-index: 1100;
   background: rgba(10, 26, 18, 0.42);
   backdrop-filter: blur(6px);
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  padding: 32px;
+  padding: var(--nav-safe) 32px 28px;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.24s ease;
@@ -1522,8 +1530,11 @@
 
 #cases-app .modal-panel {
   position: relative;
-  width: min(1200px, 100%);
-  height: min(88vh, 900px);
+  width: min(1040px, 100%);
+  height: min(78vh, 700px);
+  /* 固定不超过“视口高 − 顶部预留 − 底部内边距”，配合 align-items:flex-start
+     保证面板始终从导航下方开始、短屏也不会顶到导航 */
+  max-height: calc(100vh - var(--nav-safe) - 28px);
   display: flex;
   flex-direction: column;
   background: var(--surface);
@@ -1650,8 +1661,9 @@
 #cases-app .modal-panel [hidden] { display: none !important; }
 
 @media (max-width: 720px) {
-  #cases-app .modal-backdrop { padding: 12px; }
-  #cases-app .modal-panel { height: 92vh; }
+  /* 窄屏只收紧左右/底部内边距；顶部预留仍用自适应的 --nav-safe */
+  #cases-app .modal-backdrop { padding: var(--nav-safe) 12px 12px; }
+  #cases-app .modal-panel { height: min(82vh, 700px); }
   #cases-app .modal-title { font-size: 13px; }
   #cases-app .modal-actions .btn { padding: 7px 10px; font-size: 12px; }
 }
@@ -2088,4 +2100,13 @@
   height: auto;
   min-height: auto;
   justify-content: normal;
+  /* 抵消官网 .modal-close 注入的旋转动画（悬停只变色，不旋转） */
+  transform: none;
+}
+/* 悬停：不旋转，只变色（显式声明，不依赖继承的 .btn:hover） */
+#cases-app .modal-close:hover {
+  transform: none;
+  background: var(--accent-soft);
+  border-color: var(--accent-line);
+  color: var(--accent-dark);
 }
