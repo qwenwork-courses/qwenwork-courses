@@ -8,23 +8,22 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-    --dt-blue: #30bf69;
-    --accent: #22975a;
-    --accent-deep: #16794a;
-    --tint-blue: #eefff5;
-    --tint-indigo: rgba(48, 191, 105, 0.10);
-    --tint-purple: rgba(134, 238, 179, 0.14);
+    --dt-blue: #1677FF;
+    --accent: #408BFB;
+    --tint-blue: #E8F2FE;
+    --tint-indigo: rgba(129, 169, 250, 0.12);
+    --tint-purple: rgba(181, 146, 253, 0.10);
     --tint-pain: #F2BABA;
     --tint-sol: #ECF9F0;
-    --banner: #30bf69;
-    --text: #141a16;
-    --text-sub: #4a5a50;
-    --line: rgba(20, 38, 28, 0.08);
+    --banner: #72B7EF;
+    --text: #0A0A09;
+    --text-sub: #5F5F5F;
+    --line: #E8EAED;
 }
 
 body {
     font-family: 'Alibaba PuHuiTi 3.0', '阿里巴巴普惠体 2.0', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;
-    background: var(--bg, #fcfcfc);
+    background: #f7f8fa;
     color: var(--text);
     min-height: 100vh;
     -webkit-font-smoothing: antialiased;
@@ -84,8 +83,8 @@ body {
     display: inline-block;
     font-size: 12px;
     color: var(--dt-blue);
-    background: rgba(48,191,105,0.1);
-    border: 1px solid rgba(48,191,105,0.2);
+    background: rgba(22,119,255,0.1);
+    border: 1px solid rgba(22,119,255,0.2);
     padding: 4px 14px;
     border-radius: 14px;
     margin-bottom: 16px;
@@ -143,8 +142,8 @@ body {
 .doc-paper {
     background: #ffffff;
     border: 1px solid var(--line);
-    border-radius: 16px;
-    box-shadow: 0 1px 2px rgba(10,38,21,0.04);
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.05);
     padding: 40px 48px 48px;
 }
 
@@ -182,7 +181,7 @@ body {
     color: var(--dt-blue);
     font-size: 14.5px;
     text-decoration: none;
-    border-bottom: 1px solid rgba(48,191,105,0.35);
+    border-bottom: 1px solid rgba(22,119,255,0.35);
 }
 
 .intro-link:hover { border-bottom-color: var(--dt-blue); }
@@ -295,7 +294,7 @@ body {
     font-family: inherit;
     color: var(--dt-blue);
     background: #ffffff;
-    border: 1px solid rgba(48,191,105,0.4);
+    border: 1px solid rgba(22,119,255,0.4);
     border-radius: 5px;
     cursor: pointer;
     transition: all 0.2s;
@@ -343,7 +342,7 @@ video.doc-video {
     transition: background 0.2s, transform 0.2s;
 }
 
-.video-embed:hover .video-play { background: rgba(48,191,105,0.85); transform: translate(-50%,-50%) scale(1.06); }
+.video-embed:hover .video-play { background: rgba(22,119,255,0.85); transform: translate(-50%,-50%) scale(1.06); }
 
 .video-embed .video-play::after {
     content: '';
