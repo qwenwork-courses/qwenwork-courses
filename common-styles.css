@@ -327,18 +327,24 @@
             line-height: 1.6;
         }
 
+        /* ===== 全站底部版权行 =====
+           样式对齐案例库的 #cases-app .footer-meta：
+           12px / --subtle 色 / 顶部发丝线 / 左对齐 / 16px 间距的单行 flex。 */
         footer {
-            text-align: center;
-            padding: 40px 20px;
-            color: #5a6c7d;
-            font-size: 14px;
+            text-align: left;
+            padding: 0;
+            color: var(--subtle);
+            font-size: 12px;
         }
 
-        .footer-logo {
-            font-size: 18px;
-            font-weight: bold;
-            color: #30bf69;
-            margin-bottom: 10px;
+        .footer-meta-line {
+            width: var(--page);
+            margin: 0 auto;
+            padding: 18px 0 30px;
+            border-top: 1px solid var(--line);
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
         }
 
         /* 课程下拉框样式 */
@@ -823,10 +829,12 @@
             
             /* 底部 */
             footer {
-                padding: 30px 15px;
                 font-size: 12px;
             }
-            .footer-logo { font-size: 16px; }
+            .footer-meta-line {
+                padding: 16px 0 24px;
+                gap: 8px 14px;
+            }
         }
 
 
