@@ -58,7 +58,7 @@
             position: relative;
             padding: 14px 0 14px 16px;
             margin-left: 8px;
-            border-left: 3px solid #1677FF;
+            border-left: 3px solid #30bf69;
         }
         
         .schedule-item:not(:last-child) {
@@ -77,7 +77,7 @@
         
         .schedule-location {
             font-size: 14px;
-            color: #1677FF;
+            color: #30bf69;
             display: flex;
             align-items: center;
             gap: 6px;
@@ -101,7 +101,7 @@
             transition: all 0.3s ease;
         }
         .poster-thumb:hover {
-            box-shadow: 0 4px 16px rgba(22, 119, 255, 0.2);
+            box-shadow: 0 4px 16px rgba(48, 191, 105, 0.2);
             transform: translateY(-2px);
         }
         .poster-thumb img {
@@ -118,7 +118,7 @@
             color: #fff;
             font-weight: 600;
             padding: 10px 0;
-            background: #1677FF;
+            background: #30bf69;
             letter-spacing: 1px;
         }
         .poster-lightbox {
@@ -161,14 +161,14 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle at 30% 50%, rgba(22, 119, 255, 0.15) 0%, transparent 50%),
+            background: radial-gradient(circle at 30% 50%, rgba(48, 191, 105, 0.15) 0%, transparent 50%),
                         radial-gradient(circle at 70% 80%, rgba(124, 111, 247, 0.1) 0%, transparent 40%);
             pointer-events: none;
         }
         
         .hero-badge {
             display: inline-block;
-            background: #1677FF;
+            background: #30bf69;
             color: #fff;
             font-size: 13px;
             font-weight: 700;
@@ -221,7 +221,7 @@
         
         .hero-tag {
             background: #d4e4ff;
-            border: 1px solid #1677FF;
+            border: 1px solid #30bf69;
             padding: 8px 18px;
             border-radius: 20px;
             font-size: 15px;
@@ -231,21 +231,21 @@
         
         .back-btn {
             display: inline-block;
-            background: linear-gradient(135deg, #1677FF 0%, #0958D9 100%);
+            background: linear-gradient(135deg, #30bf69 0%, #22975a 100%);
             color: white;
             padding: 14px 36px;
             border-radius: 10px;
             font-weight: 700;
             text-decoration: none;
             transition: all 0.3s;
-            box-shadow: 0 4px 16px rgba(22, 119, 255, 0.4);
+            box-shadow: 0 4px 16px rgba(48, 191, 105, 0.4);
             position: relative;
             z-index: 1;
         }
         
         .back-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 24px rgba(22, 119, 255, 0.6);
+            box-shadow: 0 6px 24px rgba(48, 191, 105, 0.6);
         }
         
         .section-container {
@@ -276,7 +276,7 @@
             max-width: 800px;
             margin: 0 auto;
             background: white;
-            border-left: 4px solid #1677FF;
+            border-left: 4px solid #30bf69;
             border-radius: 12px;
             padding: 32px 36px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
@@ -290,7 +290,7 @@
         }
         
         .intro-quote strong {
-            color: #1677FF;
+            color: #30bf69;
         }
         
         .value-cards {
@@ -305,25 +305,25 @@
         }
         
         .value-card {
-            background: white;
-            border-radius: 16px;
+            background: var(--surface);
+            border-radius: var(--r-lg);
             padding: 36px 28px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-            border: 1px solid #f0f0f0;
-            transition: all 0.3s;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--line);
+            transition: transform 0.26s cubic-bezier(0.2,0.72,0.2,1), box-shadow 0.26s ease, border-color 0.26s ease;
         }
         
         .value-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 30px rgba(22, 119, 255, 0.12);
-            border-color: #1677FF;
+            box-shadow: var(--shadow-md);
+            border-color: var(--accent-line);
         }
         
         .value-icon {
             width: 64px;
             height: 64px;
             border-radius: 16px;
-            background: linear-gradient(135deg, #E8F0FE, #D4E4FC);
+            background: linear-gradient(135deg, #eefff5, #cdefdb);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -341,7 +341,7 @@
         .value-card .highlight {
             font-size: 15px;
             font-weight: 600;
-            color: #1677FF;
+            color: #30bf69;
             margin-bottom: 16px;
         }
         
@@ -368,7 +368,7 @@
             width: 6px;
             height: 6px;
             border-radius: 50%;
-            background: #1677FF;
+            background: #30bf69;
         }
         
         .process-timeline {
@@ -402,7 +402,7 @@
             width: 40px;
             height: 40px;
             border-radius: 10px;
-            background: linear-gradient(135deg, #1677FF, #0958D9);
+            background: linear-gradient(135deg, #30bf69, #22975a);
             color: white;
             display: flex;
             align-items: center;
@@ -421,7 +421,7 @@
         .day-date {
             font-size: 13px;
             font-weight: 600;
-            color: #1677FF;
+            color: #30bf69;
             margin-top: 4px;
         }
         
@@ -452,7 +452,7 @@
             width: 8px;
             height: 8px;
             border-radius: 50%;
-            border: 2px solid #1677FF;
+            border: 2px solid #30bf69;
         }
         
         .day-points li strong {
@@ -471,7 +471,7 @@
         
         .day-takeaway .takeaway-label {
             flex-shrink: 0;
-            background: #1677FF;
+            background: #30bf69;
             color: #fff;
             font-size: 13px;
             font-weight: 700;
@@ -510,7 +510,7 @@
         
         .level-tag {
             display: inline-block;
-            background: #1677FF;
+            background: #30bf69;
             color: #fff;
             font-size: 13px;
             font-weight: 800;
@@ -583,7 +583,7 @@
         }
         
         .faq-item:hover {
-            border-color: #1677FF;
+            border-color: #30bf69;
         }
         
         .faq-question {
@@ -624,7 +624,7 @@
         }
         
         .contact-section {
-            background: linear-gradient(135deg, #f0f4ff, #e8f0fe);
+            background: linear-gradient(135deg, #eefff5, #eefff5);
             border-radius: 16px;
             padding: 40px;
             text-align: center;
@@ -634,7 +634,7 @@
         .contact-section h3 {
             font-size: 24px;
             font-weight: 800;
-            color: #1677FF;
+            color: #30bf69;
             margin-bottom: 16px;
         }
         
@@ -874,30 +874,30 @@
         <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; max-width: 900px; margin: 0 auto;">
             <div style="background: white; border-radius: 16px; padding: 28px; border: 1px solid #e8edf3; box-shadow: 0 2px 12px rgba(0,0,0,0.04);">
                 <h3 style="font-size: 18px; font-weight: 800; margin-bottom: 4px; color: #1a1a1a;">企业内训师</h3>
-                <p style="font-size: 14px; color: #1677FF; margin-bottom: 12px; font-weight: 600;">HRD / 培训经理 / AI 负责人</p>
-                <div style="width: 40px; height: 3px; background: #1677FF; border-radius: 2px; margin-bottom: 12px;"></div>
+                <p style="font-size: 14px; color: #30bf69; margin-bottom: 12px; font-weight: 600;">HRD / 培训经理 / AI 负责人</p>
+                <div style="width: 40px; height: 3px; background: #30bf69; border-radius: 2px; margin-bottom: 12px;"></div>
                 <p style="font-size: 14px; line-height: 1.7; color: #666; margin: 0;">把 AI 能力融入组织赋能，打造更有竞争力的课程体系</p>
             </div>
             <div style="background: white; border-radius: 16px; padding: 28px; border: 1px solid #e8edf3; box-shadow: 0 2px 12px rgba(0,0,0,0.04);">
                 <h3 style="font-size: 18px; font-weight: 800; margin-bottom: 4px; color: #1a1a1a;">管理咨询顾问 / 行业专家</h3>
-                <p style="font-size: 14px; color: #1677FF; margin-bottom: 12px; font-weight: 600;">HR、销售、运营、供应链等</p>
-                <div style="width: 40px; height: 3px; background: #1677FF; border-radius: 2px; margin-bottom: 12px;"></div>
+                <p style="font-size: 14px; color: #30bf69; margin-bottom: 12px; font-weight: 600;">HR、销售、运营、供应链等</p>
+                <div style="width: 40px; height: 3px; background: #30bf69; border-radius: 2px; margin-bottom: 12px;"></div>
                 <p style="font-size: 14px; line-height: 1.7; color: #666; margin: 0;">让 AI 融入核心方法论，为客户创造更大的交付价值</p>
             </div>
             <div style="background: white; border-radius: 16px; padding: 28px; border: 1px solid #e8edf3; box-shadow: 0 2px 12px rgba(0,0,0,0.04);">
                 <h3 style="font-size: 18px; font-weight: 800; margin-bottom: 4px; color: #1a1a1a;">商业讲师</h3>
-                <p style="font-size: 14px; color: #1677FF; margin-bottom: 12px; font-weight: 600;">培训机构负责人</p>
-                <div style="width: 40px; height: 3px; background: #1677FF; border-radius: 2px; margin-bottom: 12px;"></div>
+                <p style="font-size: 14px; color: #30bf69; margin-bottom: 12px; font-weight: 600;">培训机构负责人</p>
+                <div style="width: 40px; height: 3px; background: #30bf69; border-radius: 2px; margin-bottom: 12px;"></div>
                 <p style="font-size: 14px; line-height: 1.7; color: #666; margin: 0;">打造差异化的「AI + 行业」课程，抢占市场先机</p>
             </div>
             <div style="background: white; border-radius: 16px; padding: 28px; border: 1px solid #e8edf3; box-shadow: 0 2px 12px rgba(0,0,0,0.04);">
                 <h3 style="font-size: 18px; font-weight: 800; margin-bottom: 4px; color: #1a1a1a;">领域 KOL / 实战专家</h3>
-                <p style="font-size: 14px; color: #1677FF; margin-bottom: 12px; font-weight: 600;">AI技术应用 / 营销 / 销售 / 财务 / HR等</p>
-                <div style="width: 40px; height: 3px; background: linear-gradient(90deg, #7c4dff, #1677FF); border-radius: 2px; margin-bottom: 12px;"></div>
+                <p style="font-size: 14px; color: #30bf69; margin-bottom: 12px; font-weight: 600;">AI技术应用 / 营销 / 销售 / 财务 / HR等</p>
+                <div style="width: 40px; height: 3px; background: linear-gradient(90deg, #7c4dff, #30bf69); border-radius: 2px; margin-bottom: 12px;"></div>
                 <p style="font-size: 14px; line-height: 1.7; color: #666; margin: 0;">系统掌握钉钉 AI 能力，放大你的个人教学影响力</p>
             </div>
         </div>
-        <p style="max-width: 900px; margin: 28px auto 0; text-align: center; font-size: 14px; color: #888;">本期开放报名，<strong style="color:#1677FF;">不设资历筛选</strong>，欢迎各背景讲师一起探索 AI 时代的成长路径。</p>
+        <p style="max-width: 900px; margin: 28px auto 0; text-align: center; font-size: 14px; color: #888;">本期开放报名，<strong style="color:#30bf69;">不设资历筛选</strong>，欢迎各背景讲师一起探索 AI 时代的成长路径。</p>
     </div>
 
     <!-- 04 一次认证，长期成长 -->
@@ -944,31 +944,31 @@
             </thead>
             <tbody>
                 <tr>
-                    <td><strong style="color: #1677FF;">L0</strong></td>
+                    <td><strong style="color: #30bf69;">L0</strong></td>
                     <td>AI 布道师（预备）</td>
                     <td>完成三天培训 + 通过现场实操认证考试</td>
                     <td>获得结业证书 / 加入讲师社群 / 100节课程资源</td>
                 </tr>
                 <tr>
-                    <td><strong style="color: #1677FF;">L1</strong></td>
+                    <td><strong style="color: #30bf69;">L1</strong></td>
                     <td>AI 布道师</td>
                     <td>持有结业证书 + 完成1门AI课程开发（提交课纲）+ 完成首次课程讲授（内训/公开课均可）</td>
                     <td>正式认证证书 / 讲师档案收录 / 讲师社群</td>
                 </tr>
                 <tr>
-                    <td><strong style="color: #1677FF;">L2</strong></td>
+                    <td><strong style="color: #30bf69;">L2</strong></td>
                     <td>资深布道师</td>
                     <td>L1基础上 + 季度累计完成5场以上课程讲授 + 学员满意度评分≥4.5分</td>
                     <td>生态合作推荐优先权 / 专属学习资源包 / 可申请担任认证班助教</td>
                 </tr>
                 <tr>
-                    <td><strong style="color: #1677FF;">L3</strong></td>
+                    <td><strong style="color: #30bf69;">L3</strong></td>
                     <td>首席布道师</td>
                     <td>L2基础上 + 有1个以上可对外展示的标杆案例 + 季度累计交付课时≥30课时</td>
                     <td>进入钉钉AI研究院师资推荐库 / 官方背书素材授权 / 受邀参与课程共创</td>
                 </tr>
                 <tr>
-                    <td><strong style="color: #1677FF;">L4</strong></td>
+                    <td><strong style="color: #30bf69;">L4</strong></td>
                     <td>AI 布道官</td>
                     <td>L3基础上 + 跨行业交付能力 + 年度影响力评定通过</td>
                     <td>最高级别认证 / 受邀参与认证班授课 / 品牌联名合作资格</td>
@@ -1085,7 +1085,7 @@
                 <p class="contact-note" style="margin: 0;">仅 50 席 · 额满即止；如有任何疑问，请联系您的钉钉客户经理</p>
             </div>
             <div style="flex-shrink: 0;">
-                <a href="https://mp.weixin.qq.com/s/B2x4FbxIIvBMf1xqbic80g" target="_blank" style="display: inline-flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #1677FF 0%, #0958D9 100%); color: white; font-size: 17px; font-weight: 700; padding: 16px 36px; border-radius: 12px; text-decoration: none; box-shadow: 0 6px 20px rgba(22, 119, 255, 0.35); transition: all 0.3s ease; white-space: nowrap; gap: 8px;">
+                <a href="https://mp.weixin.qq.com/s/B2x4FbxIIvBMf1xqbic80g" target="_blank" style="display: inline-flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #30bf69 0%, #22975a 100%); color: white; font-size: 17px; font-weight: 700; padding: 16px 36px; border-radius: 12px; text-decoration: none; box-shadow: 0 6px 20px rgba(48, 191, 105, 0.35); transition: all 0.3s ease; white-space: nowrap; gap: 8px;">
                     <span>立即报名</span>
                     <span style="font-size: 20px; line-height: 1;">→</span>
                 </a>
@@ -1096,7 +1096,7 @@
     <style>
         .contact-section a:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 28px rgba(22, 119, 255, 0.5) !important;
+            box-shadow: 0 8px 28px rgba(48, 191, 105, 0.5) !important;
         }
         @media (max-width: 768px) {
             .contact-section {
