@@ -2044,3 +2044,48 @@
   background: var(--accent-dark);
   box-shadow: 0 10px 26px rgba(48, 191, 105, 0.36);
 }
+
+/* =============================================================================
+ *  官网全局样式隔离层
+ *  ---------------------------------------------------------------------------
+ *  案例库原本是独立站（整个文档就是它自己的），嵌进官网后变成
+ *  #cases-app 子树，会被 common-styles.css 里的无限定规则污染。官网首页
+ *  恰好也有名为 .case-grid / .case-card / .modal-close 的组件，类名碰上了。
+ *
+ *  本节每一条都是「把计算值拉回原站一致」，不是新设计；原站本身不需要
+ *  这些声明（那些属性在原站取的是默认值）。比对方式：两边同视口宽度
+ *  dump computed style 逐属性 diff。改动官网全局样式后建议重跑一次。
+ *
+ *  新增组件时若发现内嵌后长相不对，先查 common-styles.css 里是不是有同名类。
+ * ========================================================================== */
+
+/* 官网 body 设了 font-size: 14px / line-height: 1.5，会继承进整个案例库，
+   导致多层组件（状态胶囊、标签、指标数字等）高度集体偏 1~2px。
+   原站 :root / body 并未设这两个值，取的是浏览器默认 16px / normal。 */
+#cases-app {
+  font-size: 16px;
+  line-height: normal;
+}
+
+/* 官网 .case-card 带 padding: 32px（首页痛点/案例屏的卡片）。案例库的卡片是
+   封面图通栏、正文区自己控内边距，被注入 32px 后封面四周会多出一圈白边，
+   正文宽度也被同时压窄 64px（slogan 从一行被挤成两行）。 */
+#cases-app .case-card { padding: 0; }
+
+/* 官网 .case-grid 带 max-width: var(--page) + margin: 0 auto，会在已经限宽的
+   容器里再收一次 48px，卡片跟着变窄。案例库的栅格宽度由外层容器决定。 */
+#cases-app .case-grid {
+  max-width: none;
+  margin: 0;
+}
+
+/* 官网 .modal-close 是它视频弹窗的关闭叉：position: fixed 固定在视口右上角、
+   40x40 圆钮、白字。注入后会把案例库预览弹窗里的「关闭」按钮抽离弹窗头部。
+   颜色与边框早已被高优先的 #cases-app .btn 盖住，这里只需要拉回布局相关的几项。 */
+#cases-app .modal-close {
+  position: static;
+  width: auto;
+  height: auto;
+  min-height: auto;
+  justify-content: normal;
+}
