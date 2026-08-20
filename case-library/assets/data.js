@@ -17,8 +17,11 @@ export const DEPTS = [
   { id: 'finance',   name: '财务',   en: 'Finance',    icon: 'coins',   desc: '经营分析、稽核、报表的自动成稿' },
   { id: 'sales',     name: '销售',   en: 'Sales',      icon: 'target',  desc: '客户跟进、方案与标书的提效' },
   { id: 'ops',       name: '生产运营', en: 'Operations', icon: 'gauge',  desc: '质量、排产、异常追溯的实时看板' },
-  /* 行业维度分类：按客户所属行业归集的垂直案例，固定排在部门之后 */
-  { id: 'ecommerce', name: '电商',   en: 'E-commerce', icon: 'cart',    desc: '跨境电商广告投放与店铺数据的自动巡查' }
+  /* 行业维度分类：按客户所属行业归集的垂直案例，固定排在部门之后。
+     注意与上面 ops「生产运营」区分：ops 是职能（质量/排产/追溯），
+     manufacturing 是客户所在行业（五金/结构件/消费品制造）*/
+  { id: 'ecommerce', name: '电商',   en: 'E-commerce', icon: 'cart',    desc: '跨境电商广告投放与店铺数据的自动巡查' },
+  { id: 'manufacturing', name: '制造', en: 'Manufacturing', icon: 'cube', desc: '图纸、BOM、报价与工艺环节的自动化' }
 ];
 
 /* =============================================================================
