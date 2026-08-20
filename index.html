@@ -67,59 +67,10 @@
             box-shadow: 0 4px 16px rgba(48, 191, 105, 0.3);
         }
         
-        /* 左侧弹出提示框 */
-        .consult-popup {
-            position: absolute;
-            right: 68px;
-            bottom: -20px;
-            background: #ffffff;
-            border-radius: 12px;
-            padding: 24px 20px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            pointer-events: none;
-            width: 240px;
-        }
         
-        .toolbar-item.consult-btn:hover .consult-popup {
-            opacity: 1;
-            visibility: visible;
-            pointer-events: auto;
-        }
         
-        .consult-popup::after {
-            content: '';
-            position: absolute;
-            right: -8px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 0;
-            height: 0;
-            border-top: 8px solid transparent;
-            border-bottom: 8px solid transparent;
-            border-left: 8px solid #ffffff;
-        }
         
-        .consult-popup img {
-            width: 196px;
-            height: 196px;
-            object-fit: contain;
-            display: block;
-            margin: 0 auto 16px;
-            border-radius: 8px;
-        }
         
-        .consult-popup-text {
-            text-align: center;
-            font-size: 14px;
-            color: #30bf69;
-            line-height: 1.6;
-            font-weight: 500;
-            word-wrap: break-word;
-            white-space: normal;
-        }
         
         /* 二维码放大弹窗 */
         .qr-modal-overlay {
@@ -199,16 +150,6 @@
             .toolbar-item svg {
                 width: 18px;
                 height: 18px;
-            }
-            .consult-popup {
-                right: 56px;
-                bottom: -10px;
-                width: 200px;
-                padding: 16px 14px;
-            }
-            .consult-popup img {
-                width: 160px;
-                height: 160px;
             }
         }
     </style>
@@ -473,6 +414,10 @@
 
             // 设置页面底色（合作咨询页为白色，其他页恢复默认）
             document.body.style.background = (tabId === 'about') ? '#ffffff' : '';
+
+            // 右下角浮动工具栏只在首页显示，其他 Tab 隐藏
+            const floatBar = document.querySelector('.floating-toolbar');
+            if (floatBar) floatBar.style.display = (tabId === 'home') ? 'flex' : 'none';
 
             
             // 2. 先滚到顶部，避免替换内容时浏览器保持底部滚动位置
@@ -882,21 +827,13 @@
             </svg>
         </div>
         
-        <!-- 咨询按钮（带弹出框） -->
+        <!-- 咨询按钮 -->
         <div class="toolbar-item consult-btn" title="课程合作咨询">
             <svg viewBox="0 0 24 24">
                 <circle cx="12" cy="12" r="10"></circle>
                 <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
                 <line x1="12" y1="17" x2="12.01" y2="17"></line>
             </svg>
-            
-            <!-- 左侧弹出提示框 -->
-            <div class="consult-popup">
-                <img src="https://gw.alicdn.com/imgextra/i1/O1CN016CfrfB1ojaqRMGryd_!!6000000005261-2-tps-544-544.png" alt="课程合作二维码">
-                <div class="consult-popup-text">
-                    课程合作<br>钉钉扫码咨询
-                </div>
-            </div>
         </div>
     </div>
 
