@@ -5,30 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>千问办公 AI赋能企业训练营 杭州站 - 课程详情</title>
     <link rel="stylesheet" href="../common-styles.css">
+    <link rel="stylesheet" href="public-detail.css">
     <style>
-        /* AI赋能企业训练营详情页专属样式 */
+/* AI赋能企业训练营详情页专属样式 */
         .ai-hero {
             background: #eef4ff;
             padding: 80px 20px;
             position: relative;
             overflow: hidden;
-        }
-
-        .ai-hero-inner {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: flex;
-            gap: 48px;
-            align-items: center;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero-left { flex: 1; }
-
-        .hero-right {
-            flex-shrink: 0;
-            width: 320px;
         }
 
         .schedule-card {
@@ -72,15 +56,6 @@
             color: #888;
             line-height: 1.7;
             margin-bottom: 8px;
-        }
-
-        .schedule-location {
-            font-size: 14px;
-            color: #30bf69;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-weight: 500;
         }
 
         .poster-thumb {
@@ -145,18 +120,6 @@
             transition: opacity 0.2s;
         }
         .poster-lightbox-close:hover { opacity: 1; }
-
-        .ai-hero::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle at 30% 50%, rgba(48, 191, 105, 0.15) 0%, transparent 50%),
-                        radial-gradient(circle at 70% 80%, rgba(124, 111, 247, 0.1) 0%, transparent 40%);
-            pointer-events: none;
-        }
 
         .hero-badge {
             display: inline-block;
@@ -240,30 +203,10 @@
             box-shadow: 0 6px 24px rgba(48, 191, 105, 0.6);
         }
 
-        .section-container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 60px 20px;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .section-title h2 {
-            font-size: 36px;
-            font-weight: 800;
-            color: #1a1a1a;
-            margin-bottom: 12px;
-        }
-
         .section-title p {
             font-size: 16px;
             color: #666;
-        }
-
-        /* 五大亮点 */
+        }/* 五大亮点 */
         .highlight-cards {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -304,9 +247,7 @@
             color: #666;
             line-height: 1.85;
             margin: 0;
-        }
-
-        /* 适合谁 */
+        }/* 适合谁 */
         .audience-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -339,9 +280,7 @@
             font-weight: 700;
             color: #1a1a1a;
             margin: 0;
-        }
-
-        /* 课程安排时间轴 */
+        }/* 课程安排时间轴 */
         .camp-timeline {
             max-width: 950px;
             margin: 0 auto;

@@ -5,38 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>老板AI战略决断私享会 - 课程详情</title>
     <link rel="stylesheet" href="../common-styles.css">
+    <link rel="stylesheet" href="public-detail.css">
     <style>
-        /* 老板AI战略决断私享会详情页专属样式 */
+/* 老板AI战略决断私享会详情页专属样式 */
         .ai-hero {
             background: #eef4ff;
             padding: 80px 20px;
             position: relative;
             overflow: hidden;
-        }
-
-        .ai-hero-inner {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: flex;
-            gap: 48px;
-            align-items: center;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero-left { flex: 1; }
-        .hero-right { flex-shrink: 0; width: 320px; }
-
-        .ai-hero::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle at 30% 50%, rgba(48, 191, 105, 0.15) 0%, transparent 50%),
-                        radial-gradient(circle at 70% 80%, rgba(124, 111, 247, 0.1) 0%, transparent 40%);
-            pointer-events: none;
         }
 
         .ai-hero h1 {
@@ -142,15 +118,6 @@
             letter-spacing: 0.3px;
         }
 
-        .schedule-location {
-            font-size: 14px;
-            color: #30bf69;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-weight: 500;
-        }
-
         .poster-thumb {
             margin-top: 12px;
             border-radius: 10px;
@@ -180,9 +147,7 @@
             padding: 10px 0;
             background: #30bf69;
             letter-spacing: 1px;
-        }
-
-        /* 海报灯箱 */
+        }/* 海报灯箱 */
         .poster-lightbox {
             display: none;
             position: fixed;
@@ -216,31 +181,11 @@
         }
         .poster-lightbox-close:hover { opacity: 1; }
 
-        .section-container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 60px 20px;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .section-title h2 {
-            font-size: 36px;
-            font-weight: 800;
-            color: #1a1a1a;
-            margin-bottom: 12px;
-        }
-
         .section-title p {
             font-size: 16px;
             color: #666;
             line-height: 1.6;
-        }
-
-        /* 课程价值对比 */
+        }/* 课程价值对比 */
         .value-contrast {
             max-width: 900px;
             margin: 0 auto;
@@ -311,9 +256,7 @@
             color: #1a237e;
             font-weight: 600;
             line-height: 1.8;
-        }
-
-        /* 课程模块 */
+        }/* 课程模块 */
         .modules-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -390,9 +333,7 @@
             font-weight: bold;
             flex-shrink: 0;
             margin-top: 1px;
-        }
-
-        /* 交付物 */
+        }/* 交付物 */
         .deliverables-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -433,9 +374,7 @@
             font-size: 15px;
             font-weight: 700;
             color: #1a1a1a;
-        }
-
-        /* 陪跑流程 */
+        }/* 陪跑流程 */
         .runway-timeline {
             max-width: 900px;
             margin: 0 auto;
@@ -500,9 +439,7 @@
             font-size: 14px;
             color: #555;
             line-height: 1.7;
-        }
-
-        /* 导师介绍 */
+        }/* 导师介绍 */
         .mentor-card {
             max-width: 800px;
             margin: 0 auto;
@@ -564,9 +501,7 @@
             font-size: 14px;
             color: #555;
             line-height: 1.8;
-        }
-
-        /* FAQ */
+        }/* FAQ */
         .faq-list {
             max-width: 800px;
             margin: 0 auto;
@@ -625,9 +560,7 @@
             font-size: 15px;
             color: #555;
             line-height: 1.8;
-        }
-
-        /* 响应式 */
+        }/* 响应式 */
         @media (max-width: 768px) {
             .ai-hero { padding: 48px 20px; }
             .ai-hero-inner {
