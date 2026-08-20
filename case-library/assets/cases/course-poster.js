@@ -60,7 +60,7 @@ export default
       "label": "课程海报技能包",
       "href": "case-library/demos/course-poster/course-poster-skill.md",
       "kind": "text",
-      "download": "case-library/demos/course-poster/course-poster-qwenwork.zip",
+      "download": "https://github.com/qwenwork-courses/qwenwork-courses/releases/download/media-v1/course-poster-qwenwork.zip",
       "downloadName": "course-poster-qwenwork.zip",
       "note": "点开看技能定义，右上角下载包含 SKILL.md + 生图脚本 + 品牌素材 + 参考海报"
     },

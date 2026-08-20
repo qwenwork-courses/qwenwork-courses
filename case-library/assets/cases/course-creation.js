@@ -76,14 +76,14 @@ export default
     {
       "group": "skill",
       "label": "下载技能包（15MB）",
-      "href": "case-library/demos/course-creation/course-creation-kit.zip",
+      "href": "https://github.com/qwenwork-courses/qwenwork-courses/releases/download/media-v1/course-creation-kit.zip",
       "kind": "file"
     },
     {
       "group": "output",
       "label": "带字幕成片（MP4 · 1080p）",
       "note": "点开先预览 · 右上角下载",
-      "href": "case-library/demos/course-creation/course-creation-final-subtitled.mp4",
+      "href": "https://github.com/qwenwork-courses/qwenwork-courses/releases/download/media-v1/course-creation-final-subtitled.mp4",
       "downloadName": "Skill技能与专家套件-字幕版.mp4",
       "kind": "video"
     },
@@ -91,14 +91,14 @@ export default
       "group": "output",
       "label": "其他产出（PPT、讲稿、配音）",
       "note": "三件配套文件 · 点开逐个下载",
-      "href": "case-library/demos/course-creation/course-creation-slides.pptx",
+      "href": "https://github.com/qwenwork-courses/qwenwork-courses/releases/download/media-v1/course-creation-slides.pptx",
       "kind": "bundle",
       "bundleLead": "《Skill 技能与专家套件》这一讲除成片之外的三件配套产物，可按需单独下载。",
       "files": [
         {
           "label": "PPT 课件（.pptx）",
           "note": "千问办公品牌模板 · Stage 1 产物",
-          "href": "case-library/demos/course-creation/course-creation-slides.pptx",
+          "href": "https://github.com/qwenwork-courses/qwenwork-courses/releases/download/media-v1/course-creation-slides.pptx",
           "downloadName": "千问办公_Skill技能与专家套件.pptx",
           "icon": "slides"
         },
@@ -112,7 +112,7 @@ export default
         {
           "label": "AI 配音（.mp3）",
           "note": "预置音色合成 · Stage 3 产物",
-          "href": "case-library/demos/course-creation/course-creation-voiceover.mp3",
+          "href": "https://github.com/qwenwork-courses/qwenwork-courses/releases/download/media-v1/course-creation-voiceover.mp3",
           "downloadName": "Skill技能与专家套件-配音.mp3",
           "icon": "audio"
         }

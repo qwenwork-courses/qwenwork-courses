@@ -30,7 +30,7 @@ MIME_EXT = {
 PAT = re.compile(r"data:([a-zA-Z0-9.+/-]+);base64,([A-Za-z0-9+/=]+)")
 
 
-def process(path, kinds, write):
+def process(path, kinds, write, url_base=None):
     with open(path, "r", encoding="utf-8", errors="surrogatepass") as f:
         html = f.read()
 
@@ -63,6 +63,8 @@ def process(path, kinds, write):
                 os.makedirs(outdir_abs, exist_ok=True)
                 with open(os.path.join(outdir_abs, name), "wb") as wf:
                     wf.write(raw)
+        if url_base:
+            return f"{url_base}/{seen[h]}"
         return f"{outdir_rel}/{seen[h]}"
 
     new_html = PAT.sub(repl, html)
@@ -80,6 +82,8 @@ def main():
     ap.add_argument("--write", action="store_true")
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--kinds", default="image")
+    ap.add_argument("--url-base", default=None,
+                    help="设定后，引用改写为 <url-base>/<name>（文件仍写到 .assets 供上传）")
     args = ap.parse_args()
     kinds = set(k.strip() for k in args.kinds.split(",") if k.strip())
     write = args.write and not args.dry_run
@@ -88,7 +92,7 @@ def main():
     for path in args.files:
         if not os.path.isfile(path):
             continue
-        stats, old, new = process(path, kinds, write)
+        stats, old, new = process(path, kinds, write, args.url_base)
         if stats["count"] == 0:
             continue
         total_assets += stats["count"]
