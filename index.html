@@ -4,7 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>钉钉AI咨询研究院 - 课程系统</title>
-    <link rel="stylesheet" href="common-styles.css?v=20260820b">
+    <link rel="stylesheet" href="common-styles.css?v=20260820c">
+    <!-- 案例库（tab-cases.html）的样式表：提前 prefetch 进缓存。它是唯一决定案例库
+         片段“裸 HTML 闪现”窗口长短的资源——用户切到「案例库」时若已命中缓存，样式
+         几乎瞬间生效，配合下方内联兜底规则，先乱码后弹窗的现象即被消除。 -->
+    <link rel="prefetch" href="case-library/assets/style.css" as="style">
     <style>
         /* 简单的加载动画 */
         .loading-spinner {
@@ -12,6 +16,21 @@
             padding: 50px;
             color: var(--dt-text-secondary);
         }
+
+        /* ------------------------------------------------------------------
+         * 案例库弹窗兜底隐藏（防“先乱码后弹窗”）
+         * tab-cases.html 用 innerHTML 注入，其两个 .modal-backdrop 弹窗
+         * （#shareModal / #previewModal）只靠 case-library/assets/style.css 里的
+         * opacity:0 隐藏。该样式表生效前，浏览器会用默认样式把弹窗直接铺在页面上。
+         * switchMainTab 里的 hoistFragmentLinks 虽会先等样式表，但存在 3s 超时兜底、
+         * 冷缓存、慢网等窗口期，仍可能漏出弹窗。这里在 <head> 内联一条兜底规则，
+         * 让弹窗在样式表接管前始终隐藏。
+         *
+         * 覆盖关系：正式样式表 #cases-app .modal-backdrop 选择器特异性与本规则相同，
+         * 但它在运行时被 append 到 <head>、源顺序更靠后，会覆盖此处的 display:none，
+         * 恢复其 display:flex + opacity 过渡，弹窗的正常打开/动画不受影响。
+         * ---------------------------------------------------------------- */
+        #cases-app .modal-backdrop { display: none; }
         
         /* 右下角浮动工具栏 */
         .floating-toolbar {
@@ -397,6 +416,62 @@
             });
         }
         
+        /* ------------------------------------------------------------------
+         * 片段样式表前置
+         * tab-*.html 允许自带 <link rel="stylesheet">（目前只有案例库用到）。
+         * 但片段是用 innerHTML 注入的，浏览器会先把裸 HTML 画出来、再异步
+         * 拉这个 CSS。实测案例库在那个窗口期内：两个 .modal-backdrop 弹窗以
+         * display:block 直接铺在页面上（315px + 202px），其余文字则是无样式堆叠，
+         * 看上去就是“先乱码后弹窗”。所以注入前先把 <link> 搬到 <head> 并等它生效。
+         *
+         * 只搬 <link>，不动片段内的 <style>：后者必须留在容器里，才能随 Tab
+         * 切换被一起清掉（例如企业页的 body 背景覆盖不应残留到其它 Tab）。
+         * ---------------------------------------------------------------- */
+        const hoistedLinks = new Map();   // 绝对 href -> 已插入 <head> 的 <link>
+
+        function linkSettled(link) {
+            return new Promise(resolve => {
+                if (link.sheet) return resolve();
+                link.addEventListener('load', resolve, { once: true });
+                link.addEventListener('error', resolve, { once: true });
+            });
+        }
+
+        function hoistFragmentLinks(html) {
+            const tags = html.match(/<link\b[^>]*>/gi);
+            if (!tags) return { html, ready: Promise.resolve() };
+
+            const waits = [];
+            tags.forEach(tag => {
+                const probe = document.createElement('div');
+                probe.innerHTML = tag;
+                const parsed = probe.firstElementChild;
+                if (!parsed || parsed.tagName !== 'LINK') return;
+
+                const raw = parsed.getAttribute('href');
+                if (!raw) return;
+                const href = new URL(raw, document.baseURI).href;
+                const isSheet = (parsed.getAttribute('rel') || '').toLowerCase() === 'stylesheet';
+
+                let link = hoistedLinks.get(href);
+                if (!link) {
+                    link = parsed;
+                    link.setAttribute('href', href);   // 转绝对，避开子路径部署下的解析差异
+                    hoistedLinks.set(href, link);
+                    document.head.appendChild(link);
+                }
+                if (isSheet && !link.sheet) waits.push(linkSettled(link));
+            });
+
+            // 3s 兜底：CSS 拉不下来也不能把界面永久卡在“正在加载”
+            const ready = waits.length
+                ? Promise.race([Promise.all(waits), new Promise(r => setTimeout(r, 3000))])
+                : Promise.resolve();
+
+            // 提走的 <link> 从注入内容里剔除，避免重复插入
+            return { html: html.replace(/<link\b[^>]*>/gi, ''), ready };
+        }
+
         // Tab切换主函数
         async function switchMainTab(tabId) {
             const container = document.getElementById('main-content-area');
@@ -432,12 +507,17 @@
                 const response = await fetch(`tab-${tabId}.html?t=${timestamp}`);
                 if (!response.ok) throw new Error('加载失败');
                 const html = await response.text();
-                
-                // 5. 缓存并渲染
+
+                // 5. 先把片段自带的 <link> 前置到 <head> 并等样式表生效，
+                //    再注入 HTML——否则会先闪一帧裸 HTML（详见函数处注释）。
+                const prepared = hoistFragmentLinks(html);
+                await prepared.ready;
+
+                // 6. 缓存并渲染
                 contentCache[tabId] = html;
-                container.innerHTML = html;
-                
-                // 6. 手动执行插入内容中的 <script> 标签
+                container.innerHTML = prepared.html;
+
+                // 7. 手动执行插入内容中的 <script> 标签
                 const scripts = container.querySelectorAll('script');
                 scripts.forEach(oldScript => {
                     const newScript = document.createElement('script');
@@ -450,7 +530,7 @@
                     oldScript.parentNode.replaceChild(newScript, oldScript);
                 });
                 
-                // 7. 初始化轮播图和精彩回顾滚动
+                // 8. 初始化轮播图和精彩回顾滚动
                 setTimeout(() => {
                     try { initBanner(); } catch(e) { console.error('[Banner] init error:', e); }
                     try { initCarousels(); } catch(e) { console.error('[Carousels] init error:', e); }
@@ -458,12 +538,12 @@
                     // initHotCoursesScroll 已注释掉（热门课程模块暂不启用）
                 }, 100);
                 
-                // 8. 初始化公开课筛选功能 + 按时间排序
+                // 9. 初始化公开课筛选功能 + 按时间排序
                 if (tabId === 'public') {
                     setTimeout(initPublicFilter, 50);
                 }
                 
-                // 9. 确保滚动位置在顶端
+                // 10. 确保滚动位置在顶端
                 window.scrollTo(0, 0);
             } catch (error) {
                 console.error(error);
@@ -758,6 +838,11 @@
                 setTimeout(() => {
                     activateEnterpriseDomain(domainId);
                 }, 200);
+            } else if (hash === 'cases' || hash.startsWith('cases/')) {
+                // 案例库深链：#cases（画廊）或 #cases/case/<id>（某案例详情）都进入案例库 Tab。
+                // 是否展开具体案例交给案例库自身：app.js 的 initFromHash 会读取同一 hash，
+                // 所以这里只负责把 Tab 切到案例库即可。
+                await switchMainTab('cases');
             } else {
                 const targetTab = ['home', 'cases', 'public', 'enterprise', 'online', 'about'].includes(hash) ? hash : 'home';
                 await switchMainTab(targetTab);

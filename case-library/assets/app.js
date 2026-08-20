@@ -91,8 +91,12 @@ function toggleFav(id) {
 }
 
 function toast(msg) {
-  let el = $('#toast');
-  if (!el) { el = h('div', 'toast'); el.id = 'toast'; document.body.appendChild(el); }
+  /* 案例库样式表把 .toast 作用域限定在 #cases-app 内（#cases-app .toast）。
+     嵌入官网后 body 不再是案例库根，若挂到 document.body 会落到 #cases-app 之外，
+     样式命不中，就退化成页面左下角一行裸文字。所以统一挂进 #cases-app。*/
+  const root = document.getElementById('cases-app') || document.body;
+  let el = root.querySelector('#toast');
+  if (!el) { el = h('div', 'toast'); el.id = 'toast'; root.appendChild(el); }
   el.textContent = msg;
   el.classList.add('show');
   clearTimeout(el._t);
@@ -144,7 +148,9 @@ function caseUrl(id) {
   }
   const u = new URL(base);
   u.search = '';
-  u.hash = `#/case/${id}`;
+  /* 嵌入官网后统一用 #cases/case/<id>：外壳 index.html 见到该 hash 会切到「案例库」
+     tab，再由本模块 initFromHash 展开详情，别人点链接即可直达案例详情页 */
+  u.hash = `#cases/case/${id}`;
   return u.href;
 }
 
@@ -152,48 +158,67 @@ function shareCase(c) {
   openShareModal(c);
 }
 
-/* ---------- Routing ---------- */
+/* ---------- Routing ----------
+   案例库嵌在官网外壳（index.html）里，外壳用 hash 选择顶层 tab。为了让案例库的深链
+   （分享链接）能被外壳识别并落到「案例库」tab，这里统一用 #cases 前缀：
+     - 画廊：#cases
+     - 详情：#cases/case/<id>
+   外壳 window.onload 见到 #cases / #cases/case/... 即切到案例库 tab，随后本模块
+   initFromHash 读取同一 hash 决定是否直接展开某个案例详情。
+   仍兼容历史/独立部署的 #/case/<id>、#case/<id> 写法。*/
+function parseCaseHash() {
+  const m = location.hash.match(/^#(?:cases\/)?\/?case\/(.+)$/);
+  return m ? decodeURIComponent(m[1]) : null;
+}
+
 function navigate(view, id) {
   if (view === 'detail' && id) {
     currentView = 'detail';
     currentCase = CASES.find(c => c.id === id) || null;
-    void ({ view, id }, '', `#/case/${id}`);
+    try { history.pushState({ view, id }, '', `#cases/case/${id}`); } catch (e) {}
   } else {
     currentView = 'gallery';
     currentCase = null;
-    void ({ view: 'gallery' }, '', '#/');
+    try { history.pushState({ view: 'gallery' }, '', '#cases'); } catch (e) {}
   }
   render();
   window.scrollTo({ top: 0 });
 }
 
-if (0) __winAdd('popstate', (e) => {
-  const s = e.state || {};
-  if (s.view === 'detail' && s.id) {
-    currentView = 'detail';
-    currentCase = CASES.find(c => c.id === s.id) || null;
-  } else {
-    currentView = 'gallery';
-    currentCase = null;
-  }
+/* 前进/后退：仅在案例库 tab 仍存活时处理，否则交回外壳，
+   避免往已被外壳清空的 #app 里渲染而报错 */
+__winAdd('popstate', () => {
+  if (!document.getElementById('cases-app')) return;
+  const id = parseCaseHash();
+  const c = id ? (CASES.find(x => x.id === id) || null) : null;
+  currentView = c ? 'detail' : 'gallery';
+  currentCase = c;
   render();
+  window.scrollTo({ top: 0 });
 });
 
-/* 手改 hash / 外部跳转（如客户点开分享链接而页面已开着）时同步视图。
+/* 手改 hash / 外部跳转（如客户把分享链接贴进已开着的页面）时同步视图。
    pushState 不触发 hashchange，所以与 navigate() 不会重复渲染。*/
-if (0) __winAdd('hashchange', () => {
-  const m = location.hash.match(/^#\/case\/(.+)$/);
-  const nextCase = m ? (CASES.find(c => c.id === m[1]) || null) : null;
-  const nextView = nextCase ? 'detail' : 'gallery';
-  if (nextView === currentView && nextCase === currentCase) return;
+__winAdd('hashchange', () => {
+  if (!document.getElementById('cases-app')) return;
+  const id = parseCaseHash();
+  const c = id ? (CASES.find(x => x.id === id) || null) : null;
+  const nextView = c ? 'detail' : 'gallery';
+  if (nextView === currentView && c === currentCase) return;
   currentView = nextView;
-  currentCase = nextCase;
+  currentCase = c;
   render();
   window.scrollTo({ top: 0 });
 });
 
 /* ---------- Init ---------- */
-function initFromHash() { currentView = 'gallery'; currentCase = null; }
+/* 从当前 hash 恢复视图：分享链接落地或刷新时，直接展开对应案例详情 */
+function initFromHash() {
+  const id = parseCaseHash();
+  const c = id ? (CASES.find(x => x.id === id) || null) : null;
+  currentView = c ? 'detail' : 'gallery';
+  currentCase = c;
+}
 
 /* ---------- Gallery ---------- */
 /* Hero 只在进入首页时渲染一次；搜索/筛选只重绘 #results，否则输入框会失焦 */
@@ -534,9 +559,9 @@ function renderCard(c, dept, colors) {
     </div>
     <div class="card-actions">
       ${c.prompt ? `<button type="button" class="card-copy">${svgIcon('copy', 15)} 一键复制 Prompt</button>` : ''}
-      <a class="card-open" href="#/case/${c.id}">查看案例 ${svgIcon('arrowR', 15)}</a>
+      <a class="card-open" href="#cases/case/${c.id}">查看案例 ${svgIcon('arrowR', 15)}</a>
     </div>
-    <a class="card-link" href="#/case/${c.id}" aria-label="查看「${c.title}」详情"></a>
+    <a class="card-link" href="#cases/case/${c.id}" aria-label="查看「${c.title}」详情"></a>
   `;
 
   card.querySelector('.card-link').addEventListener('click', e => { e.preventDefault(); navigate('detail', c.id); });
@@ -596,9 +621,9 @@ function renderDetail() {
   /* Breadcrumb */
   wrap.innerHTML = `
     <nav class="breadcrumb">
-      <a href="#/" class="back-home">案例库</a>
+      <a href="#cases" class="back-home">案例库</a>
       <span class="sep">/</span>
-      <a href="#/" data-dept="${dept.id}">${dept.name}</a>
+      <a href="#cases" data-dept="${dept.id}">${dept.name}</a>
       <span class="sep">/</span>
       <strong>${c.title}</strong>
     </nav>

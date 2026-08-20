@@ -1,4 +1,12 @@
 <link rel="stylesheet" href="case-library/assets/style.css">
+<!-- 下面这组 modulepreload 会被 index.html 的加载器跟样式表一起提到 <head>。
+     静态依赖链是 app.js → data.js / poster.js → qr.js，不预告的话浏览器要等
+     app.js 下完才能发现 data.js/poster.js、再等 poster.js 才能发现 qr.js，
+     三层瀑布。预告后这四个模块与 CSS 并行下载。 -->
+<link rel="modulepreload" href="case-library/assets/app.js">
+<link rel="modulepreload" href="case-library/assets/data.js">
+<link rel="modulepreload" href="case-library/assets/poster.js">
+<link rel="modulepreload" href="case-library/assets/qr.js">
 
 <div id="cases-app" class="embed">
 <!-- ============================================================ Header === -->
