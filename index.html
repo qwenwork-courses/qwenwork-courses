@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>钉钉AI咨询研究院 - 课程系统</title>
-    <link rel="stylesheet" href="common-styles.css?v=20260820c">
+    <link rel="stylesheet" href="assets/css/common-styles.css?v=20260820c">
     <!-- 案例库（tab-cases.html）的样式表：提前 prefetch 进缓存。它是唯一决定案例库
          片段“裸 HTML 闪现”窗口长短的资源——用户切到「案例库」时若已命中缓存，样式
          几乎瞬间生效，配合下方内联兜底规则，先乱码后弹窗的现象即被消除。 -->
@@ -505,7 +505,7 @@
                 let html = contentCache[tabId];
                 if (html == null) {
                     container.innerHTML = '<div class="loading-spinner">正在加载内容...</div>';
-                    const response = await fetch(`tab-${tabId}.html`);
+                    const response = await fetch(`tabs/tab-${tabId}.html`);
                     if (!response.ok) throw new Error('加载失败');
                     html = await response.text();
                     contentCache[tabId] = html;
@@ -834,7 +834,7 @@
                 if (contentCache[tabId] != null) return;
                 idle(() => {
                     if (contentCache[tabId] != null) return;
-                    fetch(`tab-${tabId}.html`)
+                    fetch(`tabs/tab-${tabId}.html`)
                         .then(r => (r.ok ? r.text() : null))
                         .then(t => { if (t != null && contentCache[tabId] == null) contentCache[tabId] = t; })
                         .catch(() => {});
