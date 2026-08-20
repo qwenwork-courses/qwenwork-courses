@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>个人工作台</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* Paper (warm neutrals) */
+  --paper: #F5F3EE;
+  --paper-2: #FFFFFF;
+  --paper-3: #EBE8E1;
+
+  /* Ink (warm charcoals) */
+  --ink: #1A1D1A;
+  --ink-2: #4C4E48;
+  --ink-3: #8B8F87;
+  --ink-4: #B8BAB4;
+
+  /* Hairlines */
+  --line: #E4E1D9;
+  --line-2: #EDEAE2;
+
+  /* Accent — deep forest */
+  --accent: #2A5F45;
+  --accent-2: #3D7A5C;
+  --accent-ink: #1F4A34;
+  --accent-soft: #E5EBE4;
+
+  /* Warm accent — terracotta */
+  --warm: #B87355;
+  --warm-soft: #F4E8E1;
+
+  /* Semantic */
+  --amber: #A87A2C;
+  --amber-soft: #F3EAD5;
+  --red: #A64545;
+  --red-soft: #F3E4E1;
+  --blue: #3E6280;
+  --blue-soft: #E4EBF1;
+
+  /* Type */
+  --font-display: 'Fraunces', 'Songti SC', 'Noto Serif SC', Georgia, serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'PingFang SC', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Space (4pt) */
+  --s-1: 4px; --s-2: 8px; --s-3: 12px; --s-4: 16px; --s-5: 20px;
+  --s-6: 24px; --s-8: 32px; --s-10: 40px; --s-12: 48px; --s-16: 64px;
+
+  /* Motion */
+  --ease-out: cubic-bezier(.22,.61,.36,1);
+  --dur: 220ms;
+
+  /* Radius */
+  --r-sm: 6px; --r: 10px; --r-lg: 14px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { overflow-x: clip; }
+body {
+  font-family: var(--font-body);
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 14px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: 'ss01', 'cv11';
+}
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; }
+
+/* ========== Top Bar ========== */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  display: grid; grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding: 14px 32px;
+  background: rgba(245, 243, 238, 0.85);
+  backdrop-filter: saturate(1.4) blur(14px);
+  border-bottom: 1px solid var(--line);
+}
+.brand {
+  display: flex; align-items: center; gap: 10px;
+  justify-self: start;
+}
+.brand-mark {
+  width: 22px; height: 22px; border-radius: 5px;
+  background: var(--accent);
+  position: relative;
+}
+.brand-mark::after {
+  content: ''; position: absolute; inset: 5px 5px auto auto;
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--warm);
+}
+.brand-name {
+  font-family: var(--font-display);
+  font-size: 15px; font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+/* Underlined tabs */
+.tabs {
+  display: flex; gap: 4px;
+  justify-self: center;
+}
+.tab {
+  padding: 8px 16px;
+  font-size: 13px; font-weight: 500;
+  color: var(--ink-3);
+  background: transparent; border: none; cursor: pointer;
+  position: relative;
+  transition: color var(--dur) var(--ease-out);
+  letter-spacing: 0.01em;
+}
+.tab:hover { color: var(--ink-2); }
+.tab.active { color: var(--ink); }
+.tab.active::after {
+  content: '';
+  position: absolute; left: 16px; right: 16px; bottom: -14px;
+  height: 1.5px; background: var(--accent);
+}
+
+.sync {
+  justify-self: end;
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 5px 10px 5px 8px;
+  font-size: 12px; color: var(--ink-2);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--paper-2);
+  font-variant-numeric: tabular-nums;
+}
+.sync-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--accent-2);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+/* ========== Main ========== */
+.main {
+  max-width: 1200px; margin: 0 auto;
+  padding: 56px 32px 80px;
+}
+
+.page { display: none; }
+.page.active { display: block; animation: fade .35s var(--ease-out); }
+@keyframes fade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+/* ========== Hero (editorial) ========== */
+.hero { margin-bottom: 64px; }
+.hero-meta {
+  font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--ink-3);
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+.hero-meta::before {
+  content: ''; display: inline-block;
+  width: 24px; height: 1px; background: var(--ink-3);
+  vertical-align: middle; margin-right: 12px;
+  transform: translateY(-2px);
+}
+.hero-greeting {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 4.8vw, 52px);
+  font-weight: 400;
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+  max-width: 720px;
+}
+.hero-greeting em {
+  font-style: italic;
+  color: var(--accent);
+}
+.hero-sub {
+  margin-top: 12px;
+  color: var(--ink-2); font-size: 15px;
+  max-width: 560px;
+}
+
+/* Hero stat strip */
+.hero-stats {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  margin-top: 40px;
+  border-top: 1px solid var(--line);
+}
+.h-stat {
+  padding: 20px 24px 0 0;
+  border-right: 1px solid var(--line);
+}
+.h-stat:last-child { border-right: none; padding-right: 0; }
+.h-stat-value {
+  font-family: var(--font-display);
+  font-size: 34px; font-weight: 400;
+  line-height: 1; letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+.h-stat-value span {
+  font-size: 14px; font-family: var(--font-body);
+  color: var(--ink-3); margin-left: 4px; font-weight: 400;
+}
+.h-stat-label {
+  font-size: 12px; color: var(--ink-3);
+  margin-top: 8px; letter-spacing: 0.02em;
+}
+.h-stat-sub { font-size: 11px; color: var(--ink-4); margin-top: 2px; }
+
+/* ========== Section ========== */
+.section { margin-bottom: 56px; }
+.section-head {
+  display: flex; align-items: baseline; justify-content: space-between;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+}
+.section-title {
+  font-family: var(--font-display);
+  font-size: 20px; font-weight: 500;
+  letter-spacing: -0.015em;
+}
+.section-meta {
+  font-size: 12px; color: var(--ink-3);
+  letter-spacing: 0.02em;
+}
+.section-meta a { color: var(--accent); font-weight: 500; }
+.section-meta a:hover { color: var(--accent-ink); }
+
+/* ========== Focus (today/tomorrow) ========== */
+.focus-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.focus-card {
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  padding: 24px;
+}
+.focus-head {
+  display: flex; align-items: baseline; justify-content: space-between;
+  margin-bottom: 16px;
+}
+.focus-head-title {
+  font-size: 13px; font-weight: 600; color: var(--ink);
+  letter-spacing: 0.02em;
+}
+.focus-head-date {
+  font-family: var(--font-mono);
+  font-size: 11px; color: var(--ink-3);
+  letter-spacing: 0.02em;
+}
+
+.task {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line-2);
+}
+.task:last-child { border-bottom: none; padding-bottom: 0; }
+.task:first-child { padding-top: 0; }
+
+.check {
+  width: 16px; height: 16px; border-radius: 4px;
+  border: 1.5px solid var(--ink-4);
+  flex-shrink: 0; margin-top: 3px; cursor: pointer;
+  transition: all var(--dur) var(--ease-out);
+  display: flex; align-items: center; justify-content: center;
+}
+.check:hover { border-color: var(--accent); }
+.check.checked { background: var(--accent); border-color: var(--accent); }
+.check.checked::after {
+  content: ''; width: 8px; height: 4px;
+  border-left: 1.5px solid #fff; border-bottom: 1.5px solid #fff;
+  transform: rotate(-45deg) translate(1px, -1px);
+}
+
+.task-body { flex: 1; min-width: 0; }
+.task-title { font-size: 14px; font-weight: 500; color: var(--ink); }
+.task-meta { display: flex; gap: 6px; margin-top: 6px; flex-wrap: wrap; }
+
+.chip {
+  font-size: 11px; padding: 2px 8px;
+  border-radius: 4px; font-weight: 500;
+  letter-spacing: 0.02em;
+  background: var(--paper-3); color: var(--ink-2);
+}
+.chip-urgent { background: var(--red-soft); color: var(--red); }
+.chip-high { background: var(--amber-soft); color: var(--amber); }
+.chip-cal { background: var(--blue-soft); color: var(--blue); }
+.chip-project { background: var(--accent-soft); color: var(--accent-ink); }
+
+.task-actions { display: flex; gap: 6px; flex-shrink: 0; }
+.btn-x {
+  padding: 4px 10px; border-radius: var(--r-sm);
+  font-size: 12px; font-weight: 500;
+  border: 1px solid transparent; cursor: pointer;
+  transition: all var(--dur) var(--ease-out);
+}
+.btn-done { background: var(--accent-soft); color: var(--accent-ink); }
+.btn-done:hover { background: var(--accent); color: #fff; }
+.btn-defer { background: transparent; color: var(--ink-3); border-color: var(--line); }
+.btn-defer:hover { color: var(--ink); border-color: var(--ink-4); }
+
+/* ========== Task Pool ========== */
+.pool { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+.pool-col {
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  padding: 20px;
+}
+.pool-col-head {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 14px;
+}
+.pool-col-title {
+  font-size: 12px; font-weight: 600;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--ink-2);
+}
+.pool-col-count {
+  font-family: var(--font-mono);
+  font-size: 11px; color: var(--ink-3);
+  padding: 1px 6px; border-radius: 3px;
+  background: var(--paper-3);
+}
+.pool-col.overdue .pool-col-title { color: var(--red); }
+.pool-col.overdue .pool-col-count { background: var(--red-soft); color: var(--red); }
+
+.pool-item {
+  display: block;
+  padding: 10px 12px; margin-bottom: 6px;
+  border-radius: var(--r-sm);
+  background: var(--paper);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all var(--dur) var(--ease-out);
+}
+.pool-item:hover { border-color: var(--line); background: var(--paper-2); transform: translateX(2px); }
+.pool-item:last-child { margin-bottom: 0; }
+.pool-item-title { font-size: 13px; font-weight: 500; }
+.pool-item-meta { font-size: 11px; color: var(--ink-3); margin-top: 3px; font-variant-numeric: tabular-nums; }
+
+/* ========== Data Overview (Projects page top) ========== */
+.overview {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+  border: 1px solid var(--line); border-radius: var(--r-lg);
+  background: var(--paper-2);
+  overflow: hidden;
+  margin-bottom: 48px;
+}
+.ov-card {
+  padding: 20px 24px;
+  border-right: 1px solid var(--line);
+  transition: background var(--dur) var(--ease-out);
+  cursor: pointer;
+}
+.ov-card:last-child { border-right: none; }
+.ov-card:hover { background: var(--paper); }
+.ov-label {
+  font-size: 11px; color: var(--ink-3);
+  letter-spacing: 0.06em; text-transform: uppercase;
+  margin-bottom: 8px; font-weight: 500;
+}
+.ov-value {
+  font-family: var(--font-display);
+  font-size: 32px; font-weight: 400;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+.ov-hint { font-size: 11px; color: var(--ink-4); margin-top: 6px; }
+
+/* ========== Projects ========== */
+.rail-wrap { position: relative; }
+.rail {
+  display: flex; gap: 16px; overflow-x: auto;
+  padding: 2px; scroll-behavior: smooth;
+  -ms-overflow-style: none; scrollbar-width: none;
+}
+.rail::-webkit-scrollbar { display: none; }
+.p-card {
+  min-width: 320px; max-width: 340px; flex-shrink: 0;
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  padding: 22px 24px;
+  cursor: pointer;
+  transition: all var(--dur) var(--ease-out);
+}
+.p-card:hover { border-color: var(--ink-4); transform: translateY(-2px); }
+.p-head {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  margin-bottom: 14px;
+}
+.p-name {
+  font-family: var(--font-display);
+  font-size: 17px; font-weight: 500;
+  letter-spacing: -0.01em;
+}
+.p-status {
+  font-size: 10px; padding: 3px 8px; border-radius: 3px;
+  font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+}
+.p-status.active { background: var(--accent-soft); color: var(--accent-ink); }
+.p-status.pending { background: var(--amber-soft); color: var(--amber); }
+.p-status.done { background: var(--paper-3); color: var(--ink-3); }
+.p-cash {
+  font-size: 12px; color: var(--ink-3);
+  margin-bottom: 12px; font-variant-numeric: tabular-nums;
+}
+.p-cash strong { color: var(--ink); font-weight: 600; }
+.p-prog { font-size: 13px; color: var(--ink-2); line-height: 1.55; }
+.p-foot {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-top: 16px; padding-top: 12px;
+  border-top: 1px solid var(--line-2);
+  font-size: 11px; color: var(--ink-3);
+  font-variant-numeric: tabular-nums;
+}
+
+.arrow {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 32px; height: 32px; border-radius: 50%;
+  background: var(--paper-2); border: 1px solid var(--line);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; z-index: 2;
+  color: var(--ink-2);
+  transition: all var(--dur) var(--ease-out);
+}
+.arrow:hover { border-color: var(--ink-3); color: var(--ink); }
+.arrow-l { left: -16px; }
+.arrow-r { right: -16px; }
+
+/* ========== Heatmap ========== */
+.heat-wrap {
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  padding: 28px;
+}
+.heat-grid { display: grid; grid-template-columns: repeat(7,1fr); gap: 5px; }
+.heat-h {
+  font-size: 11px; color: var(--ink-4); text-align: center;
+  padding-bottom: 8px; font-family: var(--font-mono);
+  letter-spacing: 0.05em;
+}
+.heat {
+  aspect-ratio: 1; border-radius: 3px;
+  position: relative;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px; color: var(--ink-3);
+  font-variant-numeric: tabular-nums;
+  transition: transform .15s var(--ease-out);
+}
+.heat:hover { transform: scale(1.15); z-index: 2; }
+.h0 { background: var(--paper-3); }
+.h1 { background: #C8D5CB; }
+.h2 { background: #8FB29A; }
+.h3 { background: #5A8E6F; }
+.h4 { background: var(--accent); color: #FBFAF6; }
+.heat-legend {
+  display: flex; align-items: center; gap: 6px;
+  margin-top: 20px; justify-content: flex-end;
+  font-size: 11px; color: var(--ink-4);
+  letter-spacing: 0.02em;
+}
+.leg { width: 12px; height: 12px; border-radius: 2px; }
+
+.tip {
+  position: absolute; bottom: calc(100% + 6px); left: 50%;
+  transform: translateX(-50%);
+  background: var(--ink); color: var(--paper);
+  font-size: 11px; padding: 4px 8px; border-radius: 4px;
+  white-space: nowrap; pointer-events: none;
+  opacity: 0; transition: opacity var(--dur) var(--ease-out);
+  font-family: var(--font-mono); letter-spacing: 0.02em;
+}
+.heat:hover .tip { opacity: 1; }
+
+/* ========== Knowledge ========== */
+.kb-cats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 40px; }
+.kb-cat {
+  display: flex; align-items: center; gap: 14px;
+  padding: 18px 20px;
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  cursor: pointer;
+  transition: all var(--dur) var(--ease-out);
+}
+.kb-cat:hover { border-color: var(--ink-4); }
+.kb-tag { width: 3px; height: 28px; border-radius: 1.5px; flex-shrink: 0; }
+.kb-name {
+  font-family: var(--font-display);
+  font-size: 15px; font-weight: 500;
+  letter-spacing: -0.01em;
+}
+.kb-cnt { font-size: 11px; color: var(--ink-3); margin-top: 2px; letter-spacing: 0.02em; }
+
+.doc-list {
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  padding: 8px 24px;
+}
+.doc {
+  display: flex; align-items: center; gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--line-2);
+  cursor: pointer;
+  transition: opacity var(--dur) var(--ease-out);
+}
+.doc:hover { opacity: 0.7; }
+.doc:last-child { border-bottom: none; }
+.doc-num {
+  font-family: var(--font-mono);
+  font-size: 11px; color: var(--ink-4);
+  letter-spacing: 0.05em;
+  width: 24px; flex-shrink: 0;
+}
+.doc-info { flex: 1; min-width: 0; }
+.doc-title {
+  font-family: var(--font-display);
+  font-size: 15px; font-weight: 500;
+  letter-spacing: -0.005em;
+}
+.doc-meta { font-size: 11px; color: var(--ink-3); margin-top: 3px; letter-spacing: 0.02em; }
+.doc-arrow {
+  color: var(--ink-4); font-size: 14px;
+  transition: transform var(--dur) var(--ease-out);
+}
+.doc:hover .doc-arrow { transform: translateX(3px); color: var(--ink-2); }
+
+/* ========== Modal ========== */
+.modal-bg {
+  display: none; position: fixed; inset: 0; z-index: 200;
+  background: rgba(26, 29, 26, 0.4); backdrop-filter: blur(6px);
+  align-items: center; justify-content: center;
+}
+.modal-bg.open { display: flex; }
+.modal {
+  background: var(--paper-2); border-radius: var(--r-lg);
+  width: 90%; max-width: 560px;
+  max-height: 80vh; overflow-y: auto;
+  padding: 40px; position: relative;
+  border: 1px solid var(--line);
+}
+.modal-x {
+  position: absolute; top: 20px; right: 20px;
+  width: 30px; height: 30px; border-radius: var(--r-sm);
+  border: 1px solid var(--line); background: transparent;
+  cursor: pointer; color: var(--ink-2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px;
+  transition: all var(--dur) var(--ease-out);
+}
+.modal-x:hover { border-color: var(--ink-3); color: var(--ink); }
+.modal-title {
+  font-family: var(--font-display);
+  font-size: 24px; font-weight: 500;
+  letter-spacing: -0.02em;
+  margin-bottom: 20px;
+}
+.modal-body { font-size: 14px; color: var(--ink-2); line-height: 1.7; }
+
+/* Toast */
+.toast {
+  position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%);
+  background: var(--ink); color: var(--paper);
+  padding: 10px 18px; border-radius: var(--r);
+  font-size: 13px; z-index: 999;
+  box-shadow: 0 8px 24px rgba(26, 29, 26, 0.15);
+  letter-spacing: 0.01em;
+  font-weight: 500;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .main { padding: 40px 20px 60px; }
+  .topbar { padding: 12px 20px; }
+  .hero-stats { grid-template-columns: repeat(2, 1fr); }
+  .h-stat:nth-child(2) { border-right: none; }
+  .h-stat:nth-child(3), .h-stat:nth-child(4) { padding-top: 16px; }
+  .focus-grid { grid-template-columns: 1fr; }
+  .pool { grid-template-columns: 1fr; }
+  .overview { grid-template-columns: repeat(2, 1fr); }
+  .ov-card:nth-child(2) { border-right: none; }
+  .kb-cats { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <div class="brand-mark"></div>
+    <span class="brand-name">个人工作台</span>
+  </div>
+  <nav class="tabs">
+    <button class="tab active" data-tab="tasks">任务</button>
+    <button class="tab" data-tab="projects">项目</button>
+    <button class="tab" data-tab="knowledge">知识资产</button>
+  </nav>
+  <div class="sync">
+    <span class="sync-dot"></span>
+    已同步 · <span id="syncTime"></span>
+  </div>
+</header>
+
+<main class="main">
+
+  <!-- ===== Tasks ===== -->
+  <div class="page active" id="page-tasks">
+
+    <section class="hero">
+      <div class="hero-meta">周三 · 2026 年 8 月 19 日</div>
+      <h1 class="hero-greeting">你好，亚克西。<br>今天有 <em>三件</em>事值得关注。</h1>
+      <p class="hero-sub">3 项任务今日到期，其中 1 项紧急；下午 14:00 产品需求评审会。</p>
+
+      <div class="hero-stats">
+        <div class="h-stat">
+          <div class="h-stat-value">12<span>项</span></div>
+          <div class="h-stat-label">进行中任务</div>
+          <div class="h-stat-sub">3 项逾期</div>
+        </div>
+        <div class="h-stat">
+          <div class="h-stat-value">5<span>个</span></div>
+          <div class="h-stat-label">活跃项目</div>
+          <div class="h-stat-sub">本周新增 1 个</div>
+        </div>
+        <div class="h-stat">
+          <div class="h-stat-value">8<span>场</span></div>
+          <div class="h-stat-label">本周会议</div>
+          <div class="h-stat-sub">今日 2 场</div>
+        </div>
+        <div class="h-stat">
+          <div class="h-stat-value">47<span>篇</span></div>
+          <div class="h-stat-label">知识资产</div>
+          <div class="h-stat-sub">本月新增 6 篇</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <h2 class="section-title">今日 · 明日聚焦</h2>
+      </div>
+      <div class="focus-grid">
+        <div class="focus-card">
+          <div class="focus-head">
+            <div class="focus-head-title">今日待办</div>
+            <div class="focus-head-date">08.19 · WED</div>
+          </div>
+          <div class="task">
+            <div class="check"></div>
+            <div class="task-body">
+              <div class="task-title">完成 Q3 培训方案终稿</div>
+              <div class="task-meta">
+                <span class="chip chip-urgent">紧急</span>
+                <span class="chip chip-project">企业培训</span>
+              </div>
+            </div>
+            <div class="task-actions">
+              <button class="btn-x btn-done">完成</button>
+              <button class="btn-x btn-defer">延期</button>
+            </div>
+          </div>
+          <div class="task">
+            <div class="check"></div>
+            <div class="task-body">
+              <div class="task-title">14:00 产品需求评审会</div>
+              <div class="task-meta">
+                <span class="chip chip-cal">日程</span>
+                <span class="chip chip-project">智能客服</span>
+              </div>
+            </div>
+            <div class="task-actions">
+              <button class="btn-x btn-done">完成</button>
+            </div>
+          </div>
+          <div class="task">
+            <div class="check"></div>
+            <div class="task-body">
+              <div class="task-title">回复客户关于知识库方案的邮件</div>
+              <div class="task-meta">
+                <span class="chip chip-high">高</span>
+                <span class="chip chip-project">智能客服</span>
+              </div>
+            </div>
+            <div class="task-actions">
+              <button class="btn-x btn-done">完成</button>
+              <button class="btn-x btn-defer">延期</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="focus-card">
+          <div class="focus-head">
+            <div class="focus-head-title">明日预览</div>
+            <div class="focus-head-date">08.20 · THU</div>
+          </div>
+          <div class="task">
+            <div class="check"></div>
+            <div class="task-body">
+              <div class="task-title">10:00 与市场部对齐推广节奏</div>
+              <div class="task-meta">
+                <span class="chip chip-cal">日程</span>
+                <span class="chip chip-project">品牌推广</span>
+              </div>
+            </div>
+          </div>
+          <div class="task">
+            <div class="check"></div>
+            <div class="task-body">
+              <div class="task-title">14:00 团队周会</div>
+              <div class="task-meta">
+                <span class="chip chip-cal">日程</span>
+                <span class="chip chip-project">内部协作</span>
+              </div>
+            </div>
+          </div>
+          <div class="task">
+            <div class="check"></div>
+            <div class="task-body">
+              <div class="task-title">整理上周 AI 听记并归档知识库</div>
+              <div class="task-meta">
+                <span class="chip chip-high">中</span>
+                <span class="chip chip-project">知识管理</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <h2 class="section-title">任务池</h2>
+        <div class="section-meta"><a href="https://alidocs.dingtalk.com/i/nodes/gpG2NdyVX31m5b3au7lR1x74WMwvDqPk" target="_blank">在 AI 表格中查看 →</a></div>
+      </div>
+      <div class="pool">
+        <div class="pool-col overdue">
+          <div class="pool-col-head">
+            <span class="pool-col-title">已逾期</span>
+            <span class="pool-col-count">3</span>
+          </div>
+          <a class="pool-item" href="https://alidocs.dingtalk.com/i/nodes/gpG2NdyVX31m5b3au7lR1x74WMwvDqPk" target="_blank">
+            <div class="pool-item-title">更新产品 FAQ 文档</div>
+            <div class="pool-item-meta">逾期 2 天 · 智能客服</div>
+          </a>
+          <a class="pool-item" href="https://alidocs.dingtalk.com/i/nodes/gpG2NdyVX31m5b3au7lR1x74WMwvDqPk" target="_blank">
+            <div class="pool-item-title">提交 8 月培训报告</div>
+            <div class="pool-item-meta">逾期 1 天 · 企业培训</div>
+          </a>
+          <a class="pool-item" href="https://alidocs.dingtalk.com/i/nodes/gpG2NdyVX31m5b3au7lR1x74WMwvDqPk" target="_blank">
+            <div class="pool-item-title">完善知识库分类标签</div>
+            <div class="pool-item-meta">逾期 3 天 · 知识管理</div>
+          </a>
+        </div>
+        <div class="pool-col">
+          <div class="pool-col-head">
+            <span class="pool-col-title">未来 7 天</span>
+            <span class="pool-col-count">5</span>
+          </div>
+          <a class="pool-item" href="https://alidocs.dingtalk.com/i/nodes/gpG2NdyVX31m5b3au7lR1x74WMwvDqPk" target="_blank">
+            <div class="pool-item-title">准备客户 Demo 环境</div>
+            <div class="pool-item-meta">08.21 · 智能客服</div>
+          </a>
+          <a class="pool-item" href="https://alidocs.dingtalk.com/i/nodes/gpG2NdyVX31m5b3au7lR1x74WMwvDqPk" target="_blank">
+            <div class="pool-item-title">撰写技术博客初稿</div>
+            <div class="pool-item-meta">08.22 · 品牌推广</div>
+          </a>
+          <a class="pool-item" href="https://alidocs.dingtalk.com/i/nodes/gpG2NdyVX31m5b3au7lR1x74WMwvDqPk" target="_blank">
+            <div class="pool-item-title">组织新人培训 Session</div>
+            <div class="pool-item-meta">08.23 · 企业培训</div>
+          </a>
+          <a class="pool-item" href="https://alidocs.dingtalk.com/i/nodes/gpG2NdyVX31m5b3au7lR1x74WMwvDqPk" target="_blank">
+            <div class="pool-item-title">对接数据看板需求</div>
+            <div class="pool-item-meta">08.24 · 数据平台</div>
+          </a>
+          <a class="pool-item" href="https://alidocs.dingtalk.com/i/nodes/gpG2NdyVX31m5b3au7lR1x74WMwvDqPk" target="_blank">
+            <div class="pool-item-title">Review 同事的方案文档</div>
+            <div class="pool-item-meta">08.25 · 内部协作</div>
+          </a>
+        </div>
+        <div class="pool-col">
+          <div class="pool-col-head">
+            <span class="pool-col-title">待排期</span>
+            <span class="pool-col-count">4</span>
+          </div>
+          <a class="pool-item" href="https://alidocs.dingtalk.com/i/nodes/gpG2NdyVX31m5b3au7lR1x74WMwvDqPk" target="_blank">
+            <div class="pool-item-title">调研竞品知识库方案</div>
+            <div class="pool-item-meta">无截止日 · 智能客服</div>
+          </a>
+          <a class="pool-item" href="https://alidocs.dingtalk.com/i/nodes/gpG2NdyVX31m5b3au7lR1x74WMwvDqPk" target="_blank">
+            <div class="pool-item-title">整理过往培训课件存档</div>
+            <div class="pool-item-meta">无截止日 · 企业培训</div>
+          </a>
+          <a class="pool-item" href="https://alidocs.dingtalk.com/i/nodes/gpG2NdyVX31m5b3au7lR1x74WMwvDqPk" target="_blank">
+            <div class="pool-item-title">优化内部文档模板</div>
+            <div class="pool-item-meta">无截止日 · 知识管理</div>
+          </a>
+          <a class="pool-item" href="https://alidocs.dingtalk.com/i/nodes/gpG2NdyVX31m5b3au7lR1x74WMwvDqPk" target="_blank">
+            <div class="pool-item-title">学习新版 API 文档</div>
+            <div class="pool-item-meta">无截止日 · 个人成长</div>
+          </a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ===== Projects ===== -->
+  <div class="page" id="page-projects">
+    <section class="section">
+      <div class="section-head">
+        <h2 class="section-title">数据总览</h2>
+        <div class="section-meta">Updated · <span id="ovTime"></span></div>
+      </div>
+      <div class="overview">
+        <a href="https://alidocs.dingtalk.com/i/nodes/gpG2NdyVX31m5b3au7lR1x74WMwvDqPk" target="_blank">
+          <div class="ov-card">
+            <div class="ov-label">活跃项目</div>
+            <div class="ov-value">5</div>
+            <div class="ov-hint">3 进行中 · 1 筹备 · 1 已结项</div>
+          </div>
+        </a>
+        <a href="https://shanji.dingtalk.com/app/transcribes/7632756964333934343539333530303230325f333937343230393733385f35" target="_blank">
+          <div class="ov-card">
+            <div class="ov-label">AI 听记</div>
+            <div class="ov-value">8</div>
+            <div class="ov-hint">近 30 天</div>
+          </div>
+        </a>
+        <a href="https://alidocs.dingtalk.com/i/spaces/YRBGvr2DkeBDgGDA/overview" target="_blank">
+          <div class="ov-card">
+            <div class="ov-label">知识资产</div>
+            <div class="ov-value">5</div>
+            <div class="ov-hint">6 类目</div>
+          </div>
+        </a>
+        <div class="ov-card">
+          <div class="ov-label">近期日程</div>
+          <div class="ov-value">3</div>
+          <div class="ov-hint">未来 48 小时</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <h2 class="section-title">项目跟踪</h2>
+        <div class="section-meta">5 个项目 · 按培训金额排序</div>
+      </div>
+      <div class="rail-wrap">
+        <div class="rail" id="rail">
+          <div class="p-card" onclick="openProject(0)">
+            <div class="p-head"><div class="p-name">智能客服知识库</div><span class="p-status active">进行中</span></div>
+            <div class="p-cash">预算 <strong>¥45 万</strong> · 已消耗 62%</div>
+            <div class="p-prog">本周完成知识库架构设计，正在进行数据清洗和标注工作，预计下周进入模型训练阶段。</div>
+            <div class="p-foot"><span>待办 4 项</span><span>2 小时前</span></div>
+          </div>
+          <div class="p-card" onclick="openProject(1)">
+            <div class="p-head"><div class="p-name">Q3 企业培训项目</div><span class="p-status active">进行中</span></div>
+            <div class="p-cash">培训金额 <strong>¥28 万</strong> · 在途 ¥12 万</div>
+            <div class="p-prog">已完成 3 场线下培训覆盖 200+ 学员，本周准备第 4 场内容定稿，需协调场地和讲师排期。</div>
+            <div class="p-foot"><span>待办 3 项</span><span>1 天前</span></div>
+          </div>
+          <div class="p-card" onclick="openProject(2)">
+            <div class="p-head"><div class="p-name">数据看板平台</div><span class="p-status active">进行中</span></div>
+            <div class="p-cash">预算 <strong>¥35 万</strong> · 已消耗 40%</div>
+            <div class="p-prog">核心指标看板已上线，目前在做用户权限和数据源对接，计划 9 月初完成全量切换。</div>
+            <div class="p-foot"><span>待办 6 项</span><span>3 小时前</span></div>
+          </div>
+          <div class="p-card" onclick="openProject(3)">
+            <div class="p-head"><div class="p-name">品牌内容矩阵</div><span class="p-status pending">筹备中</span></div>
+            <div class="p-cash">预算 <strong>¥15 万</strong> · 待启动</div>
+            <div class="p-prog">内容策略已定稿，渠道选择和 KOL 合作方案本周评审，预计 9 月正式启动推广。</div>
+            <div class="p-foot"><span>待办 2 项</span><span>2 天前</span></div>
+          </div>
+          <div class="p-card" onclick="openProject(4)">
+            <div class="p-head"><div class="p-name">内部工具升级</div><span class="p-status done">已完成</span></div>
+            <div class="p-cash">预算 <strong>¥8 万</strong> · 已结项</div>
+            <div class="p-prog">工具链升级完毕，团队全员已切换到新版本，使用满意度调查评分 4.6/5。</div>
+            <div class="p-foot"><span>待办 0 项</span><span>1 周前</span></div>
+          </div>
+        </div>
+        <button class="arrow arrow-l" onclick="scrollRail(-1)">‹</button>
+        <button class="arrow arrow-r" onclick="scrollRail(1)">›</button>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <h2 class="section-title">日程节奏</h2>
+        <div class="section-meta">近 4 周会议密度</div>
+      </div>
+      <div class="heat-wrap">
+        <div class="heat-grid" id="heatGrid"></div>
+        <div class="heat-legend">
+          <span>清闲</span>
+          <div class="leg h0"></div><div class="leg h1"></div><div class="leg h2"></div><div class="leg h3"></div><div class="leg h4"></div>
+          <span>忙碌</span>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ===== Knowledge ===== -->
+  <div class="page" id="page-knowledge">
+    <section class="section">
+      <div class="section-head">
+        <h2 class="section-title">知识库分类</h2>
+        <div class="section-meta"><a href="https://alidocs.dingtalk.com/i/spaces/YRBGvr2DkeBDgGDA/overview" target="_blank">打开知识库 →</a></div>
+      </div>
+      <div class="kb-cats">
+        <a href="https://alidocs.dingtalk.com/i/spaces/YRBGvr2DkeBDgGDA/overview" target="_blank">
+          <div class="kb-cat"><div class="kb-tag" style="background:#2A5F45"></div><div><div class="kb-name">产品方案</div><div class="kb-cnt">2 篇文档</div></div></div>
+        </a>
+        <a href="https://alidocs.dingtalk.com/i/spaces/YRBGvr2DkeBDgGDA/overview" target="_blank">
+          <div class="kb-cat"><div class="kb-tag" style="background:#3E6280"></div><div><div class="kb-name">培训课件</div><div class="kb-cnt">1 篇文档</div></div></div>
+        </a>
+        <a href="https://alidocs.dingtalk.com/i/spaces/YRBGvr2DkeBDgGDA/overview" target="_blank">
+          <div class="kb-cat"><div class="kb-tag" style="background:#B87355"></div><div><div class="kb-name">技术文档</div><div class="kb-cnt">1 篇文档</div></div></div>
+        </a>
+        <a href="https://alidocs.dingtalk.com/i/spaces/YRBGvr2DkeBDgGDA/overview" target="_blank">
+          <div class="kb-cat"><div class="kb-tag" style="background:#A87A2C"></div><div><div class="kb-name">最佳实践</div><div class="kb-cnt">1 篇文档</div></div></div>
+        </a>
+        <a href="https://alidocs.dingtalk.com/i/spaces/YRBGvr2DkeBDgGDA/overview" target="_blank">
+          <div class="kb-cat"><div class="kb-tag" style="background:#A64545"></div><div><div class="kb-name">数据报告</div><div class="kb-cnt">1 篇文档</div></div></div>
+        </a>
+        <a href="https://shanji.dingtalk.com/app/transcribes/7632756964333934343539333530303230325f333937343230393733385f35" target="_blank">
+          <div class="kb-cat"><div class="kb-tag" style="background:#8B8F87"></div><div><div class="kb-name">会议纪要</div><div class="kb-cnt">8 篇 · AI 听记</div></div></div>
+        </a>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <h2 class="section-title">最近更新文档</h2>
+        <div class="section-meta">5 篇 · 全部来自钉钉文档</div>
+      </div>
+      <div class="doc-list">
+        <a href="https://alidocs.dingtalk.com/i/nodes/1R7q3QmWee156xeph6k1Q3eOWxkXOEP2" target="_blank">
+          <div class="doc"><div class="doc-num">01</div><div class="doc-info"><div class="doc-title">智能客服知识库技术方案 v2.1</div><div class="doc-meta">产品方案 · 刚刚创建</div></div><span class="doc-arrow">→</span></div>
+        </a>
+        <a href="https://alidocs.dingtalk.com/i/nodes/X6GRezwJlA1e6dAyI0pvaY0z8dqbropQ" target="_blank">
+          <div class="doc"><div class="doc-num">02</div><div class="doc-info"><div class="doc-title">Q3 培训计划 · 课程大纲终稿</div><div class="doc-meta">培训课件 · 刚刚创建</div></div><span class="doc-arrow">→</span></div>
+        </a>
+        <a href="https://alidocs.dingtalk.com/i/nodes/1OQX0akWmxKd6RxlSjMrX2jZ8GlDd3mE" target="_blank">
+          <div class="doc"><div class="doc-num">03</div><div class="doc-info"><div class="doc-title">数据平台接入指南</div><div class="doc-meta">技术文档 · 刚刚创建</div></div><span class="doc-arrow">→</span></div>
+        </a>
+        <a href="https://alidocs.dingtalk.com/i/nodes/G53mjyd80pzarbpySeP5q97X86zbX04v" target="_blank">
+          <div class="doc"><div class="doc-num">04</div><div class="doc-info"><div class="doc-title">品牌内容策略 · 渠道分析报告</div><div class="doc-meta">数据报告 · 刚刚创建</div></div><span class="doc-arrow">→</span></div>
+        </a>
+        <a href="https://alidocs.dingtalk.com/i/nodes/7dx2rn0JbY1O6dYNUN3jG7QvVMGjLRb3" target="_blank">
+          <div class="doc"><div class="doc-num">05</div><div class="doc-info"><div class="doc-title">内部工具使用手册 v3.0</div><div class="doc-meta">最佳实践 · 刚刚创建</div></div><span class="doc-arrow">→</span></div>
+        </a>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <h2 class="section-title">最近 AI 听记</h2>
+        <div class="section-meta">来自钉钉 · shanji</div>
+      </div>
+      <div class="doc-list">
+        <a href="https://shanji.dingtalk.com/app/transcribes/7632756964333934343539333530303230325f333937343230393733385f35" target="_blank">
+          <div class="doc"><div class="doc-num">01</div><div class="doc-info"><div class="doc-title">智能听记与 AI 会议纪要系统</div><div class="doc-meta">12 分钟 · 08.06 · 14:36</div></div><span class="doc-arrow">→</span></div>
+        </a>
+        <a href="https://shanji.dingtalk.com/app/transcribes/7632756964333934323638393933303230325f333937343230393733385f35" target="_blank">
+          <div class="doc"><div class="doc-num">02</div><div class="doc-info"><div class="doc-title">AI 办公提效与组织能力沉淀</div><div class="doc-meta">20 分钟 · 08.06 · 14:12</div></div><span class="doc-arrow">→</span></div>
+        </a>
+        <a href="https://shanji.dingtalk.com/app/transcribes/7632756964333630393039353631303230325f333937343230393733385f35" target="_blank">
+          <div class="doc"><div class="doc-num">03</div><div class="doc-info"><div class="doc-title">AI 产品设计的认知演进</div><div class="doc-meta">14 分钟 · 07.11 · 14:31</div></div><span class="doc-arrow">→</span></div>
+        </a>
+        <a href="https://shanji.dingtalk.com/app/transcribes/7632756964333539373238363231303230325f333937343230393733385f35" target="_blank">
+          <div class="doc"><div class="doc-num">04</div><div class="doc-info"><div class="doc-title">人工智能时代教育变革</div><div class="doc-meta">41 分钟 · 07.10 · 14:45</div></div><span class="doc-arrow">→</span></div>
+        </a>
+        <a href="https://shanji.dingtalk.com/app/transcribes/7632756964333539343430363334303230325f333937343230393733385f35" target="_blank">
+          <div class="doc"><div class="doc-num">05</div><div class="doc-info"><div class="doc-title">AI 时代知识产品的设计新生</div><div class="doc-meta">24 分钟 · 07.10 · 11:38</div></div><span class="doc-arrow">→</span></div>
+        </a>
+      </div>
+    </section>
+  </div>
+
+</main>
+
+<div class="modal-bg" id="modal">
+  <div class="modal">
+    <button class="modal-x" onclick="closeModal()">✕</button>
+    <div class="modal-title" id="modalTitle"></div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<script>
+// Sync time
+(function() {
+  const now = new Date();
+  const h = String(now.getHours()).padStart(2,'0');
+  const m = String(now.getMinutes()).padStart(2,'0');
+  const t = h + ':' + m;
+  document.getElementById('syncTime').textContent = t;
+  const ov = document.getElementById('ovTime');
+  if (ov) ov.textContent = '今日 ' + t;
+})();
+
+// Tabs
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('page-' + tab.dataset.tab).classList.add('active');
+  });
+});
+
+// Project rail
+function scrollRail(dir) {
+  document.getElementById('rail').scrollBy({ left: dir * 340, behavior: 'smooth' });
+}
+
+// Project modal
+const pdata = [
+  { name: '智能客服知识库', detail: '项目目标：为企业客户构建基于大模型的智能知识库系统。\n\n当前阶段：数据清洗与标注（60% 完成）\n\n关键里程碑：\n• 8 月底完成模型训练\n• 9 月中旬内测上线\n• 10 月正式交付\n\n关联文档：智能客服知识库技术方案 v2.1' },
+  { name: 'Q3 企业培训项目', detail: '项目目标：面向合作企业交付 AI 应用实训课程。\n\n已完成交付：\n• 场次 1：AI 基础认知（60 人）\n• 场次 2：办公效率提升（75 人）\n• 场次 3：智能客服实操（70 人）\n\n下一步：协调 8 月底场地，完成第 4 场内容定稿。' },
+  { name: '数据看板平台', detail: '项目目标：统一内部数据可视化平台。\n\n已上线功能：\n• 核心业务指标看板\n• 自助查询模块\n• 定时报告邮件推送\n\n待完成：多数据源聚合、移动端适配。' },
+  { name: '品牌内容矩阵', detail: '项目目标：建立系统化的品牌内容生产和分发体系。\n\n计划内容：\n• 技术博客：每周 2 篇\n• 视频教程：每月 4 期\n• 社交媒体：日常运营\n\n预计 9 月初正式启动。' },
+  { name: '内部工具升级', detail: '项目状态：已完成\n\n成果：\n• 工具链全面升级\n• 团队全员顺利切换\n• 满意度评分 4.6/5\n• 日均节省工时约 45 分钟/人' }
+];
+function openProject(i) {
+  document.getElementById('modalTitle').textContent = pdata[i].name;
+  document.getElementById('modalBody').innerHTML = pdata[i].detail.replace(/\n/g, '<br>');
+  document.getElementById('modal').classList.add('open');
+}
+function closeModal() { document.getElementById('modal').classList.remove('open'); }
+document.getElementById('modal').addEventListener('click', e => { if (e.target === e.currentTarget) closeModal(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+// Heatmap
+(function() {
+  const grid = document.getElementById('heatGrid');
+  ['一','二','三','四','五','六','日'].forEach(d => {
+    const h = document.createElement('div'); h.className = 'heat-h'; h.textContent = d; grid.appendChild(h);
+  });
+  const data = [[2,1,3,2,1,0,0],[1,2,2,4,3,0,1],[3,1,2,2,1,0,0],[2,3,1,2,2,1,0]];
+  const start = new Date(2026, 6, 27);
+  data.forEach((w, wi) => w.forEach((v, di) => {
+    const c = document.createElement('div');
+    c.className = 'heat h' + Math.min(v, 4);
+    const d = new Date(start); d.setDate(start.getDate() + wi*7 + di);
+    c.textContent = d.getDate();
+    const tip = document.createElement('span'); tip.className = 'tip';
+    tip.textContent = (d.getMonth()+1) + '.' + String(d.getDate()).padStart(2,'0') + ' · ' + (v === 0 ? '无会议' : v + ' 场');
+    c.appendChild(tip); grid.appendChild(c);
+  }));
+})();
+
+// Task check
+document.querySelectorAll('.check').forEach(cb => {
+  cb.addEventListener('click', function() {
+    this.classList.toggle('checked');
+    const t = this.nextElementSibling.querySelector('.task-title');
+    t.style.textDecoration = this.classList.contains('checked') ? 'line-through' : '';
+    t.style.opacity = this.classList.contains('checked') ? '0.4' : '';
+  });
+});
+document.querySelectorAll('.btn-done').forEach(btn => {
+  btn.addEventListener('click', function() {
+    const item = this.closest('.task');
+    item.querySelector('.check').classList.add('checked');
+    const t = item.querySelector('.task-title');
+    t.style.textDecoration = 'line-through'; t.style.opacity = '0.4';
+    toast('已完成 · 同步至 AI 表格');
+  });
+});
+document.querySelectorAll('.btn-defer').forEach(btn => {
+  btn.addEventListener('click', () => toast('已延期至明天'));
+});
+function toast(msg) {
+  const t = document.createElement('div');
+  t.className = 'toast'; t.textContent = msg;
+  document.body.appendChild(t);
+  t.animate([{opacity:0, transform:'translateX(-50%) translateY(8px)'},{opacity:1, transform:'translateX(-50%) translateY(0)'}], {duration:220, easing:'cubic-bezier(.22,.61,.36,1)'});
+  setTimeout(() => {
+    t.animate([{opacity:1},{opacity:0}], {duration:220}).onfinish = () => t.remove();
+  }, 2000);
+}
+</script>
+</body>
+</html>
