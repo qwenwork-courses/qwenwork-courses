@@ -1860,7 +1860,8 @@
     font-size: 14px;
     color: var(--muted);
     line-height: 1.5;
-    white-space: nowrap;
+    /* 不用 nowrap：宽屏下文字本就能容下，渲染结果与单行一致；
+       窗口变窄时自然换行，避开被行业标签压住截断。 */
 }
 .pain-case-section .case-card-arrow {
     flex-shrink: 0;
@@ -1904,19 +1905,18 @@
         background: linear-gradient(90deg, transparent 0%, #e8eaed 20%, #e8eaed 80%, transparent 100%);
     }
     .pain-case-section { padding: 60px 0; }
+    .pain-case-section .case-card.case-narrow { margin-left: 0; }
 }
 @media (max-width: 480px) {
     .pain-case-section { padding: 40px 0; }
     .pain-side-title, .case-side-title { font-size: 24px; }
     .pain-tag { font-size: 14px !important; padding: 9px 16px !important; }
     .pain-tag.pain-xl { font-size: 18px !important; padding: 12px 20px !important; }
-    .pain-case-section .case-card { padding: 14px 16px; }
+    /* 超窄屏：压缩图标与箭头，给标题/描述腾出横向空间 */
+    .pain-case-section .case-card { padding: 14px 16px; gap: 12px; }
+    .pain-case-section .case-card-icon { width: 40px; height: 40px; border-radius: 12px; font-size: 19px; }
     .pain-case-section .case-card-title { font-size: 15px; }
-    .pain-case-section .case-card-desc {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
+    .pain-case-section .case-card-arrow { font-size: 20px; }
     .pain-case-section .case-card.case-narrow { margin-left: 0; }
     .pain-case-section .case-industry-tag { font-size: 11px; padding: 2px 10px; }
     .pain-case-arrow-wrap { height: 40px; }
