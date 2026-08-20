@@ -1,0 +1,120 @@
+/* ============================================
+   方案 C｜深色科技 Bento (Dark Tech Bento)
+   设计规范：深色 Hero + Bento 网格 + 玻璃质感 + 绿色辉光
+   ============================================ */
+:root {
+  /* 深色域 */
+  --d-bg: #0a1410;
+  --d-bg-2: #0f1c16;
+  --d-surface: rgba(255,255,255,.045);
+  --d-surface-2: rgba(255,255,255,.075);
+  --d-line: rgba(255,255,255,.10);
+  --d-line-2: rgba(255,255,255,.18);
+  --d-text: #f2f7f4;
+  --d-text-2: rgba(242,247,244,.68);
+  --d-text-3: rgba(242,247,244,.44);
+
+  /* 浅色域 */
+  --l-bg: #f6f8f7;
+  --l-surface: #ffffff;
+  --l-line: #e3e8e5;
+  --l-text: #101a15;
+  --l-text-2: #4a5b52;
+  --l-text-3: #86958d;
+
+  /* 主色 + 辉光 */
+  --brand: #30bf69;
+  --brand-2: #4ce285;
+  --brand-3: #86eeb3;
+  --brand-dim: rgba(48,191,105,.14);
+  --glow: 0 0 0 1px rgba(48,191,105,.28), 0 12px 40px rgba(48,191,105,.16);
+
+  /* 字号 */
+  --fs-micro: 11px;
+  --fs-caption: 12px;
+  --fs-sm: 13px;
+  --fs-body: 15px;
+  --fs-lead: 17px;
+  --fs-h4: 19px;
+  --fs-h3: 24px;
+  --fs-h2: 36px;
+  --fs-h1: 54px;
+
+  --s1: 4px;  --s2: 8px;  --s3: 12px; --s4: 16px;
+  --s5: 20px; --s6: 24px; --s8: 32px; --s10: 40px;
+  --s12: 48px; --s16: 64px; --s20: 80px; --s24: 96px;
+
+  --r-sm: 10px; --r-md: 16px; --r-lg: 22px; --r-xl: 28px; --r-pill: 999px;
+  --page: 1280px;
+  --gutter: 28px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'PingFang SC', 'Microsoft YaHei', -apple-system, sans-serif;
+  background: var(--l-bg);
+  color: var(--l-text);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.65;
+  font-size: var(--fs-body);
+}
+
+.wrap { max-width: var(--page); margin: 0 auto; padding: 0 var(--gutter); }
+
+/* ---------- 导航：深色玻璃 ---------- */
+.nav { background: rgba(10,20,16,.78); backdrop-filter: blur(20px) saturate(180%); border-bottom: 1px solid var(--d-line); position: sticky; top: 0; z-index: 100; }
+.nav-in { max-width: var(--page); margin: 0 auto; padding: 0 var(--gutter); height: 64px; display: flex; align-items: center; justify-content: space-between; }
+.nav-brand { display: flex; align-items: center; gap: var(--s3); }
+.nav-brand img { height: 26px; filter: brightness(0) invert(1); opacity: .92; }
+.nav-brand span { font-size: var(--fs-body); font-weight: 600; color: var(--d-text); letter-spacing: -0.01em; }
+.nav-menu { display: flex; gap: var(--s2); }
+.nav-menu a { font-size: var(--fs-sm); color: var(--d-text-2); text-decoration: none; padding: var(--s2) var(--s4); border-radius: var(--r-pill); transition: all .2s ease; }
+.nav-menu a:hover { color: var(--d-text); background: var(--d-surface); }
+.nav-menu a.on { color: #fff; background: var(--brand-dim); box-shadow: inset 0 0 0 1px rgba(48,191,105,.34); }
+
+/* ---------- 区块 ---------- */
+.sec { padding: var(--s24) 0; }
+.sec-dark { background: var(--d-bg); color: var(--d-text); }
+.sec-head { text-align: center; margin-bottom: var(--s16); }
+.chip { display: inline-flex; align-items: center; gap: var(--s2); font-size: var(--fs-caption); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--brand); background: var(--brand-dim); border: 1px solid rgba(48,191,105,.26); padding: var(--s1) var(--s3); border-radius: var(--r-pill); margin-bottom: var(--s5); }
+.sec-head h2 { font-size: var(--fs-h2); font-weight: 700; letter-spacing: -0.03em; line-height: 1.2; margin-bottom: var(--s3); }
+.sec-head p { font-size: var(--fs-lead); color: var(--l-text-2); max-width: 620px; margin: 0 auto; }
+.sec-dark .sec-head p { color: var(--d-text-2); }
+
+/* ---------- 按钮 ---------- */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--s2); height: 46px; padding: 0 var(--s6); border-radius: var(--r-pill); font-size: var(--fs-body); font-weight: 600; text-decoration: none; border: 1px solid transparent; cursor: pointer; transition: all .24s cubic-bezier(.2,.7,.2,1); }
+.btn-pri { background: linear-gradient(135deg, var(--brand), var(--brand-2)); color: #06180e; box-shadow: 0 8px 26px rgba(48,191,105,.32); }
+.btn-pri:hover { transform: translateY(-2px); box-shadow: 0 14px 38px rgba(48,191,105,.42); }
+.btn-glass { background: rgba(255,255,255,.07); color: #fff; border-color: var(--d-line-2); backdrop-filter: blur(12px); }
+.btn-glass:hover { background: rgba(255,255,255,.14); }
+.btn-line { background: transparent; color: var(--l-text); border-color: var(--l-line); }
+.btn-line:hover { border-color: var(--brand); color: var(--brand); }
+.btn-sm { height: 36px; padding: 0 var(--s4); font-size: var(--fs-sm); }
+.gomore { display: inline-flex; align-items: center; gap: var(--s1); font-size: var(--fs-sm); font-weight: 600; color: var(--brand); text-decoration: none; }
+.gomore:hover { gap: var(--s2); }
+
+/* ---------- Bento 卡片 ---------- */
+.bento { display: grid; grid-template-columns: repeat(6, 1fr); gap: var(--s4); }
+.bt { background: var(--l-surface); border: 1px solid var(--l-line); border-radius: var(--r-lg); overflow: hidden; position: relative; transition: transform .3s cubic-bezier(.2,.7,.2,1), box-shadow .3s ease, border-color .3s ease; }
+.bt:hover { transform: translateY(-4px); border-color: rgba(48,191,105,.4); box-shadow: 0 18px 48px rgba(16,26,21,.10); }
+.sec-dark .bt { background: var(--d-surface); border-color: var(--d-line); backdrop-filter: blur(14px); }
+.sec-dark .bt:hover { background: var(--d-surface-2); box-shadow: var(--glow); }
+.c2 { grid-column: span 2; } .c3 { grid-column: span 3; } .c4 { grid-column: span 4; } .c6 { grid-column: span 6; }
+
+.cover { position: relative; overflow: hidden; background: rgba(0,0,0,.14); }
+.cover img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .5s cubic-bezier(.2,.7,.2,1); }
+.bt:hover .cover img { transform: scale(1.06); }
+
+/* ---------- 标签 ---------- */
+.tag { display: inline-block; font-size: var(--fs-caption); font-weight: 500; padding: 3px var(--s2); border-radius: var(--r-sm); color: var(--l-text-2); background: var(--l-bg); border: 1px solid var(--l-line); }
+.tag-brand { color: var(--brand); background: var(--brand-dim); border-color: rgba(48,191,105,.28); }
+.sec-dark .tag { color: var(--d-text-2); background: var(--d-surface); border-color: var(--d-line); }
+
+@media (max-width: 1080px) { .bento { grid-template-columns: repeat(4, 1fr); } .c3 { grid-column: span 2; } .c4, .c6 { grid-column: span 4; } }
+@media (max-width: 720px) {
+  :root { --fs-h1: 34px; --fs-h2: 26px; --s24: 56px; }
+  .bento { grid-template-columns: 1fr; }
+  .c2, .c3, .c4, .c6 { grid-column: span 1; }
+  .nav-menu { display: none; }
+}

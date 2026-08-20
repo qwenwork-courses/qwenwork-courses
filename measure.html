@@ -1,0 +1,27 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/common-styles.css"></head><body>
+<div id="c"></div>
+<script>
+var f = new URLSearchParams(location.search).get('f');
+fetch('/'+f).then(r=>r.text()).then(h=>{
+  document.getElementById('c').innerHTML=h;
+  setTimeout(function(){
+    var de=document.documentElement, out=[];
+    out.push('scrollWidth='+de.scrollWidth+' clientWidth='+de.clientWidth);
+    // 找出所有超出视口右边界的元素
+    var vw=de.clientWidth, bad=[];
+    document.querySelectorAll('*').forEach(function(el){
+      var r=el.getBoundingClientRect();
+      if(r.right>vw+1 && r.width>0){
+        bad.push((el.tagName.toLowerCase())+'.'+(el.className&&el.className.toString?el.className.toString().split(' ').slice(0,2).join('.'):'')+' w='+Math.round(r.width)+' right='+Math.round(r.right));
+      }
+    });
+    out.push('OVERFLOW_COUNT='+bad.length);
+    out=out.concat(bad.slice(0,14));
+    document.title='RESULT';
+    var p=document.createElement('pre'); p.id='RESULT'; p.textContent=out.join('\n');
+    document.body.insertBefore(p, document.body.firstChild);
+  }, 900);
+});
+</script></body></html>

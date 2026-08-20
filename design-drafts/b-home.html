@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>方案B · 首页 · 杂志编辑</title>
+<link rel="stylesheet" href="tokens-b.css">
+<style>
+/* ===== Hero：编辑式左对齐大标题，图片作为下方通栏 ===== */
+.hero { padding: var(--s24) 0 var(--s16); }
+.hero-grid { display: grid; grid-template-columns: 1.25fr 1fr; gap: var(--s16); align-items: end; }
+.hero .kicker { display: block; font-size: var(--fs-micro); font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: var(--s5); }
+.hero h1 { font-size: var(--fs-h1); font-weight: 700; letter-spacing: -0.04em; line-height: 1.06; margin-bottom: var(--s6); }
+.hero h1 em { font-style: normal; color: var(--accent); }
+.hero .lead { font-size: var(--fs-lead); color: var(--ink-2); max-width: 32em; padding-bottom: var(--s6); border-bottom: 1px solid var(--rule); margin-bottom: var(--s6); }
+.hero-actions { display: flex; gap: var(--s3); }
+.hero-facts { border-left: 1px solid var(--rule); padding-left: var(--s8); }
+.hero-facts dl { display: grid; gap: var(--s6); }
+.hero-facts dt { font-size: 40px; font-weight: 300; letter-spacing: -0.04em; line-height: 1; }
+.hero-facts dd { font-size: var(--fs-caption); color: var(--ink-3); letter-spacing: 0.06em; margin-top: var(--s1); }
+.hero-figure { margin-top: var(--s16); border: 1px solid var(--rule); }
+.hero-figure .cover { aspect-ratio: 21 / 7; }
+.hero-figure figcaption { font-size: var(--fs-caption); color: var(--ink-3); padding: var(--s3) var(--s4); border-top: 1px solid var(--rule); display: flex; justify-content: space-between; }
+
+/* ===== 痛点：编辑式两列引言排版 ===== */
+.pains { display: grid; grid-template-columns: repeat(2, 1fr); column-gap: var(--s16); }
+.pain-item { display: grid; grid-template-columns: 40px 1fr; gap: var(--s5); padding: var(--s6) 0; border-bottom: 1px solid var(--rule-soft); }
+.pain-idx { font-size: var(--fs-caption); font-weight: 700; color: var(--accent); letter-spacing: 0.08em; padding-top: 4px; }
+.pain-item h4 { font-size: var(--fs-h4); font-weight: 600; letter-spacing: -0.01em; margin-bottom: var(--s1); }
+.pain-item p { font-size: var(--fs-body); color: var(--ink-2); }
+
+/* ===== 案例：横向长条行，左图右文 ===== */
+.case-row { display: grid; grid-template-columns: 300px 1fr 190px; gap: var(--s10); align-items: center; padding: var(--s8) 0; border-bottom: 1px solid var(--rule); text-decoration: none; color: inherit; transition: background .25s ease; }
+.case-row:hover { background: rgba(28,141,82,.035); }
+.case-row:hover .cover img { transform: scale(1.05); }
+.case-row .cover { aspect-ratio: 3 / 2; }
+.case-meta { display: flex; align-items: center; gap: var(--s3); margin-bottom: var(--s3); }
+.case-meta .no { font-size: var(--fs-caption); color: var(--ink-3); letter-spacing: 0.08em; }
+.case-row h3 { font-size: var(--fs-h3); font-weight: 700; letter-spacing: -0.025em; margin-bottom: var(--s2); }
+.case-row p { font-size: var(--fs-body); color: var(--ink-2); max-width: 34em; }
+.case-num { text-align: right; }
+.case-num b { display: block; font-size: 30px; font-weight: 300; letter-spacing: -0.03em; line-height: 1.1; color: var(--accent); }
+.case-num span { font-size: var(--fs-caption); color: var(--ink-3); letter-spacing: 0.06em; }
+
+/* ===== 学习路径：编号大条目 ===== */
+.path { display: grid; grid-template-columns: 88px 1fr 380px; gap: var(--s10); align-items: center; padding: var(--s12) 0; border-bottom: 1px solid var(--rule); }
+.path:first-child { border-top: 1px solid var(--rule); }
+.path-no { font-size: 52px; font-weight: 300; color: var(--rule); letter-spacing: -0.04em; line-height: 1; }
+.path h3 { font-size: var(--fs-h2); font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: var(--s3); }
+.path .sub { font-size: var(--fs-body); color: var(--accent); letter-spacing: 0.04em; margin-bottom: var(--s4); }
+.path .desc { font-size: var(--fs-body); color: var(--ink-2); max-width: 30em; margin-bottom: var(--s5); }
+.path-tags { display: flex; flex-wrap: wrap; gap: var(--s2); margin-bottom: var(--s6); }
+.path .cover { aspect-ratio: 16 / 10; border: 1px solid var(--rule); }
+.path:hover .cover img { transform: scale(1.04); }
+
+/* ===== 结尾 ===== */
+.closing { background: var(--ink); color: var(--paper); padding: var(--s24) 0; }
+.closing-grid { display: grid; grid-template-columns: 1fr auto; gap: var(--s16); align-items: end; }
+.closing h2 { font-size: var(--fs-h2); font-weight: 700; letter-spacing: -0.03em; line-height: 1.15; margin-bottom: var(--s4); }
+.closing p { font-size: var(--fs-lead); color: rgba(251,250,248,.62); max-width: 34em; }
+.closing-actions { display: flex; gap: var(--s3); }
+footer { border-top: 1px solid var(--rule); padding: var(--s10) 0; }
+.foot-in { max-width: var(--page); margin: 0 auto; padding: 0 var(--gutter); display: flex; justify-content: space-between; font-size: var(--fs-caption); color: var(--ink-3); }
+.foot-in b { color: var(--ink); }
+
+@media (max-width: 980px) {
+  .hero-grid, .closing-grid { grid-template-columns: 1fr; }
+  .hero-facts { border-left: none; padding-left: 0; border-top: 1px solid var(--rule); padding-top: var(--s6); }
+  .hero-facts dl { grid-template-columns: repeat(2,1fr); }
+  .pains { grid-template-columns: 1fr; }
+  .case-row, .path { grid-template-columns: 1fr; gap: var(--s5); }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav"><div class="nav-in">
+  <div class="nav-brand"><img src="https://gw.alicdn.com/imgextra/i1/O1CN01U94gre1ZwfvJk8ik1_!!6000000003259-2-tps-163-80.png" alt=""><span>AI咨询研究院 ｜ 课程系统</span></div>
+  <div class="nav-menu"><a class="on" href="#">首页</a><a href="#">案例库</a><a href="#">公开课</a><a href="#">企业定制课程</a><a href="#">线上课程</a><a href="#">合作咨询</a></div>
+</div></nav>
+
+<!-- Hero -->
+<section class="hero"><div class="wrap">
+  <div class="hero-grid">
+    <div>
+      <span class="kicker">钉钉 AI 咨询研究院 · 课程系统</span>
+      <h1>赋能百业，<em>AI 提效</em>。<br>别人的实践，就是你的起点。</h1>
+      <p class="lead">我们不卖概念。这里的每一门课，都来自一个已经跑通的真实项目——包括它的投入、周期，和最后拿到的结果。</p>
+      <div class="hero-actions"><a class="btn btn-fill" href="#">浏览课程体系</a><a class="btn" href="#">查看落地案例</a></div>
+    </div>
+    <div class="hero-facts"><dl>
+      <div><dt>7 大</dt><dd>核心业务领域</dd></div>
+      <div><dt>80+</dt><dd>实战课程</dd></div>
+      <div><dt>60+</dt><dd>行业实战专家</dd></div>
+    </dl></div>
+  </div>
+  <figure class="hero-figure">
+    <div class="cover"><img src="https://gw.alicdn.com/imgextra/i3/O1CN012F6YmT1qcqEw1OpFS_!!6000000005517-0-tps-5907-3938.jpg" alt=""></div>
+    <figcaption><span>千问办公落地案例库 · 2026 年刊</span><span>查看全部 →</span></figcaption>
+  </figure>
+</div></section>
+
+<!-- 01 痛点 -->
+<section class="sec"><div class="wrap">
+  <div class="chapter">
+    <div class="chapter-num">01</div>
+    <div class="chapter-txt">
+      <span class="kicker">Pain Points</span>
+      <h2>你是否也遇到了这些问题？</h2>
+      <p>AI 工具从来不缺。真正难的是找到第一个切入点、算清投入产出，并让方案在组织里真的跑起来。</p>
+    </div>
+  </div>
+  <div class="pains">
+    <div class="pain-item"><div class="pain-idx">01</div><div><h4>还在手动整理报表</h4><p>数据散落在十几个系统里，大量时间耗在搬运和核对上。</p></div></div>
+    <div class="pain-item"><div class="pain-idx">02</div><div><h4>不知道从哪下手</h4><p>流程自动化听起来很好，但第一个场景到底该选哪个？</p></div></div>
+    <div class="pain-item"><div class="pain-idx">03</div><div><h4>怕投入没有回报</h4><p>想做 AI 转型，却缺少可对标的投入产出参考。</p></div></div>
+    <div class="pain-item"><div class="pain-idx">04</div><div><h4>方案写了一堆，推不动</h4><p>PPT 做得很漂亮，落到执行层还是全靠人工。</p></div></div>
+    <div class="pain-item"><div class="pain-idx">05</div><div><h4>效率卡在重复劳动</h4><p>团队精力被例行事务占满，腾不出手做增量。</p></div></div>
+    <div class="pain-item"><div class="pain-idx">06</div><div><h4>跨部门信息不同步</h4><p>协作链路长，信息传递失真，决策总是慢一步。</p></div></div>
+  </div>
+</div></section>
+
+<!-- 02 案例 -->
+<section class="sec tinted"><div class="wrap">
+  <div class="chapter">
+    <div class="chapter-num">02</div>
+    <div class="chapter-txt">
+      <span class="kicker">Best Practices</span>
+      <h2>最佳实践案例</h2>
+      <p>五个已经跑通的项目。每一个都可以查到具体的投入、周期，和拿到的结果。</p>
+    </div>
+  </div>
+  <div class="rows">
+    <a class="case-row" href="#">
+      <div class="cover"><img src="https://gw.alicdn.com/imgextra/i3/O1CN012F6YmT1qcqEw1OpFS_!!6000000005517-0-tps-5907-3938.jpg" alt=""></div>
+      <div><div class="case-meta"><span class="no">案例 01</span><span class="tag tag-accent">制造业</span></div>
+        <h3>苏州光线能源</h3><p>30 天炼成数字员工，用一台电脑的成本替代掉整条重复流程。</p></div>
+      <div class="case-num"><b>30 万</b><span>年成本节省</span></div>
+    </a>
+    <a class="case-row" href="#">
+      <div class="cover"><img src="https://gw.alicdn.com/imgextra/i4/O1CN01eqE4AR21GoyFRTOMn_!!6000000006958-0-tps-3701-2467.jpg" alt=""></div>
+      <div><div class="case-meta"><span class="no">案例 02</span><span class="tag tag-accent">大消费</span></div>
+        <h3>沁心女装</h3><p>10 分钟上线自动化导购，一个人做到私域全时段覆盖。</p></div>
+      <div class="case-num"><b>7×24</b><span>服务覆盖</span></div>
+    </a>
+    <a class="case-row" href="#">
+      <div class="cover"><img src="https://gw.alicdn.com/imgextra/i3/O1CN01W1TPws1CO6s1IRSja_!!6000000000070-0-tps-4096-3072.jpg" alt=""></div>
+      <div><div class="case-meta"><span class="no">案例 03</span><span class="tag tag-accent">法律</span></div>
+        <h3>泽大律所</h3><p>百页合同分钟级审完，让 AI 成为律师真正的专业合伙人。</p></div>
+      <div class="case-num"><b>分钟级</b><span>合同审阅</span></div>
+    </a>
+    <a class="case-row" href="#">
+      <div class="cover"><img src="https://gw.alicdn.com/imgextra/i2/O1CN01lUpjWI26TiCJzEsuN_!!6000000007663-0-tps-4032-3024.jpg" alt=""></div>
+      <div><div class="case-meta"><span class="no">案例 04</span><span class="tag tag-accent">金融业</span></div>
+        <h3>山东光擎</h3><p>从"降本"走到"增收"，60 天里迭代了 80 多个版本的策略。</p></div>
+      <div class="case-num"><b>80+ 版</b><span>策略迭代</span></div>
+    </a>
+  </div>
+  <div style="margin-top:var(--s10)"><a class="arrowlink" href="#">查看全部案例 →</a></div>
+</div></section>
+
+<!-- 03 学习路径 -->
+<section class="sec"><div class="wrap">
+  <div class="chapter">
+    <div class="chapter-num">03</div>
+    <div class="chapter-txt">
+      <span class="kicker">Learning Paths</span>
+      <h2>三条学习路径</h2>
+      <p>系统学习、深度定制，还是碎片化入门——选一条最贴合你当下节奏的。</p>
+    </div>
+  </div>
+
+  <div class="path">
+    <div class="path-no">01</div>
+    <div>
+      <h3>公开课</h3>
+      <div class="sub">行业专家分享 · 洞察前沿趋势</div>
+      <div class="desc">邀请领域顶尖专家现场分享已验证的实践经验，覆盖组织变革等核心议题。</div>
+      <div class="path-tags"><span class="tag">主题实践体验</span><span class="tag">课后跟跑辅导</span><span class="tag">课程项目咨询</span></div>
+      <a class="arrowlink" href="#">查看开课排期 →</a>
+    </div>
+    <div class="cover"><img src="https://gw.alicdn.com/imgextra/i3/O1CN012F6YmT1qcqEw1OpFS_!!6000000005517-0-tps-5907-3938.jpg" alt=""></div>
+  </div>
+
+  <div class="path">
+    <div class="path-no">02</div>
+    <div>
+      <h3>企业定制课程</h3>
+      <div class="sub">深度结合业务场景 · 打造专属方案</div>
+      <div class="desc">针对制造业、电商、金融等不同行业量身定制，从战略规划到落地执行完整闭环。</div>
+      <div class="path-tags"><span class="tag">行业案例深度解析</span><span class="tag">实战工作坊</span><span class="tag">课后持续辅导</span></div>
+      <a class="arrowlink" href="#">浏览 80+ 门课程 →</a>
+    </div>
+    <div class="cover"><img src="https://img.alicdn.com/imgextra/i1/6000000001169/O1CN019jQQDI1KVS8u3az5X_!!6000000001169-0-tbvideo.jpg" alt=""></div>
+  </div>
+
+  <div class="path">
+    <div class="path-no">03</div>
+    <div>
+      <h3>线上课程</h3>
+      <div class="sub">随时随地学习 · 灵活安排进度</div>
+      <div class="desc">精心录制的系列课程，从基础入门到高级应用，配套练习与测验保障学习效果。</div>
+      <div class="path-tags"><span class="tag">高清视频 + 课件</span><span class="tag">章节测验</span><span class="tag">结业证书</span></div>
+      <a class="arrowlink" href="#">立即开始学习 →</a>
+    </div>
+    <div class="cover"><img src="https://gw.alicdn.com/imgextra/i2/O1CN01LYGK4m1h5Yv4iAMc0_!!6000000004226-2-tps-720-720.png" alt=""></div>
+  </div>
+</div></section>
+
+<section class="closing"><div class="wrap"><div class="closing-grid">
+  <div>
+    <h2>不确定从哪门课开始？</h2>
+    <p>告诉我们你的行业和当前卡点，我们帮你拼出企业专属的 AI 提效方案。</p>
+  </div>
+  <div class="closing-actions"><a class="btn btn-light" href="#">免费获取定制建议</a></div>
+</div></div></section>
+
+<footer><div class="foot-in">
+  <div><b>钉钉AI咨询研究院</b> ｜ 赋能百业，AI提效</div>
+  <div>© 2026 ｜ 如有疑问，请联系您的钉钉客户经理</div>
+</div></footer>
+
+</body>
+</html>

@@ -1,0 +1,116 @@
+/* ============================================
+   方案 A｜克制商务 (Clean Enterprise)
+   设计规范：钉钉 / 阿里云官网体系
+   ============================================ */
+:root {
+  /* 色彩 —— 单一主色 + 中性灰阶，绿色只做强调 */
+  --brand: #30bf69;
+  --brand-hover: #26a85a;
+  --brand-soft: #eefaf2;
+  --brand-line: #c7ecd8;
+
+  --ink-1: #1f2329;   /* 标题 */
+  --ink-2: #4e5969;   /* 正文 */
+  --ink-3: #86909c;   /* 辅助 */
+  --ink-4: #a9aeb8;   /* 占位 */
+
+  --bg: #ffffff;
+  --bg-alt: #f7f8fa;
+  --line: #e5e6eb;
+  --line-soft: #f0f1f3;
+
+  /* 字号阶梯 —— 只允许这 8 级 */
+  --fs-caption: 12px;
+  --fs-sm: 13px;
+  --fs-body: 14px;
+  --fs-body-lg: 16px;
+  --fs-h4: 18px;
+  --fs-h3: 22px;
+  --fs-h2: 30px;
+  --fs-h1: 44px;
+
+  /* 间距 —— 4px 基数 */
+  --s1: 4px;  --s2: 8px;  --s3: 12px; --s4: 16px;
+  --s5: 20px; --s6: 24px; --s8: 32px; --s10: 40px;
+  --s12: 48px; --s16: 64px; --s20: 80px;
+
+  /* 形制 */
+  --r-sm: 6px; --r-md: 10px; --r-lg: 14px; --r-pill: 999px;
+  --sh-1: 0 1px 2px rgba(31, 35, 41, 0.05);
+  --sh-2: 0 4px 12px rgba(31, 35, 41, 0.07);
+  --sh-3: 0 12px 32px rgba(31, 35, 41, 0.10);
+
+  /* 栅格 */
+  --page: 1200px;
+  --gutter: 24px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'PingFang SC', 'Microsoft YaHei', -apple-system, sans-serif;
+  color: var(--ink-1);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.6;
+}
+
+.wrap { max-width: var(--page); margin: 0 auto; padding: 0 var(--gutter); }
+
+/* ---------- 导航 ---------- */
+.nav { background: #fff; border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 100; }
+.nav-in { max-width: var(--page); margin: 0 auto; padding: 0 var(--gutter); height: 64px; display: flex; align-items: center; justify-content: space-between; }
+.nav-brand { display: flex; align-items: center; gap: var(--s3); }
+.nav-brand img { height: 28px; filter: brightness(0) saturate(100%) invert(42%) sepia(93%) saturate(1352%) hue-rotate(202deg); }
+.nav-brand span { font-size: var(--fs-body-lg); font-weight: 600; letter-spacing: -0.01em; }
+.nav-menu { display: flex; gap: var(--s8); }
+.nav-menu a { font-size: var(--fs-body); color: var(--ink-2); text-decoration: none; padding: var(--s5) 0; position: relative; }
+.nav-menu a.on { color: var(--ink-1); font-weight: 600; }
+.nav-menu a.on::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: var(--brand); border-radius: 2px; }
+
+/* ---------- 区块标题（统一规范） ---------- */
+.sec { padding: var(--s20) 0; }
+.sec.alt { background: var(--bg-alt); }
+.sec-head { text-align: center; margin-bottom: var(--s12); }
+.sec-eyebrow { display: inline-block; font-size: var(--fs-sm); font-weight: 600; color: var(--brand); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: var(--s3); }
+.sec-head h2 { font-size: var(--fs-h2); font-weight: 700; letter-spacing: -0.02em; margin-bottom: var(--s3); }
+.sec-head p { font-size: var(--fs-body-lg); color: var(--ink-3); max-width: 640px; margin: 0 auto; }
+
+/* ---------- 按钮 ---------- */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--s2); height: 44px; padding: 0 var(--s6); border-radius: var(--r-sm); font-size: var(--fs-body-lg); font-weight: 500; text-decoration: none; border: 1px solid transparent; cursor: pointer; transition: all .2s ease; }
+.btn-pri { background: var(--brand); color: #fff; }
+.btn-pri:hover { background: var(--brand-hover); }
+.btn-sec { background: #fff; color: var(--ink-1); border-color: var(--line); }
+.btn-sec:hover { border-color: var(--brand); color: var(--brand); }
+.btn-ghost { background: rgba(255,255,255,.14); color: #fff; border-color: rgba(255,255,255,.42); backdrop-filter: blur(8px); }
+.btn-ghost:hover { background: rgba(255,255,255,.24); }
+.btn-sm { height: 36px; padding: 0 var(--s4); font-size: var(--fs-body); }
+.link-more { display: inline-flex; align-items: center; gap: var(--s1); font-size: var(--fs-body); font-weight: 500; color: var(--brand); text-decoration: none; }
+.link-more:hover { gap: var(--s2); }
+
+/* ---------- 卡片基类 ---------- */
+.card { background: #fff; border: 1px solid var(--line); border-radius: var(--r-lg); transition: box-shadow .22s ease, border-color .22s ease, transform .22s ease; }
+.card:hover { box-shadow: var(--sh-3); border-color: var(--brand-line); transform: translateY(-2px); }
+
+/* ---------- 网格 ---------- */
+.g2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--s6); }
+.g3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s6); }
+.g4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--s6); }
+
+/* ---------- 标签 ---------- */
+.tag { display: inline-block; padding: 2px var(--s2); border-radius: var(--r-sm); font-size: var(--fs-caption); font-weight: 500; color: var(--ink-2); background: var(--bg-alt); border: 1px solid var(--line-soft); }
+.tag-brand { color: var(--brand); background: var(--brand-soft); border-color: var(--brand-line); }
+
+/* ---------- 封面统一 16:9 ---------- */
+.cover { position: relative; width: 100%; aspect-ratio: 16 / 9; overflow: hidden; background: var(--bg-alt); }
+.cover img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .4s ease; }
+.card:hover .cover img { transform: scale(1.04); }
+
+@media (max-width: 980px) {
+  :root { --fs-h1: 32px; --fs-h2: 24px; --s20: 48px; }
+  .g3, .g4 { grid-template-columns: repeat(2, 1fr); }
+  .nav-menu { display: none; }
+}
+@media (max-width: 640px) {
+  .g2, .g3, .g4 { grid-template-columns: 1fr; }
+}

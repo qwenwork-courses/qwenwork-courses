@@ -1,0 +1,14 @@
+# macOS
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+
+# 编辑器 / IDE
+.qoder/
+.vscode/
+.idea/
+*.swp
+
+# 日志
+*.log

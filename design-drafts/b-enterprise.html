@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>方案B · 企业定制课程 · 杂志编辑</title>
+<link rel="stylesheet" href="tokens-b.css">
+<style>
+/* ===== Hero ===== */
+.ehero { padding: var(--s24) 0 var(--s16); }
+.ehero-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: var(--s16); align-items: end; }
+.ehero .kicker { display: block; font-size: var(--fs-micro); font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: var(--s5); }
+.ehero h1 { font-size: var(--fs-h1); font-weight: 700; letter-spacing: -0.04em; line-height: 1.06; margin-bottom: var(--s6); }
+.ehero h1 em { font-style: normal; color: var(--accent); }
+.ehero .lead { font-size: var(--fs-lead); color: var(--ink-2); max-width: 32em; padding-bottom: var(--s6); border-bottom: 1px solid var(--rule); margin-bottom: var(--s6); }
+.ehero-actions { display: flex; gap: var(--s3); }
+.ehero-art { border-left: 1px solid var(--rule); padding-left: var(--s8); text-align: center; }
+.ehero-art img { width: 150px; }
+.ehero-art figcaption { font-size: var(--fs-caption); color: var(--ink-3); letter-spacing: 0.06em; margin-top: var(--s3); }
+
+/* ===== 价值：三列，细线分隔，无卡片框 ===== */
+.vals { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s16); border-top: 1px solid var(--rule); padding-top: var(--s10); }
+.val-no { font-size: var(--fs-caption); font-weight: 700; letter-spacing: 0.14em; color: var(--accent); margin-bottom: var(--s5); }
+.vals h3 { font-size: var(--fs-h3); font-weight: 700; letter-spacing: -0.025em; margin-bottom: var(--s4); }
+.vals p { font-size: var(--fs-body); color: var(--ink-2); margin-bottom: var(--s5); }
+.val-tags { display: flex; flex-wrap: wrap; gap: var(--s2); }
+
+/* ===== 三步：编号大字 + 细线行 ===== */
+.steps { border-top: 1px solid var(--rule); }
+.step { display: grid; grid-template-columns: 100px 1fr 1.4fr; gap: var(--s10); align-items: baseline; padding: var(--s8) 0; border-bottom: 1px solid var(--rule); }
+.step-no { font-size: 44px; font-weight: 300; color: var(--rule); letter-spacing: -0.04em; line-height: 1; }
+.step h4 { font-size: var(--fs-h3); font-weight: 700; letter-spacing: -0.025em; }
+.step p { font-size: var(--fs-body); color: var(--ink-2); }
+
+/* ===== 课程：左侧竖排领域锚点 + 右侧内容流 ===== */
+.course-layout { display: grid; grid-template-columns: 220px 1fr; gap: var(--s16); align-items: start; }
+.domain-nav { position: sticky; top: 100px; border-top: 1px solid var(--rule); }
+.domain-nav a { display: block; padding: var(--s4) 0 var(--s4) var(--s4); border-bottom: 1px solid var(--rule-soft); border-left: 2px solid transparent; font-size: var(--fs-body); color: var(--ink-2); text-decoration: none; letter-spacing: 0.01em; transition: all .2s ease; }
+.domain-nav a:hover { color: var(--ink); border-left-color: var(--rule); }
+.domain-nav a.on { color: var(--ink); font-weight: 700; border-left-color: var(--accent); }
+.domain-nav a small { display: block; font-size: var(--fs-micro); color: var(--ink-3); font-weight: 400; letter-spacing: 0.06em; }
+
+/* 角色引言 */
+.rolequote { border-left: 2px solid var(--accent); padding: var(--s2) 0 var(--s2) var(--s6); margin-bottom: var(--s12); }
+.rolequote h3 { font-size: var(--fs-h3); font-weight: 700; letter-spacing: -0.025em; margin-bottom: var(--s3); }
+.rolequote p { font-size: var(--fs-lead); color: var(--ink-2); max-width: 38em; margin-bottom: var(--s4); }
+.rolequote .who { display: flex; flex-wrap: wrap; gap: var(--s2); }
+
+/* 课程长条行 */
+.crow { display: grid; grid-template-columns: 60px 300px 1fr; gap: var(--s8); padding: var(--s10) 0; border-bottom: 1px solid var(--rule); }
+.crow:first-of-type { border-top: 1px solid var(--rule); }
+.crow-no { font-size: 32px; font-weight: 300; color: var(--rule); letter-spacing: -0.04em; line-height: 1; }
+.crow .cover { aspect-ratio: 16 / 10; border: 1px solid var(--rule); }
+.crow:hover .cover img { transform: scale(1.05); }
+.crow h3 { font-size: var(--fs-h3); font-weight: 700; letter-spacing: -0.025em; line-height: 1.3; margin-bottom: var(--s5); }
+.crow-ins { display: flex; align-items: center; gap: var(--s3); padding-bottom: var(--s5); margin-bottom: var(--s5); border-bottom: 1px solid var(--rule-soft); }
+.crow-ins img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; }
+.crow-ins b { display: block; font-size: var(--fs-body); font-weight: 700; }
+.crow-ins span { font-size: var(--fs-caption); color: var(--ink-3); }
+.crow-pts { list-style: none; margin-bottom: var(--s6); }
+.crow-pts li { display: grid; grid-template-columns: 132px 1fr; gap: var(--s4); font-size: var(--fs-body); padding: var(--s2) 0; border-bottom: 1px dotted var(--rule-soft); }
+.crow-pts li b { font-weight: 700; font-size: var(--fs-caption); letter-spacing: 0.04em; color: var(--accent); }
+.crow-pts li span { color: var(--ink-2); }
+.crow-f { display: flex; align-items: center; justify-content: space-between; }
+.crow-f .tags { display: flex; gap: var(--s2); }
+
+.closing { background: var(--ink); color: var(--paper); padding: var(--s24) 0; }
+.closing-grid { display: grid; grid-template-columns: 1fr auto; gap: var(--s16); align-items: end; }
+.closing h2 { font-size: var(--fs-h2); font-weight: 700; letter-spacing: -0.03em; line-height: 1.15; margin-bottom: var(--s4); }
+.closing p { font-size: var(--fs-lead); color: rgba(251,250,248,.62); max-width: 34em; }
+footer { border-top: 1px solid var(--rule); padding: var(--s10) 0; }
+.foot-in { max-width: var(--page); margin: 0 auto; padding: 0 var(--gutter); display: flex; justify-content: space-between; font-size: var(--fs-caption); color: var(--ink-3); }
+.foot-in b { color: var(--ink); }
+
+@media (max-width: 980px) {
+  .ehero-grid, .closing-grid, .vals, .course-layout, .crow, .step { grid-template-columns: 1fr; gap: var(--s6); }
+  .ehero-art { border-left: none; padding-left: 0; }
+  .domain-nav { position: static; }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav"><div class="nav-in">
+  <div class="nav-brand"><img src="https://gw.alicdn.com/imgextra/i1/O1CN01U94gre1ZwfvJk8ik1_!!6000000003259-2-tps-163-80.png" alt=""><span>AI咨询研究院 ｜ 课程系统</span></div>
+  <div class="nav-menu"><a href="#">首页</a><a href="#">案例库</a><a href="#">公开课</a><a class="on" href="#">企业定制课程</a><a href="#">线上课程</a><a href="#">合作咨询</a></div>
+</div></nav>
+
+<section class="ehero"><div class="wrap"><div class="ehero-grid">
+  <div>
+    <span class="kicker">Enterprise Programs · 企业定制课程</span>
+    <h1>千问办公赋能百业，<em>AI 提效</em>。</h1>
+    <p class="lead">按行业与角色自由组合课程，把 AI 从一个概念，变成企业内部可复制、可交付的执行能力。三步即可拼出专属培训方案。</p>
+    <div class="ehero-actions"><a class="btn btn-fill" href="#">开始定制方案</a><a class="btn" href="#">下载课程总纲</a></div>
+  </div>
+  <figure class="ehero-art">
+    <img src="https://gw.alicdn.com/imgextra/i4/O1CN01KADrQnhsdyC1Lxsw_!!6000000003535-2-tps-667-759.png" alt="千问办公">
+    <figcaption>7 大领域 · 80+ 门课 · 60+ 位实战专家</figcaption>
+  </figure>
+</div></div></section>
+
+<!-- 01 为什么选我们 -->
+<section class="sec"><div class="wrap">
+  <div class="chapter">
+    <div class="chapter-num">01</div>
+    <div class="chapter-txt">
+      <span class="kicker">Why Us</span>
+      <h2>为什么选我们</h2>
+      <p>拒绝空洞理论，只提供经过千万级业务场景验证的实战方案。</p>
+    </div>
+  </div>
+  <div class="vals">
+    <div><div class="val-no">实战 / PRACTICE</div><h3>场景精准<br>拿来即用</h3>
+      <p>覆盖 7 大核心业务领域，每门课直击真实业务痛点，方案学完即可落地执行。</p>
+      <div class="val-tags"><span class="tag">制造业</span><span class="tag">电商</span><span class="tag">餐饮连锁</span><span class="tag">营销</span><span class="tag">战略</span></div></div>
+    <div><div class="val-no">权威 / EXPERTISE</div><h3>专家亲授<br>实战验证</h3>
+      <p>来自阿里生态及头部企业的实战专家，不讲概念只讲经验，分享已验证的转型路径。</p>
+      <div class="val-tags"><span class="tag">阿里生态</span><span class="tag">行业头部</span><span class="tag">千万级项目</span></div></div>
+    <div><div class="val-no">洞察 / INSIGHT</div><h3>深度拆解<br>全链覆盖</h3>
+      <p>从战略顶层设计到一线操作细节，为管理者和执行者提供完整的 AI 落地路线图。</p>
+      <div class="val-tags"><span class="tag">战略层</span><span class="tag">管理层</span><span class="tag">执行层</span></div></div>
+  </div>
+</div></section>
+
+<!-- 02 三步定制 -->
+<section class="sec tinted"><div class="wrap">
+  <div class="chapter">
+    <div class="chapter-num">02</div>
+    <div class="chapter-txt">
+      <span class="kicker">How It Works</span>
+      <h2>三步完成企业专属定制</h2>
+      <p>选场景、挑痛点、组方案。</p>
+    </div>
+  </div>
+  <div class="steps">
+    <div class="step"><div class="step-no">01</div><h4>选行业场景</h4><p>从电商、餐饮、制造、营销等行业中找到您所在的赛道，我们已经为每个赛道准备了对应的课程池。</p></div>
+    <div class="step"><div class="step-no">02</div><h4>找业务痛点</h4><p>获客增长？运营提效？还是战略落地？按当前最迫切的卡点精准匹配，而不是从头学一遍。</p></div>
+    <div class="step"><div class="step-no">03</div><h4>组专属方案</h4><p>挑选匹配的课程模块，拼出属于您企业的 AI 提效方案，我们在 1 个工作日内给出排期建议。</p></div>
+  </div>
+</div></section>
+
+<!-- 03 精选课程 -->
+<section class="sec"><div class="wrap">
+  <div class="chapter">
+    <div class="chapter-num">03</div>
+    <div class="chapter-txt">
+      <span class="kicker">Courses</span>
+      <h2>精选课程介绍</h2>
+      <p>按业务领域浏览。每门课都标注了适用角色、课程时长与核心收获。</p>
+    </div>
+  </div>
+
+  <div class="course-layout">
+    <nav class="domain-nav">
+      <a class="on" href="#">制造业 & 电商<small>4 门课程</small></a>
+      <a href="#">连锁门店<small>6 门课程</small></a>
+      <a href="#">大营销<small>10 门课程</small></a>
+      <a href="#">战略与经营管理<small>5 门课程</small></a>
+      <a href="#">人才组织与财务金融<small>8 门课程</small></a>
+      <a href="#">管理领导力与办公提效<small>7 门课程</small></a>
+    </nav>
+
+    <div>
+      <div class="rolequote">
+        <h3>电商老板、运营负责人看这里</h3>
+        <p>用 AI 重构选品、运营、客服全链路，让团队从重复劳动中解放出来，效率提升 300%+。</p>
+        <div class="who"><span class="tag">电商 / 制造企业老板</span><span class="tag">运营总监</span><span class="tag">客服负责人</span><span class="tag">数字化转型负责人</span></div>
+      </div>
+
+      <div class="crow">
+        <div class="crow-no">01</div>
+        <div class="cover"><img src="https://img.alicdn.com/imgextra/i1/6000000001169/O1CN019jQQDI1KVS8u3az5X_!!6000000001169-0-tbvideo.jpg" alt=""></div>
+        <div>
+          <h3>电商 AI 自动化实战营<br>—— 让运营自动跑</h3>
+          <div class="crow-ins"><img src="https://gw.alicdn.com/imgextra/i3/O1CN0166Y9Xd1O9FP3btuJc_!!6000000001662-2-tps-984-1041.png" alt="">
+            <div><b>易安（吴彦瑾）</b><span>森创启睿客户成功经理 & AI 自动化负责人</span></div></div>
+          <ul class="crow-pts">
+            <li><b>实战背景</b><span>森马千万级电商团队 AI 落地项目，效率提升 300%+</span></li>
+            <li><b>核心内容</b><span>6 大 Skill 自动化场景：客服、运营、数据监控</span></li>
+            <li><b>落地方式</b><span>悟空 AI + RPA 零代码工具链，无技术背景即可上手</span></li>
+          </ul>
+          <div class="crow-f"><div class="tags"><span class="tag">2 天</span><span class="tag">实操工作坊</span></div><a class="arrowlink" href="#">查看课程详情 →</a></div>
+        </div>
+      </div>
+
+      <div class="crow">
+        <div class="crow-no">02</div>
+        <div class="cover"><img src="https://img.alicdn.com/imgextra/i2/6000000007188/O1CN01svlFJx22yA3wZwFbe_!!6000000007188-0-tbvideo.jpg" alt=""></div>
+        <div>
+          <h3>AI 驱动电商行业<br>全链路重塑</h3>
+          <div class="crow-ins"><img src="https://gw.alicdn.com/imgextra/i4/O1CN01L69ksf1oYbL2MWKLr_!!6000000005237-2-tps-753-753.png" alt="">
+            <div><b>渊虹</b><span>森创启睿 CEO 兼巴拉巴拉高级运营总监</span></div></div>
+          <ul class="crow-pts">
+            <li><b>标杆案例</b><span>巴拉巴拉：从选品、营销到售后的全流程优化</span></li>
+            <li><b>视角</b><span>CEO 视角的全链路重塑与战略层转型思路</span></li>
+            <li><b>可迁移性</b><span>品牌实战经验拆解为可复用的方法论</span></li>
+          </ul>
+          <div class="crow-f"><div class="tags"><span class="tag">1 天</span><span class="tag">战略级</span></div><a class="arrowlink" href="#">查看课程详情 →</a></div>
+        </div>
+      </div>
+
+      <div class="crow">
+        <div class="crow-no">03</div>
+        <div class="cover"><img src="https://img.alicdn.com/imgextra/i2/6000000000347/O1CN01PAgAUX1EQyZnivAUj_!!6000000000347-0-tbvideo.jpg" alt=""></div>
+        <div>
+          <h3>赋能电商运营实战<br>—— AI 原生工作法</h3>
+          <div class="crow-ins"><img src="https://gw.alicdn.com/imgextra/i1/O1CN01NO0XVO1kMSNBM7Unw_!!6000000004669-0-tps-1672-1672.jpg" alt="">
+            <div><b>张然</b><span>钉钉悟空认证讲师、AI 应用实战导师</span></div></div>
+          <ul class="crow-pts">
+            <li><b>课程体系</b><span>官方认证讲师，标准化课程体系</span></li>
+            <li><b>方法论</b><span>AI 原生工作法与工具链深度解析</span></li>
+            <li><b>知识框架</b><span>从认知到实操的完整路径</span></li>
+          </ul>
+          <div class="crow-f"><div class="tags"><span class="tag">2 天</span><span class="tag">认证课程</span></div><a class="arrowlink" href="#">查看课程详情 →</a></div>
+        </div>
+      </div>
+
+      <div class="crow">
+        <div class="crow-no">04</div>
+        <div class="cover"><img src="https://img.alicdn.com/imgextra/i4/6000000003248/O1CN01KnGNRt1ZrdYzPcQFD_!!6000000003248-0-tbvideo.jpg" alt=""></div>
+        <div>
+          <h3>建筑行业如何利用 AI<br>完成企业转型升级</h3>
+          <div class="crow-ins"><img src="https://gw.alicdn.com/imgextra/i2/O1CN0142bXzW1aaWNUjYVtC_!!6000000003346-2-tps-1177-1177.png" alt="">
+            <div><b>周明辉</b><span>阿里巴巴国际站讲师，AI 架构师</span></div></div>
+          <ul class="crow-pts">
+            <li><b>聚焦场景</b><span>建筑行业四大核心场景：资料重、协同多</span></li>
+            <li><b>授课方式</b><span>架构师亲授，真实业务资料现场 Demo</span></li>
+            <li><b>完整闭环</b><span>全球认知 → 工具落地 → 场景应用</span></li>
+          </ul>
+          <div class="crow-f"><div class="tags"><span class="tag">1 天</span><span class="tag">行业专场</span></div><a class="arrowlink" href="#">查看课程详情 →</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<section class="closing"><div class="wrap"><div class="closing-grid">
+  <div><h2>把这些课程组合成<br>你的专属方案</h2>
+    <p>告诉我们企业规模、行业和当前卡点，我们在 1 个工作日内给出课程组合建议。</p></div>
+  <div><a class="btn btn-light" href="#">提交定制需求</a></div>
+</div></div></section>
+
+<footer><div class="foot-in">
+  <div><b>钉钉AI咨询研究院</b> ｜ 赋能百业，AI提效</div>
+  <div>© 2026 ｜ 如有疑问，请联系您的钉钉客户经理</div>
+</div></footer>
+
+</body>
+</html>
