@@ -497,24 +497,26 @@
             
             // 2. 先滚到顶部，避免替换内容时浏览器保持底部滚动位置
             window.scrollTo(0, 0);
-            
-            // 3. 显示加载中（禁用缓存，确保始终加载最新内容）
-            container.innerHTML = '<div class="loading-spinner">正在加载内容...</div>';
 
             try {
-                // 4. 获取对应的 HTML 文件（添加时间戳破坏缓存）
-                const timestamp = new Date().getTime();
-                const response = await fetch(`tab-${tabId}.html?t=${timestamp}`);
-                if (!response.ok) throw new Error('加载失败');
-                const html = await response.text();
+                // 3. 会话内缓存优先：命中直接复用，不再抓取、不闪“正在加载”。
+                //    只有首次访问某 tab 才 fetch；去掉时间戳，让浏览器 HTTP 缓存也能生效
+                //    （配合下方 prefetchTabs：空闲时预取其余 tab，做到次次秒开）。
+                let html = contentCache[tabId];
+                if (html == null) {
+                    container.innerHTML = '<div class="loading-spinner">正在加载内容...</div>';
+                    const response = await fetch(`tab-${tabId}.html`);
+                    if (!response.ok) throw new Error('加载失败');
+                    html = await response.text();
+                    contentCache[tabId] = html;
+                }
 
                 // 5. 先把片段自带的 <link> 前置到 <head> 并等样式表生效，
                 //    再注入 HTML——否则会先闪一帧裸 HTML（详见函数处注释）。
                 const prepared = hoistFragmentLinks(html);
                 await prepared.ready;
 
-                // 6. 缓存并渲染
-                contentCache[tabId] = html;
+                // 6. 渲染
                 container.innerHTML = prepared.html;
 
                 // 7. 手动执行插入内容中的 <script> 标签
@@ -823,6 +825,23 @@
             });
         }
 
+        // 空闲时把其余 tab 的 HTML 预取进 contentCache，让首次点开也几乎秒开。
+        // 只抓取文本、不注入不执行；真正打开某 tab 时仍走 switchMainTab 的注入流程。
+        function prefetchTabs() {
+            const all = ['home', 'cases', 'public', 'enterprise', 'online', 'about'];
+            const idle = window.requestIdleCallback || (fn => setTimeout(fn, 800));
+            all.forEach(tabId => {
+                if (contentCache[tabId] != null) return;
+                idle(() => {
+                    if (contentCache[tabId] != null) return;
+                    fetch(`tab-${tabId}.html`)
+                        .then(r => (r.ok ? r.text() : null))
+                        .then(t => { if (t != null && contentCache[tabId] == null) contentCache[tabId] = t; })
+                        .catch(() => {});
+                });
+            });
+        }
+
         // 页面初始化时默认加载首页，支持URL hash导航
         window.onload = async () => {
             const hash = window.location.hash.substring(1); // 移除#号
@@ -847,6 +866,9 @@
                 const targetTab = ['home', 'cases', 'public', 'enterprise', 'online', 'about'].includes(hash) ? hash : 'home';
                 await switchMainTab(targetTab);
             }
+
+            // 首屏就绪后，空闲预取其余 tab
+            prefetchTabs();
         };
         
         // 激活企业定制课程的指定领域Tab
