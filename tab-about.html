@@ -1,52 +1,295 @@
-<!-- 关于我们页面 -->
+<!-- 合作咨询 / 关于我们 · 排版与视觉规范重构版 -->
 <style>
-    .consult-card h3 {
-        font-size: 24px !important;
-        margin-bottom: 20px !important;
-        letter-spacing: 0.5px;
-    }
-    .consult-card ul li {
-        font-size: 17px !important;
-        line-height: 2 !important;
-        margin-bottom: 6px;
-    }
-    .consult-card-btn {
-        display: inline-block;
-        margin-top: 24px;
-        padding: 13px 36px;
-        background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
-        color: #fff !important;
-        border: none;
-        border-radius: var(--r-md);
-        font-size: 15px;
-        font-weight: 700;
-        text-decoration: none;
-        cursor: pointer;
-        transition: all 0.2s ease;
-        box-shadow: 0 3px 10px rgba(48, 191, 105,0.25);
-        letter-spacing: 0.5px;
-    }
-    .consult-card-btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 5px 16px rgba(48, 191, 105,0.35);
-    }
-</style>
-<div class="about-page">
-    <!-- Hero Section -->
-    <div class="about-hero">
-        <img src="https://gw.alicdn.com/imgextra/i3/O1CN01QhNTsm1gdclBIfLtK_!!6000000004165-2-tps-4400-1833.png" alt="钉钉AI咨询研究院 Banner" class="about-hero-banner">
-    </div>
+/* ============================================================
+   合作咨询页设计令牌与版式规范
+   令牌集中在 .ab 上，组件类名统一 ab- 前缀，
+   避免与 common-styles.css 4700 行存量规则冲突。
 
-    <!-- 合作咨询模块 -->
-    <div class="consult-module">
-        <div class="consult-module-inner">
-            <div class="consult-header">
+   版式节奏（刻意让相邻区块形态不同，避免通篇同一套居中网格）：
+     Hero 深色左对齐 → 双卡网格 → 左右分栏编辑式 → 横向时间轴
+     → 深色章节 → 2×2 卡片 → 横向线性流程 → 深色章节
+     → 三步流程 → 大卡案例 → 跑马灯
+   ============================================================ */
+.ab {
+    /* 深色域 */
+    --d-bg: #0a1410;
+    --d-bg-2: #0d1a14;
+    --d-surface: rgba(255,255,255,.05);
+    --d-surface-2: rgba(255,255,255,.08);
+    --d-line: rgba(255,255,255,.10);
+    --d-line-2: rgba(255,255,255,.18);
+    --d-text: #f2f7f4;
+    --d-text-2: rgba(242,247,244,.68);
+    --d-text-3: rgba(242,247,244,.44);
+    /* 浅色域 */
+    --l-bg: #f6f8f7;
+    --l-surface: #ffffff;
+    --l-line: #e3e8e5;
+    --l-text: #101a15;
+    --l-text-2: #4a5b52;
+    --l-text-3: #86958d;
+    /* 主色：全站唯一品牌绿 */
+    --brand: #30bf69;
+    --brand-2: #4ce285;
+    --brand-3: #86eeb3;
+    --brand-deep: #16794a;
+    --brand-dark: #22975a;
+    --brand-dim: rgba(48,191,105,.14);
+    --brand-soft: #eefaf2;
+    --brand-line: rgba(48,191,105,.28);
+    --glow: 0 0 0 1px rgba(48,191,105,.28), 0 12px 40px rgba(48,191,105,.16);
+    /* 字号阶梯（仅这 9 级） */
+    --fs-caption: 12px;
+    --fs-sm: 13px;
+    --fs-body: 15px;
+    --fs-lead: 17px;
+    --fs-h4: 19px;
+    --fs-h3: 24px;
+    --fs-h2: 36px;
+    --fs-h1: 48px;
+    /* 间距 4px 基数 */
+    --s1: 4px;  --s2: 8px;  --s3: 12px; --s4: 16px;
+    --s5: 20px; --s6: 24px; --s8: 32px; --s10: 40px;
+    --s12: 48px; --s16: 64px; --s20: 80px; --s24: 96px;
+    /* 形制 */
+    --r-sm: 10px; --r-md: 16px; --r-lg: 22px; --r-xl: 28px; --r-pill: 999px;
+    --page: 1280px;
+    --gutter: 28px;
+    /* Hero 高度：与企业定制课程页 .ent 的 --hero-h 保持一致 */
+    --hero-h: 460px;
+
+    font-family: 'PingFang SC', 'Microsoft YaHei', -apple-system, sans-serif;
+    color: var(--l-text);
+    line-height: 1.65;
+    font-size: var(--fs-body);
+    -webkit-font-smoothing: antialiased;
+}
+.ab *, .ab *::before, .ab *::after { box-sizing: border-box; }
+.ab-wrap { max-width: var(--page); margin: 0 auto; padding: 0 var(--gutter); }
+
+/* ---------- 区块与标题 ---------- */
+.ab-sec { padding: var(--s20) 0; background: var(--l-bg); }
+.ab-sec-white { background: #fff; }
+.ab-sec-head { text-align: center; margin-bottom: var(--s12); }
+.ab-chip { display: inline-flex; align-items: center; gap: var(--s2); font-size: var(--fs-caption); font-weight: 600; letter-spacing: 0.1em; color: var(--brand); background: var(--brand-dim); border: 1px solid var(--brand-line); padding: var(--s1) var(--s3); border-radius: var(--r-pill); margin-bottom: var(--s5); }
+.ab-sec-head h2 { font-size: var(--fs-h2); font-weight: 700; letter-spacing: -0.03em; line-height: 1.2; color: var(--l-text); margin: 0 0 var(--s3); }
+.ab-sec-head p { font-size: var(--fs-lead); color: var(--l-text-2); max-width: 700px; margin: 0 auto; }
+
+/* ---------- Bento 网格 ---------- */
+.ab-bento { display: grid; grid-template-columns: repeat(6, 1fr); gap: var(--s4); }
+.ab-bt { background: var(--l-surface); border: 1px solid var(--l-line); border-radius: var(--r-lg); overflow: hidden; position: relative; display: flex; flex-direction: column; transition: transform .3s cubic-bezier(.2,.7,.2,1), box-shadow .3s ease, border-color .3s ease; }
+.ab-bt:hover { transform: translateY(-4px); border-color: var(--brand-line); box-shadow: 0 18px 48px rgba(16,26,21,.10); }
+.ab-c2 { grid-column: span 2; }
+.ab-c3 { grid-column: span 3; }
+.ab-c6 { grid-column: span 6; }
+
+/* ---------- 按钮 ---------- */
+.ab-btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--s2); height: 44px; padding: 0 var(--s8); border-radius: var(--r-pill); font-size: var(--fs-body); font-weight: 600; text-decoration: none; border: 1px solid transparent; cursor: pointer; transition: all .24s cubic-bezier(.2,.7,.2,1); background: linear-gradient(135deg, var(--brand), var(--brand-2)); color: #06180e; box-shadow: 0 8px 26px rgba(48,191,105,.30); }
+.ab-btn:hover { transform: translateY(-2px); box-shadow: 0 14px 38px rgba(48,191,105,.40); color: #06180e; }
+.ab-btn-glass { background: rgba(255,255,255,.07); color: #fff; border-color: var(--d-line-2); backdrop-filter: blur(12px); box-shadow: none; }
+.ab-btn-glass:hover { background: rgba(255,255,255,.14); color: #fff; box-shadow: none; }
+
+/* ---------- 标签 ---------- */
+.ab-tag { display: inline-block; font-size: var(--fs-caption); font-weight: 500; padding: 3px var(--s3); border-radius: var(--r-sm); color: var(--brand); background: var(--brand-dim); border: 1px solid var(--brand-line); }
+
+/* ============================================================
+   Hero：背景用裁切后的网格图，文字字体样式复刻原 banner
+   原图排版实测：标题 rgb(226,255,226) 淡薄荷绿 + 光晕、粗体斜体、
+   字号约 56px；正文纯白粗体斜体；整块居中，中心位于幅宽 29.3% 处。
+   ============================================================ */
+.ab-hero { position: relative; background: var(--d-bg); color: var(--d-text); overflow: hidden; min-height: var(--hero-h); display: flex; align-items: center; padding: var(--s16) 0; }
+.ab-hero-art { position: absolute; inset: 0; background-image: url('https://gw.alicdn.com/imgextra/i3/O1CN01QhNTsm1gdclBIfLtK_!!6000000004165-2-tps-4400-1833.png'); background-repeat: no-repeat; background-position: 100% 50%; background-size: auto 250%; pointer-events: none; }
+/* 左侧遮罩加强：文字块已扩到约 55% 宽，需保证全块对比度 */
+.ab-hero-art::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, var(--d-bg) 0%, var(--d-bg) 42%, rgba(10,20,16,.82) 66%, rgba(10,20,16,.30) 100%); }
+.ab-hero-glow { position: absolute; top: -35%; left: 8%; width: 760px; height: 620px; background: radial-gradient(circle, rgba(48,191,105,.20) 0%, transparent 62%); pointer-events: none; }
+.ab-hero-in { position: relative; z-index: 2; width: 100%; max-width: var(--page); margin: 0 auto; padding: 0 var(--gutter); }
+.ab-hero-text { max-width: 700px; text-align: center; }
+.ab-hero h1 { font-size: 56px; font-weight: 900; font-style: italic; letter-spacing: 0.01em; line-height: 1.2; color: #e2ffe2; margin: 0 0 var(--s5); text-shadow: 0 0 34px rgba(140,255,200,.32), 0 2px 18px rgba(0,0,0,.45); }
+.ab-hero-lead { font-size: 18px; font-weight: 700; font-style: italic; color: #fff; line-height: 1.75; margin: 0 0 var(--s8); text-shadow: 0 1px 12px rgba(0,0,0,.5); }
+.ab-hero-cta { display: flex; flex-wrap: wrap; gap: var(--s3); justify-content: center; }
+
+/* ---------- 深色章节分隔（01 / 02），与 Hero 同一深色体系 ---------- */
+.ab-chapter { background: var(--d-bg-2); color: var(--d-text); padding: var(--s20) 0; text-align: center; position: relative; overflow: hidden; }
+.ab-chapter::before { content: ''; position: absolute; top: -45%; left: 50%; transform: translateX(-50%); width: 880px; height: 620px; background: radial-gradient(circle, rgba(48,191,105,.20) 0%, transparent 62%); pointer-events: none; }
+.ab-chapter::after { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.028) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.028) 1px, transparent 1px); background-size: 56px 56px; -webkit-mask-image: radial-gradient(ellipse 70% 70% at 50% 40%, #000 25%, transparent 78%); mask-image: radial-gradient(ellipse 70% 70% at 50% 40%, #000 25%, transparent 78%); pointer-events: none; }
+.ab-chapter-in { position: relative; z-index: 2; max-width: 900px; margin: 0 auto; padding: 0 var(--gutter); }
+.ab-chapter-no { display: inline-flex; align-items: center; gap: var(--s3); font-size: var(--fs-caption); font-weight: 700; letter-spacing: 0.28em; color: var(--brand-3); margin-bottom: var(--s4); }
+.ab-chapter-no::before, .ab-chapter-no::after { content: ''; width: 28px; height: 1px; background: rgba(134,238,179,.45); }
+.ab-chapter h2 { font-size: var(--fs-h2); font-weight: 700; letter-spacing: -0.03em; line-height: 1.25; color: #fff; margin: 0 0 var(--s4); }
+.ab-chapter p { font-size: var(--fs-lead); color: var(--d-text-2); margin: 0; }
+
+/* ---------- 合作咨询双卡 ---------- */
+.ab-consult { padding: var(--s8); }
+.ab-consult h3 { font-size: var(--fs-h3); font-weight: 700; letter-spacing: -0.025em; color: var(--l-text); margin: 0 0 var(--s6); }
+.ab-consult ul { list-style: none; margin: 0 0 var(--s8); padding: 0; }
+.ab-consult li { display: flex; gap: var(--s3); font-size: var(--fs-body); color: var(--l-text-2); line-height: 1.7; margin-bottom: var(--s3); }
+.ab-consult li:last-child { margin-bottom: 0; }
+.ab-consult li::before { content: '✓'; flex-shrink: 0; color: var(--brand); font-weight: 700; }
+.ab-consult-foot { margin-top: auto; }
+
+/* ============================================================
+   关于我们：左右分栏编辑式版式
+   刻意不用居中卡片网格，与相邻区块形成节奏差异。
+   ============================================================ */
+.ab-split { display: grid; grid-template-columns: 300px 1fr; gap: var(--s16); align-items: start; }
+.ab-split-head { position: sticky; top: 96px; }
+.ab-split-head h2 { font-size: var(--fs-h2); font-weight: 700; letter-spacing: -0.03em; line-height: 1.2; color: var(--l-text); margin: 0; }
+.ab-split-head h2::after { content: ''; display: block; width: 48px; height: 3px; border-radius: 2px; background: linear-gradient(90deg, var(--brand), var(--brand-2)); margin-top: var(--s5); }
+.ab-vlist > div { padding: var(--s8) 0; border-top: 1px solid var(--l-line); }
+.ab-vlist > div:first-child { border-top: none; padding-top: 0; }
+.ab-vlist > div:last-child { padding-bottom: 0; }
+.ab-vlist h3 { display: flex; align-items: center; gap: var(--s3); font-size: var(--fs-h4); font-weight: 700; color: var(--brand-dark); letter-spacing: 0.01em; margin: 0 0 var(--s4); }
+.ab-vlist h3::before { content: ''; flex-shrink: 0; width: 6px; height: 6px; border-radius: 50%; background: var(--brand); box-shadow: 0 0 0 4px var(--brand-dim); }
+.ab-vlist p { font-size: var(--fs-lead); color: var(--l-text-2); line-height: 1.85; margin: 0 0 var(--s3); max-width: 46em; }
+.ab-vlist p:last-child { margin-bottom: 0; }
+
+/* ---------- AI战略咨询体系：六级路径，绿色深浅渐进 ---------- */
+.ab-path { display: grid; grid-template-columns: repeat(6, 1fr); gap: var(--s4); position: relative; }
+.ab-path::before { content: ''; position: absolute; top: 46px; left: 8%; right: 8%; height: 2px; background: linear-gradient(90deg, var(--brand-3), var(--brand), var(--brand-deep)); opacity: .35; z-index: 0; }
+.ab-path-item { position: relative; z-index: 1; background: var(--l-surface); border: 1px solid var(--l-line); border-radius: var(--r-lg); padding: var(--s6) var(--s4); text-align: center; transition: transform .28s cubic-bezier(.2,.7,.2,1), box-shadow .28s ease, border-color .28s ease; }
+.ab-path-item:hover { transform: translateY(-4px); border-color: var(--brand-line); box-shadow: 0 16px 40px rgba(16,26,21,.10); }
+.ab-path-num { width: 44px; height: 44px; margin: 0 auto var(--s4); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: var(--fs-lead); font-weight: 700; color: #fff; }
+.ab-path-item:nth-child(1) .ab-path-num { background: #a8e6c4; color: #14512f; }
+.ab-path-item:nth-child(2) .ab-path-num { background: #7bd9a6; color: #0f4527; }
+.ab-path-item:nth-child(3) .ab-path-num { background: var(--brand-2); color: #0b3a20; }
+.ab-path-item:nth-child(4) .ab-path-num { background: var(--brand); }
+.ab-path-item:nth-child(5) .ab-path-num { background: var(--brand-dark); }
+.ab-path-item:nth-child(6) .ab-path-num { background: var(--brand-deep); }
+.ab-path-item h4 { font-size: var(--fs-body); font-weight: 700; color: var(--l-text); margin: 0 0 var(--s2); letter-spacing: -0.01em; }
+.ab-path-item p { font-size: var(--fs-caption); color: var(--l-text-3); line-height: 1.6; margin: 0; }
+
+/* ---------- 认证卡 ---------- */
+.ab-cert-head { padding: var(--s6); background: linear-gradient(135deg, var(--brand-deep), var(--brand-dark)); }
+.ab-cert-head h3 { font-size: var(--fs-h3); font-weight: 700; color: #fff; letter-spacing: -0.02em; margin: 0 0 var(--s3); }
+.ab-cert-badge { display: inline-block; font-size: var(--fs-caption); font-weight: 600; color: #fff; background: rgba(255,255,255,.18); border: 1px solid rgba(255,255,255,.28); border-radius: var(--r-pill); padding: 2px var(--s3); }
+.ab-cert-body { padding: var(--s6); display: flex; flex-direction: column; flex: 1; }
+.ab-cert-meta { display: grid; grid-template-columns: 76px 1fr; gap: var(--s2) var(--s3); font-size: var(--fs-body); color: var(--l-text-2); margin-bottom: var(--s5); }
+.ab-cert-meta dt { color: var(--l-text); font-weight: 600; }
+.ab-cert-meta dd { margin: 0; }
+.ab-cert-levels { list-style: none; margin: auto 0 0; padding: var(--s5) 0 0; border-top: 1px solid var(--l-line); }
+.ab-cert-levels li { font-size: var(--fs-body); color: var(--l-text-2); line-height: 1.6; padding: var(--s2) 0; }
+.ab-cert-levels li + li { border-top: 1px dashed var(--l-line); }
+.ab-cert-levels b { color: var(--brand-dark); font-weight: 700; }
+.ab-cert-note { display: block; margin-top: var(--s5); padding: var(--s3) var(--s4); background: var(--brand-soft); border: 1px solid var(--brand-line); border-radius: var(--r-sm); font-size: var(--fs-sm); color: var(--brand-deep); font-weight: 500; }
+
+/* ============================================================
+   一站式服务报名体系：横向 4 列线性流程
+   原来是 2×2 网格，把「报名→培训→考试→认证」的线性语义打断了。
+   ============================================================ */
+.ab-flow { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--s4); position: relative; }
+.ab-flow::before { content: ''; position: absolute; top: 39px; left: 10%; right: 10%; height: 2px; background: linear-gradient(90deg, var(--brand-3), var(--brand), var(--brand-deep)); opacity: .3; z-index: 0; }
+.ab-flow-item { position: relative; z-index: 1; background: var(--l-surface); border: 1px solid var(--l-line); border-radius: var(--r-lg); padding: var(--s6); display: flex; flex-direction: column; transition: transform .28s cubic-bezier(.2,.7,.2,1), box-shadow .28s ease, border-color .28s ease; }
+.ab-flow-item:hover { transform: translateY(-4px); border-color: var(--brand-line); box-shadow: 0 16px 40px rgba(16,26,21,.10); }
+.ab-flow-no { width: 32px; height: 32px; border-radius: 50%; background: var(--brand-dim); border: 1px solid var(--brand-line); color: var(--brand-dark); font-size: var(--fs-sm); font-weight: 700; display: flex; align-items: center; justify-content: center; margin-bottom: var(--s4); }
+.ab-flow-item h3 { font-size: var(--fs-h4); font-weight: 700; color: var(--l-text); letter-spacing: -0.01em; margin: 0 0 var(--s3); }
+.ab-flow-lead { font-size: var(--fs-sm); color: var(--l-text-2); margin: 0 0 var(--s4); }
+.ab-flow-detail { background: var(--l-bg); border-radius: var(--r-sm); padding: var(--s4); margin-bottom: var(--s5); }
+.ab-flow-detail p { font-size: var(--fs-sm); color: var(--l-text-2); line-height: 1.7; margin: 0 0 var(--s3); }
+.ab-flow-detail p:last-child { margin-bottom: 0; }
+.ab-flow-detail b { display: block; color: var(--brand-dark); font-weight: 700; }
+.ab-flow-sub { font-size: var(--fs-sm); font-weight: 700; color: var(--l-text); margin: 0 0 var(--s3); }
+.ab-flow-item ul { list-style: none; margin: auto 0 0; padding: 0; }
+.ab-flow-item ul li { display: flex; gap: var(--s2); font-size: var(--fs-sm); color: var(--l-text-2); line-height: 1.65; margin-bottom: var(--s2); }
+.ab-flow-item ul li:last-child { margin-bottom: 0; }
+.ab-flow-item ul li::before { content: ''; flex-shrink: 0; width: 5px; height: 5px; margin-top: 8px; border-radius: 50%; background: var(--brand); }
+
+/* ---------- 企业全员AI化三步 ---------- */
+.ab-steps { display: grid; grid-template-columns: 1fr 40px 1fr 40px 1fr; gap: var(--s2); align-items: stretch; }
+.ab-step { background: var(--l-surface); border: 1px solid var(--l-line); border-radius: var(--r-lg); padding: var(--s8) var(--s6); text-align: center; display: flex; flex-direction: column; transition: transform .28s cubic-bezier(.2,.7,.2,1), box-shadow .28s ease, border-color .28s ease; }
+.ab-step:hover { transform: translateY(-4px); border-color: var(--brand-line); box-shadow: 0 16px 40px rgba(16,26,21,.10); }
+.ab-step-no { display: inline-block; align-self: center; font-size: var(--fs-caption); font-weight: 700; letter-spacing: 0.1em; color: var(--brand); background: var(--brand-dim); border: 1px solid var(--brand-line); border-radius: var(--r-pill); padding: 3px var(--s4); margin-bottom: var(--s5); }
+.ab-step h3 { font-size: var(--fs-h3); font-weight: 700; letter-spacing: -0.025em; color: var(--l-text); margin: 0 0 var(--s3); }
+.ab-step > p { font-size: var(--fs-body); color: var(--l-text-2); margin: 0 0 var(--s6); }
+.ab-step-tools { margin-top: auto; display: flex; flex-wrap: wrap; gap: var(--s2); justify-content: center; }
+.ab-step-arrow { display: flex; align-items: center; justify-content: center; color: var(--brand); font-size: var(--fs-h3); opacity: .5; }
+
+/* ---------- 最佳实践案例 ---------- */
+.ab-case { padding: var(--s8); }
+.ab-case-company { display: inline-block; font-size: var(--fs-sm); font-weight: 700; color: var(--brand-deep); background: var(--brand-soft); border: 1px solid var(--brand-line); border-radius: var(--r-pill); padding: var(--s1) var(--s4); margin-bottom: var(--s4); }
+.ab-case h4 { font-size: var(--fs-h3); font-weight: 700; letter-spacing: -0.025em; color: var(--l-text); margin: 0 0 var(--s5); }
+.ab-case-ba { display: grid; gap: var(--s3); margin-bottom: var(--s6); }
+.ab-case-ba div { padding: var(--s4); border-radius: var(--r-sm); font-size: var(--fs-sm); line-height: 1.75; }
+.ab-case-before { background: var(--l-bg); color: var(--l-text-2); border-left: 3px solid var(--l-text-3); }
+.ab-case-after { background: var(--brand-soft); color: var(--l-text-2); border-left: 3px solid var(--brand); }
+.ab-case-ba b { color: var(--l-text); font-weight: 700; }
+.ab-case-kpi { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s3); margin-bottom: var(--s6); }
+.ab-case-kpi div { text-align: center; padding: var(--s4) var(--s2); background: var(--l-bg); border-radius: var(--r-sm); }
+.ab-case-kpi b { display: block; font-size: var(--fs-h3); font-weight: 700; color: var(--brand); line-height: 1.2; letter-spacing: -0.02em; }
+.ab-case-kpi span { font-size: var(--fs-caption); color: var(--l-text-3); }
+.ab-case-methods { margin-top: auto; padding-top: var(--s6); border-top: 1px solid var(--l-line); }
+.ab-case-methods h5 { font-size: var(--fs-body); font-weight: 700; color: var(--l-text); margin: 0 0 var(--s4); }
+.ab-case-methods ul { list-style: none; margin: 0; padding: 0; }
+.ab-case-methods li { display: flex; gap: var(--s2); font-size: var(--fs-sm); color: var(--l-text-2); line-height: 1.7; margin-bottom: var(--s3); }
+.ab-case-methods li::before { content: ''; flex-shrink: 0; width: 5px; height: 5px; margin-top: 8px; border-radius: 50%; background: var(--brand); }
+
+/* ---------- 合作客户跑马灯：沿用 common-styles.css 的动画 ---------- */
+.ab .client-card { width: 260px; background: var(--l-surface); border: 1px solid var(--l-line); border-radius: var(--r-lg); padding: var(--s4); box-shadow: none; }
+.ab .client-card:hover { transform: translateY(-4px); border-color: var(--brand-line); box-shadow: 0 16px 40px rgba(16,26,21,.10); }
+.ab .client-name { font-size: var(--fs-body); font-weight: 600; color: var(--l-text); margin-top: var(--s3); }
+
+/* ---------- 响应式 ---------- */
+@media (max-width: 1080px) {
+    .ab-bento { grid-template-columns: repeat(4, 1fr); }
+    .ab-c3 { grid-column: span 2; }
+    .ab-c6 { grid-column: span 4; }
+    .ab-path { grid-template-columns: repeat(3, 1fr); }
+    .ab-path::before { display: none; }
+    .ab-flow { grid-template-columns: repeat(2, 1fr); }
+    .ab-flow::before { display: none; }
+    .ab-split { grid-template-columns: 1fr; gap: var(--s10); }
+    .ab-split-head { position: static; }
+    .ab-hero-art { background-size: auto 190%; opacity: .55; }
+}
+@media (max-width: 760px) {
+    .ab { --fs-h1: 30px; --fs-h2: 26px; --fs-h3: 21px; --s24: 56px; --s20: 56px; --s16: 40px; --gutter: 20px; --hero-h: 380px; }
+    .ab-hero h1 { font-size: 32px; }
+    .ab-hero-lead { font-size: 15px; }
+    .ab-hero-text { max-width: 100%; }
+    .ab-bento { grid-template-columns: 1fr; }
+    .ab-c2, .ab-c3, .ab-c6 { grid-column: span 1; }
+    .ab-path { grid-template-columns: repeat(2, 1fr); }
+    .ab-flow { grid-template-columns: 1fr; }
+    .ab-steps { grid-template-columns: 1fr; }
+    .ab-step-arrow { transform: rotate(90deg); padding: var(--s2) 0; }
+    .ab-case-kpi { grid-template-columns: 1fr; }
+    .ab-consult, .ab-case { padding: var(--s6); }
+    /* 超窄屏隐去装饰图，保证 Hero 文字对比度 */
+    .ab-hero-art { display: none; }
+    .ab-hero-cta .ab-btn { width: 100%; }
+}
+</style>
+
+<!-- 不使用 .about-page：它带 max-width 约束，会让通栏背景无法满屏
+     （原文件靠 .about-hero 的 width:100vw 单独破出）。宽度统一由 .ab-wrap 控制。 -->
+<div class="ab">
+
+    <!-- ============ Hero ============ -->
+    <section class="ab-hero">
+        <div class="ab-hero-art"></div>
+        <div class="ab-hero-glow"></div>
+        <div class="ab-hero-in">
+            <div class="ab-hero-text">
+                <h1>钉钉AI咨询研究院</h1>
+                <p class="ab-hero-lead">作为阿里巴巴集团旗下——钉钉的官方AI咨询与培训平台，钉钉AI咨询研究院立足阿里巴巴雄厚的科技能力与繁荣生态，专注于为企业和个人提供面向未来的AI能力升级服务。</p>
+                <div class="ab-hero-cta">
+                    <a href="#abConsult" class="ab-btn">立即咨询</a>
+                    <a href="#abAbout" class="ab-btn ab-btn-glass">关于我们</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ 合作咨询 ============ -->
+    <section class="ab-sec ab-sec-white" id="abConsult">
+        <div class="ab-wrap">
+            <div class="ab-sec-head">
+                <span class="ab-chip">合作咨询</span>
                 <h2>开启您的AI转型之旅</h2>
                 <p>联系您的钉钉客户经理，获取专属AI咨询方案</p>
             </div>
-            <div class="consult-cards">
+            <div class="ab-bento">
                 <!-- 客户合作视角 -->
-                <div class="consult-card">
+                <div class="ab-bt ab-consult ab-c3">
                     <h3>客户合作</h3>
                     <ul>
                         <li>企业AI转型战略咨询与诊断</li>
@@ -55,10 +298,12 @@
                         <li>组织智能化升级全案服务</li>
                         <li>AI大赛及实战工作坊支持</li>
                     </ul>
-                    <a href="https://qr.dingtalk.com/action/joingroup?code=v1,k1,zdzsEQzStCNFs2x138iyL1H1T/KNqGsbdxXhceiNrlqdR7ksupjDEA==&_dt_no_comment=1&origin=11" target="_blank" class="consult-card-btn">立即咨询</a>
+                    <div class="ab-consult-foot">
+                        <a href="https://qr.dingtalk.com/action/joingroup?code=v1,k1,zdzsEQzStCNFs2x138iyL1H1T/KNqGsbdxXhceiNrlqdR7ksupjDEA==&_dt_no_comment=1&origin=11" target="_blank" class="ab-btn">立即咨询</a>
+                    </div>
                 </div>
                 <!-- 服务商合作视角 -->
-                <div class="consult-card">
+                <div class="ab-bt ab-consult ab-c3">
                     <h3>服务商合作</h3>
                     <ul>
                         <li>联合打造AI行业解决方案</li>
@@ -67,249 +312,238 @@
                         <li>钉钉官方生态品牌背书</li>
                         <li>共建AI服务生态网络</li>
                     </ul>
-                    <a href="https://qr.dingtalk.com/action/joingroup?code=v1,k1,3LVnXtbo4wxIOg3xIISoVFH1T/KNqGsbh3FhvEiRfICdR7ksupjDEA==&_dt_no_comment=1&origin=11" target="_blank" class="consult-card-btn">立即咨询</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 关于我们 大标题 -->
-    <div class="about-section-title-block">
-        <h2>关于我们</h2>
-        <div class="about-divider"></div>
-    </div>
-
-    <!-- 标语区：使命·愿景·优势 -->
-    <div style="background: #ffffff; padding: 72px 0 64px;">
-        <div style="max-width: 1100px; margin: 0 auto; padding: 0 24px; display: flex; gap: 48px; flex-wrap: wrap;">
-            <!-- 使命 -->
-            <div style="flex: 1 1 280px; display: flex; align-items: flex-start; gap: 18px;">
-                <div style="width: 4px; min-height: 64px; border-radius: 2px; background: linear-gradient(180deg, #30bf69, #4f9cff); flex-shrink: 0;"></div>
-                <div>
-                    <h3 style="font-size: 18px; font-weight: 700; color: #30bf69; margin: 0 0 10px; letter-spacing: 1px;">我们的使命</h3>
-                    <p style="font-size: 15px; color: #444; line-height: 1.85; margin: 0;">赋能AI时代的企业与个人，用前沿的AI能力实现效率的跨越式提升，助力组织和个体紧随时代节奏，实现数字化与智能化转型。</p>
-                </div>
-            </div>
-            <!-- 愿景 -->
-            <div style="flex: 1 1 280px; display: flex; align-items: flex-start; gap: 18px;">
-                <div style="width: 4px; min-height: 64px; border-radius: 2px; background: linear-gradient(180deg, #30bf69, #4f9cff); flex-shrink: 0;"></div>
-                <div>
-                    <h3 style="font-size: 18px; font-weight: 700; color: #30bf69; margin: 0 0 10px; letter-spacing: 1px;">我们的愿景</h3>
-                    <p style="font-size: 15px; color: #444; line-height: 1.85; margin: 0;">成为企业智能化升级的首选伙伴，构建一个连接AI技术、商业应用与人才发展的生态高地。</p>
-                </div>
-            </div>
-            <!-- 优势 -->
-            <div style="flex: 1 1 100%; display: flex; align-items: flex-start; gap: 18px;">
-                <div style="width: 4px; min-height: 64px; border-radius: 2px; background: linear-gradient(180deg, #30bf69, #4f9cff); flex-shrink: 0;"></div>
-                <div>
-                    <h3 style="font-size: 18px; font-weight: 700; color: #30bf69; margin: 0 0 10px; letter-spacing: 1px;">我们的优势</h3>
-                    <p style="font-size: 15px; color: #444; line-height: 1.85; margin: 0 0 12px;">研究院植根于钉钉成熟的企业级应用，专注于将AI技术与企业真实业务场景深度融合，通过AI咨询陪跑、AI人才培养、AI战略重塑等，帮助企业将AI能力从理念转化为实际生产力。</p>
-                    <p style="font-size: 15px; color: #444; line-height: 1.85; margin: 0;">区别于通用型AI服务，专注于用AI赋能职业发展，让产供销研等工作人群通过AI加持突破能力边界。</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <!-- AI战略咨询体系 -->
-    <div class="section-container">
-        <div class="section-title">
-            <h2>📈 AI战略咨询体系</h2>
-            <p>AI如何在我的组织里发生？六级演进路径</p>
-        </div>
-        <div class="strategy-timeline">
-            <div class="timeline-item">
-                <div class="timeline-num level-0">0</div>
-                <h4>AI数智化启航</h4>
-                <p>AI从认知到行动</p>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-num level-1">1</div>
-                <h4>AI业务数智化</h4>
-                <p>AI从行动到有效</p>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-num level-2">2</div>
-                <h4>AI流程数智化</h4>
-                <p>AI从有效到高效</p>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-num level-3">3</div>
-                <h4>AI组织数智化</h4>
-                <p>AI从流程驱动到组织自运行</p>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-num level-4">4</div>
-                <h4>AI经营数智化</h4>
-                <p>AI从经营辅助到决策中枢</p>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-num level-5">5</div>
-                <h4>AI行业化裂变</h4>
-                <p>AI从企业进化到行业引领</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- ============ 一级标题：个人学习 ============ -->
-    <div class="about-dark-banner" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); padding: 80px 0; text-align: center; position: relative; overflow: hidden;">
-        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(circle at 30% 50%, rgba(48, 191, 105, 0.15) 0%, transparent 60%);"></div>
-        <div style="position: relative; z-index: 1; max-width: 800px; margin: 0 auto; padding: 0 24px;">
-            <div style="font-size: 80px; font-weight: 900; color: rgba(255,255,255,0.08); line-height: 1; margin-bottom: -20px;">01</div>
-            <h2 style="font-weight: 800; color: #ffffff; margin-bottom: 16px;">个人学习：AI应用工程师认证</h2>
-            <p style="font-size: 16px; color: rgba(255,255,255,0.7); line-height: 1.6;">系统化的AI能力认证，从基础办公提效到深度业务应用，助力个人职业成长</p>
-        </div>
-    </div>
-
-    <!-- 认证体系 -->
-    <div class="section-container">
-        <div class="section-title">
-            <h2>AI标准认证体系</h2>
-            <p>基于岗位人群设定认证方向 + 聚焦企业实际应用场景设计课程内容</p>
-        </div>
-        <div class="cert-grid">
-            <div class="cert-card">
-                <div class="cert-header blue">
-                    <h3>AI应用工程师</h3>
-                    <span class="cert-badge">钉钉官方认证</span>
-                </div>
-                <div class="cert-body">
-                    <p class="cert-target">适合人群：企业各岗位员工/管理者</p>
-                    <p class="cert-scene">应用场景：AI办公与应用开发</p>
-                    <p class="cert-benefit">认证收益：利用语言、图像智能等技术，基于数字化平台开发场景化AI应用，实现沟通、协同、业务在线</p>
-                    <ul class="cert-levels">
-                        <li><strong>初级：</strong>基础办公提效，文档编辑、逻辑生成</li>
-                        <li><strong>中级：</strong>个人业务提效改造，AI表格搭建业务系统</li>
-                        <li><strong>高级：</strong>深度应用AI搭建业务流程系统</li>
-                    </ul>
-                    <div class="cert-highlight">截止2025年10月，已有100家企业参与并获得认证证书</div>
-                </div>
-            </div>
-            <div class="cert-card">
-                <div class="cert-header blue">
-                    <h3>数字化管理师</h3>
-                    <span class="cert-badge">钉钉官方认证</span>
-                </div>
-                <div class="cert-body">
-                    <p class="cert-target">适合人群：办公人员/数字化负责人</p>
-                    <p class="cert-scene">应用场景：协同在线与组织智能化</p>
-                    <p class="cert-benefit">认证收益：利用数字化办公软件平台，进行企业及组织人员架构编辑、组织运营流程维护、工作流协同、大数据决策分析</p>
-                    <ul class="cert-levels">
-                        <li><strong>初级：</strong>熟练使用数字化工具完成本职工作</li>
-                        <li><strong>中级：</strong>根据业务需求设计和搭建数字化解决方案</li>
-                        <li><strong>高级：</strong>将企业战略与数字化转型深度融合</li>
-                    </ul>
-                    <div class="cert-highlight">截至2025年10月，超过10000学员完成学习并通过认证</div>
-                </div>
-            </div>
-            <div class="cert-card">
-                <div class="cert-header blue">
-                    <h3>低代码开发师</h3>
-                    <span class="cert-badge">钉钉官方认证</span>
-                </div>
-                <div class="cert-body">
-                    <p class="cert-target">适合人群：IT/业务专家</p>
-                    <p class="cert-scene">应用场景：业务数字化</p>
-                    <p class="cert-benefit">认证收益：培养低代码开发的人才，通过课程学习使用低代码开发工具搭建业务系统</p>
-                    <ul class="cert-levels">
-                        <li><strong>初级：</strong>实现基本业务流程低代码化</li>
-                        <li><strong>中级：</strong>设计跨部门、多模块联动的业务解决方案</li>
-                        <li><strong>高级：</strong>规划低代码平台应用战略，建立开发规范</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="cert-card">
-                <div class="cert-header blue">
-                    <h3>AI模型工程师</h3>
-                    <span class="cert-badge">阿里云认证</span>
-                </div>
-                <div class="cert-body">
-                    <p class="cert-target">适合人群：IT/技术人员</p>
-                    <p class="cert-scene">应用场景：AI行业模型训练</p>
-                    <p class="cert-benefit">认证收益：基于海量数据和深度学习框架，开发具备语言理解、图像识别、预测分析等能力的AI模型</p>
-                    <ul class="cert-levels">
-                        <li><strong>ACA：</strong>利用大模型提升学习和工作效率</li>
-                        <li><strong>ACP：</strong>针对复杂业务场景设计大模型解决方案</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 一站式服务报名体系 -->
-    <div class="section-container">
-        <div class="section-title">
-            <h2>📋 一站式服务报名体系</h2>
-            <p>报名 → 培训 → 考试 → 认证，全流程服务支持</p>
-        </div>
-        <div class="enrollment-steps">
-            <div class="enrollment-card">
-                <div class="enrollment-header">
-                    <h3>报名</h3>
-                </div>
-                <div class="enrollment-body">
-                    <p>联系官方平台/合作机构报名学习，领取课程学习包</p>
-                    <div class="enrollment-detail">
-                        <p><strong>个人用户：</strong>线上报名，加入钉钉官方认证架构及专属学习群进行学习</p>
-                        <p><strong>企业用户：</strong>合作机构报名，为企业提供一站式学习系统，供全体员工学习</p>
+                    <div class="ab-consult-foot">
+                        <a href="https://qr.dingtalk.com/action/joingroup?code=v1,k1,3LVnXtbo4wxIOg3xIISoVFH1T/KNqGsbh3FhvEiRfICdR7ksupjDEA==&_dt_no_comment=1&origin=11" target="_blank" class="ab-btn">立即咨询</a>
                     </div>
-                    <div class="enrollment-subtitle">学习资料：</div>
-                    <ul class="enrollment-list">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ 关于我们：左右分栏编辑式 ============ -->
+    <section class="ab-sec" id="abAbout">
+        <div class="ab-wrap ab-split">
+            <div class="ab-split-head">
+                <h2>关于我们</h2>
+            </div>
+            <div class="ab-vlist">
+                <div>
+                    <h3>我们的使命</h3>
+                    <p>赋能AI时代的企业与个人，用前沿的AI能力实现效率的跨越式提升，助力组织和个体紧随时代节奏，实现数字化与智能化转型。</p>
+                </div>
+                <div>
+                    <h3>我们的愿景</h3>
+                    <p>成为企业智能化升级的首选伙伴，构建一个连接AI技术、商业应用与人才发展的生态高地。</p>
+                </div>
+                <div>
+                    <h3>我们的优势</h3>
+                    <p>研究院植根于钉钉成熟的企业级应用，专注于将AI技术与企业真实业务场景深度融合，通过AI咨询陪跑、AI人才培养、AI战略重塑等，帮助企业将AI能力从理念转化为实际生产力。</p>
+                    <p>区别于通用型AI服务，专注于用AI赋能职业发展，让产供销研等工作人群通过AI加持突破能力边界。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ AI战略咨询体系 ============ -->
+    <section class="ab-sec ab-sec-white">
+        <div class="ab-wrap">
+            <div class="ab-sec-head">
+                <h2>AI战略咨询体系</h2>
+                <p>AI如何在我的组织里发生？六级演进路径</p>
+            </div>
+            <div class="ab-path">
+                <div class="ab-path-item">
+                    <div class="ab-path-num">0</div>
+                    <h4>AI数智化启航</h4>
+                    <p>AI从认知到行动</p>
+                </div>
+                <div class="ab-path-item">
+                    <div class="ab-path-num">1</div>
+                    <h4>AI业务数智化</h4>
+                    <p>AI从行动到有效</p>
+                </div>
+                <div class="ab-path-item">
+                    <div class="ab-path-num">2</div>
+                    <h4>AI流程数智化</h4>
+                    <p>AI从有效到高效</p>
+                </div>
+                <div class="ab-path-item">
+                    <div class="ab-path-num">3</div>
+                    <h4>AI组织数智化</h4>
+                    <p>AI从流程驱动到组织自运行</p>
+                </div>
+                <div class="ab-path-item">
+                    <div class="ab-path-num">4</div>
+                    <h4>AI经营数智化</h4>
+                    <p>AI从经营辅助到决策中枢</p>
+                </div>
+                <div class="ab-path-item">
+                    <div class="ab-path-num">5</div>
+                    <h4>AI行业化裂变</h4>
+                    <p>AI从企业进化到行业引领</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ 章节 01：个人学习 ============ -->
+    <section class="ab-chapter">
+        <div class="ab-chapter-in">
+            <div class="ab-chapter-no">01</div>
+            <h2>个人学习：AI应用工程师认证</h2>
+            <p>系统化的AI能力认证，从基础办公提效到深度业务应用，助力个人职业成长</p>
+        </div>
+    </section>
+
+    <!-- ============ AI标准认证体系 ============ -->
+    <section class="ab-sec">
+        <div class="ab-wrap">
+            <div class="ab-sec-head">
+                <h2>AI标准认证体系</h2>
+                <p>基于岗位人群设定认证方向 + 聚焦企业实际应用场景设计课程内容</p>
+            </div>
+            <div class="ab-bento">
+                <div class="ab-bt ab-c3">
+                    <div class="ab-cert-head">
+                        <h3>AI应用工程师</h3>
+                        <span class="ab-cert-badge">钉钉官方认证</span>
+                    </div>
+                    <div class="ab-cert-body">
+                        <dl class="ab-cert-meta">
+                            <dt>适合人群</dt><dd>企业各岗位员工/管理者</dd>
+                            <dt>应用场景</dt><dd>AI办公与应用开发</dd>
+                            <dt>认证收益</dt><dd>利用语言、图像智能等技术，基于数字化平台开发场景化AI应用，实现沟通、协同、业务在线</dd>
+                        </dl>
+                        <ul class="ab-cert-levels">
+                            <li><b>初级：</b>基础办公提效，文档编辑、逻辑生成</li>
+                            <li><b>中级：</b>个人业务提效改造，AI表格搭建业务系统</li>
+                            <li><b>高级：</b>深度应用AI搭建业务流程系统</li>
+                        </ul>
+                        <span class="ab-cert-note">截止2025年10月，已有100家企业参与并获得认证证书</span>
+                    </div>
+                </div>
+                <div class="ab-bt ab-c3">
+                    <div class="ab-cert-head">
+                        <h3>数字化管理师</h3>
+                        <span class="ab-cert-badge">钉钉官方认证</span>
+                    </div>
+                    <div class="ab-cert-body">
+                        <dl class="ab-cert-meta">
+                            <dt>适合人群</dt><dd>办公人员/数字化负责人</dd>
+                            <dt>应用场景</dt><dd>协同在线与组织智能化</dd>
+                            <dt>认证收益</dt><dd>利用数字化办公软件平台，进行企业及组织人员架构编辑、组织运营流程维护、工作流协同、大数据决策分析</dd>
+                        </dl>
+                        <ul class="ab-cert-levels">
+                            <li><b>初级：</b>熟练使用数字化工具完成本职工作</li>
+                            <li><b>中级：</b>根据业务需求设计和搭建数字化解决方案</li>
+                            <li><b>高级：</b>将企业战略与数字化转型深度融合</li>
+                        </ul>
+                        <span class="ab-cert-note">截至2025年10月，超过10000学员完成学习并通过认证</span>
+                    </div>
+                </div>
+                <div class="ab-bt ab-c3">
+                    <div class="ab-cert-head">
+                        <h3>低代码开发师</h3>
+                        <span class="ab-cert-badge">钉钉官方认证</span>
+                    </div>
+                    <div class="ab-cert-body">
+                        <dl class="ab-cert-meta">
+                            <dt>适合人群</dt><dd>IT/业务专家</dd>
+                            <dt>应用场景</dt><dd>业务数字化</dd>
+                            <dt>认证收益</dt><dd>培养低代码开发的人才，通过课程学习使用低代码开发工具搭建业务系统</dd>
+                        </dl>
+                        <ul class="ab-cert-levels">
+                            <li><b>初级：</b>实现基本业务流程低代码化</li>
+                            <li><b>中级：</b>设计跨部门、多模块联动的业务解决方案</li>
+                            <li><b>高级：</b>规划低代码平台应用战略，建立开发规范</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="ab-bt ab-c3">
+                    <div class="ab-cert-head">
+                        <h3>AI模型工程师</h3>
+                        <span class="ab-cert-badge">阿里云认证</span>
+                    </div>
+                    <div class="ab-cert-body">
+                        <dl class="ab-cert-meta">
+                            <dt>适合人群</dt><dd>IT/技术人员</dd>
+                            <dt>应用场景</dt><dd>AI行业模型训练</dd>
+                            <dt>认证收益</dt><dd>基于海量数据和深度学习框架，开发具备语言理解、图像识别、预测分析等能力的AI模型</dd>
+                        </dl>
+                        <ul class="ab-cert-levels">
+                            <li><b>ACA：</b>利用大模型提升学习和工作效率</li>
+                            <li><b>ACP：</b>针对复杂业务场景设计大模型解决方案</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ 一站式服务报名体系：横向线性流程 ============ -->
+    <section class="ab-sec ab-sec-white">
+        <div class="ab-wrap">
+            <div class="ab-sec-head">
+                <h2>一站式服务报名体系</h2>
+                <p>报名 → 培训 → 考试 → 认证，全流程服务支持</p>
+            </div>
+            <div class="ab-flow">
+                <div class="ab-flow-item">
+                    <div class="ab-flow-no">1</div>
+                    <h3>报名</h3>
+                    <p class="ab-flow-lead">联系官方平台/合作机构报名学习，领取课程学习包</p>
+                    <div class="ab-flow-detail">
+                        <p><b>个人用户：</b>线上报名，加入钉钉官方认证架构及专属学习群进行学习</p>
+                        <p><b>企业用户：</b>合作机构报名，为企业提供一站式学习系统，供全体员工学习</p>
+                    </div>
+                    <div class="ab-flow-sub">学习资料：</div>
+                    <ul>
                         <li>随时可学的线上课程</li>
                         <li>每月精选企业AI落地案例分享直播</li>
                         <li>官方学习交流群，获取AI工具第一手信息</li>
                     </ul>
                 </div>
-            </div>
-            <div class="enrollment-card">
-                <div class="enrollment-header">
+                <div class="ab-flow-item">
+                    <div class="ab-flow-no">2</div>
                     <h3>培训</h3>
-                </div>
-                <div class="enrollment-body">
-                    <p>针对不同班级提供不同类型的培训内容</p>
-                    <div class="enrollment-detail">
-                        <p><strong>线上学习：</strong>视频课程学习</p>
-                        <p><strong>线下学习：</strong>1-2天线下班级，讲师带教，根据学员需求针对性答疑并做考核准备</p>
+                    <p class="ab-flow-lead">针对不同班级提供不同类型的培训内容</p>
+                    <div class="ab-flow-detail">
+                        <p><b>线上学习：</b>视频课程学习</p>
+                        <p><b>线下学习：</b>1-2天线下班级，讲师带教，根据学员需求针对性答疑并做考核准备</p>
                     </div>
-                    <div class="enrollment-subtitle">培训资源：</div>
-                    <ul class="enrollment-list">
+                    <div class="ab-flow-sub">培训资源：</div>
+                    <ul>
                         <li>专业讲师团队</li>
                         <li>实战项目演练</li>
                         <li>详细实操演示及课程讲解</li>
                         <li>高级班1v1带教</li>
                     </ul>
                 </div>
-            </div>
-            <div class="enrollment-card">
-                <div class="enrollment-header">
+                <div class="ab-flow-item">
+                    <div class="ab-flow-no">3</div>
                     <h3>考试</h3>
-                </div>
-                <div class="enrollment-body">
-                    <p>参加课程考试</p>
-                    <div class="enrollment-detail">
-                        <p><strong>初中级考核：</strong>初级、中级证书通过线上考试获取，学员直接提交作业，AI完成阅卷</p>
-                        <p><strong>高级考核：</strong>学员提交2个自行搭建的提效系统</p>
+                    <p class="ab-flow-lead">参加课程考试</p>
+                    <div class="ab-flow-detail">
+                        <p><b>初中级考核：</b>初级、中级证书通过线上考试获取，学员直接提交作业，AI完成阅卷</p>
+                        <p><b>高级考核：</b>学员提交2个自行搭建的提效系统</p>
                     </div>
-                    <div class="enrollment-subtitle">考试内容：</div>
-                    <ul class="enrollment-list">
+                    <div class="ab-flow-sub">考试内容：</div>
+                    <ul>
                         <li>实战演练，聚焦真实业务场景</li>
                         <li>一线业务同学根据实战经验出题</li>
                         <li>AI阅卷即刻结果反馈</li>
                     </ul>
                 </div>
-            </div>
-            <div class="enrollment-card">
-                <div class="enrollment-header">
+                <div class="ab-flow-item">
+                    <div class="ab-flow-no">4</div>
                     <h3>认证</h3>
-                </div>
-                <div class="enrollment-body">
-                    <div class="enrollment-detail">
-                        <p><strong>初中级认证：</strong>线上直接获取电子版证书</p>
-                        <p><strong>高级认证：</strong>学员通过认证后，提交登记后发放证书</p>
-                        <p><strong>人社部认证：</strong>可升级为人社部认证证书</p>
+                    <div class="ab-flow-detail">
+                        <p><b>初中级认证：</b>线上直接获取电子版证书</p>
+                        <p><b>高级认证：</b>学员通过认证后，提交登记后发放证书</p>
+                        <p><b>人社部认证：</b>可升级为人社部认证证书</p>
                     </div>
-                    <div class="enrollment-subtitle">认证证书：</div>
-                    <ul class="enrollment-list">
+                    <div class="ab-flow-sub">认证证书：</div>
+                    <ul>
                         <li>钉钉盖章权威认证</li>
                         <li>专业领域能力证明</li>
                         <li>AI核心竞争力提升</li>
@@ -318,138 +552,125 @@
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- ============ 一级标题：企业全员AI化 ============ -->
-    <div class="about-dark-banner" style="background: linear-gradient(135deg, #0d1b2a 0%, #1b2838 100%); padding: 80px 0; text-align: center; position: relative; overflow: hidden;">
-        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(circle at 70% 50%, rgba(48, 191, 105, 0.15) 0%, transparent 60%);"></div>
-        <div style="position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 0 24px;">
-            <div style="font-size: 80px; font-weight: 900; color: rgba(255,255,255,0.08); line-height: 1; margin-bottom: -20px;">02</div>
-            <h2 style="font-weight: 800; color: #ffffff; margin-bottom: 16px;">企业全员AI化：学习加实战，赛马出方案</h2>
-            <p style="font-size: 16px; color: rgba(255,255,255,0.7); line-height: 1.6;">AI认证 + 实战营 + AI大赛，三步走激活组织AI能力，让AI真正落地到业务场景</p>
+    <!-- ============ 章节 02：企业全员AI化 ============ -->
+    <section class="ab-chapter">
+        <div class="ab-chapter-in">
+            <div class="ab-chapter-no">02</div>
+            <h2>企业全员AI化：学习加实战，赛马出方案</h2>
+            <p>AI认证 + 实战营 + AI大赛，三步走激活组织AI能力，让AI真正落地到业务场景</p>
         </div>
-    </div>
+    </section>
 
-    <!-- 企业全员AI化方案 -->
-    <div class="section-container">
-        <div class="section-title">
-            <h2>企业全员AI化解决方案</h2>
-            <p>认证 + 实战营 + AI大赛，三步走激活组织AI能力</p>
+    <!-- ============ 企业全员AI化解决方案 ============ -->
+    <section class="ab-sec">
+        <div class="ab-wrap">
+            <div class="ab-sec-head">
+                <h2>企业全员AI化解决方案</h2>
+                <p>认证 + 实战营 + AI大赛，三步走激活组织AI能力</p>
+            </div>
+            <div class="ab-steps">
+                <div class="ab-step">
+                    <span class="ab-step-no">第一步</span>
+                    <h3>人才AI化</h3>
+                    <p>全员完成AI应用工程师认证</p>
+                    <div class="ab-step-tools">
+                        <span class="ab-tag">智能体</span>
+                        <span class="ab-tag">AI表格</span>
+                        <span class="ab-tag">AI文档</span>
+                        <span class="ab-tag">AI听记</span>
+                    </div>
+                </div>
+                <div class="ab-step-arrow">→</div>
+                <div class="ab-step">
+                    <span class="ab-step-no">第二步</span>
+                    <h3>AI提效</h3>
+                    <p>关键岗位完成AI实战工作坊</p>
+                    <div class="ab-step-tools">
+                        <span class="ab-tag">智能招聘</span>
+                        <span class="ab-tag">智能财务</span>
+                        <span class="ab-tag">销售管理</span>
+                        <span class="ab-tag">生产研发</span>
+                    </div>
+                </div>
+                <div class="ab-step-arrow">→</div>
+                <div class="ab-step">
+                    <span class="ab-step-no">第三步</span>
+                    <h3>场景AI化</h3>
+                    <p>AI大赛激活团队AI思维，激发更多AI场景</p>
+                    <div class="ab-step-tools">
+                        <span class="ab-tag">以赛促学</span>
+                        <span class="ab-tag">作品复制</span>
+                        <span class="ab-tag">标杆树立</span>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="solution-steps">
-            <div class="step-card">
-                <div class="step-num">第一步</div>
-                <h3>人才AI化</h3>
-                <p>全员完成AI应用工程师认证</p>
-                <div class="step-tools">
-                    <span class="tool-tag">智能体</span>
-                    <span class="tool-tag">AI表格</span>
-                    <span class="tool-tag">AI文档</span>
-                    <span class="tool-tag">AI听记</span>
-                </div>
-            </div>
-            <div class="step-arrow">→</div>
-            <div class="step-card">
-                <div class="step-num">第二步</div>
-                <h3>AI提效</h3>
-                <p>关键岗位完成AI实战工作坊</p>
-                <div class="step-tools">
-                    <span class="tool-tag">智能招聘</span>
-                    <span class="tool-tag">智能财务</span>
-                    <span class="tool-tag">销售管理</span>
-                    <span class="tool-tag">生产研发</span>
-                </div>
-            </div>
-            <div class="step-arrow">→</div>
-            <div class="step-card">
-                <div class="step-num">第三步</div>
-                <h3>场景AI化</h3>
-                <p>AI大赛激活团队AI思维，激发更多AI场景</p>
-                <div class="step-tools">
-                    <span class="tool-tag">以赛促学</span>
-                    <span class="tool-tag">作品复制</span>
-                    <span class="tool-tag">标杆树立</span>
-                </div>
-            </div>
-        </div>
-    </div>
+    </section>
 
-    <!-- 最佳实践案例 -->
-    <div class="section-container">
-        <div class="section-title">
-            <h2>最佳实践案例</h2>
-            <p>真实企业的AI转型成果</p>
-        </div>
-        <div class="case-grid">
-            <div class="case-card">
-                <div class="case-company">柳钢集团</div>
-                <h4>万人AI计划——定战略 & 育人才</h4>
-                <div class="case-description">
-                    <p><strong>以前:</strong> AI能力非常基础,仅使用日常APP做高级搜索用;无法将AI功能用于工作提效;没有合适的工具进行AI应用搭建。</p>
-                    <p><strong>现在:</strong> 通过AI应用工程师认证课程学习,提升全员AI认知;员工自发挖掘身边AI应用场景;4大业务场景,30+AI应用落地,员工全面提效,进入人机协作模式。</p>
-                </div>
-                <div class="case-results">
-                    <div class="result-item">
-                        <span class="result-value">100%</span>
-                        <span class="result-label">人员AI能力提升</span>
-                    </div>
-                    <div class="result-item">
-                        <span class="result-value">50+</span>
-                        <span class="result-label">AI应用场景挖掘</span>
-                    </div>
-                    <div class="result-item">
-                        <span class="result-value">30+</span>
-                        <span class="result-label">AI应用落地</span>
-                    </div>
-                </div>
-                <div class="case-methods">
-                    <h5>核心方法</h5>
-                    <ul>
-                        <li>钉钉AI应用工程师认证:面向需要AI做基础办公提效的人员,使用AI进行文档编辑、逻辑生成、基础数据整理</li>
-                        <li>企业AI人才培训课程:涵盖AI功能的产品技能培训,AI表格、AI助理,聚焦应用、聚焦落地</li>
-                        <li>企业AI应用创新大赛:以赛促学、以赛促用,通过大赛举办、高层站台等方式提升全员AI注意力</li>
-                    </ul>
-                </div>
+    <!-- ============ 最佳实践案例 ============ -->
+    <section class="ab-sec ab-sec-white">
+        <div class="ab-wrap">
+            <div class="ab-sec-head">
+                <h2>最佳实践案例</h2>
+                <p>真实企业的AI转型成果</p>
             </div>
-            <div class="case-card">
-                <div class="case-company">立白集团 & 北控水务</div>
-                <h4>AI的场景化落地</h4>
-                <div class="case-description">
-                    <p><strong>以前:</strong> 基础员工困于日常系统填报,一个人面对多个系统,工作重复度高;每个部门都有各自的部门语言、文档规格,统一收集汇总困难。</p>
-                    <p><strong>现在:</strong> 重复性工作交给AI,AI进行数据的识别、总结、分析,实现"基层不基础";从200+员工优秀作品中精选10个业务痛点场景深入打磨;通过9个月陪跑,所有部门对AI深入学习,人效全面提升。</p>
+            <div class="ab-bento">
+                <div class="ab-bt ab-case ab-c3">
+                    <span class="ab-case-company">柳钢集团</span>
+                    <h4>万人AI计划——定战略 &amp; 育人才</h4>
+                    <div class="ab-case-ba">
+                        <div class="ab-case-before"><b>以前:</b> AI能力非常基础,仅使用日常APP做高级搜索用;无法将AI功能用于工作提效;没有合适的工具进行AI应用搭建。</div>
+                        <div class="ab-case-after"><b>现在:</b> 通过AI应用工程师认证课程学习,提升全员AI认知;员工自发挖掘身边AI应用场景;4大业务场景,30+AI应用落地,员工全面提效,进入人机协作模式。</div>
+                    </div>
+                    <div class="ab-case-kpi">
+                        <div><b>100%</b><span>人员AI能力提升</span></div>
+                        <div><b>50+</b><span>AI应用场景挖掘</span></div>
+                        <div><b>30+</b><span>AI应用落地</span></div>
+                    </div>
+                    <div class="ab-case-methods">
+                        <h5>核心方法</h5>
+                        <ul>
+                            <li>钉钉AI应用工程师认证:面向需要AI做基础办公提效的人员,使用AI进行文档编辑、逻辑生成、基础数据整理</li>
+                            <li>企业AI人才培训课程:涵盖AI功能的产品技能培训,AI表格、AI助理,聚焦应用、聚焦落地</li>
+                            <li>企业AI应用创新大赛:以赛促学、以赛促用,通过大赛举办、高层站台等方式提升全员AI注意力</li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="case-results">
-                    <div class="result-item">
-                        <span class="result-value">10+</span>
-                        <span class="result-label">痛点场景深度打磨</span>
+                <div class="ab-bt ab-case ab-c3">
+                    <span class="ab-case-company">立白集团 &amp; 北控水务</span>
+                    <h4>AI的场景化落地</h4>
+                    <div class="ab-case-ba">
+                        <div class="ab-case-before"><b>以前:</b> 基础员工困于日常系统填报,一个人面对多个系统,工作重复度高;每个部门都有各自的部门语言、文档规格,统一收集汇总困难。</div>
+                        <div class="ab-case-after"><b>现在:</b> 重复性工作交给AI,AI进行数据的识别、总结、分析,实现"基层不基础";从200+员工优秀作品中精选10个业务痛点场景深入打磨;通过9个月陪跑,所有部门对AI深入学习,人效全面提升。</div>
                     </div>
-                    <div class="result-item">
-                        <span class="result-value">100%</span>
-                        <span class="result-label">部门提效</span>
+                    <div class="ab-case-kpi">
+                        <div><b>10+</b><span>痛点场景深度打磨</span></div>
+                        <div><b>100%</b><span>部门提效</span></div>
+                        <div><b>9个月</b><span>陪跑周期</span></div>
                     </div>
-                    <div class="result-item">
-                        <span class="result-value">9个月</span>
-                        <span class="result-label">陪跑周期</span>
+                    <div class="ab-case-methods">
+                        <h5>核心方法</h5>
+                        <ul>
+                            <li>AI应用创新大赛:以钉钉平台和钉钉AI产品为基础,从业务真实场景出发,围绕场景解决方案组队参赛,形成10+场景应用</li>
+                            <li>AI咨询陪跑服务:梳理业务逻辑,深入实际场景,基于千行百业的行业经验和解决方案,给出匹配的AI落地解决方案</li>
+                            <li>AI转型场景解决方案研发:深入部门一线、实地探索部门痛点和需求,在不碰敏感数据的情况下梳理业务逻辑,形成配套的场景化解决方案</li>
+                            <li>企业AI实战工作坊:涵盖AI功能的产品技能培训,AI表格、AI助理,聚焦应用、聚焦落地</li>
+                        </ul>
                     </div>
-                </div>
-                <div class="case-methods">
-                    <h5>核心方法</h5>
-                    <ul>
-                        <li>AI应用创新大赛:以钉钉平台和钉钉AI产品为基础,从业务真实场景出发,围绕场景解决方案组队参赛,形成10+场景应用</li>
-                        <li>AI咨询陪跑服务:梳理业务逻辑,深入实际场景,基于千行百业的行业经验和解决方案,给出匹配的AI落地解决方案</li>
-                        <li>AI转型场景解决方案研发:深入部门一线、实地探索部门痛点和需求,在不碰敏感数据的情况下梳理业务逻辑,形成配套的场景化解决方案</li>
-                        <li>企业AI实战工作坊:涵盖AI功能的产品技能培训,AI表格、AI助理,聚焦应用、聚焦落地</li>
-                    </ul>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- 客户案例 -->
-    <div class="section-container">
-        <div class="section-title">
-            <h2>合作客户</h2>
-            <p>真实企业的AI转型实践现场</p>
+    <!-- ============ 合作客户（跑马灯沿用 common-styles.css 动画，白底匹配两侧渐隐遮罩）============ -->
+    <section class="ab-sec ab-sec-white">
+        <div class="ab-wrap">
+            <div class="ab-sec-head">
+                <h2>合作客户</h2>
+                <p>真实企业的AI转型实践现场</p>
+            </div>
         </div>
         <div class="marquee-wrapper">
             <!-- 第一行 -->
@@ -591,9 +812,9 @@
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- 咨询弹窗 -->
+    <!-- 咨询弹窗（沿用 common-styles.css 的 .consult-modal-* 样式与原有开关函数） -->
     <div class="consult-modal-overlay" id="aboutConsultModal">
         <div class="consult-modal-content">
             <button class="consult-modal-close" onclick="closeAboutConsultPopup()">×</button>
@@ -614,5 +835,18 @@
         document.getElementById('aboutConsultModal').addEventListener('click', function(e) {
             if (e.target === this) closeAboutConsultPopup();
         });
+
+        // Hero 内锚点：页面由 index.html 动态注入，用 JS 平滑滚动而非依赖原生 hash
+        // （原生 hash 会改动 location，触发 index.html 的 Tab 路由逻辑）
+        (function () {
+            var links = document.querySelectorAll('.ab-hero-cta a[href^="#"]');
+            Array.prototype.forEach.call(links, function (a) {
+                a.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    var t = document.getElementById(a.getAttribute('href').slice(1));
+                    if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                });
+            });
+        })();
     </script>
 </div>

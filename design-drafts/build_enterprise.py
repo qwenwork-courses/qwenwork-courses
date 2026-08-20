@@ -60,6 +60,8 @@ body { background: #f6f8f7 !important; }
     --r-sm: 10px; --r-md: 16px; --r-lg: 22px; --r-xl: 28px; --r-pill: 999px;
     --page: 1280px;
     --gutter: 28px;
+    /* Hero 高度：与合作咨询页 .ab 的 --hero-h 保持一致 */
+    --hero-h: 460px;
 
     font-family: 'PingFang SC', 'Microsoft YaHei', -apple-system, sans-serif;
     color: var(--l-text);
@@ -71,10 +73,10 @@ body { background: #f6f8f7 !important; }
 .ent-wrap { max-width: var(--page); margin: 0 auto; padding: 0 var(--gutter); }
 
 /* ---------- Hero ---------- */
-.ent-hero { background: var(--d-bg); color: var(--d-text); position: relative; overflow: hidden; padding: var(--s20) 0; }
+.ent-hero { background: var(--d-bg); color: var(--d-text); position: relative; overflow: hidden; min-height: var(--hero-h); display: flex; align-items: center; padding: var(--s16) 0; }
 .ent-hero::before { content: ''; position: absolute; top: -30%; right: -4%; width: 880px; height: 680px; background: radial-gradient(circle, rgba(48,191,105,.24) 0%, transparent 62%); pointer-events: none; }
 .ent-hero::after { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.028) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.028) 1px, transparent 1px); background-size: 56px 56px; -webkit-mask-image: radial-gradient(ellipse 80% 70% at 62% 35%, #000 25%, transparent 76%); mask-image: radial-gradient(ellipse 80% 70% at 62% 35%, #000 25%, transparent 76%); pointer-events: none; }
-.ent-hero-in { position: relative; z-index: 2; display: grid; grid-template-columns: 1fr 300px; gap: var(--s16); align-items: center; }
+.ent-hero-in { position: relative; z-index: 2; width: 100%; display: grid; grid-template-columns: 1fr 300px; gap: var(--s16); align-items: center; }
 .ent-hero h1 { font-size: var(--fs-h1); font-weight: 700; letter-spacing: -0.035em; line-height: 1.14; color: var(--d-text); margin: 0 0 var(--s5); }
 .ent-hero h1 em { font-style: normal; background: linear-gradient(100deg, var(--brand-3), var(--brand)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
 .ent-hero p { font-size: var(--fs-lead); color: var(--d-text-2); margin: 0; }
@@ -139,7 +141,6 @@ body { background: #f6f8f7 !important; }
 .ent-role p { font-size: var(--fs-body); color: var(--l-text-2); max-width: 60em; margin: 0 0 var(--s5); }
 .ent-role-tags { display: flex; flex-wrap: wrap; gap: var(--s2); }
 .ent-role-tags span { display: inline-flex; align-items: center; gap: var(--s2); background: #fff; border: 1px solid rgba(48,191,105,.28); border-radius: var(--r-pill); padding: var(--s1) var(--s4); font-size: var(--fs-sm); font-weight: 500; color: var(--l-text-2); }
-.ent-role-tags .role-emoji { font-size: var(--fs-body); }
 
 /* ---------- 课程卡 ---------- */
 .ent-crs { display: flex; flex-direction: column; }
@@ -160,7 +161,8 @@ body { background: #f6f8f7 !important; }
 .ent-crs-pts { list-style: none; margin: 0 0 var(--s6); padding: 0; }
 .ent-crs-pts li { display: flex; gap: var(--s2); font-size: var(--fs-body); color: var(--l-text-2); line-height: 1.65; margin-bottom: var(--s3); }
 .ent-crs-pts li:last-child { margin-bottom: 0; }
-.ent-crs-ico { flex-shrink: 0; font-size: var(--fs-body); line-height: 1.65; }
+/* 已删除装饰 emoji，改用统一的品牌绿圆点作项目符 */
+.ent-crs-pts li::before { content: ''; flex-shrink: 0; width: 5px; height: 5px; margin-top: 9px; border-radius: 50%; background: var(--brand); }
 .ent-crs-pts b { color: var(--l-text); font-weight: 700; }
 .ent-crs-foot { margin-top: auto; padding-top: var(--s5); display: flex; align-items: center; justify-content: flex-end; }
 
@@ -230,12 +232,12 @@ def build_course(c):
     o.append('            </div>')
     o.append('            <ul class="ent-crs-pts">')
     for h in c['highlights']:
-        ico = '<span class="ent-crs-ico">%s</span>' % h['icon'] if h['icon'] else ''
+        # 丢弃 h['icon']（原文件里的装饰 emoji），项目符改由 CSS 绘制
         if h['title']:
             body = '<span><b>%s</b>：%s</span>' % (h['title'], h['desc'])
         else:
             body = '<span>%s</span>' % h['desc']
-        o.append('              <li>%s%s</li>' % (ico, body))
+        o.append('              <li>%s</li>' % body)
     o.append('            </ul>')
     o.append('            <div class="ent-crs-foot"><a class="ent-more" href="%s">%s →</a></div>'
              % (c['href'], c['btn']))
@@ -343,8 +345,11 @@ for i, (t, name) in enumerate(zip(TABS, NAMES)):
     P.append('        <div class="ent-bt ent-role ent-c6">')
     P.append('          <h3>%s</h3>' % r['title'])
     P.append('          <p>%s</p>' % r['desc'])
+    # 剔除角色标签里的 <span class="role-emoji">…</span> 装饰 emoji，只留文字
+    clean_tags = [re.sub(r'<span class="role-emoji">.*?</span>', '', tg, flags=re.S).strip()
+                  for tg in r['tags']]
     P.append('          <div class="ent-role-tags">%s</div>'
-             % ''.join('<span>%s</span>' % tg for tg in r['tags']))
+             % ''.join('<span>%s</span>' % tg for tg in clean_tags))
     P.append('        </div>')
     for c in t['courses']:
         P.append(build_course(c))
