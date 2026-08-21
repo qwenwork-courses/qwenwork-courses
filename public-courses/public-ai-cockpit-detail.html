@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>领军企业「AI经营管理驾驶舱」系统班·22期 - 课程详情</title>
+    <link rel="stylesheet" href="../assets/css/common-styles.css">
+    <link rel="stylesheet" href="public-detail.css">
+    <style>
+/* AI经营管理驾驶舱详情页专属样式 */
+        .ai-hero {
+            background: #eef4ff;
+            padding: 80px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .schedule-card {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(20px);
+            border-radius: 16px;
+            padding: 24px 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .schedule-card h3 {
+            font-size: 17px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        .schedule-item {
+            position: relative;
+            padding: 14px 0 14px 16px;
+            margin-left: 8px;
+            border-left: 3px solid #30bf69;
+        }
+
+        .schedule-date {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 6px;
+            letter-spacing: 0.3px;
+        }
+
+        .schedule-time {
+            font-size: 13px;
+            color: #888;
+            line-height: 1.7;
+            margin-bottom: 8px;
+        }
+
+        .poster-thumb {
+            margin-top: 12px;
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+            position: relative;
+            border: 1px solid #eef0f5;
+            transition: all 0.3s ease;
+        }
+        .poster-thumb:hover {
+            box-shadow: 0 4px 16px rgba(48, 191, 105, 0.2);
+            transform: translateY(-2px);
+        }
+        .poster-thumb img {
+            width: 100%;
+            height: 90px;
+            object-fit: cover;
+            object-position: top;
+            display: block;
+        }
+        .poster-thumb-label {
+            display: block;
+            text-align: center;
+            font-size: 14px;
+            color: #fff;
+            font-weight: 600;
+            padding: 10px 0;
+            background: #30bf69;
+            letter-spacing: 1px;
+        }
+        .poster-lightbox {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.85);
+            z-index: 9999;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 40px 20px;
+            overflow-y: auto;
+            cursor: zoom-out;
+        }
+        .poster-lightbox.active { display: flex; }
+        .poster-lightbox img {
+            max-width: 600px;
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+        .poster-lightbox-close {
+            position: fixed;
+            top: 16px;
+            right: 24px;
+            font-size: 32px;
+            color: #fff;
+            cursor: pointer;
+            z-index: 10000;
+            line-height: 1;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+        .poster-lightbox-close:hover { opacity: 1; }
+
+        .hero-badge {
+            display: inline-block;
+            background: #30bf69;
+            color: #fff;
+            font-size: 13px;
+            font-weight: 700;
+            padding: 5px 14px;
+            border-radius: 20px;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .ai-hero h1 {
+            font-size: 46px;
+            font-weight: 900;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            color: #1a237e;
+            position: relative;
+            z-index: 1;
+        }
+
+        .ai-hero .subtitle {
+            font-size: 21px;
+            color: #1a237e;
+            margin-bottom: 12px;
+            font-weight: 600;
+            position: relative;
+            z-index: 1;
+        }
+
+        .ai-hero .desc {
+            font-size: 16px;
+            color: #455a64;
+            max-width: 600px;
+            margin-bottom: 30px;
+            line-height: 1.8;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-tags {
+            display: flex;
+            justify-content: flex-start;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-tag {
+            background: #d4e4ff;
+            border: 1px solid #30bf69;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 15px;
+            font-weight: 600;
+            color: #1a237e;
+        }
+
+        .back-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #30bf69 0%, #22975a 100%);
+            color: white;
+            padding: 14px 36px;
+            border-radius: 10px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 4px 16px rgba(48, 191, 105, 0.4);
+            position: relative;
+            z-index: 1;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(48, 191, 105, 0.6);
+        }
+
+        .section-title p {
+            font-size: 16px;
+            color: #666;
+        }/* 企业最痛的5件事 */
+        .pain-list {
+            max-width: 950px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+
+        .pain-card {
+            background: white;
+            border-radius: 14px;
+            padding: 24px 26px;
+            border: 1px solid #f0f0f0;
+            box-shadow: 0 3px 16px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+        }
+
+        .pain-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--accent-line);
+        }
+
+        .pain-card.full-width { grid-column: 1 / -1; }
+
+        .pain-card h3 {
+            font-size: 18px;
+            font-weight: 800;
+            color: #30bf69;
+            margin-bottom: 8px;
+        }
+
+        .pain-card p {
+            font-size: 15px;
+            color: #666;
+            line-height: 1.8;
+            margin: 0;
+        }/* 三板斧体系 */
+        .axe-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .axe-col {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid #f0f0f0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .axe-head {
+            background: linear-gradient(135deg, #30bf69 0%, #22975a 100%);
+            color: #fff;
+            padding: 20px 24px;
+        }
+
+        .axe-head h3 {
+            font-size: 20px;
+            font-weight: 800;
+            margin: 0 0 6px;
+            color: #fff;
+        }
+
+        .axe-head p {
+            font-size: 14px;
+            margin: 0;
+            opacity: 0.9;
+        }
+
+        .axe-body {
+            padding: 20px 24px 24px;
+            flex: 1;
+        }
+
+        .axe-group {
+            margin-bottom: 16px;
+        }
+
+        .axe-group:last-child { margin-bottom: 0; }
+
+        .axe-group-name {
+            display: inline-block;
+            background: #f0f5ff;
+            color: #1a237e;
+            font-size: 13px;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 6px;
+            margin-bottom: 8px;
+        }
+
+        .axe-group ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .axe-group li {
+            position: relative;
+            padding: 5px 0 5px 18px;
+            font-size: 14px;
+            line-height: 1.7;
+            color: #555;
+        }
+
+        .axe-group li::before {
+            content: '';
+            position: absolute;
+            left: 2px;
+            top: 14px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #30bf69;
+        }
+
+        .leader-formula {
+            max-width: 900px;
+            margin: 32px auto 0;
+            background: #f0f5ff;
+            border-radius: 12px;
+            padding: 20px 24px;
+            text-align: center;
+        }
+
+        .leader-formula strong {
+            display: block;
+            font-size: 16px;
+            color: #1a237e;
+            margin-bottom: 6px;
+        }
+
+        .leader-formula span {
+            font-size: 15px;
+            color: #30bf69;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }/* 课程大纲 */
+        .outline-block {
+            background: white;
+            border-radius: 14px;
+            border: 1px solid #f0f0f0;
+            box-shadow: 0 3px 16px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .outline-block > h3 {
+            background: #f0f5ff;
+            font-size: 18px;
+            font-weight: 800;
+            color: #1a237e;
+            margin: 0;
+            padding: 16px 26px;
+        }
+
+        .outline-block ul {
+            list-style: none;
+            padding: 20px 26px;
+            margin: 0;
+        }
+
+        .outline-block li {
+            position: relative;
+            padding: 6px 0 6px 20px;
+            font-size: 15px;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .outline-block li::before {
+            content: '';
+            position: absolute;
+            left: 2px;
+            top: 15px;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #30bf69;
+        }
+
+        .outline-block li strong { color: #1a1a1a; }
+
+        .outline-note {
+            padding: 0 26px 20px;
+            font-size: 15px;
+            color: #30bf69;
+            font-weight: 600;
+            line-height: 1.8;
+            margin: 0;
+        }/* 15 个 AI 化主题表格 */
+        .axe-table-wrap { overflow-x: auto; margin-bottom: 28px; }
+
+        .axe-table-wrap > h3 {
+            font-size: 19px;
+            font-weight: 800;
+            color: #1a1a1a;
+            margin: 0 0 14px;
+            padding-left: 12px;
+            border-left: 4px solid #30bf69;
+        }
+
+        .axe-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 3px 16px rgba(0,0,0,0.05);
+            font-size: 15px;
+        }
+
+        .axe-table th {
+            background: #f0f5ff;
+            color: #1a237e;
+            font-weight: 700;
+            padding: 14px 18px;
+            text-align: left;
+            white-space: nowrap;
+        }
+
+        .axe-table td {
+            padding: 13px 18px;
+            border-top: 1px solid #f0f2f5;
+            color: #555;
+            line-height: 1.7;
+        }
+
+        .axe-table td:first-child {
+            font-weight: 700;
+            color: #1a1a1a;
+            white-space: nowrap;
+        }/* 讲师 */
+        .instructor-grid-three {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .instructor-card {
+            background: white;
+            border-radius: 14px;
+            padding: 28px 26px;
+            border: 1px solid #f0f0f0;
+            box-shadow: 0 3px 16px rgba(0,0,0,0.05);
+        }
+
+        .instructor-name {
+            font-size: 20px;
+            font-weight: 800;
+            color: #1a1a1a;
+            margin-bottom: 6px;
+        }
+
+        .instructor-title {
+            font-size: 14px;
+            color: #30bf69;
+            font-weight: 600;
+            margin-bottom: 14px;
+        }
+
+        .instructor-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .instructor-card li {
+            position: relative;
+            padding: 4px 0 4px 16px;
+            font-size: 14px;
+            line-height: 1.75;
+            color: #666;
+        }
+
+        .instructor-card li::before {
+            content: '';
+            position: absolute;
+            left: 2px;
+            top: 13px;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: #30bf69;
+        }
+
+        .instructor-clients {
+            margin-top: 14px;
+            padding-top: 14px;
+            border-top: 1px dashed #e8edf3;
+            font-size: 13px;
+            color: #888;
+            line-height: 1.8;
+        }
+
+        .instructor-clients strong {
+            color: #1a237e;
+            display: block;
+            margin-bottom: 4px;
+        }/* 往期精彩回顾 */
+        .review-gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            max-width: 950px;
+            margin: 0 auto;
+        }
+
+        .review-gallery-item {
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            border: 1px solid #f0f0f0;
+            box-shadow: 0 3px 16px rgba(0,0,0,0.05);
+            background: #fff;
+        }
+
+        .review-gallery-item img {
+            width: 100%;
+            aspect-ratio: 3 / 2;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+
+        .review-gallery-item:hover img { transform: scale(1.05); }
+
+        .contact-section {
+            background: linear-gradient(135deg, #eefff5, #eefff5);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .contact-section h3 {
+            font-size: 24px;
+            font-weight: 800;
+            color: #30bf69;
+            margin-bottom: 16px;
+        }
+
+        .contact-note {
+            font-size: 14px;
+            color: #666;
+        }
+
+        @media (max-width: 768px) {
+            .ai-hero-inner {
+                flex-direction: column !important;
+                gap: 24px;
+            }
+
+            .hero-right { width: 100% !important; }
+
+            .ai-hero { padding: 48px 16px; }
+
+            .ai-hero h1 { font-size: 26px; }
+
+            .pain-list,
+            .axe-grid,
+            .instructor-grid-three {
+                grid-template-columns: 1fr !important;
+            }
+
+            .review-gallery {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <div class="ai-hero">
+        <div class="ai-hero-inner">
+            <div class="hero-left">
+                <span class="hero-badge">钉钉 × 天生不凡</span>
+                <h1>AI经营管理驾驶舱</h1>
+                <p class="subtitle">领军企业一号位管理方法论 × AI 实战落地　系统班 · 22期</p>
+                <p class="desc">带走一套让企业从"靠老板"到"靠系统"的完整 AI 经营管理操作系统——人事效三合一。用管理三板斧管方向、增长三板斧管增长、执行三板斧管落地，让组织自动奔跑，实现从学习到落地的快速闭环。</p>
+                <div class="hero-tags">
+                    <span class="hero-tag">2天=1年</span>
+                    <span class="hero-tag">15个AI化主题</span>
+                    <span class="hero-tag">一号位专属</span>
+                    <span class="hero-tag">限60人</span>
+                </div>
+                <a href="../index.html#public" class="back-btn">← 返回公开课列表</a>
+            </div>
+            <div class="hero-right">
+                <div class="schedule-card">
+                    <h3>📅 开课信息</h3>
+                    <div class="schedule-item">
+                        <div class="schedule-date">9月17日 - 9月18日</div>
+                        <div class="schedule-time">2026年09月17日-18日</div>
+                        <div class="schedule-location">📍 阿里巴巴西溪园区 C 区</div>
+                    </div>
+                    <div class="poster-thumb" onclick="openImageLightbox(this)">
+                        <img src="https://gw.alicdn.com/imgextra/i2/O1CN01HiSGM7lbHnE1fW0U_!!6000000002459-2-tps-822-10000.png" alt="AI经营管理驾驶舱系统班海报" />
+                        <span class="poster-thumb-label">查看课程海报</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 企业最痛的5件事 -->
+    <div class="section-container" style="background: #f7f8fa;">
+        <div class="section-title">
+            <h2>企业最痛的 5 件事</h2>
+            <p>让组织自动奔跑，实现从学习到落地的快速闭环</p>
+        </div>
+        <div class="pain-list">
+            <div class="pain-card">
+                <h3>战略定了团队不动</h3>
+                <p>方向不清晰、目标不一致、执行没动力</p>
+            </div>
+            <div class="pain-card">
+                <h3>天天开会结果没变化</h3>
+                <p>会议多、决策慢、落地难、结果不理想</p>
+            </div>
+            <div class="pain-card">
+                <h3>数据很多、决策很慢</h3>
+                <p>报表多、数据散、信息滞后、影响决策</p>
+            </div>
+            <div class="pain-card">
+                <h3>AI 很火不知道怎么落地</h3>
+                <p>工具用不会用、招式多不会选、价值难体现</p>
+            </div>
+            <div class="pain-card full-width">
+                <h3>组织越大越累、成果越来越少</h3>
+                <p>亲力亲为效率低、团队能力跟不上、组织内耗严重</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 三板斧体系 -->
+    <div class="section-container">
+        <div class="section-title">
+            <h2>《AI经营管理驾驶舱》</h2>
+            <p>管理三板斧管方向 ＋ 增长三板斧管增长 ＋ 执行三板斧管落地</p>
+        </div>
+        <div class="axe-grid">
+            <div class="axe-col">
+                <div class="axe-head">
+                    <h3>管理三板斧 AI 能力</h3>
+                    <p>定战略 · 造土壤 · 断事用人</p>
+                </div>
+                <div class="axe-body">
+                    <div class="axe-group">
+                        <span class="axe-group-name">定战略</span>
+                        <ul>
+                            <li>战略定位 —— 战略推演 AI 智能体</li>
+                            <li>价值创造 —— 竞对分析预警 AI 智能体</li>
+                        </ul>
+                    </div>
+                    <div class="axe-group">
+                        <span class="axe-group-name">造土壤</span>
+                        <ul>
+                            <li>组织文化 —— 组织诊断 AI 智能体</li>
+                            <li>财务管理 —— 经营数据 AI 驾驶舱</li>
+                        </ul>
+                    </div>
+                    <div class="axe-group">
+                        <span class="axe-group-name">断事用人</span>
+                        <ul>
+                            <li>人才战略 —— 人才匹配 AI 智能体</li>
+                            <li>科学分钱 —— 科学分钱设计 AI 智能体</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="axe-col">
+                <div class="axe-head">
+                    <h3>增长三板斧 AI 能力</h3>
+                    <p>落战略 · 搞经营 · 建机制</p>
+                </div>
+                <div class="axe-body">
+                    <div class="axe-group">
+                        <span class="axe-group-name">落战略</span>
+                        <ul>
+                            <li>产品战略 —— 产品加速淘汰 AI 智能体</li>
+                            <li>目标管理 —— 各部门指标库 AI 智能体</li>
+                        </ul>
+                    </div>
+                    <div class="axe-group">
+                        <span class="axe-group-name">搞经营</span>
+                        <ul>
+                            <li>营销增长 —— 增长飞轮 AI 智能体</li>
+                            <li>用户经营 —— 用户管理 AI 管理驾驶舱</li>
+                        </ul>
+                    </div>
+                    <div class="axe-group">
+                        <span class="axe-group-name">建机制</span>
+                        <ul>
+                            <li>过程掌控 —— 会议管理 AI 智能驾驶舱</li>
+                            <li>流程管理 —— 工作流业务流 AI 搭建智能体</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="axe-col">
+                <div class="axe-head">
+                    <h3>执行三板斧 AI 能力</h3>
+                    <p>拿结果 · 建团队 · Hire &amp; Fire</p>
+                </div>
+                <div class="axe-body">
+                    <div class="axe-group">
+                        <span class="axe-group-name">拿结果</span>
+                        <ul>
+                            <li>经营复盘 —— 4R 闭环复盘</li>
+                            <li>复盘追踪驾驶舱</li>
+                        </ul>
+                    </div>
+                    <div class="axe-group">
+                        <span class="axe-group-name">建团队</span>
+                        <ul>
+                            <li>人才复制 —— 训战四部曲</li>
+                            <li>兵棋推演 AI 作战室</li>
+                        </ul>
+                    </div>
+                    <div class="axe-group">
+                        <span class="axe-group-name">Hire &amp; Fire</span>
+                        <ul>
+                            <li>成果评估 —— 绩效罗盘</li>
+                            <li>绩效评估 AI 驾驶舱</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="leader-formula">
+            <strong>AI 时代领导力极简公式</strong>
+            <span>定追拿 → 心脑体 → 打胜仗 → 人机合一</span>
+        </div>
+    </div>
+
+    <!-- 课程大纲 -->
+    <div class="section-container" style="background: #f7f8fa;">
+        <div class="section-title">
+            <h2>课程大纲</h2>
+            <p>领军企业《AI经营管理驾驶舱》</p>
+        </div>
+        <div style="max-width: 950px; margin: 0 auto;">
+            <div class="outline-block">
+                <h3>AI 如何赋能企业高质量增长</h3>
+                <ul>
+                    <li>01. AI 大模型的自我学习能力</li>
+                    <li>02. AI 如何赋能企业高质量增长</li>
+                    <li>03. AI 如何管理者高质量成长</li>
+                    <li>04. AI 大模型的提示词工程师训练</li>
+                    <li><strong>05. AI 经营管理驾驶舱 + AI 千问智能体 + AI 知识库</strong></li>
+                </ul>
+            </div>
+
+            <div class="outline-block">
+                <h3>从战略到执行最佳实践</h3>
+                <ul>
+                    <li>《从战略到执行》的最佳实践</li>
+                    <li><strong>从战略规划 → 战略解码 → KPI → OKR → PDCA 的全链路闭环体系</strong></li>
+                </ul>
+            </div>
+
+            <div class="outline-block">
+                <h3>阿里巴巴《AI经营管理驾驶舱》共创场景</h3>
+                <ul>
+                    <li>《AI 经营管理驾驶舱》经营效率加速器：阿里巴巴集团的智能办公工具，结合了人工智能与传统电子表格功能，旨在提升用户在数据处理、分析和协作方面的效率</li>
+                    <li>五大能力：自然语言输入、智能数据分析、自动化流程与联动、多端协同编辑、安全与权限管理</li>
+                    <li>500 强企业内部业务场景：工单管理、项目管理、会议管理、目标管理、客户管理、招聘管理、设备管理、任务待办等</li>
+                    <li><strong>案例教学：</strong>AI 助力企业《经营管理驾驶舱》共创</li>
+                    <li><strong>学员产出：</strong>每个团队搭建一个 AI 智能表格经营场景</li>
+                </ul>
+            </div>
+
+            <div class="outline-block">
+                <h3>千问办公 AI 实战落地解析</h3>
+                <ul>
+                    <li><strong>认识千问：</strong>知道 AI 能干什么、不能干什么，上手就能用</li>
+                    <li><strong>学会跟 AI 说话：</strong>把"问问题"变成模板，填空就能出结果</li>
+                    <li><strong>文档处理：</strong>万字长文 3 分钟读完，合同风险自动标出，周报 30 秒生成，方案对比一目了然</li>
+                    <li><strong>数据处理：</strong>脏数据变干净，不会的公式直接问，销售月报／考勤／预算分析自动出结论</li>
+                    <li><strong>做汇报：</strong>一句话需求 → 完整 PPT 大纲 → 逐页内容 → 演讲稿，半小时出框架</li>
+                    <li><strong>邮件与沟通：</strong>催款、投诉、协调、招投标邮件模板即用，开会全流程从议程到纪要一条龙</li>
+                    <li><strong>效率提升：</strong>周报 30 秒、纪要标准化、客户跟进自动化、招聘全流程、制度起草、日报汇总——重复劳动全部交给 AI</li>
+                </ul>
+                <p class="outline-note">最打动老板的 5 个场景：合同丢进去，风险条款自动标出来——法务审查效率翻倍；几千条客户名单，一键去重补全——数据整理从半天变 5 分钟；一句话生成完整 PPT 大纲 + 逐页内容——汇报材料不再改八遍；会议录音 → 自动出纪要 + 待办清单——开完会纪要已经写好；固定模板 + 事项输入 → 30 秒出周报——每周省下半小时。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 15 个 AI 化主题 -->
+    <div class="section-container">
+        <div class="section-title">
+            <h2>15 个三板斧 AI 化主题</h2>
+            <p>主题 · 解决企业什么痛点 · 系统工具落地</p>
+        </div>
+        <div style="max-width: 950px; margin: 0 auto;">
+            <div class="axe-table-wrap">
+                <h3>管理三板斧 AI 化</h3>
+                <table class="axe-table">
+                    <thead>
+                        <tr>
+                            <th>主题</th>
+                            <th>解决企业什么痛点</th>
+                            <th>系统工具落地</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>01. 战略定位</td><td>方向不清</td><td>定位四个一工程</td></tr>
+                        <tr><td>02. 价值创造</td><td>核心竞争力缺失</td><td>价值创造多快好省</td></tr>
+                        <tr><td>03. 组织文化</td><td>凝聚力不足</td><td>文化落地五部曲</td></tr>
+                        <tr><td>04. 财务管理</td><td>资金断裂</td><td>财务三表</td></tr>
+                        <tr><td>05. 人才战略</td><td>无人才可用</td><td>人才四要素</td></tr>
+                        <tr><td>06. 科学分钱</td><td>权责利不对等</td><td>科学分钱公式</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="axe-table-wrap">
+                <h3>增长三板斧 AI 化</h3>
+                <table class="axe-table">
+                    <thead>
+                        <tr>
+                            <th>主题</th>
+                            <th>解决企业什么痛点</th>
+                            <th>系统工具落地</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>07. 产品战略</td><td>产品卖不动</td><td>产品矩阵打造</td></tr>
+                        <tr><td>08. 目标管理</td><td>FKPI 失控</td><td>预算管理 + 目标管理</td></tr>
+                        <tr><td>09. 营销增长</td><td>增长滞涨</td><td>增长飞轮</td></tr>
+                        <tr><td>10. 用户经营</td><td>用户流失</td><td>新老大</td></tr>
+                        <tr><td>11. 过程掌控</td><td>节奏混乱</td><td>过程三个一工程</td></tr>
+                        <tr><td>12. 流程管理</td><td>做事没标准</td><td>流程闭环</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="axe-table-wrap">
+                <h3>执行三板斧 AI 化</h3>
+                <table class="axe-table">
+                    <thead>
+                        <tr>
+                            <th>主题</th>
+                            <th>解决企业什么痛点</th>
+                            <th>系统工具落地</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>13. 经营复盘</td><td>看不清数据</td><td>4R 复盘</td></tr>
+                        <tr><td>14. 人才复制</td><td>团队没战斗力</td><td>训战四部曲</td></tr>
+                        <tr><td>15. 成果评估</td><td>组织没动力</td><td>绩效评估</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- 主讲老师 -->
+    <div class="section-container" style="background: #f7f8fa;">
+        <div class="section-title">
+            <h2>主讲老师</h2>
+            <p>领军企业《AI经营管理驾驶舱》</p>
+        </div>
+        <div class="instructor-grid-three">
+            <div class="instructor-card">
+                <div class="instructor-name">刘炜</div>
+                <div class="instructor-title">阿里巴巴钉钉 AI 研究院智库专家</div>
+                <ul>
+                    <li>工信部数智化领军人才导师、顾问</li>
+                    <li>战略目标训战系统总设计师</li>
+                    <li>杭州天生不凡教育科技有限公司创始人</li>
+                    <li>中远海运集团 BLM 战略规划落地教练</li>
+                    <li>OPT 团队 AI 经营管理驾驶舱创始人</li>
+                </ul>
+                <div class="instructor-clients">
+                    <strong>已服务的部分企业：</strong>
+                    海南港航物流、乡乡嘴、兴和集团、红赤水、晶澳太阳能、新宏昌重工、正恒动力、双羿竹木、天使口腔、壳牌、有零有食、天文、交个朋友、立白、胜利油田、悍动、万邦达、黑猫、惠丰、永荣、富得利、基诺浦、兆华、伊斯科、安踏、山东青岛迈金集团、越秀地产等企业。
+                </div>
+            </div>
+
+            <div class="instructor-card">
+                <div class="instructor-name">高珉</div>
+                <div class="instructor-title">阿里巴巴钉钉 AI 咨询研究院智库导师</div>
+                <ul>
+                    <li>工信部数智化领军人才官方导师</li>
+                    <li>杭州天生不凡教育科技有限公司创始人</li>
+                    <li>AI 全域营销 GEO 品牌规划专家导师</li>
+                    <li>立白科技 AI 经营管理驾驶舱实战教练</li>
+                    <li>AI 业务团队系统打造实战教练</li>
+                </ul>
+                <div class="instructor-clients">
+                    <strong>已服务的部分企业：</strong>
+                    中国远洋集团、史丹利、乡乡嘴、兴和集团、三一重工、华盛江泉、富得利、正恒动力、双羿竹木、山东润义金集团、壳牌、有零有食、天文、交个朋友、东营联合石化集团、胜利油田、悍动、万邦达、黑猫、惠丰、永荣、广东卫视、兆华、华农保险、SONAX 等企业。
+                </div>
+            </div>
+
+            <div class="instructor-card">
+                <div class="instructor-name">杨可欣</div>
+                <div class="instructor-title">阿里巴巴钉钉培训咨询中心讲师</div>
+                <ul>
+                    <li>参与企业级 AI 办公培训体系设计与解决方案撰写，服务客户覆盖教育、互联网、制造等行业</li>
+                    <li>华东师范大学开放教育学院讲师，家庭教育智能体"知心慧语"开发团队核心成员</li>
+                    <li>宁波市教育综合改革实验校项目培训专家，主讲"GENAI 赋能教育创新"系列课程</li>
+                    <li>擅长大模型应用落地、AI 智能体工作流搭建、企业 AI 办公场景设计与内训交付</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 往期精彩回顾 -->
+    <div class="section-container">
+        <div class="section-title">
+            <h2>往期精彩回顾</h2>
+            <p>往期系统班现场精彩瞬间</p>
+        </div>
+        <div class="review-gallery">
+            <div class="review-gallery-item" onclick="openImageLightbox(this)">
+                <img src="https://gw.alicdn.com/imgextra/i3/O1CN01BMDioG8srzC3thDs_!!6000000007497-0-tps-1920-1280.jpg" alt="往期精彩回顾1">
+            </div>
+            <div class="review-gallery-item" onclick="openImageLightbox(this)">
+                <img src="https://gw.alicdn.com/imgextra/i2/O1CN01UaQTd7yFDqJ3thDs_!!6000000003467-0-tps-1920-1280.jpg" alt="往期精彩回顾2">
+            </div>
+            <div class="review-gallery-item" onclick="openImageLightbox(this)">
+                <img src="https://gw.alicdn.com/imgextra/i1/O1CN01hn4I3c0cOYF3thDs_!!6000000003983-0-tps-1920-1280.jpg" alt="往期精彩回顾3">
+            </div>
+            <div class="review-gallery-item" onclick="openImageLightbox(this)">
+                <img src="https://gw.alicdn.com/imgextra/i3/O1CN01IPPzsqUHAkK3thDs_!!6000000000789-0-tps-1920-1280.jpg" alt="往期精彩回顾4">
+            </div>
+            <div class="review-gallery-item" onclick="openImageLightbox(this)">
+                <img src="https://gw.alicdn.com/imgextra/i4/O1CN01EM7Mq7x2PcICHLSC_!!6000000005174-0-tps-6048-4032.jpg" alt="往期精彩回顾5">
+            </div>
+            <div class="review-gallery-item" onclick="openImageLightbox(this)">
+                <img src="https://gw.alicdn.com/imgextra/i1/O1CN01Mccrhj7SyYJCHLSC_!!6000000007374-0-tps-6048-4032.jpg" alt="往期精彩回顾6">
+            </div>
+            <div class="review-gallery-item" onclick="openImageLightbox(this)">
+                <img src="https://gw.alicdn.com/imgextra/i4/O1CN010PW81fvyXRCC7WgA_!!6000000002788-0-tps-5970-3980.jpg" alt="往期精彩回顾7">
+            </div>
+        </div>
+    </div>
+
+    <!-- 报名须知 -->
+    <div class="section-container">
+        <div class="section-title">
+            <h2>报名须知</h2>
+            <p>开课信息与费用说明</p>
+        </div>
+        <div style="max-width: 800px; margin: 0 auto;">
+            <div style="background: white; border-radius: 12px; padding: 32px; border: 1px solid #f0f0f0; margin-bottom: 24px;">
+                <h3 style="font-size: 18px; font-weight: 700; color: #1a1a1a; margin-bottom: 16px;">开课信息</h3>
+                <ul style="padding-left: 20px; color: #555; line-height: 2; font-size: 15px;">
+                    <li>课程时间：2026年09月17日-18日</li>
+                    <li>课程地点：阿里巴巴西溪园区 C 区</li>
+                    <li>适用人群：董事长、总经理、总监、各团队一号位</li>
+                    <li>课程老师：刘炜、高珉、杨可欣</li>
+                    <li>课程开班人数：60 人以内</li>
+                    <li>主办：钉钉 × 天生不凡</li>
+                </ul>
+            </div>
+            <div style="background: white; border-radius: 12px; padding: 32px; border: 1px solid #f0f0f0;">
+                <h3 style="font-size: 18px; font-weight: 700; color: #1a1a1a; margin-bottom: 16px;">课程费用</h3>
+                <p style="color: #555; font-size: 15px; line-height: 1.8; margin: 0;">
+                    <strong style="color: #e53935; font-size: 28px;">¥5,980</strong> <span style="color:#888;">/ 人</span><br>
+                    含 2 天系统班课程 · 15 个三板斧 AI 化主题 · AI 经营管理驾驶舱共创实操
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 联系方式 -->
+    <div class="section-container" style="background: #f7f8fa;">
+        <div class="contact-section" style="display: flex; align-items: center; justify-content: space-between; gap: 32px; padding: 32px 40px; text-align: left;">
+            <div style="flex: 1;">
+                <h3 style="margin-bottom: 10px;">钉钉 × 天生不凡</h3>
+                <p class="contact-note" style="margin: 0;">9月17-18日 · 阿里巴巴西溪园区 C 区；扫描课程海报中的二维码咨询报名，或联系您的钉钉客户经理</p>
+            </div>
+            <div style="flex-shrink: 0;">
+                <a href="javascript:void(0)" onclick="openPosterLightbox()" style="display: inline-flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #30bf69 0%, #22975a 100%); color: white; font-size: 17px; font-weight: 700; padding: 16px 36px; border-radius: 12px; text-decoration: none; box-shadow: 0 6px 20px rgba(48, 191, 105, 0.35); transition: all 0.3s ease; white-space: nowrap; gap: 8px;">
+                    <span>扫码报名</span>
+                    <span style="font-size: 20px; line-height: 1;">→</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .contact-section a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(48, 191, 105, 0.5) !important;
+        }
+        @media (max-width: 768px) {
+            .contact-section {
+                flex-direction: column !important;
+                text-align: center !important;
+            }
+            .contact-section > div:first-child { text-align: center !important; }
+        }
+    </style>
+
+    <script>
+        var POSTER_URL = 'https://gw.alicdn.com/imgextra/i2/O1CN01HiSGM7lbHnE1fW0U_!!6000000002459-2-tps-822-10000.png';
+        function openPosterLightbox() {
+            var img = document.querySelector('#posterLightbox img');
+            img.src = POSTER_URL;
+            img.alt = 'AI经营管理驾驶舱系统班海报';
+            document.getElementById('posterLightbox').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        function openImageLightbox(el) {
+            var src = el.querySelector('img');
+            var img = document.querySelector('#posterLightbox img');
+            img.src = src.src;
+            img.alt = src.alt;
+            document.getElementById('posterLightbox').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        function closePosterLightbox() {
+            document.getElementById('posterLightbox').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    </script>
+
+    <!-- 海报灯箱 -->
+    <div class="poster-lightbox" id="posterLightbox" onclick="closePosterLightbox()">
+        <span class="poster-lightbox-close" onclick="closePosterLightbox()">&times;</span>
+        <img src="https://gw.alicdn.com/imgextra/i2/O1CN01HiSGM7lbHnE1fW0U_!!6000000002459-2-tps-822-10000.png" alt="AI经营管理驾驶舱系统班海报" onclick="event.stopPropagation()" />
+    </div>
+
+</body>
+</html>

@@ -15,3 +15,6 @@
 
 # 设计草稿/备份/截图（保存在 dev-drafts 分支，不随生产站点部署）
 /design-drafts/
+
+# Python
+__pycache__/

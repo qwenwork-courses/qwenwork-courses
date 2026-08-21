@@ -500,12 +500,13 @@
 
             try {
                 // 3. 会话内缓存优先：命中直接复用，不再抓取、不闪“正在加载”。
-                //    只有首次访问某 tab 才 fetch；去掉时间戳，让浏览器 HTTP 缓存也能生效
-                //    （配合下方 prefetchTabs：空闲时预取其余 tab，做到次次秒开）。
+                //    只有首次访问某 tab 才 fetch；?v= 版本号仅在内容更新时变更，
+                //    既让浏览器 HTTP 缓存生效（配合下方 prefetchTabs：空闲时预取其余 tab，做到次次秒开），
+                //    又能在片段内容更新后及时失效旧缓存。
                 let html = contentCache[tabId];
                 if (html == null) {
                     container.innerHTML = '<div class="loading-spinner">正在加载内容...</div>';
-                    const response = await fetch(`tabs/tab-${tabId}.html`);
+                    const response = await fetch(`tabs/tab-${tabId}.html?v=20260821`);
                     if (!response.ok) throw new Error('加载失败');
                     html = await response.text();
                     contentCache[tabId] = html;
@@ -834,7 +835,7 @@
                 if (contentCache[tabId] != null) return;
                 idle(() => {
                     if (contentCache[tabId] != null) return;
-                    fetch(`tabs/tab-${tabId}.html`)
+                    fetch(`tabs/tab-${tabId}.html?v=20260821`)
                         .then(r => (r.ok ? r.text() : null))
                         .then(t => { if (t != null && contentCache[tabId] == null) contentCache[tabId] = t; })
                         .catch(() => {});
